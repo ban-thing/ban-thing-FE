@@ -1,0 +1,162 @@
+import styled from "styled-components";
+
+interface ButtonProps {
+    variant?: "filled" | "outlined" | "gray";
+    size?: "large" | "small";
+    checked?: boolean;
+}
+//Button
+const getBackgroundColor = (variant?: string) => {
+    switch (variant) {
+        case "filled":
+            return "var(--color-main-1)";
+        case "gray":
+            return "var(--color-black-6)";
+        case "outlined":
+            return "transparent";
+        default:
+            return "var(--color-main-1)";
+    }
+};
+
+const getTextColor = (variant?: string) => {
+    switch (variant) {
+        case "outlined":
+            return "var(--color-main-1)";
+        default:
+            return "white";
+    }
+};
+// 기본 버튼
+export const Button = styled.button<ButtonProps>`
+    border-radius: 24px;
+    border: ${(props) => (props.variant === "outlined" ? "1px solid var(--color-main-1)" : "none")};
+    width: ${(props) => (props.size === "small" ? "160px" : "335px")};
+    height: ${(props) => (props.size === "small" ? "48px" : "52px")};
+    font-size: ${(props) => (props.size === "small" ? "16px" : "18px")};
+    font-weight: 500;
+    background-color: ${(props) => getBackgroundColor(props.variant)};
+    color: ${(props) => getTextColor(props.variant)};
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+// 해시테크 버튼
+export const HashtagButton = styled.button<ButtonProps>`
+    border-radius: 24px;
+    border: none;
+    padding: 8px 16px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: var(--color-main-1);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+
+    ${(props) =>
+        props.variant === "outlined" &&
+        `
+    background-color: transparent;
+    border: 1px solid var(--color-main-1);
+    color: var(--color-main-1);
+  `}
+`;
+// X 버튼
+export const CloseButton = styled.button`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--color-main-1);
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+// 체크 버튼
+export const CheckButton = styled.button<ButtonProps>`
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background-color: ${(props) =>
+        props.checked ? "var(--color-main-1)" : "var(--color-black-6)"};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    svg {
+        width: 18px;
+        height: 16px;
+        color: white;
+    }
+`;
+// 라디오 버튼
+export const RadioButton = styled.button<ButtonProps>`
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid ${(props) => (props.checked ? "var(--color-main-1)" : "var(--color-black-6)")};
+    background-color: ${(props) => (props.checked ? "var(--color-main-1)" : "transparent")};
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: ${(props) => (props.checked ? "white" : "var(--color-black-6)")};
+        transition: background-color 0.2s ease;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
+// //Input
+
+// export const Input = styled.input`
+//     width: 301px;
+//     height: 50px;
+//     border: 1px solid var(--color-black-6);
+//     border-radius: 8px;
+//     padding: 0 16px;
+//     font-size: 20px;
+//     font-weight: 500;
+//     color: var(--color-black-5);
+// `;
+
+// export const Input2 = styled.input`
+//     width: 126px;
+//     height: 40px;
+//     border: 1px solid var(--color-black-6);
+//     border-radius: 8px;
+//     padding: 0 16px;
+//     font-size: 17px;
+//     font-weight: 500;
+//     color: var(--color-black-5);
+// `;
