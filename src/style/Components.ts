@@ -137,26 +137,18 @@ export const RadioButton = styled.button<ButtonProps>`
     }
 `;
 
-// //Input
+//Input
 
-// export const Input = styled.input`
-//     width: 301px;
-//     height: 50px;
-//     border: 1px solid var(--color-black-6);
-//     border-radius: 8px;
-//     padding: 0 16px;
-//     font-size: 20px;
-//     font-weight: 500;
-//     color: var(--color-black-5);
-// `;
+export const Input = styled.input`
+    width: 301px;
+    height: 50px;
+    border: 1px solid var(--color-black-6);
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: var(--color-black-1);
 
-// export const Input2 = styled.input`
-//     width: 126px;
-//     height: 40px;
-//     border: 1px solid var(--color-black-6);
-//     border-radius: 8px;
-//     padding: 0 16px;
-//     font-size: 17px;
-//     font-weight: 500;
-//     color: var(--color-black-5);
-// `;
+    &:focus {
+        outline: 1px solid var(--color-black-1);
+    }
+`;
