@@ -1,21 +1,28 @@
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Layout from "./components/layout/Layout";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import LocationSelect from "./pages/LocationSelect";
+import MyLocationSetting from "./pages/MyLocationSetting";
+import ItemView from "./pages/ItemView";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Outlet />,
-        // errorElement: <NotFound />,
+        element: <Layout />,
+        errorElement: <NotFound />,
         children: [
-            { path: "login" /* element: <Login /> */ },
-            { path: "location-select" },
-            { path: "my-location-setting" },
-            { path: "" },
-            { path: "item-view/:id" },
+            { path: "", element: <Home /> },
+            { path: "login", element: <Login /> },
+            { path: "location-select", element: <LocationSelect /> },
+            { path: "my-location-setting", element: <MyLocationSetting /> },
+            { path: "item-view/:id", element: <ItemView /> },
             { path: "chatting-list" },
             { path: "chatting/:id" },
             { path: "item-register" },
@@ -37,7 +44,6 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={true} />
             <RouterProvider router={router} />
-            <div>Hello World</div>
         </QueryClientProvider>
     );
 }

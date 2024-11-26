@@ -1,4 +1,4 @@
-import { UserPurchasesList } from "./user";
+import { UserPurchasesList } from "./User";
 
 // 상품 등록/수정
 export type Item = {
