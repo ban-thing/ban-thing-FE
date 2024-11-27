@@ -4,7 +4,7 @@ import { UserProfile } from "../../types/User";
 interface ChatListItemProps {
     user: UserProfile;
     message: string;
-    timeAgo: string;
+    timeAgo: number;
     unreadCount: number;
 }
 
@@ -16,7 +16,7 @@ export default function ChatList({ user, message, timeAgo, unreadCount }: ChatLi
                 <UserDetails>
                     <UserName>{user.nickname}</UserName>
                     <UserLocation>{user.address1}</UserLocation>
-                    <TimeAgo> . {timeAgo}일 전</TimeAgo>
+                    <TimeAgo>{timeAgo}일 전</TimeAgo>
                 </UserDetails>
                 <Message>{message}</Message>
             </ChatInfo>
