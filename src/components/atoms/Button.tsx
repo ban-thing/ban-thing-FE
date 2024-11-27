@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
+import Plus from "@/assets/icons/plus.svg?react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray";
     size?: "large" | "small";
     checked?: boolean;
-    hoverAction?: boolean;
+    $hoverAction?: boolean;
 }
 //Button
 const getBackgroundColor = (variant?: string) => {
@@ -44,7 +45,7 @@ export const Button = styled.button<ButtonProps>`
 
     &:hover {
         opacity: 0.8;
-        opacity: ${(props) => (props.hoverAction === false ? 1 : 0.8)};
+        opacity: ${(props) => (props.$hoverAction === false ? 1 : 0.8)};
     }
 `;
 // 해시테크 버튼
@@ -164,3 +165,21 @@ export const UnderlineTextButton = styled.button<UnderlineTextButtonProps>`
     color: ${(props) => (props ? props.color : "white")};
     text-decoration: underline;
 `;
+
+const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-black-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+`;
+
+export const ItemPlusButton = () => {
+    return (
+        <PlusButton>
+            <Plus stroke="white" />
+        </PlusButton>
+    );
+};

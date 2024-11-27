@@ -67,7 +67,7 @@ export default function LoginContainer() {
                             <Character />
                         </MainCharacter>
                         <ButtonWrap>
-                            <Button variant="gray" hoverAction={false} onClick={showLoginModal}>
+                            <Button variant="gray" $hoverAction={false} onClick={showLoginModal}>
                                 카카오로 로그인
                             </Button>
                         </ButtonWrap>
