@@ -136,3 +136,19 @@ export const RadioButton = styled.button<ButtonProps>`
         opacity: 0.8;
     }
 `;
+
+export interface ModalButtonProps {
+    enable?: boolean;
+}
+
+// 모달 버튼
+export const ModalButton = styled.button<ModalButtonProps>`
+    width: 100%;
+    height: 58px;
+    border: none;
+    border-radius: 0 0 24px 24px;
+    background-color: ${(props) =>
+        props.enable === true ? "var(--color-black-4)" : "var(--color-black-7)"};
+    color: ${(props) => (props.enable === true ? "white" : "black")};
+    font-weight: 500;
+`;
