@@ -1,31 +1,43 @@
 @font-face {
     font-family: "Pretendard";
-    font-weight: 800; /* Extra bold */
+    font-weight: 800;
+    font-style: normal;
     font-display: swap;
     src:
-        local("Pretendard ExtraBold"),
-        url(./woff2-subset/Pretendard-ExtraBold.subset.woff2) format("woff2"),
-        url(./woff-subset/Pretendard-ExtraBold.subset.woff) format("woff");
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.woff2")
+            format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.woff")
+            format("woff"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.otf")
+            format("opentype");
 }
 
 @font-face {
     font-family: "Pretendard";
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    font-style: normal;
     font-display: swap;
     src:
-        local("Pretendard Bold"),
-        url(./woff2-subset/Pretendard-Bold.subset.woff2) format("woff2"),
-        url(./woff-subset/Pretendard-Bold.subset.woff) format("woff");
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.woff2")
+            format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.woff")
+            format("woff"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.otf")
+            format("opentype");
 }
 
 @font-face {
     font-family: "Pretendard";
-    font-weight: 500; /* Medium */
+    font-weight: 500;
+    font-style: normal;
     font-display: swap;
     src:
-        local("Pretendard Medium"),
-        url(./woff2-subset/Pretendard-Medium.subset.woff2) format("woff2"),
-        url(./woff-subset/Pretendard-Medium.subset.woff) format("woff");
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.woff2")
+            format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.woff")
+            format("woff"),
+        url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.otf")
+            format("opentype");
 }
 
 :root {
@@ -49,4 +61,19 @@
     padding: 0;
     color: var(--color-black-1);
     font-family: "Pretendard";
+    border: none;
+    word-break: keep-all;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background: none;
+    cursor: pointer;
 }
