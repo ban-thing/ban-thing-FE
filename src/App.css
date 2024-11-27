@@ -61,6 +61,7 @@
     padding: 0;
     color: var(--color-black-1);
     font-family: "Pretendard";
+    font-weight: 500;
     border: none;
     word-break: keep-all;
 }
