@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Search from "@/assets/icons/search.svg";
+import Search from "@/assets/icons/search.svg?react";
+import Dropdown from "./DropDown";
 
 const HeaderBox = styled.header`
     height: 50px;
@@ -9,14 +10,13 @@ const HeaderBox = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff;
 `;
-
-// TODO: 드롭다운 설치
 
 export default function HomeHeader() {
     return (
         <HeaderBox>
-            <div>연수동</div>
+            <Dropdown />
             <Search />
         </HeaderBox>
     );
