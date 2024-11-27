@@ -5,7 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray";
     size?: "large" | "small";
     checked?: boolean;
-    hoverAction?: boolean;
+    $hoverAction?: boolean;
 }
 //Button
 const getBackgroundColor = (variant?: string) => {
@@ -44,7 +44,7 @@ export const Button = styled.button<ButtonProps>`
 
     &:hover {
         opacity: 0.8;
-        opacity: ${(props) => (props.hoverAction === false ? 1 : 0.8)};
+        opacity: ${(props) => (props.$hoverAction === false ? 1 : 0.8)};
     }
 `;
 // 해시테크 버튼
