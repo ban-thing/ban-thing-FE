@@ -20,7 +20,7 @@ export type UserSalesList = ItemsList & {
     status: string; // 판매여부
 };
 
-type ItemsList = {
+export type ItemsList = {
     itemId: number;
     title: string;
     imgUrl: string;
