@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray";
     size?: "large" | "small";
     checked?: boolean;
+    hoverAction?: boolean;
 }
 //Button
 const getBackgroundColor = (variant?: string) => {
@@ -42,6 +44,7 @@ export const Button = styled.button<ButtonProps>`
 
     &:hover {
         opacity: 0.8;
+        opacity: ${(props) => (props.hoverAction === false ? 1 : 0.8)};
     }
 `;
 // 해시테크 버튼
@@ -137,7 +140,7 @@ export const RadioButton = styled.button<ButtonProps>`
     }
 `;
 
-export interface ModalButtonProps {
+export interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     enable?: boolean;
 }
 
@@ -151,4 +154,13 @@ export const ModalButton = styled.button<ModalButtonProps>`
         props.enable === true ? "var(--color-black-4)" : "var(--color-black-7)"};
     color: ${(props) => (props.enable === true ? "white" : "black")};
     font-weight: 500;
+`;
+
+export interface UnderlineTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    color?: string;
+}
+
+export const UnderlineTextButton = styled.button<UnderlineTextButtonProps>`
+    color: ${(props) => (props ? props.color : "white")};
+    text-decoration: underline;
 `;

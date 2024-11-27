@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { InputHTMLAttributes } from "react";
 
-export const Input = styled.input`
+export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
     width: 301px;
     height: 50px;
     border: 1px solid var(--color-black-6);

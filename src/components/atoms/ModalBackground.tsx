@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const ModalBase = styled.div`
-    position: relative;
+    position: fixed;
     width: 100%;
+    max-width: 375px;
     height: 100vh;
     background-color: #000;
-    opacity: 0.6;
-    z-index: 10;
+    opacity: 0.8;
+    z-index: 20;
 `;
 
 export const ModalContainer = styled.div`
@@ -17,7 +18,7 @@ export const ModalContainer = styled.div`
     width: 335px;
     height: 500px;
     border-radius: 24px;
-    z-index: 20;
+    z-index: 30;
     box-sizing: border-box;
     overflow: hidden;
     display: flex;
@@ -32,9 +33,4 @@ export const ModalTextContainer = styled.div`
     background-color: white;
     padding: 24px;
     box-sizing: border-box;
-`;
-
-export const ModalCloseButton = styled.button`
-    color: white;
-    text-decoration: underline;
 `;
