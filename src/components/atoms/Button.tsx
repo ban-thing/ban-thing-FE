@@ -174,6 +174,8 @@ const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    position: fixed;
+    bottom: 120px;
 `;
 
 export const ItemPlusButton = () => {
