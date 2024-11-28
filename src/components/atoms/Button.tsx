@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "filled" | "outlined" | "gray";
+    variant?: "filled" | "outlined" | "gray" | "yellow";
     size?: "large" | "small";
     checked?: boolean;
     $hoverAction?: boolean;
@@ -17,6 +17,8 @@ const getBackgroundColor = (variant?: string) => {
             return "var(--color-black-6)";
         case "outlined":
             return "transparent";
+        case "yellow":
+            return "#f9e000";
         default:
             return "var(--color-main-1)";
     }
@@ -26,6 +28,8 @@ const getTextColor = (variant?: string) => {
     switch (variant) {
         case "outlined":
             return "var(--color-main-1)";
+        case "yellow":
+            return "black";
         default:
             return "white";
     }
@@ -159,11 +163,13 @@ export const ModalButton = styled.button<ModalButtonProps>`
 
 export interface UnderlineTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     color?: string;
+    width?: string;
 }
 
 export const UnderlineTextButton = styled.button<UnderlineTextButtonProps>`
     color: ${(props) => (props ? props.color : "white")};
     text-decoration: underline;
+    width: ${(props) => (props.width ? props.width : "auto")};
 `;
 
 const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
@@ -175,7 +181,7 @@ const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     align-items: center;
     border-radius: 50%;
     position: fixed;
-    bottom: 120px;
+    bottom: 90px;
 `;
 
 export const ItemPlusButton = () => {

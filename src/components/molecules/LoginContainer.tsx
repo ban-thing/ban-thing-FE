@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, UnderlineTextButton } from "@/components/atoms/Button";
-import Character from "@/assets/character.svg?react";
+import LogoBlue from "@/assets/icons/logoBlue.svg?react";
 import { Link } from "react-router-dom";
 import { useLoginModalStore } from "@/store/ModalStore";
 
@@ -10,6 +10,8 @@ const LoginTextBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
     padding: 0 20px;
 `;
 
@@ -22,29 +24,6 @@ const WelcomeTitle = styled.h1`
 
 const WelcomeSubTitle = styled.h2`
     font-size: 16px;
-    color: var(--color-black-5);
-`;
-
-const ButtonGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 29px;
-`;
-
-const MainCharacterButton = styled.div`
-    width: 100%;
-    height: 130px;
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-`;
-
-const MainCharacter = styled.div`
-    position: absolute;
-    top: 0;
-    right: 50px;
-    z-index: 9;
 `;
 
 const ButtonWrap = styled.div`
@@ -58,24 +37,22 @@ export default function LoginContainer() {
         <>
             <LoginTextBox>
                 <div>
-                    <WelcomeTitle>반띵에 오신 것을 환영해요~!</WelcomeTitle>
-                    <WelcomeSubTitle>우리동네 펫용품 중고거래 서비스</WelcomeSubTitle>
+                    <WelcomeSubTitle>반려동물용품</WelcomeSubTitle>
+                    <WelcomeTitle>중고거래는?</WelcomeTitle>
                 </div>
-                <ButtonGroup>
-                    <MainCharacterButton>
-                        <MainCharacter>
-                            <Character />
-                        </MainCharacter>
-                        <ButtonWrap>
-                            <Button variant="gray" $hoverAction={false} onClick={showLoginModal}>
-                                카카오로 로그인
-                            </Button>
-                        </ButtonWrap>
-                    </MainCharacterButton>
-                    <UnderlineTextButton>
-                        <Link to={"/"}>로그인 없이 둘러보기</Link>
-                    </UnderlineTextButton>
-                </ButtonGroup>
+                <div style={{ width: "150px", height: "150px" }}>
+                    <LogoBlue />
+                </div>
+                <ButtonWrap>
+                    <Button variant="yellow" $hoverAction={false} onClick={showLoginModal}>
+                        카카오로 3초만에 로그인
+                    </Button>
+                </ButtonWrap>
+                <UnderlineTextButton width="150px">
+                    <Link to={"/"} style={{ padding: "8px" }}>
+                        로그인 없이 둘러보기
+                    </Link>
+                </UnderlineTextButton>
             </LoginTextBox>
         </>
     );

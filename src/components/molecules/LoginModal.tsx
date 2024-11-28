@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ModalButton, ModalButtonProps, UnderlineTextButton } from "@/components/atoms/Button";
 import { ModalBase, ModalContainer, ModalTextContainer } from "@/components/atoms/ModalBackground";
 import { useLoginModalStore } from "@/store/ModalStore";
-import Logo from "@/assets/icons/logoSmall.svg?react";
+import Logo from "@/assets/icons/logoBlue.svg?react";
 import { ButtonHTMLAttributes, MouseEventHandler, useState } from "react";
 import Check from "@/assets/icons/check1.svg?react";
 
