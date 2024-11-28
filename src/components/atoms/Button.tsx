@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
+import Snack from "@/assets/icons/snack.svg?react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
@@ -189,5 +190,27 @@ export const ItemPlusButton = () => {
         <PlusButton>
             <Plus stroke="white" />
         </PlusButton>
+    );
+};
+
+const StyledMySellButton = styled.button`
+    width: 163px;
+    height: 64px;
+    display: flex;
+    gap: 8px;
+    padding: 20px 23px;
+    border-radius: 32px;
+    background-color: #cdcdcd;
+    position: fixed;
+    bottom: 90px;
+    font-size: 16px;
+`;
+
+export const MySellButton = () => {
+    return (
+        <StyledMySellButton>
+            <Snack />
+            <div>내 물건 팔기</div>
+        </StyledMySellButton>
     );
 };

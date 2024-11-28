@@ -1,7 +1,7 @@
 import HomeHeader from "@/components/atoms/HomeHeader";
 import NavigationBar from "@/components/atoms/NavigationBar";
 import { ReactNode } from "react";
-import { ItemPlusButton } from "@/components/atoms/Button";
+import { ItemPlusButton, MySellButton } from "@/components/atoms/Button";
 import { styled } from "styled-components";
 
 type HomeLayoutProps = {
@@ -22,7 +22,7 @@ const StyledDiv = styled.div`
 const BtnWrap = styled.div`
     position: absolute;
     width: 100%;
-    right: -290px;
+    right: -190px;
 `;
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
@@ -32,7 +32,8 @@ const HomeLayout = ({ children }: HomeLayoutProps) => {
             {children}
             <StyledDiv>
                 <BtnWrap>
-                    <ItemPlusButton />
+                    {/* <ItemPlusButton /> */}
+                    <MySellButton />
                 </BtnWrap>
             </StyledDiv>
             <NavigationBar />
