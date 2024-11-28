@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
-export const ModalBase = styled.div`
+type ModalBaseProps = {
+    opacity?: number;
+};
+export const ModalBase = styled.div<ModalBaseProps>`
     position: fixed;
     width: 100%;
     max-width: 375px;
     height: 100vh;
     background-color: #000;
-    opacity: 0.8;
-    z-index: 20;
+    opacity: ${(props) => (props.opacity ? props.opacity : 0.8)};
+    z-index: 10;
 `;
 
 export const ModalContainer = styled.div`
@@ -18,7 +21,7 @@ export const ModalContainer = styled.div`
     width: 335px;
     height: 500px;
     border-radius: 24px;
-    z-index: 30;
+    z-index: 20;
     box-sizing: border-box;
     overflow: hidden;
     display: flex;

@@ -14,19 +14,14 @@ export const useLoginModalStore = create<LoginModalState>((set) => ({
 
 interface DropdownModalState {
     isDropdownOpen: boolean;
-    openCount: number;
     openDropdown: () => void;
     closeDropdown: () => void;
-    plusCount: () => void;
+    toggleDropdown: () => void;
 }
 
 export const useDropdownModalStore = create<DropdownModalState>((set) => ({
     isDropdownOpen: false,
-    openCount: 0,
     openDropdown: () => set({ isDropdownOpen: true }),
     closeDropdown: () => set({ isDropdownOpen: false }),
-    plusCount: () =>
-        set((state) => ({
-            openCount: state.openCount + 1,
-        })),
+    toggleDropdown: () => set((state) => ({ isDropdownOpen: !state.isDropdownOpen })),
 }));
