@@ -1,38 +1,59 @@
 import styled from "styled-components";
 
-const ItemBox = styled.figure`
+export const ItemBox = styled.figure`
     width: 335px;
-    height: 168px;
-    padding: 24px;
+    height: 166px;
+    padding: 22px 0;
     display: grid;
+    grid-template-columns: 120px 180px;
+    column-gap: 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f7f7f7;
+    justify-content: center;
+
+    & > * {
+        box-sizing: border-box;
+    }
 `;
 
-const ItemPhoto = styled.div`
+export const ItemBoxRight = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+`;
+
+export const ItemPhoto = styled.div`
     width: 120px;
     height: 120px;
     border-radius: 24px;
+    background-color: saddlebrown;
 `;
 
-const ItemTitle = styled.h3`
+export const ItemPropertiesBox = styled.div`
+    display: flex;
+    gap: 8px;
+    align-items: center;
+`;
+
+export const ItemTitle = styled.h3`
     font-size: 18px;
+    box-sizing: border-box;
 `;
 
-const ItemProp = styled.div`
+export const ItemProp = styled.div`
     font-size: 12px;
     color: var(--color-black-5);
 `;
 
-const ItemPropDot = styled.div``;
+export const ItemPropDot = styled.div`
+    width: 4px;
+    height: 4px;
+    background-color: #dfdfdf;
+`;
 
-const ItmePrice = styled.div`
+export const ItemPrice = styled.div`
+    grid-area: itemPrice;
     font-size: 18px;
     font-weight: 700;
 `;
-
-function ItemProperties(params) {
-    // param으로 위치/등록시간/타입(나눔/판매) 텍스트를 받아서 중간에 가운뎃점 표시
-}
-
-export default function ItemInList() {
-    return <div>ItemInList</div>;
-}
