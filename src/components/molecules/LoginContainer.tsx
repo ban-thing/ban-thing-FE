@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button, UnderlineTextButton } from "@/components/atoms/Button";
 import Character from "@/assets/character.svg?react";
 import { Link } from "react-router-dom";
-import { useLoginStore } from "@/store/LoginStore";
+import { useLoginModalStore } from "@/store/ModalStore";
 
 const LoginTextBox = styled.div`
     height: 549px;
@@ -52,7 +52,7 @@ const ButtonWrap = styled.div`
 `;
 
 export default function LoginContainer() {
-    const { showLoginModal } = useLoginStore();
+    const { showLoginModal } = useLoginModalStore();
 
     return (
         <>

@@ -1,6 +1,6 @@
 import LoginContainer from "@/components/molecules/LoginContainer";
 import LoginModal from "@/components/molecules/LoginModal";
-import { useLoginStore } from "@/store/LoginStore";
+import { useLoginModalStore } from "@/store/ModalStore";
 import styled from "styled-components";
 
 const LoginBox = styled.div`
@@ -10,7 +10,7 @@ const LoginBox = styled.div`
 `;
 
 const Login = () => {
-    const { isLoginModalVisible } = useLoginStore();
+    const { isLoginModalVisible } = useLoginModalStore();
 
     return (
         <>

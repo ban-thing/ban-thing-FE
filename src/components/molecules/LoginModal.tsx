@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ModalButton, ModalButtonProps, UnderlineTextButton } from "@/components/atoms/Button";
 import { ModalBase, ModalContainer, ModalTextContainer } from "@/components/atoms/ModalBackground";
-import { useLoginStore } from "@/store/LoginStore";
+import { useLoginModalStore } from "@/store/ModalStore";
 import Logo from "@/assets/icons/logoSmall.svg?react";
 import { ButtonHTMLAttributes, MouseEventHandler, useState } from "react";
 import Check from "@/assets/icons/check1.svg?react";
@@ -104,7 +104,7 @@ const ViewTerms = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
 type ModalProps = ModalButtonProps & {};
 
 export default function LoginModal({ enable }: ModalProps) {
-    const { hideLoginModal } = useLoginStore();
+    const { hideLoginModal } = useLoginModalStore();
     const [approveList, setApproveList] = useState([false, false]);
 
     const onClickAllApprove = () => {

@@ -10,27 +10,27 @@ import PetsIcon from "../../assets/icons/footPrint.svg?react";
 import PetsActiveIcon from "../../assets/icons/footPrintActive.svg?react";
 
 interface NavButtonProps {
-    activeTab: boolean;
+    $activeTab: boolean;
 }
 export default function NavigationBar() {
-    const [activeTab, setActiveTab] = useState("home");
+    const [$activeTab, set$activeTab] = useState("home");
 
     return (
         <NavContainer>
-            <NavButton activeTab={activeTab === "home"} onClick={() => setActiveTab("home")}>
-                {activeTab === "home" ? <HomeActiveIcon /> : <HomeIcon />}
+            <NavButton $activeTab={$activeTab === "home"} onClick={() => set$activeTab("home")}>
+                {$activeTab === "home" ? <HomeActiveIcon /> : <HomeIcon />}
                 <span>홈</span>
             </NavButton>
-            <NavButton activeTab={activeTab === "search"} onClick={() => setActiveTab("search")}>
-                {activeTab === "search" ? <SearchActiveIcon /> : <SearchIcon />}
+            <NavButton $activeTab={$activeTab === "search"} onClick={() => set$activeTab("search")}>
+                {$activeTab === "search" ? <SearchActiveIcon /> : <SearchIcon />}
                 <span>검색</span>
             </NavButton>
-            <NavButton activeTab={activeTab === "chat"} onClick={() => setActiveTab("chat")}>
-                {activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
+            <NavButton $activeTab={$activeTab === "chat"} onClick={() => set$activeTab("chat")}>
+                {$activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
                 <span>채팅</span>
             </NavButton>
-            <NavButton activeTab={activeTab === "my"} onClick={() => setActiveTab("my")}>
-                {activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
+            <NavButton $activeTab={$activeTab === "my"} onClick={() => set$activeTab("my")}>
+                {$activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
                 <span>마이</span>
             </NavButton>
         </NavContainer>
@@ -63,6 +63,6 @@ const NavButton = styled.button<NavButtonProps>`
 
     span {
         font-size: 12px;
-        color: ${(props) => (props.activeTab ? "var(--color-main-1)" : "var(--color-black-6)")};
+        color: ${(props) => (props.$activeTab ? "var(--color-main-1)" : "var(--color-black-6)")};
     }
 `;
