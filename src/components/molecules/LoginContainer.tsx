@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 import { useLoginModalStore } from "@/store/ModalStore";
 
 const LoginTextBox = styled.div`
-    height: 549px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     text-align: center;
     padding: 0 20px;
@@ -17,17 +15,24 @@ const LoginTextBox = styled.div`
 
 const WelcomeTitle = styled.h1`
     font-weight: 700;
-    font-size: 32px;
+    font-size: 30px;
     width: 220px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 `;
 
 const WelcomeSubTitle = styled.h2`
-    font-size: 16px;
+    font-size: 18px;
+`;
+
+const LogoWrap = styled.div`
+    width: 150px;
+    height: 150px;
+    margin-bottom: 160px;
 `;
 
 const ButtonWrap = styled.div`
     z-index: 10;
+    margin-bottom: 20px;
 `;
 
 export default function LoginContainer() {
@@ -40,9 +45,9 @@ export default function LoginContainer() {
                     <WelcomeSubTitle>반려동물용품</WelcomeSubTitle>
                     <WelcomeTitle>중고거래는?</WelcomeTitle>
                 </div>
-                <div style={{ width: "150px", height: "150px" }}>
+                <LogoWrap>
                     <LogoBlue />
-                </div>
+                </LogoWrap>
                 <ButtonWrap>
                     <Button variant="yellow" $hoverAction={false} onClick={showLoginModal}>
                         카카오로 3초만에 로그인

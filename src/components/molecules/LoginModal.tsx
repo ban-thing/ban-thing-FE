@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModalButton, ModalButtonProps, UnderlineTextButton } from "@/components/atoms/Button";
+import { ModalButton, UnderlineTextButton } from "@/components/atoms/Button";
 import { ModalBase, ModalContainer, ModalTextContainer } from "@/components/atoms/ModalBackground";
 import { useLoginModalStore } from "@/store/ModalStore";
 import Logo from "@/assets/icons/logoBlue.svg?react";
@@ -101,9 +101,7 @@ const ViewTerms = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     background: none;
 `;
 
-type ModalProps = ModalButtonProps & {};
-
-export default function LoginModal({ enable }: ModalProps) {
+export default function LoginModal() {
     const { hideLoginModal } = useLoginModalStore();
     const [approveList, setApproveList] = useState([false, false]);
 
@@ -175,7 +173,9 @@ export default function LoginModal({ enable }: ModalProps) {
                             </ApproveTextBox>
                         </ModalTextBox>
                     </ModalTextContainer>
-                    <ModalButton enable={enable}>동의하고 계속하기</ModalButton>
+                    <ModalButton $enable={approveList[0] && approveList[1]}>
+                        동의하고 계속하기
+                    </ModalButton>
                 </div>
                 <UnderlineTextButton onClick={hideLoginModal} color="white">
                     취소
