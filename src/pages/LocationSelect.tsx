@@ -284,9 +284,11 @@ export default function LocationSelect() {
 }
 
 const Container = styled.div`
-    padding: 20px;
     width: 100%;
     background: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Header = styled.div`
@@ -302,7 +304,7 @@ const Title = styled.h1`
     flex-grow: 1;
     font-size: 20px;
     font-weight: 500;
-    margin-right: 20px;
+    margin-right: 40px;
 `;
 
 const CurrentLocationButton = styled.button`
@@ -341,12 +343,14 @@ const RegionContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #f5f5f5;
+    flex: 1;
+    overflow: hidden;
 `;
 
 const RegionSection = styled.div`
     background: white;
-    height: 100vh;
     overflow-y: auto;
+    height: 100%;
 `;
 
 const RegionButton = styled.button<{
@@ -413,7 +417,7 @@ const RegionButton = styled.button<{
 const SelectedArea = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 10px;
     background: white;
     border-top: 1px solid #eee;
 `;
@@ -458,7 +462,8 @@ export const Tag = styled.span`
 `;
 
 const ButtonGroup = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 `;
