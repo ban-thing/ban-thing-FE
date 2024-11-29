@@ -3,59 +3,32 @@ import styled from "styled-components";
 import BackButtonIcon from "../assets/icons/back.svg?react";
 import { Button } from "@/components/atoms/Button";
 
+const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
+const SAMPLE_MARKERS = [
+    { lat: 37.5796, lng: 126.977 },
+    { lat: 37.5512, lng: 126.9882 },
+];
+
 const MyLocationSetting = () => {
     return (
         <Container>
             <Header>
-                <BackButtonIcon style={{ cursor: "pointer", marginLeft: 20 }} />
+                <BackButton>
+                    <BackButtonIcon />
+                </BackButton>
                 <Title>내 위치</Title>
             </Header>
-            <Map
-                center={{ lat: 37.5665, lng: 126.978 }}
-                markers={[
-                    { lat: 37.5796, lng: 126.977 },
-                    { lat: 37.5512, lng: 126.9882 },
-                ]}
-                height="294px"
-                width="100%"
-            />
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: "20px",
-                    flexDirection: "column",
-                }}
-            >
-                <Button
-                    variant="gray"
-                    style={{
-                        width: "335px",
-                        height: "36px",
-                        color: "var(--color-black-4)",
-                        fontSize: "14px",
-                        backgroundColor: "var(--color-black-8)",
-                    }}
-                >
+            <Map center={DEFAULT_CENTER} markers={SAMPLE_MARKERS} height="294px" width="100%" />
+            <LocationInfoWrapper>
+                <LocationButton>
                     현재 위치는
-                    <span style={{ color: "var(--color-black-1)" }}> "연수동" </span>
+                    <LocationText> "연수동" </LocationText>
                     이에요.
-                </Button>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    position: "absolute",
-                    bottom: "20px",
-                    right: "0",
-                    width: "100%",
-                }}
-            >
+                </LocationButton>
+            </LocationInfoWrapper>
+            <BottomButtonWrapper>
                 <Button>적용하기</Button>
-            </div>
+            </BottomButtonWrapper>
         </Container>
     );
 };
@@ -82,4 +55,37 @@ const Title = styled.h1`
     font-size: 20px;
     font-weight: 500;
     margin-right: 40px;
+`;
+const LocationInfoWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
+`;
+
+const LocationButton = styled(Button).attrs({ variant: "gray" })`
+    width: 335px;
+    height: 36px;
+    color: var(--color-black-4);
+    font-size: 14px;
+    background-color: var(--color-black-8);
+`;
+
+const LocationText = styled.span`
+    color: var(--color-black-1);
+`;
+
+const BottomButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 100%;
+`;
+const BackButton = styled.div`
+    cursor: pointer;
+    margin-left: 20px;
 `;
