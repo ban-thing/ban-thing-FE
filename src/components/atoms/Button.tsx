@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
-import Snack from "@/assets/icons/snack.svg?react";
+import Snack from "@/assets/icons/snackFill.svg?react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
@@ -19,7 +19,7 @@ const getBackgroundColor = (variant?: string) => {
         case "outlined":
             return "transparent";
         case "yellow":
-            return "#f9e000";
+            return "var(--color-yellow)";
         default:
             return "var(--color-main-1)";
     }
@@ -147,7 +147,7 @@ export const RadioButton = styled.button<ButtonProps>`
 `;
 
 export interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    enable?: boolean;
+    $enable?: boolean;
 }
 
 // 모달 버튼
@@ -157,8 +157,8 @@ export const ModalButton = styled.button<ModalButtonProps>`
     border: none;
     border-radius: 0 0 24px 24px;
     background-color: ${(props) =>
-        props.enable === true ? "var(--color-black-4)" : "var(--color-black-7)"};
-    color: ${(props) => (props.enable === true ? "white" : "black")};
+        props.$enable === true ? "var(--color-yellow)" : "var(--color-black-7)"};
+    color: "black";
     font-weight: 500;
 `;
 
@@ -176,7 +176,8 @@ export const UnderlineTextButton = styled.button<UnderlineTextButtonProps>`
 const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     width: 64px;
     height: 64px;
-    background-color: var(--color-black-4);
+    background-color: var(--color-main-1);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,22 +195,30 @@ export const ItemPlusButton = () => {
 };
 
 const StyledMySellButton = styled.button`
-    width: 163px;
-    height: 64px;
+    width: 128px;
+    height: 50px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
-    padding: 20px 23px;
+    padding: 15px 13px;
     border-radius: 32px;
-    background-color: #cdcdcd;
+    background-color: var(--color-main-1);
     position: fixed;
     bottom: 90px;
-    font-size: 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+
+    & > * {
+        color: white;
+        font-weight: 700;
+    }
 `;
 
 export const MySellButton = () => {
     return (
         <StyledMySellButton>
-            <Snack />
+            <Snack fill="white" />
             <div>내 물건 팔기</div>
         </StyledMySellButton>
     );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ItemContainer from "../molecules/ItemContainer";
+import ItemContainer from "@/components/molecules/ItemContainer";
 
 const StyledItemList = styled.div`
     width: 100%;
