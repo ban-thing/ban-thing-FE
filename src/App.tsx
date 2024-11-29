@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import LocationSelect from "./pages/LocationSelect";
 import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
+import { LoadScript } from "@react-google-maps/api";
 
 const queryClient = new QueryClient();
 
@@ -41,10 +42,12 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={true} />
-            <RouterProvider router={router} />
-        </QueryClientProvider>
+        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAP_API_KEY}>
+            <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={true} />
+                <RouterProvider router={router} />
+            </QueryClientProvider>
+        </LoadScript>
     );
 }
 
