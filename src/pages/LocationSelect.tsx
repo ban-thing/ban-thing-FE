@@ -5,6 +5,8 @@ import LocationIcon from "../assets/icons/location.svg?react";
 import PointIcon from "../assets/icons/point.svg?react";
 import CheckIcon from "../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
+import { useMyLocationModalStore } from "@/store/ModalStore";
+import MyLocationModal from "@/components/molecules/MyLocationModal";
 
 interface Region {
     id: string;
@@ -85,6 +87,32 @@ export default function LocationSelect() {
     const [selectedCity, setSelectedCity] = useState<Region | null>(null);
     const [selectedDistrict, setSelectedDistrict] = useState<Region | null>(null);
     const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
+    const { isMyLocationModalVisible } = useMyLocationModalStore();
+    const { showMyLocationModal } = useMyLocationModalStore();
+
+    const handleCitySelect = (city: Region) => {
+        setSelectedCity(city);
+    };
+
+    const handleDistrictSelect = (district: Region) => {
+        setSelectedDistrict(district);
+    };
+
+    const handleTownToggle = (town: Region) => {
+        setSelectedTowns((prev) => {
+            if (prev.find((t) => t.id === town.id)) {
+                return prev.filter((t) => t.id !== town.id);
+            }
+            if (prev.length < 3) {
+                return [...prev, town];
+            }
+            return prev;
+        });
+    };
+
+    const handleRemoveTown = (townId: string) => {
+        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
+    };
 
     useEffect(() => {
         const loadCities = async () => {
@@ -121,30 +149,6 @@ export default function LocationSelect() {
         loadTowns();
     }, [selectedDistrict]);
 
-    const handleCitySelect = (city: Region) => {
-        setSelectedCity(city);
-    };
-
-    const handleDistrictSelect = (district: Region) => {
-        setSelectedDistrict(district);
-    };
-
-    const handleTownToggle = (town: Region) => {
-        setSelectedTowns((prev) => {
-            if (prev.find((t) => t.id === town.id)) {
-                return prev.filter((t) => t.id !== town.id);
-            }
-            if (prev.length < 3) {
-                return [...prev, town];
-            }
-            return prev;
-        });
-    };
-
-    const handleRemoveTown = (townId: string) => {
-        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
-    };
-
     return (
         <Container>
             <Header>
@@ -160,10 +164,11 @@ export default function LocationSelect() {
                     alignItems: "center",
                 }}
             >
-                <CurrentLocationButton>
+                <CurrentLocationButton onClick={showMyLocationModal}>
                     <LocationIcon style={{ width: 16, height: 16 }} />
                     현재 위치 추가
                 </CurrentLocationButton>
+                {isMyLocationModalVisible && <MyLocationModal />}
             </div>
 
             <CategoryLabels>
@@ -307,7 +312,7 @@ const Title = styled.h1`
     margin-right: 40px;
 `;
 
-const CurrentLocationButton = styled.button`
+const CurrentLocationButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -421,28 +426,24 @@ const SelectedArea = styled.div`
     background: white;
     border-top: 1px solid #eee;
 `;
-
-export const SelectedTags = styled.div`
+const SelectedTags = styled.div`
     margin-bottom: 20px;
     font-size: 14px;
     display: flex;
     flex-direction: row;
     gap: 9px;
 `;
-
-export const TagSection = styled.div`
+const TagSection = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 `;
-
-export const TagLabel = styled.span`
+const TagLabel = styled.span`
     color: var(--color-black-5);
     margin-right: 6px;
     white-space: nowrap;
 `;
-
-export const Tag = styled.span`
+const Tag = styled.span`
     display: inline-flex;
     align-items: center;
     background: rgba(98, 144, 236, 0.1);

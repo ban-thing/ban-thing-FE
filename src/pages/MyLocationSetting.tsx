@@ -2,6 +2,7 @@ import Map from "../components/molecules/Map";
 import styled from "styled-components";
 import BackButtonIcon from "../assets/icons/back.svg?react";
 import { Button } from "@/components/atoms/Button";
+import { useNavigate } from "react-router-dom";
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
 const SAMPLE_MARKERS = [
@@ -10,10 +11,16 @@ const SAMPLE_MARKERS = [
 ];
 
 const MyLocationSetting = () => {
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate("/location-select");
+    };
+
     return (
         <Container>
             <Header>
-                <BackButton>
+                <BackButton onClick={handleBack}>
                     <BackButtonIcon />
                 </BackButton>
                 <Title>내 위치</Title>
