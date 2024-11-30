@@ -105,21 +105,16 @@ export default function LocationSelect() {
 
     const handleTownToggle = (town: Region) => {
         setSelectedTowns((prev) => {
-            // 전체가 선택된 경우
             if (town.id.endsWith("_all")) {
-                // 전체 항목만 선택
                 return [town];
             }
 
-            // 이미 전체가 선택되어 있는 경우의 처리
             if (prev.some((t) => t.id.endsWith("_all"))) {
                 return [town];
             }
 
-            // 기존 로직
             if (prev.find((t) => t.id === town.id)) {
                 const filtered = prev.filter((t) => t.id !== town.id);
-                // 전체가 선택되어 있었다면 전체도 제거
                 return filtered.filter((t) => !t.id.endsWith("_all"));
             }
             if (prev.length < 3) {
@@ -237,7 +232,6 @@ export default function LocationSelect() {
 
                 <RegionSection>
                     {towns.map((town) => {
-                        // 전체가 선택되었을 때는 모든 항목이 시각적으로 선택된 것처럼 보이게 함
                         const isAllSelected = selectedTowns.some((t) => t.id.endsWith("_all"));
                         const isSelected =
                             selectedTowns.some((t) => t.id === town.id) ||
