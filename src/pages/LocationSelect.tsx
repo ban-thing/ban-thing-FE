@@ -41,7 +41,7 @@ const fetchCities = async () => {
         const data = await response.json();
         return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
-            name: item.lowestAdmCodeNm,
+            name: item.lowestAdmCodeNm.slice(0, 2),
         }));
     } catch (error) {
         console.error("Error fetching cities:", error);
@@ -49,31 +49,33 @@ const fetchCities = async () => {
     }
 };
 
-const fetchDistricts = async (cityCode: string) => {
+const fetchDistricts = async (cityCode: string, cityName: string) => {
     try {
         const response = await fetch(
             `${BASE_URL}/admSiList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${cityCode}`,
         );
         const data = await response.json();
-        return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
+        const districts = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
             name: item.lowestAdmCodeNm,
         }));
+        return [{ id: `${cityCode}_all`, name: `${cityName} 전체` }, ...districts];
     } catch (error) {
         console.error("Error fetching districts:", error);
         return [];
     }
 };
-const fetchTowns = async (districtCode: string) => {
+const fetchTowns = async (districtCode: string, districtName: string) => {
     try {
         const response = await fetch(
             `${BASE_URL}/admDongList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${districtCode}`,
         );
         const data = await response.json();
-        return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
+        const towns = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
             name: item.lowestAdmCodeNm,
         }));
+        return [{ id: `${districtCode}_all`, name: `${districtName} 전체` }, ...towns];
     } catch (error) {
         console.error("Error fetching towns:", error);
         return [];
@@ -96,12 +98,29 @@ export default function LocationSelect() {
 
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
+        if (district.id.endsWith("_all")) {
+            setSelectedTowns([district]);
+        }
     };
 
     const handleTownToggle = (town: Region) => {
         setSelectedTowns((prev) => {
+            // 전체가 선택된 경우
+            if (town.id.endsWith("_all")) {
+                // 전체 항목만 선택
+                return [town];
+            }
+
+            // 이미 전체가 선택되어 있는 경우의 처리
+            if (prev.some((t) => t.id.endsWith("_all"))) {
+                return [town];
+            }
+
+            // 기존 로직
             if (prev.find((t) => t.id === town.id)) {
-                return prev.filter((t) => t.id !== town.id);
+                const filtered = prev.filter((t) => t.id !== town.id);
+                // 전체가 선택되어 있었다면 전체도 제거
+                return filtered.filter((t) => !t.id.endsWith("_all"));
             }
             if (prev.length < 3) {
                 return [...prev, town];
@@ -125,7 +144,7 @@ export default function LocationSelect() {
     useEffect(() => {
         const loadDistricts = async () => {
             if (selectedCity) {
-                const districtsData = await fetchDistricts(selectedCity.id);
+                const districtsData = await fetchDistricts(selectedCity.id, selectedCity.name);
                 setDistricts(districtsData);
                 setSelectedDistrict(null);
                 setSelectedTowns([]);
@@ -138,8 +157,8 @@ export default function LocationSelect() {
 
     useEffect(() => {
         const loadTowns = async () => {
-            if (selectedDistrict) {
-                const townsData = await fetchTowns(selectedDistrict.id);
+            if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
+                const townsData = await fetchTowns(selectedDistrict.id, selectedDistrict.name);
                 setTowns(townsData);
                 setSelectedTowns([]);
             } else {
@@ -198,7 +217,7 @@ export default function LocationSelect() {
                             selected={selectedCity?.id === city.id}
                             variant="city"
                         >
-                            {city.name.slice(0, 2)}
+                            {city.name}
                         </RegionButton>
                     ))}
                 </RegionSection>
@@ -217,25 +236,33 @@ export default function LocationSelect() {
                 </RegionSection>
 
                 <RegionSection>
-                    {towns.map((town) => (
-                        <RegionButton
-                            key={town.id}
-                            onClick={() => handleTownToggle(town)}
-                            selected={selectedTowns.some((t) => t.id === town.id)}
-                            variant="town"
-                        >
-                            {town.name}
-                            {selectedTowns.some((t) => t.id === town.id) && (
-                                <CheckIcon
-                                    style={{
-                                        width: 22,
-                                        height: 22,
-                                        textAlign: "end",
-                                    }}
-                                />
-                            )}
-                        </RegionButton>
-                    ))}
+                    {towns.map((town) => {
+                        // 전체가 선택되었을 때는 모든 항목이 시각적으로 선택된 것처럼 보이게 함
+                        const isAllSelected = selectedTowns.some((t) => t.id.endsWith("_all"));
+                        const isSelected =
+                            selectedTowns.some((t) => t.id === town.id) ||
+                            (isAllSelected && !town.id.endsWith("_all"));
+
+                        return (
+                            <RegionButton
+                                key={town.id}
+                                onClick={() => handleTownToggle(town)}
+                                selected={isSelected}
+                                variant="town"
+                            >
+                                {town.name}
+                                {isSelected && (
+                                    <CheckIcon
+                                        style={{
+                                            width: 22,
+                                            height: 22,
+                                            textAlign: "end",
+                                        }}
+                                    />
+                                )}
+                            </RegionButton>
+                        );
+                    })}
                 </RegionSection>
             </RegionContainer>
 
@@ -279,7 +306,11 @@ export default function LocationSelect() {
                     >
                         취소
                     </Button>
-                    <Button variant="filled" size="small">
+                    <Button
+                        variant={selectedTowns.length > 0 ? "filled" : "gray"}
+                        size="small"
+                        disabled={selectedTowns.length === 0}
+                    >
                         확인
                     </Button>
                 </ButtonGroup>
