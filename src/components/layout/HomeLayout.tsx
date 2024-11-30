@@ -1,8 +1,9 @@
 import HomeHeader from "@/components/atoms/HomeHeader";
 import NavigationBar from "@/components/atoms/NavigationBar";
 import { ReactNode } from "react";
-import { ItemPlusButton, MySellButton } from "@/components/atoms/Button";
+import { MySellButton } from "@/components/atoms/Button";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 type HomeLayoutProps = {
     children: ReactNode;
@@ -26,6 +27,10 @@ const BtnWrap = styled.div`
 `;
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
+    const navigate = useNavigate();
+    const onClickSellButton = () => {
+        navigate("/item-register");
+    };
     return (
         <>
             <HomeHeader />
@@ -33,7 +38,7 @@ const HomeLayout = ({ children }: HomeLayoutProps) => {
             <StyledDiv>
                 <BtnWrap>
                     {/* <ItemPlusButton /> */}
-                    <MySellButton />
+                    <MySellButton onClick={onClickSellButton} />
                 </BtnWrap>
             </StyledDiv>
             <NavigationBar />

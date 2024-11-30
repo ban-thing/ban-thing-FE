@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
-import Snack from "@/assets/icons/snack.svg?react";
+import Snack from "@/assets/icons/snackWhite.svg?react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+// TODO: $variant로 수정
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
     size?: "large" | "small";
     checked?: boolean;
@@ -92,6 +93,22 @@ export const CloseButton = styled.button`
     &:hover {
         opacity: 0.8;
     }
+`;
+export const GrayCloseButton = styled.button`
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #b2b2b2;
+    background: var(--color-black-6);
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: -4px;
 `;
 // 체크 버튼
 export const CheckButton = styled.button<ButtonProps>`
@@ -185,30 +202,35 @@ const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     bottom: 90px;
 `;
 
-export const ItemPlusButton = () => {
+export const ItemPlusButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <PlusButton>
+        <PlusButton {...props}>
             <Plus stroke="white" />
         </PlusButton>
     );
 };
 
-const StyledMySellButton = styled.button`
-    width: 163px;
-    height: 64px;
+const StyledMySellButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
+    width: 128px;
+    height: 50px;
     display: flex;
-    gap: 8px;
-    padding: 20px 23px;
+    align-items: center;
+    gap: 6px;
+    padding: 15px 14px;
     border-radius: 32px;
-    background-color: #cdcdcd;
+    background-color: var(--color-main-1);
     position: fixed;
     bottom: 90px;
-    font-size: 16px;
+    font-size: 15px;
+    box-sizing: border-box;
+    & > * {
+        color: white;
+    }
 `;
 
-export const MySellButton = () => {
+export const MySellButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <StyledMySellButton>
+        <StyledMySellButton {...props}>
             <Snack />
             <div>내 물건 팔기</div>
         </StyledMySellButton>

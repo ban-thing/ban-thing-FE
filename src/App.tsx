@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import LocationSelect from "./pages/LocationSelect";
 import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
+import ItemRegister from "./pages/ItemRegister";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
             { path: "item-view/:id", element: <ItemView /> },
             { path: "chatting-list" },
             { path: "chatting/:id" },
-            { path: "item-register" },
+            { path: "item-register", element: <ItemRegister /> },
             { path: "item-register/hashtag" },
             { path: "item-register/direct" },
             { path: "search" },
