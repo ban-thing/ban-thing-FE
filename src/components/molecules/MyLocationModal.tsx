@@ -1,14 +1,35 @@
 import styled from "styled-components";
 import { useMyLocationModalStore } from "@/store/ModalStore";
+import { useLocationStore } from "@/store/LocationStore";
 import { useNavigate } from "react-router-dom";
 
 export default function MyLocationModal() {
     const { hideMyLocationModal } = useMyLocationModalStore();
+    const { setCurrentLocation } = useLocationStore();
     const navigate = useNavigate();
 
     const moveMyLocationSetting = () => {
-        navigate("/my-location-setting");
-        hideMyLocationModal();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    setCurrentLocation(location);
+                    navigate("/my-location-setting");
+                    hideMyLocationModal();
+                },
+                (error) => {
+                    console.error("Error getting location:", error);
+                    alert("위치 정보를 가져오는데 실패했습니다.");
+                    hideMyLocationModal();
+                },
+            );
+        } else {
+            alert("이 브라우저에서는 위치 정보를 사용할 수 없습니다.");
+            hideMyLocationModal();
+        }
     };
 
     return (

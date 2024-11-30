@@ -1,6 +1,5 @@
-import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
-
-const API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
+import { useState } from "react";
 
 interface Props {
     center: {
@@ -16,18 +15,29 @@ interface Props {
 }
 
 export default function Map({ center, markers = [], height = "400px", width = "100%" }: Props) {
+    const [mapLoaded, setMapLoaded] = useState(false);
+
     const containerStyle = {
         width,
         height,
     };
 
+    const handleMapLoad = () => {
+        setMapLoaded(true);
+    };
+
     return (
-        <LoadScript googleMapsApiKey={API_KEY}>
-            <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
+        <div style={{ display: mapLoaded ? "block" : "none" }}>
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={12}
+                onLoad={handleMapLoad}
+            >
                 {markers.map((marker, index) => (
                     <MarkerF key={index} position={marker} />
                 ))}
             </GoogleMap>
-        </LoadScript>
+        </div>
     );
 }

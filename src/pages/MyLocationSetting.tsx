@@ -3,33 +3,76 @@ import styled from "styled-components";
 import BackButtonIcon from "../assets/icons/back.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useNavigate } from "react-router-dom";
+import { useLocationStore } from "@/store/LocationStore";
+import { useEffect, useState } from "react";
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
-const SAMPLE_MARKERS = [
-    { lat: 37.5796, lng: 126.977 },
-    { lat: 37.5512, lng: 126.9882 },
-];
+
+interface AddressComponent {
+    long_name: string;
+    short_name: string;
+    types: string[];
+}
 
 const MyLocationSetting = () => {
     const navigate = useNavigate();
+    const { currentLocation } = useLocationStore();
+    const [locationName, setLocationName] = useState<string>("");
 
     const handleBack = () => {
         navigate("/location-select");
     };
 
+    useEffect(() => {
+        if (!currentLocation) {
+            navigate("/location-select");
+        }
+    }, [currentLocation, navigate]);
+
+    useEffect(() => {
+        const fetchLocationName = async () => {
+            console.log(currentLocation, "currentLocation");
+            if (currentLocation) {
+                try {
+                    const response = await fetch(
+                        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentLocation.lat},${currentLocation.lng}&language=ko&key=AIzaSyDL86mTnLYIFovG0Z7TaRUw4_vtM2rRh2s`,
+                    );
+                    const data = await response.json();
+                    if (data.results[0]) {
+                        const address = data.results[0].address_components.find(
+                            (component: AddressComponent) =>
+                                component.types.includes("sublocality_level_2") ||
+                                component.types.includes("sublocality_level_1"),
+                        );
+                        setLocationName(address?.long_name || "알 수 없는 위치");
+                    }
+                } catch (error) {
+                    console.error("Error fetching location name:", error);
+                    setLocationName("알 수 없는 위치");
+                }
+            }
+        };
+        fetchLocationName();
+    }, [currentLocation]);
+
     return (
         <Container>
             <Header>
                 <BackButton onClick={handleBack}>
-                    <BackButtonIcon />
+                    <BackButtonIcon style={{ display: "flex" }} />
                 </BackButton>
                 <Title>내 위치</Title>
             </Header>
-            <Map center={DEFAULT_CENTER} markers={SAMPLE_MARKERS} height="294px" width="100%" />
+            <Map
+                center={currentLocation || DEFAULT_CENTER}
+                markers={[currentLocation || DEFAULT_CENTER]}
+                height="294px"
+                width="100%"
+            />
             <LocationInfoWrapper>
                 <LocationButton>
                     현재 위치는
-                    <LocationText> "연수동" </LocationText>
+                    <LocationText> "{locationName}" </LocationText>
                     이에요.
                 </LocationButton>
             </LocationInfoWrapper>
@@ -53,6 +96,7 @@ const Header = styled.div`
     height: 56px;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
 `;
 
