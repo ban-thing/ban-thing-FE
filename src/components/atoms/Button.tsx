@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
 import Snack from "@/assets/icons/snackWhite.svg?react";
+import FilterIcon from "@/assets/icons/filter.svg?react";
 
 // TODO: $variant로 수정
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -239,6 +240,17 @@ export const ResetButton = styled.button`
     }
 `;
 
+// 필터 버튼
+const FilterButton = styled.button`
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    background-color: var(--color-black-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export interface UnderlineTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     color?: string;
     width?: string;
@@ -294,5 +306,13 @@ export const MySellButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => 
             <Snack />
             <div>내 물건 팔기</div>
         </StyledMySellButton>
+    );
+};
+
+export const ItemFilterButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+    return (
+        <FilterButton {...props}>
+            <FilterIcon />
+        </FilterButton>
     );
 };
