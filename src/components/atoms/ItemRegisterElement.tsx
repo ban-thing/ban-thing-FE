@@ -1,20 +1,44 @@
 import styled from "styled-components";
-
-export const RegisterTitle = styled.h1`
-    font-size: 20px;
-    font-weight: 700;
-    margin: 16px 0 48px;
-    text-align: center;
-`;
+import Arrow from "@/assets/icons/rightArrow.svg?react";
+import { MouseEventHandler } from "react";
 
 export const RegisterElementBox = styled.div`
     margin-bottom: 32px;
+`;
+
+export const RegisterElementSubBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const RegisterElementBox3 = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 `;
 
 export const RegisterSubTitle = styled.h2`
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
+`;
+
+export const RegisterSubTitle2 = styled.h2`
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    & > * {
+        color: var(--color-black-4);
+    }
+
+    & path,
+    & rect {
+        stroke: var(--color-black-4);
+    }
 `;
 
 export const PhotosList = styled.div`
@@ -66,4 +90,38 @@ export const UploadedImageWrap = styled.span`
 
 export const PhotoCount = styled.span<{ $hasImg: boolean }>`
     color: ${({ $hasImg }) => ($hasImg ? "black" : "#949494")};
+`;
+
+const StyledTagSelect = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 72px;
+    cursor: pointer;
+
+    & > * {
+        color: #949494;
+        font-size: 14px;
+    }
+`;
+
+type TagSelectProps = {
+    text: string;
+    onClick: MouseEventHandler<HTMLDivElement>;
+};
+
+export const TagSelect = ({ text, onClick }: TagSelectProps) => {
+    return (
+        <StyledTagSelect onClick={onClick}>
+            <div>{text}</div>
+            <Arrow />
+        </StyledTagSelect>
+    );
+};
+
+export const CenterLine = styled.div`
+    width: 100%;
+    max-width: 375px;
+    height: 8px;
+    background-color: #f3f3f3;
+    margin-bottom: 32px;
 `;

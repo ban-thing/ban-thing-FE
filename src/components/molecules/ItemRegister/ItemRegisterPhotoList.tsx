@@ -7,16 +7,26 @@ import {
 } from "@/components/atoms/ItemRegisterElement";
 import Camera from "@/assets/icons/camera.svg?react";
 import Exit from "@/assets/icons/exit.svg?react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { GrayCloseButton } from "@/components/atoms/Button";
 import usePhotoUpload from "@/hooks/usePhotoUpload";
+import { useEffect } from "react";
 
 type PhotoListProps = {
     register: UseFormRegister<FieldValues>;
+    setValue: UseFormSetValue<FieldValues>;
 };
 
-const ItemRegisterPhotoList = ({ register }: PhotoListProps) => {
+const ItemRegisterPhotoList = ({ register, setValue }: PhotoListProps) => {
     const { photosPreview, photoFiles, onChangeFile, removePhoto } = usePhotoUpload();
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChangeFile(event.target.files);
+    };
+
+    useEffect(() => {
+        setValue("photos", photoFiles);
+    }, [photoFiles]);
 
     return (
         <PhotosList>
@@ -36,7 +46,7 @@ const ItemRegisterPhotoList = ({ register }: PhotoListProps) => {
                 multiple
                 disabled={photoFiles.length === 5}
                 {...register("photos", {
-                    onChange: onChangeFile,
+                    onChange: handleFileChange,
                 })}
             />
             {photosPreview.map((preview, index) => (

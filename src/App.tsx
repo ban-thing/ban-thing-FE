@@ -9,8 +9,9 @@ import NotFound from "./pages/NotFound";
 import LocationSelect from "./pages/LocationSelect";
 import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
-import ItemRegister from "./pages/ItemRegister";
+import ItemRegister from "./pages/ItemRegister/ItemRegister";
 import { LoadScript } from "@react-google-maps/api";
+import ItemRegisterHashTag from "./pages/ItemRegister/ItemRegisterHashTag";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             { path: "chatting-list" },
             { path: "chatting/:id" },
             { path: "item-register", element: <ItemRegister /> },
-            { path: "item-register/hashtag" },
+            { path: "item-register/hashtag", element: <ItemRegisterHashTag /> },
             { path: "item-register/direct" },
             { path: "search" },
             { path: "search/hashtag" },

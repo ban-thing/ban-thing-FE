@@ -111,12 +111,9 @@ export default function LoginModal({ enable }: ModalProps) {
         setApproveList((prev) => [!prev[0], !prev[1]]);
     };
 
-    const onClickApprove1 = () => {
-        setApproveList((prev) => [!prev[0], prev[1]]);
-    };
-
-    const onClickApprove2 = () => {
-        setApproveList((prev) => [prev[0], !prev[1]]);
+    const onClickApprove = (index: number) => {
+        if (approveList[index]) return;
+        setApproveList((prev) => prev.map((item, i) => (i === index ? !item : item)));
     };
 
     return (
@@ -161,13 +158,13 @@ export default function LoginModal({ enable }: ModalProps) {
                             </ApproveCheck>
                             <ApproveTextBox>
                                 <RequiredText>
-                                    <RequiredApprove onClick={onClickApprove1}>
+                                    <RequiredApprove onClick={() => onClickApprove(0)}>
                                         [필수] 카카오 개인정보 제3자 제공 동의
                                     </RequiredApprove>
                                     <ViewTerms>보기</ViewTerms>
                                 </RequiredText>
                                 <RequiredText>
-                                    <RequiredApprove onClick={onClickApprove2}>
+                                    <RequiredApprove onClick={() => onClickApprove(1)}>
                                         [필수] 카카오 개인정보 제3자 제공 동의
                                     </RequiredApprove>
                                     <ViewTerms>보기</ViewTerms>

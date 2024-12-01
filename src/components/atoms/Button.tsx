@@ -78,7 +78,7 @@ export const HashtagButton = styled.button<ButtonProps>`
   `}
 `;
 // X 버튼
-export const CloseButton = styled.button`
+export const CloseButton = styled.button<ButtonProps>`
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -93,6 +93,16 @@ export const CloseButton = styled.button`
     &:hover {
         opacity: 0.8;
     }
+
+    ${(props) =>
+        props.variant === "outlined" &&
+        `
+        width: 18px;
+        height: 18px;
+        background-color: var(--color-black-8);
+        border: 1px solid #A4C1FC;
+        color: var(--color-main-1);
+    `}
 `;
 export const GrayCloseButton = styled.button`
     width: 18px;
@@ -162,6 +172,34 @@ export const RadioButton = styled.button<ButtonProps>`
         opacity: 0.8;
     }
 `;
+
+interface TypeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    $text?: string;
+    $enable?: boolean;
+    width?: string;
+}
+
+const StyledTypeButton = styled.button<TypeButtonProps>`
+    width: ${({ width }) => (width ? width : "80px")};
+    height: 40px;
+    padding: 10px 16px;
+    border: 1px solid ${({ $enable }) => ($enable ? "var(--color-main-1)" : "var(--color-black-5)")};
+    color: ${({ $enable }) => ($enable ? "var(--color-main-1)" : "var(--color-black-5)")};
+    background-color: ${({ $enable }) => ($enable ? "rgba(198, 216, 255, 0.1)" : "white")};
+    font-size: 14px;
+    border-radius: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const TypeButton = ({ $text = "버튼", $enable = false, ...props }: TypeButtonProps) => {
+    return (
+        <StyledTypeButton $enable={$enable} type="button" {...props}>
+            {$text}
+        </StyledTypeButton>
+    );
+};
 
 export interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     enable?: boolean;
