@@ -1,6 +1,6 @@
 import { TypeButton } from "@/components/atoms/Button";
-import { useState } from "react";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { FieldValues, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import styled from "styled-components";
 
 const TypeButtonWrap = styled.div`
@@ -11,10 +11,21 @@ const TypeButtonWrap = styled.div`
 
 interface DoubleTypeButtonProps {
     setValue: UseFormSetValue<FieldValues>;
+    watch: UseFormWatch<FieldValues>;
 }
 
-const DoubleTypeButton = ({ setValue }: DoubleTypeButtonProps) => {
+const DoubleTypeButton = ({ setValue, watch }: DoubleTypeButtonProps) => {
     const [isSell, setIsSell] = useState(true);
+
+    useEffect(() => {
+        if (watch("type") === "판매") {
+            setIsSell(true);
+        }
+        if (watch("type") === "나눔") {
+            setIsSell(false);
+        }
+    }, []);
+
     const onClickSell = () => {
         setValue("type", "판매");
         setIsSell(true);

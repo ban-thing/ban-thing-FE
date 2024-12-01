@@ -44,6 +44,7 @@ export function NumberInput<T extends FieldValues>({
         <Controller
             name={name}
             control={control}
+            rules={{ required: sellType === "판매" }}
             render={({ field: { onChange, value, ref } }) => (
                 <Input
                     type="tel"
@@ -101,7 +102,11 @@ export function TextArea({ register, ...props }: TextAreaProps) {
     };
     return (
         <TextAreaWrap>
-            <StyledTextArea {...(register && register("content"))} {...props} onChange={onChange} />
+            <StyledTextArea
+                {...(register && register("content", { required: true }))}
+                {...props}
+                onChange={onChange}
+            />
             <TypingCount>{typingCount}/2000</TypingCount>
         </TextAreaWrap>
     );

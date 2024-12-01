@@ -34,6 +34,8 @@ interface RadioButtonsProps {
 }
 
 const RadioButtonsList = ({ name, text, isChecked, index, onChangeRadio }: RadioButtonsProps) => {
+    // console.log(watch(name));
+
     return (
         <RadiosWrap>
             <RadioWrap onClick={() => onChangeRadio(index, true)}>

@@ -19,6 +19,7 @@ import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
+import { useEffect } from "react";
 
 const ItemRegisterBox = styled.form`
     display: flex;
@@ -31,32 +32,64 @@ const ItemRegisterBox = styled.form`
 const ItemRegister = () => {
     const { itemRegisterHashList, deleteItemAtIndex, resetItemRegisterHashList } =
         useItemRegisterHashListStore();
-    const { register, handleSubmit, setValue, watch, control } = useForm();
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        control,
+        reset,
+        formState: { isValid },
+    } = useForm();
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<any> = (data) => {
         resetItemRegisterHashList();
-        console.log(data, "제출데이터");
+        // TODO: required 빨간색 수정. photos에 required 추가
+        const submitData = { ...data };
+        if (data.type === "나눔") {
+            submitData.price = 0;
+        }
+        console.log(submitData, "제출데이터");
     };
 
     const type = watch("type");
+    useEffect(() => {
+        reset({
+            // title: "임시 제목",
+            // content: "내용",
+            type: "판매",
+            // price: "500",
+            clnPollution: "없음",
+            clnTimeUsed: "없음",
+            clnCleaned: "새 상품",
+            clnPurchaseDate: "모름",
+            clnExprice: "모름",
+            isDirect: false,
+            // directLocation: "강남역 1번 출구",
+        });
+    }, []);
 
     return (
         <>
             <ItemRegisterBox>
                 <PageTitle>내 물건 팔기</PageTitle>
                 <RegisterElementBox style={{ width: "375px", overflow: "hidden" }}>
-                    {/* TODO: 이미지 선택순으로 들어가게 수정, 슬라이드 넣기 */}
+                    {/* TODO: 이미지 선택순으로 들어가게 수정 */}
                     <RegisterSubTitle>상품 사진</RegisterSubTitle>
                     <ItemRegisterPhotoList register={register} setValue={setValue} />
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>제목</RegisterSubTitle>
-                    <Input placeholder="제목을 입력하세요." {...register("title")} required />
+                    <Input
+                        placeholder="제목을 입력하세요."
+                        {...register("title", { required: true })}
+                        required
+                    />
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>거래 방식</RegisterSubTitle>
-                    <DoubleTypeButton setValue={setValue} />
+                    <DoubleTypeButton setValue={setValue} watch={watch} />
                     <NumberInput
                         control={control}
                         name="price"
@@ -75,7 +108,6 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterElementSubBox>
                         <RegisterSubTitle>태그 설정</RegisterSubTitle>
-                        {/* TODO: 페이지 이동시 폼 입력값 남아있게 설정 */}
                         <TagSelect text="선택사항" onClick={() => navigate("hashtag")} />
                     </RegisterElementSubBox>
                     <HashTagButtonList
@@ -90,11 +122,11 @@ const ItemRegister = () => {
                         <Diary width="18px" height="18px" />
                         <div>클린 체크리스트</div>
                     </RegisterSubTitle2>
-                    <CleanCheckList setValue={setValue} register={register} />
+                    <CleanCheckList setValue={setValue} register={register} watch={watch} />
                 </RegisterElementBox3>
             </ItemRegisterBox>
             <BottomButtonBar
-                variant="gray"
+                variant={isValid ? "filled" : "gray"}
                 buttonText="작성 완료"
                 type="submit"
                 onClick={handleSubmit(onSubmit)}

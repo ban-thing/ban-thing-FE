@@ -1,9 +1,9 @@
 import CleanTypeButton from "./CleanTypeButton";
 import { Input } from "@/components/atoms/Input";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -16,13 +16,26 @@ const RegisterSubTitle3 = styled.h3`
 
 interface CleanCheckListProps {
     setValue: UseFormSetValue<FieldValues>;
+    register?: UseFormRegister<FieldValues>;
+    watch: UseFormWatch<FieldValues>;
 }
 
-const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
+const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
     const [isChecked, setIsChecked] = useState([true, true, true]);
+    const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
+    useEffect(() => {
+        fieldNames.map((name, index) => {
+            if (watch(name) === "모름" || watch(name) === false) {
+                setIsChecked((prev) => prev.map((item, i) => (i === index ? false : item)));
+            }
+        });
+    }, []);
 
-    const onChangeRadio = (index: number, boolean: boolean) => {
-        setIsChecked((prev) => prev.map((value, i) => (i === index ? boolean : value)));
+    const onChangeRadio = (index: number, checked: boolean) => {
+        setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));
+        if (!checked) {
+            setValue(fieldNames[index], "모름");
+        }
     };
 
     return (
@@ -33,6 +46,7 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                     text={["없음", "1~3개", "3개 초과"]}
                     setValueName="clnPollution"
                     setValue={setValue}
+                    watch={watch}
                 />
             </div>
             <div>
@@ -41,6 +55,7 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                     text={["없음", "5회 미만", "5회 이상"]}
                     setValueName="clnTimeUsed"
                     setValue={setValue}
+                    watch={watch}
                 />
             </div>
             <div>
@@ -49,6 +64,7 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                     text={["새 상품", "있음", "없음"]}
                     setValueName="clnCleaned"
                     setValue={setValue}
+                    watch={watch}
                 />
             </div>
             <div>
@@ -61,7 +77,12 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                         index={0}
                     />
                 </RegisterSubTitle3>
-                {isChecked[0] && <Input placeholder="구매 시기를 입력하세요." />}
+                {isChecked[0] && (
+                    <Input
+                        placeholder="구매 시기를 입력하세요."
+                        {...(register && register("clnPurchaseDate"))}
+                    />
+                )}
             </div>
             <div>
                 <RegisterSubTitle3>
@@ -73,7 +94,9 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                         index={1}
                     />
                 </RegisterSubTitle3>
-                {isChecked[1] && <Input placeholder="00.00.00" />}
+                {isChecked[1] && (
+                    <Input placeholder="00.00.00" {...(register && register("clnExprice"))} />
+                )}
             </div>
             <div>
                 <RegisterSubTitle3>
@@ -86,7 +109,12 @@ const CleanCheckList = ({ setValue }: CleanCheckListProps) => {
                         index={2}
                     />
                 </RegisterSubTitle3>
-                {isChecked[2] && <Input placeholder="직거래 할 장소를 입력하세요." />}
+                {isChecked[2] && (
+                    <Input
+                        placeholder="직거래 할 장소를 입력하세요."
+                        {...(register && register("directLocation"))}
+                    />
+                )}
             </div>
         </>
     );
