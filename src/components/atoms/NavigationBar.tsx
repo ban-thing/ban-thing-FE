@@ -63,6 +63,6 @@ const NavButton = styled.button<NavButtonProps>`
 
     span {
         font-size: 12px;
-        color: ${(props) => (props.$activeTab ? "var(--color-main-1)" : "var(--color-black-6)")};
+        color: ${(props) => (props.$activeTab ? "#343434" : "var(--color-black-6)")};
     }
 `;

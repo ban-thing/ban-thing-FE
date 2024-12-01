@@ -217,6 +217,28 @@ export const ModalButton = styled.button<ModalButtonProps>`
     font-weight: 500;
 `;
 
+// 초기화 버튼
+export const ResetButton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 24px;
+    border: 1px solid var(--color-black-5);
+    width: 160px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: white;
+    color: var(--color-black-5);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
 export interface UnderlineTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     color?: string;
     width?: string;
