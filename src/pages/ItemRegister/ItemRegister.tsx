@@ -24,7 +24,7 @@ const ItemRegisterBox = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 20px 96px 20px;
+    padding: 0 20px 96px 18px;
     box-sizing: border-box;
 `;
 
@@ -45,7 +45,7 @@ const ItemRegister = () => {
         <>
             <ItemRegisterBox>
                 <PageTitle>내 물건 팔기</PageTitle>
-                <RegisterElementBox>
+                <RegisterElementBox style={{ width: "375px", overflow: "hidden" }}>
                     {/* TODO: 이미지 선택순으로 들어가게 수정, 슬라이드 넣기 */}
                     <RegisterSubTitle>상품 사진</RegisterSubTitle>
                     <ItemRegisterPhotoList register={register} setValue={setValue} />
@@ -90,7 +90,7 @@ const ItemRegister = () => {
                         <Diary width="18px" height="18px" />
                         <div>클린 체크리스트</div>
                     </RegisterSubTitle2>
-                    <CleanCheckList setValue={setValue} />
+                    <CleanCheckList setValue={setValue} register={register} />
                 </RegisterElementBox3>
             </ItemRegisterBox>
             <BottomButtonBar

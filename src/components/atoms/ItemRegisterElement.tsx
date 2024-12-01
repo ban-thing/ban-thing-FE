@@ -41,18 +41,6 @@ export const RegisterSubTitle2 = styled.h2`
     }
 `;
 
-export const PhotosList = styled.div`
-    display: flex;
-    gap: 8px;
-    height: 66px;
-    align-items: flex-end;
-    /* overflow-y: scroll; */
-    /* TODO: 스크롤 CSS 설정 */
-    &::-webkit-scrollbar {
-        /* display: none; */
-    }
-`;
-
 export const PhotoAddButton = styled.label<{ $enable: boolean }>`
     height: 60px;
     width: 60px;

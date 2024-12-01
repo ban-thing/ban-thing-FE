@@ -117,8 +117,8 @@ export const GrayCloseButton = styled.button`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 0;
-    right: -4px;
+    top: -4px;
+    right: 0;
 `;
 // 체크 버튼
 export const CheckButton = styled.button<ButtonProps>`

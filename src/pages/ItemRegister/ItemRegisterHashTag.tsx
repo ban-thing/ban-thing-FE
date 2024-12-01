@@ -66,6 +66,7 @@ const ItemRegisterHashTag = () => {
     };
     const onEnterDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
         if (e.keyCode === 13 || e.key === "Enter") {
+            // TODO: 모바일에서 작동하는지 확인
             if (inputValue.trim() === "") {
                 // TODO: 공백값 주의문구 추가
                 // 중복값 입력시 주의문구 띄울지 등록할 때 알아서 거를지?
