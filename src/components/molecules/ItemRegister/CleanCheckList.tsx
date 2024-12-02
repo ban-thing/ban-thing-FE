@@ -4,6 +4,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "rea
 import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -79,6 +80,11 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                 </RegisterSubTitle3>
                 {isChecked[0] && (
                     <Input
+                        value={
+                            watch("clnPurchaseDate") === "모름"
+                                ? ""
+                                : watch("clnPurchaseDate") || ""
+                        }
                         placeholder="구매 시기를 입력하세요."
                         {...(register && register("clnPurchaseDate"))}
                     />
@@ -94,8 +100,13 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                         index={1}
                     />
                 </RegisterSubTitle3>
+                {/* TODO: input 형식 수정 */}
                 {isChecked[1] && (
-                    <Input placeholder="00.00.00" {...(register && register("clnExprice"))} />
+                    <Input
+                        placeholder="00.00.00"
+                        value={watch("clnExprice") === "모름" ? "" : watch("clnExprice") || ""}
+                        {...(register && register("clnExprice"))}
+                    />
                 )}
             </div>
             <div>
@@ -109,11 +120,14 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                         index={2}
                     />
                 </RegisterSubTitle3>
+                {/* TODO: input 클릭시 페이지 이동 */}
                 {isChecked[2] && (
-                    <Input
-                        placeholder="직거래 할 장소를 입력하세요."
-                        {...(register && register("directLocation"))}
-                    />
+                    <Link to="direct" target="_blank">
+                        <Input
+                            placeholder="직거래 할 장소를 입력하세요."
+                            {...(register && register("directLocation"))}
+                        />
+                    </Link>
                 )}
             </div>
         </>

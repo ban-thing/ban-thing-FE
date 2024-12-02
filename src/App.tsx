@@ -14,6 +14,7 @@ import { LoadScript } from "@react-google-maps/api";
 import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
+import ItemRegisterDirect from "./pages/ItemRegister/ItemRegisterDirect";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
             { path: "chatting-list" },
             { path: "chatting/:id" },
             { path: "item-register", element: <ItemRegister /> },
-            { path: "item-register/direct" },
+            { path: "item-register/direct", element: <ItemRegisterDirect /> },
             { path: "search", element: <Search /> },
             { path: "search/hashtag", element: <SearchHashtag /> },
             { path: "search-result", element: <SearchResult /> },

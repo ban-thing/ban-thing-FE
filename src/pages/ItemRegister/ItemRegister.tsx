@@ -144,7 +144,6 @@ const ItemRegister = () => {
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
             />
-            {/* TODO: 모달창 캐릭터 추가 */}
             {showModal && <ItemRegisterHashTag setShowModal={setShowModal} />}
         </ItemRegisterWrap>
     );
