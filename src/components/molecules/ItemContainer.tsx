@@ -9,8 +9,10 @@ import {
     ItemBoxRight,
 } from "@/components/atoms/ItemInList";
 import timeAgo from "@/utils/TimeAgo";
+import { useNavigate } from "react-router-dom";
 
 type ItemInListProps = {
+    itemId: number;
     title: string;
     location: string;
     updatedAt: Date; //Date로 수정
@@ -18,10 +20,21 @@ type ItemInListProps = {
     price: number;
 };
 
-export default function ItemInList({ title, location, updatedAt, type, price }: ItemInListProps) {
+export default function ItemInList({
+    itemId,
+    title,
+    location,
+    updatedAt,
+    type,
+    price,
+}: ItemInListProps) {
     const cutOffTitle = title.length > 24 ? title.slice(0, 24) + "..." : title;
+    const navigate = useNavigate();
+    const onClickBox = (itemId: number) => {
+        navigate(`item-view/${itemId}`);
+    };
     return (
-        <ItemBox>
+        <ItemBox onClick={() => onClickBox(itemId)}>
             <ItemPhoto />
             <ItemBoxRight>
                 <ItemTitle>{cutOffTitle}</ItemTitle>

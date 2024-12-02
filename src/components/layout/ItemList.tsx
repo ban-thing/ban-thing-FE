@@ -13,6 +13,7 @@ const ItemList = () => {
     return (
         <StyledItemList>
             <ItemContainer
+                itemId={1}
                 title="고양이 장난감 팝니다"
                 price={10000}
                 location="연수동"
@@ -20,6 +21,7 @@ const ItemList = () => {
                 type="판매"
             />
             <ItemContainer
+                itemId={2}
                 title="고양이 장난감 나눔"
                 price={0}
                 location="연수동"
@@ -27,6 +29,7 @@ const ItemList = () => {
                 type="나눔"
             />
             <ItemContainer
+                itemId={3}
                 title="제목 글자 들어오는 곳 두줄짜리 제목은 생략합니다"
                 price={100000000}
                 location="연수동"
@@ -34,6 +37,7 @@ const ItemList = () => {
                 type="나눔"
             />
             <ItemContainer
+                itemId={4}
                 title="고양이 장난감 팝니다"
                 price={10000}
                 location="연수동"
@@ -41,6 +45,7 @@ const ItemList = () => {
                 type="판매"
             />
             <ItemContainer
+                itemId={5}
                 title="고양이 장난감 팝니다"
                 price={10000}
                 location="연수동"
@@ -48,6 +53,7 @@ const ItemList = () => {
                 type="판매"
             />
             <ItemContainer
+                itemId={6}
                 title="고양이 장난감 팝니다"
                 price={10000}
                 location="연수동"

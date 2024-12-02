@@ -1,6 +1,11 @@
+import { MouseEventHandler } from "react";
 import styled from "styled-components";
 
-export const ItemBox = styled.figure`
+type ItemBoxProps = {
+    onClick: MouseEventHandler<HTMLElement>;
+};
+
+export const ItemBox = styled.figure<ItemBoxProps>`
     width: 335px;
     height: 166px;
     padding: 22px 0;
@@ -10,6 +15,7 @@ export const ItemBox = styled.figure`
     box-sizing: border-box;
     border-bottom: 1px solid #f7f7f7;
     justify-content: center;
+    cursor: pointer;
 
     & > * {
         box-sizing: border-box;
