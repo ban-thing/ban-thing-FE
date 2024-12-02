@@ -7,7 +7,7 @@ export default class ApiService {
     constructor() {
         const config: AxiosRequestConfig = {
             baseURL: `/baseURL`, // TODO: 수정
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json" }, //TODO: 헤더설정 추가
         };
 
         this.axiosInstance = axios.create(config);

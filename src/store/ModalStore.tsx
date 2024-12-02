@@ -25,3 +25,15 @@ export const useDropdownModalStore = create<DropdownModalState>((set) => ({
     closeDropdown: () => set({ isDropdownOpen: false }),
     toggleDropdown: () => set((state) => ({ isDropdownOpen: !state.isDropdownOpen })),
 }));
+
+interface MyLocationModalState {
+    isMyLocationModalVisible: boolean;
+    showMyLocationModal: () => void;
+    hideMyLocationModal: () => void;
+}
+
+export const useMyLocationModalStore = create<MyLocationModalState>((set) => ({
+    isMyLocationModalVisible: false,
+    showMyLocationModal: () => set({ isMyLocationModalVisible: true }),
+    hideMyLocationModal: () => set({ isMyLocationModalVisible: false }),
+}));

@@ -8,28 +8,40 @@ import ChatIcon from "../../assets/icons/check0.svg?react";
 import ChatActiveIcon from "../../assets/icons/check0Active.svg?react";
 import PetsIcon from "../../assets/icons/footPrint.svg?react";
 import PetsActiveIcon from "../../assets/icons/footPrintActive.svg?react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface NavButtonProps {
     $activeTab: boolean;
 }
 export default function NavigationBar() {
-    const [$activeTab, set$activeTab] = useState("home");
+    const location = useLocation();
+    const initialTab = location.pathname.slice(1) || "home";
+    const [$activeTab, set$activeTab] = useState(initialTab);
+    const navigate = useNavigate();
+
+    const handleNavigation = (tab: string) => {
+        set$activeTab(tab);
+        navigate(`/${tab === "home" ? "" : tab}`);
+    };
 
     return (
         <NavContainer>
-            <NavButton $activeTab={$activeTab === "home"} onClick={() => set$activeTab("home")}>
+            <NavButton $activeTab={$activeTab === "home"} onClick={() => handleNavigation("home")}>
                 {$activeTab === "home" ? <HomeActiveIcon /> : <HomeIcon />}
                 <span>홈</span>
             </NavButton>
-            <NavButton $activeTab={$activeTab === "search"} onClick={() => set$activeTab("search")}>
+            <NavButton
+                $activeTab={$activeTab === "search"}
+                onClick={() => handleNavigation("search")}
+            >
                 {$activeTab === "search" ? <SearchActiveIcon /> : <SearchIcon />}
                 <span>검색</span>
             </NavButton>
-            <NavButton $activeTab={$activeTab === "chat"} onClick={() => set$activeTab("chat")}>
+            <NavButton $activeTab={$activeTab === "chat"} onClick={() => handleNavigation("chat")}>
                 {$activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
                 <span>채팅</span>
             </NavButton>
-            <NavButton $activeTab={$activeTab === "my"} onClick={() => set$activeTab("my")}>
+            <NavButton $activeTab={$activeTab === "my"} onClick={() => handleNavigation("my")}>
                 {$activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
                 <span>마이</span>
             </NavButton>
@@ -63,6 +75,6 @@ const NavButton = styled.button<NavButtonProps>`
 
     span {
         font-size: 12px;
-        color: ${(props) => (props.$activeTab ? "var(--color-main-1)" : "var(--color-black-6)")};
+        color: ${(props) => (props.$activeTab ? "#343434" : "var(--color-black-6)")};
     }
 `;

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plus.svg?react";
-import Snack from "@/assets/icons/snackFill.svg?react";
+import Snack from "@/assets/icons/snackWhite.svg?react";
+import FilterIcon from "@/assets/icons/filter.svg?react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+// TODO: $variant로 수정
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
     size?: "large" | "small";
     checked?: boolean;
@@ -77,7 +79,7 @@ export const HashtagButton = styled.button<ButtonProps>`
   `}
 `;
 // X 버튼
-export const CloseButton = styled.button`
+export const CloseButton = styled.button<ButtonProps>`
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -92,6 +94,32 @@ export const CloseButton = styled.button`
     &:hover {
         opacity: 0.8;
     }
+
+    ${(props) =>
+        props.variant === "outlined" &&
+        `
+        width: 18px;
+        height: 18px;
+        background-color: var(--color-black-8);
+        border: 1px solid #A4C1FC;
+        color: var(--color-main-1);
+    `}
+`;
+export const GrayCloseButton = styled.button`
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #b2b2b2;
+    background: var(--color-black-6);
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -4px;
+    right: 0;
 `;
 // 체크 버튼
 export const CheckButton = styled.button<ButtonProps>`
@@ -146,6 +174,34 @@ export const RadioButton = styled.button<ButtonProps>`
     }
 `;
 
+interface TypeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    $text?: string;
+    $enable?: boolean;
+    width?: string;
+}
+
+const StyledTypeButton = styled.button<TypeButtonProps>`
+    width: ${({ width }) => (width ? width : "80px")};
+    height: 40px;
+    padding: 10px 16px;
+    border: 1px solid ${({ $enable }) => ($enable ? "var(--color-main-1)" : "var(--color-black-5)")};
+    color: ${({ $enable }) => ($enable ? "var(--color-main-1)" : "var(--color-black-5)")};
+    background-color: ${({ $enable }) => ($enable ? "rgba(198, 216, 255, 0.1)" : "white")};
+    font-size: 14px;
+    border-radius: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const TypeButton = ({ $text = "버튼", $enable = false, ...props }: TypeButtonProps) => {
+    return (
+        <StyledTypeButton $enable={$enable} type="button" {...props}>
+            {$text}
+        </StyledTypeButton>
+    );
+};
+
 export interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     $enable?: boolean;
 }
@@ -160,6 +216,39 @@ export const ModalButton = styled.button<ModalButtonProps>`
         props.$enable === true ? "var(--color-yellow)" : "var(--color-black-7)"};
     color: "black";
     font-weight: 500;
+`;
+
+// 초기화 버튼
+export const ResetButton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 24px;
+    border: 1px solid var(--color-black-5);
+    width: 160px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: white;
+    color: var(--color-black-5);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
+// 필터 버튼
+const FilterButton = styled.button`
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    background-color: var(--color-black-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export interface UnderlineTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -186,15 +275,15 @@ const PlusButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     bottom: 90px;
 `;
 
-export const ItemPlusButton = () => {
+export const ItemPlusButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <PlusButton>
+        <PlusButton {...props}>
             <Plus stroke="white" />
         </PlusButton>
     );
 };
 
-const StyledMySellButton = styled.button`
+const StyledMySellButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     width: 128px;
     height: 50px;
     display: flex;
@@ -203,6 +292,7 @@ const StyledMySellButton = styled.button`
     gap: 8px;
     padding: 15px 13px;
     border-radius: 32px;
+    background-color: var(--color-main-1);
     background-color: var(--color-main-1);
     position: fixed;
     bottom: 90px;
@@ -215,11 +305,19 @@ const StyledMySellButton = styled.button`
     }
 `;
 
-export const MySellButton = () => {
+export const MySellButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <StyledMySellButton>
-            <Snack fill="white" />
+        <StyledMySellButton {...props}>
+            <Snack />
             <div>내 물건 팔기</div>
         </StyledMySellButton>
+    );
+};
+
+export const ItemFilterButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+    return (
+        <FilterButton {...props}>
+            <FilterIcon />
+        </FilterButton>
     );
 };

@@ -5,6 +5,8 @@ import LocationIcon from "../assets/icons/location.svg?react";
 import PointIcon from "../assets/icons/point.svg?react";
 import CheckIcon from "../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
+import { useMyLocationModalStore } from "@/store/ModalStore";
+import MyLocationModal from "@/components/molecules/MyLocationModal";
 
 interface Region {
     id: string;
@@ -39,7 +41,7 @@ const fetchCities = async () => {
         const data = await response.json();
         return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
-            name: item.lowestAdmCodeNm,
+            name: item.lowestAdmCodeNm.slice(0, 2),
         }));
     } catch (error) {
         console.error("Error fetching cities:", error);
@@ -47,31 +49,33 @@ const fetchCities = async () => {
     }
 };
 
-const fetchDistricts = async (cityCode: string) => {
+const fetchDistricts = async (cityCode: string, cityName: string) => {
     try {
         const response = await fetch(
             `${BASE_URL}/admSiList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${cityCode}`,
         );
         const data = await response.json();
-        return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
+        const districts = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
             name: item.lowestAdmCodeNm,
         }));
+        return [{ id: `${cityCode}_all`, name: `${cityName} 전체` }, ...districts];
     } catch (error) {
         console.error("Error fetching districts:", error);
         return [];
     }
 };
-const fetchTowns = async (districtCode: string) => {
+const fetchTowns = async (districtCode: string, districtName: string) => {
     try {
         const response = await fetch(
             `${BASE_URL}/admDongList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${districtCode}`,
         );
         const data = await response.json();
-        return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
+        const towns = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
             id: item.admCode,
             name: item.lowestAdmCodeNm,
         }));
+        return [{ id: `${districtCode}_all`, name: `${districtName} 전체` }, ...towns];
     } catch (error) {
         console.error("Error fetching towns:", error);
         return [];
@@ -85,6 +89,44 @@ export default function LocationSelect() {
     const [selectedCity, setSelectedCity] = useState<Region | null>(null);
     const [selectedDistrict, setSelectedDistrict] = useState<Region | null>(null);
     const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
+    const { isMyLocationModalVisible } = useMyLocationModalStore();
+    const { showMyLocationModal } = useMyLocationModalStore();
+
+    const handleCitySelect = (city: Region) => {
+        setSelectedCity(city);
+    };
+
+    const handleDistrictSelect = (district: Region) => {
+        setSelectedDistrict(district);
+        if (district.id.endsWith("_all")) {
+            setSelectedTowns([district]);
+        }
+    };
+
+    const handleTownToggle = (town: Region) => {
+        setSelectedTowns((prev) => {
+            if (town.id.endsWith("_all")) {
+                return [town];
+            }
+
+            if (prev.some((t) => t.id.endsWith("_all"))) {
+                return [town];
+            }
+
+            if (prev.find((t) => t.id === town.id)) {
+                const filtered = prev.filter((t) => t.id !== town.id);
+                return filtered.filter((t) => !t.id.endsWith("_all"));
+            }
+            if (prev.length < 3) {
+                return [...prev, town];
+            }
+            return prev;
+        });
+    };
+
+    const handleRemoveTown = (townId: string) => {
+        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
+    };
 
     useEffect(() => {
         const loadCities = async () => {
@@ -97,7 +139,7 @@ export default function LocationSelect() {
     useEffect(() => {
         const loadDistricts = async () => {
             if (selectedCity) {
-                const districtsData = await fetchDistricts(selectedCity.id);
+                const districtsData = await fetchDistricts(selectedCity.id, selectedCity.name);
                 setDistricts(districtsData);
                 setSelectedDistrict(null);
                 setSelectedTowns([]);
@@ -110,8 +152,8 @@ export default function LocationSelect() {
 
     useEffect(() => {
         const loadTowns = async () => {
-            if (selectedDistrict) {
-                const townsData = await fetchTowns(selectedDistrict.id);
+            if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
+                const townsData = await fetchTowns(selectedDistrict.id, selectedDistrict.name);
                 setTowns(townsData);
                 setSelectedTowns([]);
             } else {
@@ -120,30 +162,6 @@ export default function LocationSelect() {
         };
         loadTowns();
     }, [selectedDistrict]);
-
-    const handleCitySelect = (city: Region) => {
-        setSelectedCity(city);
-    };
-
-    const handleDistrictSelect = (district: Region) => {
-        setSelectedDistrict(district);
-    };
-
-    const handleTownToggle = (town: Region) => {
-        setSelectedTowns((prev) => {
-            if (prev.find((t) => t.id === town.id)) {
-                return prev.filter((t) => t.id !== town.id);
-            }
-            if (prev.length < 3) {
-                return [...prev, town];
-            }
-            return prev;
-        });
-    };
-
-    const handleRemoveTown = (townId: string) => {
-        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
-    };
 
     return (
         <Container>
@@ -160,10 +178,11 @@ export default function LocationSelect() {
                     alignItems: "center",
                 }}
             >
-                <CurrentLocationButton>
+                <CurrentLocationButton onClick={showMyLocationModal}>
                     <LocationIcon style={{ width: 16, height: 16 }} />
                     현재 위치 추가
                 </CurrentLocationButton>
+                {isMyLocationModalVisible && <MyLocationModal />}
             </div>
 
             <CategoryLabels>
@@ -193,7 +212,7 @@ export default function LocationSelect() {
                             selected={selectedCity?.id === city.id}
                             variant="city"
                         >
-                            {city.name.slice(0, 2)}
+                            {city.name}
                         </RegionButton>
                     ))}
                 </RegionSection>
@@ -212,25 +231,32 @@ export default function LocationSelect() {
                 </RegionSection>
 
                 <RegionSection>
-                    {towns.map((town) => (
-                        <RegionButton
-                            key={town.id}
-                            onClick={() => handleTownToggle(town)}
-                            selected={selectedTowns.some((t) => t.id === town.id)}
-                            variant="town"
-                        >
-                            {town.name}
-                            {selectedTowns.some((t) => t.id === town.id) && (
-                                <CheckIcon
-                                    style={{
-                                        width: 22,
-                                        height: 22,
-                                        textAlign: "end",
-                                    }}
-                                />
-                            )}
-                        </RegionButton>
-                    ))}
+                    {towns.map((town) => {
+                        const isAllSelected = selectedTowns.some((t) => t.id.endsWith("_all"));
+                        const isSelected =
+                            selectedTowns.some((t) => t.id === town.id) ||
+                            (isAllSelected && !town.id.endsWith("_all"));
+
+                        return (
+                            <RegionButton
+                                key={town.id}
+                                onClick={() => handleTownToggle(town)}
+                                selected={isSelected}
+                                variant="town"
+                            >
+                                {town.name}
+                                {isSelected && (
+                                    <CheckIcon
+                                        style={{
+                                            width: 22,
+                                            height: 22,
+                                            textAlign: "end",
+                                        }}
+                                    />
+                                )}
+                            </RegionButton>
+                        );
+                    })}
                 </RegionSection>
             </RegionContainer>
 
@@ -274,7 +300,11 @@ export default function LocationSelect() {
                     >
                         취소
                     </Button>
-                    <Button variant="filled" size="small">
+                    <Button
+                        variant={selectedTowns.length > 0 ? "filled" : "gray"}
+                        size="small"
+                        disabled={selectedTowns.length === 0}
+                    >
                         확인
                     </Button>
                 </ButtonGroup>
@@ -284,9 +314,11 @@ export default function LocationSelect() {
 }
 
 const Container = styled.div`
-    padding: 20px;
     width: 100%;
     background: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Header = styled.div`
@@ -302,10 +334,10 @@ const Title = styled.h1`
     flex-grow: 1;
     font-size: 20px;
     font-weight: 500;
-    margin-right: 20px;
+    margin-right: 40px;
 `;
 
-const CurrentLocationButton = styled.button`
+const CurrentLocationButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -341,12 +373,14 @@ const RegionContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #f5f5f5;
+    flex: 1;
+    overflow: hidden;
 `;
 
 const RegionSection = styled.div`
     background: white;
-    height: 100vh;
     overflow-y: auto;
+    height: 100%;
 `;
 
 const RegionButton = styled.button<{
@@ -413,32 +447,28 @@ const RegionButton = styled.button<{
 const SelectedArea = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 10px;
     background: white;
     border-top: 1px solid #eee;
 `;
-
-export const SelectedTags = styled.div`
+const SelectedTags = styled.div`
     margin-bottom: 20px;
     font-size: 14px;
     display: flex;
     flex-direction: row;
     gap: 9px;
 `;
-
-export const TagSection = styled.div`
+const TagSection = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 `;
-
-export const TagLabel = styled.span`
+const TagLabel = styled.span`
     color: var(--color-black-5);
     margin-right: 6px;
     white-space: nowrap;
 `;
-
-export const Tag = styled.span`
+const Tag = styled.span`
     display: inline-flex;
     align-items: center;
     background: rgba(98, 144, 236, 0.1);
@@ -458,7 +488,8 @@ export const Tag = styled.span`
 `;
 
 const ButtonGroup = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 `;
