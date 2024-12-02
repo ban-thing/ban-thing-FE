@@ -1,21 +1,71 @@
 import ItemViewLayout from "@/components/layout/ItemViewLayout";
-import ItemViewInfo from "@/components/molecules/ItemViewInfo";
-import ItemViewProfile from "@/components/molecules/ItemViewProfile";
+import ItemViewInfo from "@/components/molecules/ItemView/ItemViewInfo";
+import ItemViewProfile from "@/components/molecules/ItemView/ItemViewProfile";
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const StyledItemImg = styled.div`
     width: 100%;
     height: 315px;
-    background-color: gray;
     margin-bottom: 24px;
+
+    & .mySwiper {
+        height: 100%;
+    }
 `;
+
+const dummyData = {
+    title: "상품 제목",
+    content:
+        "Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do eiusmod tempor incidid unt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco ",
+    sellerImgUrl: "https://picsum.photos/56",
+    sellerNickname: "닉네임",
+    type: "판매",
+    price: 5000,
+    directLocation: "연수역 1번 출구 앞",
+    address: "연수동",
+    itemImgs: ["https://picsum.photos/375", "https://picsum.photos/375"],
+    hashtags: ["고양이", "장난감"],
+    clnPollution: "모름",
+    clnTimeUsed: "5회 미만",
+    clnPurchasedDate: "모름",
+    clnCleaned: "있음",
+    clnExpire: "24.08.12",
+    isDirect: true,
+    updatedAt: new Date(),
+};
 
 const ItemView = () => {
     return (
-        <ItemViewLayout>
-            <StyledItemImg />
-            <ItemViewProfile name="이름" address="연수동" directLocation="연수역 1번 출구 앞" />
-            <ItemViewInfo />
+        <ItemViewLayout type={dummyData.type} price={dummyData.price}>
+            <StyledItemImg>
+                <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                    {dummyData.itemImgs.map((value, index) => (
+                        <SwiperSlide key={index}>
+                            <img src={value} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </StyledItemImg>
+            <ItemViewProfile
+                sellerNickname={dummyData.sellerNickname}
+                sellerImgUrl={dummyData.sellerImgUrl}
+                address={dummyData.address}
+                directLocation={dummyData.directLocation}
+            />
+            <ItemViewInfo
+                title={dummyData.title}
+                content={dummyData.content}
+                hashtags={dummyData.hashtags}
+                clnPollution={dummyData.clnPollution}
+                clnTimeUsed={dummyData.clnTimeUsed}
+                clnPurchasedDate={dummyData.clnPurchasedDate}
+                clnCleaned={dummyData.clnCleaned}
+                clnExpire={dummyData.clnExpire}
+                updatedAt={dummyData.updatedAt}
+            />
         </ItemViewLayout>
     );
 };

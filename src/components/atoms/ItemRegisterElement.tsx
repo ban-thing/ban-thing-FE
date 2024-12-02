@@ -24,23 +24,6 @@ export const RegisterSubTitle = styled.h2`
     margin-bottom: 8px;
 `;
 
-export const RegisterSubTitle2 = styled.h2`
-    font-size: 16px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    & > * {
-        color: var(--color-black-4);
-    }
-
-    & path,
-    & rect {
-        stroke: var(--color-black-4);
-    }
-`;
-
 export const PhotoAddButton = styled.label<{ $enable: boolean }>`
     height: 60px;
     width: 60px;

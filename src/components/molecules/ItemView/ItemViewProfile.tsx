@@ -14,7 +14,7 @@ const ProfileImgWrap = styled.div`
     height: 56px;
     margin: 4.5px 0;
     border-radius: 50%;
-    background-color: gray;
+    overflow: hidden;
 `;
 
 const ProfileTextWrap = styled.div`
@@ -39,18 +39,26 @@ const ProfilePlace2 = styled.div`
 `;
 
 type ItemViewProfileProps = {
-    name: string;
+    sellerNickname: string;
+    sellerImgUrl: string;
     address: string;
     directLocation: string;
     // sellerImgUrl: string
 };
 
-export default function ItemViewProfile({ name, address, directLocation }: ItemViewProfileProps) {
+export default function ItemViewProfile({
+    sellerNickname,
+    sellerImgUrl,
+    address,
+    directLocation,
+}: ItemViewProfileProps) {
     return (
         <ProfileWrap>
-            <ProfileImgWrap>{/* {sellerImgUrl} */}</ProfileImgWrap>
+            <ProfileImgWrap>
+                <img src={sellerImgUrl} />
+            </ProfileImgWrap>
             <ProfileTextWrap>
-                <ProfileName>{name}</ProfileName>
+                <ProfileName>{sellerNickname}</ProfileName>
                 <ProfilePlace>{address}</ProfilePlace>
                 <ProfilePlace2>{directLocation}</ProfilePlace2>
             </ProfileTextWrap>

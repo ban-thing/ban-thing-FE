@@ -6,7 +6,6 @@ import {
     RegisterElementSubBox,
     RegisterElementBox3,
     RegisterSubTitle,
-    RegisterSubTitle2,
     TagSelect,
 } from "@/components/atoms/ItemRegisterElement";
 import ItemRegisterPhotoList from "@/components/molecules/ItemRegister/ItemRegisterPhotoList";
@@ -14,12 +13,12 @@ import BottomButtonBar from "@/components/molecules/BottomButtonBar";
 import { Input, NumberInput, TextArea } from "@/components/atoms/Input";
 import DoubleTypeButton from "@/components/molecules/ItemRegister/DoubleTypeButton";
 import { useNavigate } from "react-router-dom";
-import Diary from "@/assets/icons/dairy.svg?react";
 import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useEffect } from "react";
+import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
 
 const ItemRegisterBox = styled.form`
     display: flex;
@@ -99,6 +98,7 @@ const ItemRegister = () => {
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>자세한 설명</RegisterSubTitle>
+                    {/* TODO: 입력값 넘치면 height 늘어나게 수정 */}
                     <TextArea
                         placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 작성 해주세요."
                         register={register}
@@ -108,6 +108,7 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterElementSubBox>
                         <RegisterSubTitle>태그 설정</RegisterSubTitle>
+                        {/* TODO: 페이지 이동 대신 모달창으로 수정 */}
                         <TagSelect text="선택사항" onClick={() => navigate("hashtag")} />
                     </RegisterElementSubBox>
                     <HashTagButtonList
@@ -118,10 +119,7 @@ const ItemRegister = () => {
                 </RegisterElementBox>
                 <CenterLine />
                 <RegisterElementBox3>
-                    <RegisterSubTitle2>
-                        <Diary width="18px" height="18px" />
-                        <div>클린 체크리스트</div>
-                    </RegisterSubTitle2>
+                    <CleanCheckTitle />
                     <CleanCheckList setValue={setValue} register={register} watch={watch} />
                 </RegisterElementBox3>
             </ItemRegisterBox>

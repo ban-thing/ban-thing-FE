@@ -8,7 +8,9 @@ export default function timeAgo(date: Date): string {
     const diffInMonths = Math.floor(diffInDays / 30);
     const diffInYears = Math.floor(diffInMonths / 12);
 
-    if (diffInMinutes < 60) {
+    if (diffInMinutes < 3) {
+        return "조금 전";
+    } else if (diffInMinutes < 60) {
         return `${diffInMinutes}분 전`;
     } else if (diffInHours < 24) {
         return `${diffInHours}시간 전`;
