@@ -1,6 +1,7 @@
 import { useDropdownModalStore } from "@/store/ModalStore";
 import { useState, useEffect, useRef, RefObject } from "react";
 import styled from "styled-components";
+import Arrow from "@/assets/icons/arrowDown.svg?react";
 
 type ShowProps = {
     $show?: boolean;
@@ -13,21 +14,19 @@ const SelectBox = styled.div`
     font-size: 18px;
     cursor: pointer;
     z-index: 20;
-    /* TODO: 화살표 수정, 애니메이션 추가 */
-    &::before {
-        content: "⌵";
-        position: absolute;
-        top: 0;
-        right: 8px;
-        color: #777777;
-        font-size: 20px;
-        font-weight: bold;
-    }
 `;
 const Label = styled.label`
-    display: inline-block;
+    display: flex;
+    align-items: center;
     min-width: 90px;
     cursor: pointer;
+    gap: 4px;
+`;
+
+const ArrowWrap = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 const SelectOptions = styled.ul<ShowProps>`
     position: absolute;
@@ -56,10 +55,11 @@ const SelectOptions = styled.ul<ShowProps>`
 const Option = styled.li<ShowProps>`
     /* transition: background-color 0.1s ease-in; */
     padding: ${(props) => (props.$show ? "4px 20px 4px" : 0)};
+    color: var(--color-black-5);
+
     &:hover {
-        /* TODO: 색상 수정 */
-        color: white;
-        background: green;
+        color: black;
+        font-weight: 700;
     }
 `;
 
@@ -98,7 +98,12 @@ export const Dropdown = ({
 
     return (
         <SelectBox onClick={() => toggleDropdown()} ref={selectRef}>
-            <Label>{currentValue}</Label>
+            <Label>
+                <span>{currentValue}</span>
+                <ArrowWrap>
+                    <Arrow />
+                </ArrowWrap>
+            </Label>
             <SelectOptions $show={isDropdownOpen}>
                 {option.map((data, index) => (
                     <Option
