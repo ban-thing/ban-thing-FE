@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 type ModalBaseProps = {
     opacity?: number;
+    bottom?: string;
 };
 export const ModalBase = styled.div<ModalBaseProps>`
     position: fixed;
@@ -11,6 +12,7 @@ export const ModalBase = styled.div<ModalBaseProps>`
     background-color: #000;
     opacity: ${(props) => (props.opacity ? props.opacity : 0.8)};
     z-index: 10;
+    bottom: ${(props) => (props.bottom ? props.bottom : null)};
 `;
 
 export const ModalContainer = styled.div`

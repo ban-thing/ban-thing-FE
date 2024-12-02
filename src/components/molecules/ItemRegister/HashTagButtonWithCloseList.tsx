@@ -77,7 +77,7 @@ const HashTagButtonWithCloseList = ({
             {hashList
                 .filter((value) => value.trim() !== "")
                 .map((value, index) => (
-                    <HashTagWrap>
+                    <HashTagWrap key={index}>
                         <HashtagButton variant="outlined" type="button">
                             #{value}
                         </HashtagButton>

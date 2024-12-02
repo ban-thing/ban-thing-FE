@@ -12,15 +12,19 @@ import ItemRegisterPhotoList from "@/components/molecules/ItemRegister/ItemRegis
 import BottomButtonBar from "@/components/molecules/BottomButtonBar";
 import { Input, NumberInput, TextArea } from "@/components/atoms/Input";
 import DoubleTypeButton from "@/components/molecules/ItemRegister/DoubleTypeButton";
-import { useNavigate } from "react-router-dom";
 import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
+import ItemRegisterHashTag from "./HashTagModal";
 
-const ItemRegisterBox = styled.form`
+const ItemRegisterWrap = styled.div`
+    position: relative;
+`;
+
+const ItemRegisterContentBox = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,6 +33,7 @@ const ItemRegisterBox = styled.form`
 `;
 
 const ItemRegister = () => {
+    const [showModal, setShowModal] = useState(false);
     const { itemRegisterHashList, deleteItemAtIndex, resetItemRegisterHashList } =
         useItemRegisterHashListStore();
     const {
@@ -40,7 +45,18 @@ const ItemRegister = () => {
         reset,
         formState: { isValid },
     } = useForm();
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (showModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [showModal]);
 
     const onSubmit: SubmitHandler<any> = (data) => {
         resetItemRegisterHashList();
@@ -70,8 +86,8 @@ const ItemRegister = () => {
     }, []);
 
     return (
-        <>
-            <ItemRegisterBox>
+        <ItemRegisterWrap>
+            <ItemRegisterContentBox>
                 <PageTitle>내 물건 팔기</PageTitle>
                 <RegisterElementBox style={{ width: "375px", overflow: "hidden" }}>
                     {/* TODO: 이미지 선택순으로 들어가게 수정 */}
@@ -108,8 +124,7 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterElementSubBox>
                         <RegisterSubTitle>태그 설정</RegisterSubTitle>
-                        {/* TODO: 페이지 이동 대신 모달창으로 수정 */}
-                        <TagSelect text="선택사항" onClick={() => navigate("hashtag")} />
+                        <TagSelect text="선택사항" onClick={() => setShowModal(true)} />
                     </RegisterElementSubBox>
                     <HashTagButtonList
                         hashList={itemRegisterHashList}
@@ -122,14 +137,16 @@ const ItemRegister = () => {
                     <CleanCheckTitle />
                     <CleanCheckList setValue={setValue} register={register} watch={watch} />
                 </RegisterElementBox3>
-            </ItemRegisterBox>
+            </ItemRegisterContentBox>
             <BottomButtonBar
                 variant={isValid ? "filled" : "gray"}
                 buttonText="작성 완료"
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
             />
-        </>
+            {/* TODO: 모달창 캐릭터 추가 */}
+            {showModal && <ItemRegisterHashTag setShowModal={setShowModal} />}
+        </ItemRegisterWrap>
     );
 };
 

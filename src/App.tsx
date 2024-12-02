@@ -11,7 +11,6 @@ import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
 import ItemRegister from "./pages/ItemRegister/ItemRegister";
 import { LoadScript } from "@react-google-maps/api";
-import ItemRegisterHashTag from "./pages/ItemRegister/ItemRegisterHashTag";
 import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
             { path: "chatting-list" },
             { path: "chatting/:id" },
             { path: "item-register", element: <ItemRegister /> },
-            { path: "item-register/hashtag", element: <ItemRegisterHashTag /> },
             { path: "item-register/direct" },
             { path: "search", element: <Search /> },
             { path: "search/hashtag", element: <SearchHashtag /> },
