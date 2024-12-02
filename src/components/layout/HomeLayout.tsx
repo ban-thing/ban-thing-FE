@@ -23,7 +23,7 @@ const StyledDiv = styled.div`
 const BtnWrap = styled.div`
     position: absolute;
     width: 100%;
-    right: -190px;
+    right: -230px;
 `;
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
