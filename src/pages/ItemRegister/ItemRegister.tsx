@@ -14,7 +14,7 @@ import { Input, NumberInput, TextArea } from "@/components/atoms/Input";
 import DoubleTypeButton from "@/components/molecules/ItemRegister/DoubleTypeButton";
 import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
-import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
+import { useItemRegisterHashListStore } from "@/store/ItemRegisterStore";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useEffect, useState } from "react";
 import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
@@ -33,7 +33,7 @@ const ItemRegisterContentBox = styled.form`
 `;
 
 const ItemRegister = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [showHashModal, setShowHashModal] = useState(false);
     const { itemRegisterHashList, deleteItemAtIndex, resetItemRegisterHashList } =
         useItemRegisterHashListStore();
     const {
@@ -43,32 +43,10 @@ const ItemRegister = () => {
         watch,
         control,
         reset,
-        formState: { isValid },
+        setError,
+        formState: { isValid, errors },
     } = useForm();
 
-    useEffect(() => {
-        if (showModal) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, [showModal]);
-
-    const onSubmit: SubmitHandler<any> = (data) => {
-        resetItemRegisterHashList();
-        // TODO: required 빨간색 수정. photos에 required 추가
-        const submitData = { ...data };
-        if (data.type === "나눔") {
-            submitData.price = 0;
-        }
-        console.log(submitData, "제출데이터");
-    };
-
-    const type = watch("type");
     useEffect(() => {
         reset({
             // title: "임시 제목",
@@ -84,6 +62,32 @@ const ItemRegister = () => {
             // directLocation: "강남역 1번 출구",
         });
     }, []);
+
+    useEffect(() => {
+        if (showHashModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [showHashModal]);
+
+    console.log(errors, "errors");
+
+    const onSubmit: SubmitHandler<any> = (data) => {
+        resetItemRegisterHashList();
+
+        const submitData = { ...data };
+        if (data.type === "나눔") {
+            submitData.price = 0;
+        }
+        console.log(submitData, "제출데이터");
+    };
+
+    const type = watch("type");
 
     return (
         <ItemRegisterWrap>
@@ -124,7 +128,7 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterElementSubBox>
                         <RegisterSubTitle>태그 설정</RegisterSubTitle>
-                        <TagSelect text="선택사항" onClick={() => setShowModal(true)} />
+                        <TagSelect text="선택사항" onClick={() => setShowHashModal(true)} />
                     </RegisterElementSubBox>
                     <HashTagButtonList
                         hashList={itemRegisterHashList}
@@ -144,7 +148,7 @@ const ItemRegister = () => {
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
             />
-            {showModal && <ItemRegisterHashTag setShowModal={setShowModal} />}
+            {showHashModal && <ItemRegisterHashTag setShowModal={setShowHashModal} />}
         </ItemRegisterWrap>
     );
 };

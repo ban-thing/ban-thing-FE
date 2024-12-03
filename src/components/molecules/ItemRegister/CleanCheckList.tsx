@@ -5,6 +5,7 @@ import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useItemRegisterAddressStore } from "@/store/ItemRegisterStore";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -22,6 +23,7 @@ interface CleanCheckListProps {
 }
 
 const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
+    const { itemRegisterDirectLocation } = useItemRegisterAddressStore();
     const [isChecked, setIsChecked] = useState([true, true, true]);
     const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
     useEffect(() => {
@@ -30,7 +32,18 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                 setIsChecked((prev) => prev.map((item, i) => (i === index ? false : item)));
             }
         });
+        if (itemRegisterDirectLocation) {
+            setValue("directLocation", itemRegisterDirectLocation);
+        }
+        console.log(itemRegisterDirectLocation, "장소");
     }, []);
+
+    useEffect(() => {
+        if (itemRegisterDirectLocation) {
+            setValue("directLocation", itemRegisterDirectLocation);
+        }
+        console.log(itemRegisterDirectLocation, "장소2");
+    }, [itemRegisterDirectLocation]);
 
     const onChangeRadio = (index: number, checked: boolean) => {
         setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));
@@ -120,7 +133,6 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                         index={2}
                     />
                 </RegisterSubTitle3>
-                {/* TODO: input 클릭시 페이지 이동 */}
                 {isChecked[2] && (
                     <Link to="direct" target="_blank">
                         <Input

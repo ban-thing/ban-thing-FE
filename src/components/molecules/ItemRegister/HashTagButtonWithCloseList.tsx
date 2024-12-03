@@ -2,7 +2,7 @@ import { ButtonProps, CloseButton } from "@/components/atoms/Button";
 import styled from "styled-components";
 import Exit from "@/assets/icons/exit.svg?react";
 import { Dispatch, SetStateAction } from "react";
-import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
+import { useItemRegisterHashListStore } from "@/store/ItemRegisterStore";
 
 export const HashtagButton = styled.button<ButtonProps>`
     border-radius: 24px;

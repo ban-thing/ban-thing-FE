@@ -53,7 +53,7 @@ const ItemRegisterPhotoList = ({ register, setValue }: PhotoListProps) => {
                     disabled={photoFiles.length === 5}
                     {...register("photos", {
                         onChange: handleFileChange,
-                        required: true,
+                        // required: true,
                     })}
                 />
             </SwiperSlide>

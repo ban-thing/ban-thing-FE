@@ -10,7 +10,7 @@ import {
     useEffect,
     useState,
 } from "react";
-import { useItemRegisterHashListStore } from "@/store/ItemRegisterHashList";
+import { useItemRegisterHashListStore } from "@/store/ItemRegisterStore";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { ModalBase } from "@/components/atoms/ModalBackground";
 import Character from "@/assets/characterWhite.svg?react";
@@ -119,7 +119,7 @@ const ItemRegisterHashTagModal = ({ setShowModal }: HashTagModalProps) => {
 
     return (
         <>
-            <ModalBase bottom={"0px"} opacity={0.4}></ModalBase>
+            <ModalBase $bottom={"0px"} opacity={0.4}></ModalBase>
             <ModalBase2>
                 <div style={{ position: "relative", width: "100%", height: "100%" }}>
                     <CharacterWrap>
