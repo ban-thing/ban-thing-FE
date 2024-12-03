@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes, useState } from "react";
+import { ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes, useRef, useState } from "react";
 import { Control, Controller, FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
@@ -20,9 +20,21 @@ export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
         -webkit-appearance: none;
         margin: 0;
     }
+
+    &.error {
+        background-color: rgba(255, 0, 0, 0.08);
+        border-color: var(--color-red-1);
+
+        &::placeholder {
+            color: red;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
 `;
 
-interface NumberInputProps<T extends FieldValues> {
+interface NumberInputProps<T extends FieldValues> extends InputHTMLAttributes<HTMLInputElement> {
     control: Control<T>;
     name: Path<T>;
     placeholder?: string;
@@ -34,6 +46,7 @@ export function NumberInput<T extends FieldValues>({
     name,
     placeholder,
     sellType = "판매",
+    ...props
 }: NumberInputProps<T>) {
     const formatNumber = (value: string) => {
         const numberOnly = value.replace(/[^\d]/g, "");
@@ -44,7 +57,7 @@ export function NumberInput<T extends FieldValues>({
         <Controller
             name={name}
             control={control}
-            rules={{ required: sellType === "판매" }}
+            rules={{ required: sellType === "판매" ? "가격을 입력하세요." : false }}
             render={({ field: { onChange, value, ref } }) => (
                 <Input
                     type="tel"
@@ -58,6 +71,7 @@ export function NumberInput<T extends FieldValues>({
                     }}
                     placeholder={placeholder}
                     disabled={sellType === "나눔"}
+                    {...props}
                 />
             )}
         />
@@ -77,9 +91,24 @@ const StyledTextArea = styled.textarea<TextareaHTMLAttributes<HTMLTextAreaElemen
     background-color: #fff;
     padding: 16px;
     box-sizing: border-box;
+    overflow: hidden;
+    font-size: 15px;
 
     &:focus {
         outline: 1px solid var(--color-black-1);
+    }
+
+    &.error {
+        background-color: rgba(255, 0, 0, 0.08);
+        border-color: var(--color-red-1);
+        color: red;
+
+        &::placeholder {
+            color: red;
+        }
+        &:focus {
+            outline: none;
+        }
     }
 `;
 
@@ -97,15 +126,32 @@ type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 
 export function TextArea({ register, ...props }: TextAreaProps) {
     const [typingCount, setTypingCount] = useState(0);
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTypingCount(e.target.value.length);
+        handleResizeHeight();
     };
+    const handleResizeHeight = () => {
+        if (textAreaRef.current) {
+            textAreaRef.current.style.height = "auto";
+            textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+        }
+    };
+
+    const textarea = document.querySelector("textarea");
+    textarea?.addEventListener("click", () => {
+        if (textarea.classList.contains("error")) {
+            textarea.classList.remove("error");
+        }
+    });
+
     return (
         <TextAreaWrap>
             <StyledTextArea
-                {...(register && register("content", { required: true }))}
+                {...(register && register("content", { required: "내용을 작성해주세요." }))}
                 {...props}
                 onChange={onChange}
+                rows={1}
             />
             <TypingCount>{typingCount}/2000</TypingCount>
         </TextAreaWrap>

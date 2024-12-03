@@ -6,7 +6,7 @@ import {
 } from "@/components/atoms/ItemRegisterElement";
 import Camera from "@/assets/icons/camera.svg?react";
 import Exit from "@/assets/icons/exit.svg?react";
-import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { Control, Controller, FieldValues, UseFormSetValue } from "react-hook-form";
 import { GrayCloseButton } from "@/components/atoms/Button";
 import usePhotoUpload from "@/hooks/usePhotoUpload";
 import { useEffect } from "react";
@@ -14,11 +14,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 type PhotoListProps = {
-    register: UseFormRegister<FieldValues>;
     setValue: UseFormSetValue<FieldValues>;
+    Controller: typeof Controller;
+    control: Control<FieldValues>;
 };
 
-const ItemRegisterPhotoList = ({ register, setValue }: PhotoListProps) => {
+const ItemRegisterPhotoList = ({ setValue, Controller, control }: PhotoListProps) => {
     const { photosPreview, photoFiles, onChangeFile, removePhoto } = usePhotoUpload();
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +28,7 @@ const ItemRegisterPhotoList = ({ register, setValue }: PhotoListProps) => {
 
     useEffect(() => {
         setValue("photos", photoFiles);
-    }, [photoFiles]);
+    }, [photoFiles, setValue]);
 
     return (
         <Swiper
@@ -45,16 +46,28 @@ const ItemRegisterPhotoList = ({ register, setValue }: PhotoListProps) => {
                         /5
                     </span>
                 </PhotoAddButton>
-                <input
-                    type="file"
-                    id="photoUpload"
-                    accept="image/*"
-                    multiple
-                    disabled={photoFiles.length === 5}
-                    {...register("photos", {
-                        onChange: handleFileChange,
-                        // required: true,
-                    })}
+                <Controller
+                    name="photos"
+                    control={control}
+                    rules={{
+                        validate: {
+                            required: (value: any) =>
+                                (value && value.length > 0) || "최소 1개의 사진을 업로드하세요.",
+                        },
+                    }}
+                    render={({ field }: any) => (
+                        <input
+                            type="file"
+                            id="photoUpload"
+                            accept="image/*"
+                            multiple
+                            disabled={photoFiles.length === 5}
+                            onChange={(e) => {
+                                handleFileChange(e);
+                                field.onChange(e.target.files);
+                            }}
+                        />
+                    )}
                 />
             </SwiperSlide>
             {photosPreview.map((preview, index) => (

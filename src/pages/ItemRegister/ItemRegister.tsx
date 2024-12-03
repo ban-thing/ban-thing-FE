@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import {
     CenterLine,
     RegisterElementBox,
@@ -43,7 +43,6 @@ const ItemRegister = () => {
         watch,
         control,
         reset,
-        setError,
         formState: { isValid, errors },
     } = useForm();
 
@@ -79,12 +78,10 @@ const ItemRegister = () => {
 
     const onSubmit: SubmitHandler<any> = (data) => {
         resetItemRegisterHashList();
-
-        const submitData = { ...data };
         if (data.type === "나눔") {
-            submitData.price = 0;
+            data.price = 0;
         }
-        console.log(submitData, "제출데이터");
+        console.log(data, "제출데이터");
     };
 
     const type = watch("type");
@@ -96,14 +93,19 @@ const ItemRegister = () => {
                 <RegisterElementBox style={{ width: "375px", overflow: "hidden" }}>
                     {/* TODO: 이미지 선택순으로 들어가게 수정 */}
                     <RegisterSubTitle>상품 사진</RegisterSubTitle>
-                    <ItemRegisterPhotoList register={register} setValue={setValue} />
+                    <ItemRegisterPhotoList
+                        setValue={setValue}
+                        Controller={Controller}
+                        control={control}
+                    />
+                    {errors.photos && <div>사진 에러메시지</div>}
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>제목</RegisterSubTitle>
                     <Input
                         placeholder="제목을 입력하세요."
-                        {...register("title", { required: true })}
-                        required
+                        {...register("title", { required: "제목을 입력하세요." })}
+                        className={errors.title ? "error" : ""}
                     />
                 </RegisterElementBox>
                 <RegisterElementBox>
@@ -114,15 +116,16 @@ const ItemRegister = () => {
                         name="price"
                         placeholder="가격을 입력하세요."
                         sellType={type}
+                        className={type === "판매" && errors.price ? "error" : ""}
                     />
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>자세한 설명</RegisterSubTitle>
-                    {/* TODO: 입력값 넘치면 height 늘어나게 수정 */}
                     <TextArea
-                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 작성 해주세요."
+                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 입력 하세요."
                         register={register}
                         required
+                        className={errors.content ? "error" : ""}
                     />
                 </RegisterElementBox>
                 <RegisterElementBox>
@@ -139,7 +142,12 @@ const ItemRegister = () => {
                 <CenterLine />
                 <RegisterElementBox3>
                     <CleanCheckTitle />
-                    <CleanCheckList setValue={setValue} register={register} watch={watch} />
+                    <CleanCheckList
+                        setValue={setValue}
+                        register={register}
+                        watch={watch}
+                        errors={errors}
+                    />
                 </RegisterElementBox3>
             </ItemRegisterContentBox>
             <BottomButtonBar

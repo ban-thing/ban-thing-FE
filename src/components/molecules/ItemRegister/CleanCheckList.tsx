@@ -1,11 +1,16 @@
 import CleanTypeButton from "./CleanTypeButton";
 import { Input } from "@/components/atoms/Input";
-import { FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import {
+    FieldErrorsImpl,
+    FieldValues,
+    UseFormRegister,
+    UseFormSetValue,
+    UseFormWatch,
+} from "react-hook-form";
 import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useItemRegisterAddressStore } from "@/store/ItemRegisterStore";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -20,10 +25,10 @@ interface CleanCheckListProps {
     setValue: UseFormSetValue<FieldValues>;
     register?: UseFormRegister<FieldValues>;
     watch: UseFormWatch<FieldValues>;
+    errors: FieldErrorsImpl<FieldValues>;
 }
 
 const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
-    const { itemRegisterDirectLocation } = useItemRegisterAddressStore();
     const [isChecked, setIsChecked] = useState([true, true, true]);
     const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
     useEffect(() => {
@@ -32,23 +37,14 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                 setIsChecked((prev) => prev.map((item, i) => (i === index ? false : item)));
             }
         });
-        if (itemRegisterDirectLocation) {
-            setValue("directLocation", itemRegisterDirectLocation);
-        }
-        console.log(itemRegisterDirectLocation, "장소");
     }, []);
-
-    useEffect(() => {
-        if (itemRegisterDirectLocation) {
-            setValue("directLocation", itemRegisterDirectLocation);
-        }
-        console.log(itemRegisterDirectLocation, "장소2");
-    }, [itemRegisterDirectLocation]);
 
     const onChangeRadio = (index: number, checked: boolean) => {
         setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));
         if (!checked) {
             setValue(fieldNames[index], "모름");
+        } else {
+            setValue(fieldNames[index], "");
         }
     };
 
@@ -99,7 +95,7 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                                 : watch("clnPurchaseDate") || ""
                         }
                         placeholder="구매 시기를 입력하세요."
-                        {...(register && register("clnPurchaseDate"))}
+                        {...(register && register("clnPurchaseDate", { required: isChecked[0] }))}
                     />
                 )}
             </div>
@@ -118,7 +114,7 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                     <Input
                         placeholder="00.00.00"
                         value={watch("clnExprice") === "모름" ? "" : watch("clnExprice") || ""}
-                        {...(register && register("clnExprice"))}
+                        {...(register && register("clnExprice", { required: isChecked[1] }))}
                     />
                 )}
             </div>
@@ -137,7 +133,8 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                     <Link to="direct" target="_blank">
                         <Input
                             placeholder="직거래 할 장소를 입력하세요."
-                            {...(register && register("directLocation"))}
+                            {...(register &&
+                                register("directLocation", { required: isChecked[2] }))}
                         />
                     </Link>
                 )}
