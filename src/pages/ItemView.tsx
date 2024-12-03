@@ -68,6 +68,7 @@ const ItemView = () => {
                 clnPurchasedDate={dummyData.clnPurchasedDate}
                 clnCleaned={dummyData.clnCleaned}
                 clnExpire={dummyData.clnExpire}
+                isDirect={dummyData.isDirect}
                 updatedAt={dummyData.updatedAt}
             />
         </ItemViewLayout>

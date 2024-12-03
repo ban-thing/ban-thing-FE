@@ -15,7 +15,7 @@ export type Item = {
     clnPurchasedDate?: string;
     clnCleaned: string;
     clnExpire: string;
-    isDirect: number;
+    isDirect: boolean;
 };
 // 상품 검색
 export type ItemSearch = {
