@@ -1,10 +1,9 @@
 import { Input } from "@/components/atoms/Input";
 import { RegisterSubTitle } from "@/components/atoms/ItemRegisterElement";
-import { PageTitle } from "@/components/atoms/PageTitle";
-import BottomButtonBar from "@/components/molecules/BottomButtonBar";
+import ItemRegisterModalLayout from "@/components/layout/ItemRegisterModalLayout";
 import { AddressDropdown } from "@/components/molecules/ItemRegister/AddressDropdown";
-import { useItemRegisterAddressStore } from "@/store/ItemRegisterStore";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import styled from "styled-components";
 
 const StyledInputWrap = styled.div`
@@ -13,36 +12,30 @@ const StyledInputWrap = styled.div`
     gap: 24px;
 `;
 
+type DirectModalProps = {
+    setShowModal: Dispatch<SetStateAction<boolean>>;
+    register: UseFormRegister<FieldValues>;
+    setValue: UseFormSetValue<FieldValues>;
+    watch: UseFormWatch<FieldValues>;
+};
+
 const dummyList = ["인천광역시 연수구 연수동", "인천광역시 연수구 송도동", "서울특별시 강남구"];
 
-const ItemRegisterDirect = () => {
-    const { itemRegisterDirectLocation, setItemRegisterDirectLocation } =
-        useItemRegisterAddressStore();
+const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: DirectModalProps) => {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [location, setLocation] = useState("");
-
-    useEffect(() => {
-        window.history.pushState(null, "", window.location.href);
-        // 뒤로 가기 시 창 닫기
-        const handlePopState = () => {
-            window.close();
-        };
-        window.addEventListener("popstate", handlePopState);
-        return () => {
-            window.removeEventListener("popstate", handlePopState);
-        };
-    }, []);
+    const [address, setAddress] = useState(dummyList[0]);
 
     const onClickComplete = () => {
-        setItemRegisterDirectLocation(location);
-        // window.close();
+        setValue("address", address);
+        setShowModal(false);
     };
 
-    console.log(itemRegisterDirectLocation);
-
     return (
-        <>
-            <PageTitle>직거래 설정</PageTitle>
+        <ItemRegisterModalLayout
+            buttonDisabled={!watch("directLocation")}
+            titleText="직거래 설정"
+            onClickComplete={onClickComplete}
+        >
             <StyledInputWrap>
                 <div>
                     <RegisterSubTitle>지역</RegisterSubTitle>
@@ -50,20 +43,19 @@ const ItemRegisterDirect = () => {
                         showDropdown={showDropdown}
                         setShowDropdown={setShowDropdown}
                         addresses={dummyList}
+                        setAddress={setAddress}
                     />
                 </div>
                 <div style={showDropdown ? { marginTop: "110px" } : undefined}>
                     <RegisterSubTitle>거래 희망 장소</RegisterSubTitle>
                     <Input
                         placeholder="거래 희망 장소를 입력해주세요."
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        {...register("directLocation")}
                     />
                 </div>
             </StyledInputWrap>
-            <BottomButtonBar buttonText="완료" onClick={onClickComplete} />
-        </>
+        </ItemRegisterModalLayout>
     );
 };
 
-export default ItemRegisterDirect;
+export default ItemRegisterDirectModal;

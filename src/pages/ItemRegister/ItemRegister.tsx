@@ -14,28 +14,45 @@ import { Input, NumberInput, TextArea } from "@/components/atoms/Input";
 import DoubleTypeButton from "@/components/molecules/ItemRegister/DoubleTypeButton";
 import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
-import { useItemRegisterHashListStore } from "@/store/ItemRegisterStore";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useEffect, useState } from "react";
 import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
 import ItemRegisterHashTag from "./HashTagModal";
+import ItemRegisterDirectModal from "./ItemRegisterDirectModal";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100vw;
 `;
 
 const ItemRegisterContentBox = styled.form`
+    max-width: 375px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 20px 96px 18px;
+    margin: 0 auto;
+    box-sizing: border-box;
+`;
+
+const PhotosErrorMsg = styled.div`
+    width: 334px;
+    height: 51px;
+    border: 1px solid var(--color-red-1);
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-size: 15px;
+    color: red;
+    background-color: rgba(255, 0, 0, 0.08);
     box-sizing: border-box;
 `;
 
 const ItemRegister = () => {
     const [showHashModal, setShowHashModal] = useState(false);
-    const { itemRegisterHashList, deleteItemAtIndex, resetItemRegisterHashList } =
-        useItemRegisterHashListStore();
+    const [showDirectModal, setShowDirectModal] = useState(false);
     const {
         register,
         handleSubmit,
@@ -63,7 +80,7 @@ const ItemRegister = () => {
     }, []);
 
     useEffect(() => {
-        if (showHashModal) {
+        if (showHashModal || showDirectModal) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
@@ -72,15 +89,13 @@ const ItemRegister = () => {
         return () => {
             document.body.style.overflow = "auto";
         };
-    }, [showHashModal]);
-
-    console.log(errors, "errors");
+    }, [showHashModal, showDirectModal]);
 
     const onSubmit: SubmitHandler<any> = (data) => {
-        resetItemRegisterHashList();
         if (data.type === "나눔") {
             data.price = 0;
         }
+        console.log(errors, "errors");
         console.log(data, "제출데이터");
     };
 
@@ -98,7 +113,7 @@ const ItemRegister = () => {
                         Controller={Controller}
                         control={control}
                     />
-                    {errors.photos && <div>사진 에러메시지</div>}
+                    {errors.photos && <PhotosErrorMsg>사진을 선택해주세요.</PhotosErrorMsg>}
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>제목</RegisterSubTitle>
@@ -134,9 +149,9 @@ const ItemRegister = () => {
                         <TagSelect text="선택사항" onClick={() => setShowHashModal(true)} />
                     </RegisterElementSubBox>
                     <HashTagButtonList
-                        hashList={itemRegisterHashList}
-                        deleteItem={deleteItemAtIndex}
+                        hashList={watch("hashtags")}
                         margin="0"
+                        setValue={setValue}
                     />
                 </RegisterElementBox>
                 <CenterLine />
@@ -147,6 +162,8 @@ const ItemRegister = () => {
                         register={register}
                         watch={watch}
                         errors={errors}
+                        showDirectModal={showDirectModal}
+                        setShowDirectModal={setShowDirectModal}
                     />
                 </RegisterElementBox3>
             </ItemRegisterContentBox>
@@ -156,7 +173,21 @@ const ItemRegister = () => {
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
             />
-            {showHashModal && <ItemRegisterHashTag setShowModal={setShowHashModal} />}
+            {showHashModal && (
+                <ItemRegisterHashTag
+                    setShowModal={setShowHashModal}
+                    setValue={setValue}
+                    watch={watch}
+                />
+            )}
+            {showDirectModal && (
+                <ItemRegisterDirectModal
+                    setShowModal={setShowDirectModal}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                />
+            )}
         </ItemRegisterWrap>
     );
 };

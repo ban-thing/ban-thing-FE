@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
-import { useItemRegisterAddressStore } from "@/store/ItemRegisterStore";
 
 const AddressDropdownWrap = styled.div`
     position: relative;
@@ -56,21 +55,16 @@ type AddressDropdownProps = {
     headText?: string;
     showDropdown: boolean;
     setShowDropdown: Dispatch<SetStateAction<boolean>>;
+    setAddress: Dispatch<SetStateAction<string>>;
 };
+
+type DropdownPops = Omit<AddressDropdownProps, "addresses" | "setAddress">;
 
 const AddressDropdownHead = ({
     headText = "lorem",
     showDropdown,
     setShowDropdown,
-}: AddressDropdownProps) => {
-    const { setItemRegisterAddress } = useItemRegisterAddressStore();
-
-    useEffect(() => {
-        if (headText) {
-            setItemRegisterAddress(headText);
-        }
-    }, [headText]);
-
+}: DropdownPops) => {
     return (
         <AddressHeadWrap onClick={() => setShowDropdown(!showDropdown)}>
             <AddressFakeInput>{headText}</AddressFakeInput>
@@ -83,10 +77,12 @@ export const AddressDropdown = ({
     addresses = ["lorem", "ipsum", "dolar"],
     showDropdown = false,
     setShowDropdown,
+    setAddress,
 }: AddressDropdownProps) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const onClickAddress = (index: number) => {
+        setAddress(addresses[selectedIndex]);
         setSelectedIndex(index);
         setShowDropdown(false);
     };

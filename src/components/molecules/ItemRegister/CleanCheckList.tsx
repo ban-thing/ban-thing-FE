@@ -9,8 +9,7 @@ import {
 } from "react-hook-form";
 import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -23,12 +22,20 @@ const RegisterSubTitle3 = styled.h3`
 
 interface CleanCheckListProps {
     setValue: UseFormSetValue<FieldValues>;
-    register?: UseFormRegister<FieldValues>;
+    register: UseFormRegister<FieldValues>;
     watch: UseFormWatch<FieldValues>;
     errors: FieldErrorsImpl<FieldValues>;
+    showDirectModal: boolean;
+    setShowDirectModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
+const CleanCheckList = ({
+    setValue,
+    register,
+    watch,
+    setShowDirectModal,
+    errors,
+}: CleanCheckListProps) => {
     const [isChecked, setIsChecked] = useState([true, true, true]);
     const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
     useEffect(() => {
@@ -96,6 +103,7 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                         }
                         placeholder="구매 시기를 입력하세요."
                         {...(register && register("clnPurchaseDate", { required: isChecked[0] }))}
+                        className={errors.clnPurchaseDate ? "error" : ""}
                     />
                 )}
             </div>
@@ -115,6 +123,7 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                         placeholder="00.00.00"
                         value={watch("clnExprice") === "모름" ? "" : watch("clnExprice") || ""}
                         {...(register && register("clnExprice", { required: isChecked[1] }))}
+                        className={errors.clnExprice ? "error" : ""}
                     />
                 )}
             </div>
@@ -130,13 +139,13 @@ const CleanCheckList = ({ setValue, register, watch }: CleanCheckListProps) => {
                     />
                 </RegisterSubTitle3>
                 {isChecked[2] && (
-                    <Link to="direct" target="_blank">
-                        <Input
-                            placeholder="직거래 할 장소를 입력하세요."
-                            {...(register &&
-                                register("directLocation", { required: isChecked[2] }))}
-                        />
-                    </Link>
+                    <Input
+                        placeholder="직거래 할 장소를 입력하세요."
+                        {...(register && register("directLocation", { required: isChecked[2] }))}
+                        onClick={() => setShowDirectModal(true)}
+                        style={{ caretColor: "transparent" }}
+                        className={errors.directLocation ? "error" : ""}
+                    />
                 )}
             </div>
         </>

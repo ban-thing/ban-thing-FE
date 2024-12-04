@@ -1,8 +1,7 @@
 import { ButtonProps, CloseButton } from "@/components/atoms/Button";
 import styled from "styled-components";
 import Exit from "@/assets/icons/exit.svg?react";
-import { Dispatch, SetStateAction } from "react";
-import { useItemRegisterHashListStore } from "@/store/ItemRegisterStore";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
 
 export const HashtagButton = styled.button<ButtonProps>`
     border-radius: 24px;
@@ -52,30 +51,19 @@ const CloseButtonWrap = styled.div`
 interface HashTagButtonProps {
     margin?: string;
     hashList: string[];
-    setHashList?: Dispatch<SetStateAction<string[]>>;
-    deleteItem?: (index: number) => void;
+    setValue: UseFormSetValue<FieldValues>;
 }
 
-const HashTagButtonWithCloseList = ({
-    margin,
-    hashList,
-    setHashList,
-    deleteItem,
-}: HashTagButtonProps) => {
-    const { deleteItemAtIndex } = useItemRegisterHashListStore();
+const HashTagButtonWithCloseList = ({ margin, hashList, setValue }: HashTagButtonProps) => {
     const onDeleteHash = (index: number) => {
-        if (setHashList) {
-            setHashList((prev) => prev.filter((_, i) => i !== index));
-        }
-        if (deleteItem) {
-            deleteItemAtIndex(index);
-        }
+        let filteredHash = hashList.filter((_: string, i: number) => i !== index);
+        setValue("hashtags", filteredHash);
     };
 
     return (
         <HashTagList margin={margin}>
             {hashList
-                .filter((value) => value.trim() !== "")
+                ?.filter((value) => value.trim() !== "")
                 .map((value, index) => (
                     <HashTagWrap key={index}>
                         <HashtagButton variant="outlined" type="button">
