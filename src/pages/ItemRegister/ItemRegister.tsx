@@ -10,7 +10,7 @@ import {
 } from "@/components/atoms/ItemRegisterElement";
 import ItemRegisterPhotoList from "@/components/molecules/ItemRegister/ItemRegisterPhotoList";
 import BottomButtonBar from "@/components/molecules/BottomButtonBar";
-import { Input, NumberInput, TextArea } from "@/components/atoms/Input";
+import { Input, NumberInput } from "@/components/atoms/Input";
 import DoubleTypeButton from "@/components/molecules/ItemRegister/DoubleTypeButton";
 import CleanCheckList from "@/components/molecules/ItemRegister/CleanCheckList";
 import { PageTitle } from "@/components/atoms/PageTitle";
@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
 import ItemRegisterHashTag from "./HashTagModal";
 import ItemRegisterDirectModal from "./ItemRegisterDirectModal";
+import { TextArea } from "@/components/molecules/TextAreaWithCount";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
