@@ -5,7 +5,6 @@ import SearchIcon from "@/assets/icons/search.svg?react";
 import FootprintIcon from "@/assets/icons/footPrintBackground.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import { useNavigate } from "react-router-dom";
-import { ItemFilterButton } from "../atoms/Button";
 import { useState } from "react";
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
@@ -18,42 +17,65 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
 
     const handleSearchClick = () => {
         setIsSearching(true);
+        navigate("/search-result");
     };
 
     return (
         <SearchContainer>
-            <SearchWrapper>
-                <SearchInputWrapper $isSearching={isSearching}>
-                    <SearchIcon onClick={handleSearchClick} />
-                    <Input placeholder="검색어를 입력해요." required minLength={1} />
-                </SearchInputWrapper>
-                {isSearching && <ItemFilterButton />}
-            </SearchWrapper>
-            <HashTagButton onClick={onClickHashTagButton}>
-                <HashTagIcon />
-                태그 검색
-            </HashTagButton>
-            {isSearching && children}
+            <SearchHeader>
+                <SearchWrapper>
+                    <SearchInputWrapper>
+                        <SearchIcon onClick={handleSearchClick} />
+                        <Input placeholder="검색어를 입력해요." required minLength={1} />
+                    </SearchInputWrapper>
+                </SearchWrapper>
+                <HashTagButton onClick={onClickHashTagButton}>
+                    <HashTagIcon />
+                    태그 검색
+                </HashTagButton>
+            </SearchHeader>
 
-            <CenterIcon>
-                <FootprintIcon />
-            </CenterIcon>
+            <ScrollContent>
+                {isSearching && children}
+                {!isSearching && (
+                    <CenterIcon>
+                        <FootprintIcon />
+                    </CenterIcon>
+                )}
+            </ScrollContent>
 
             <NavigationBar />
         </SearchContainer>
     );
 }
+
 const SearchContainer = styled.div`
     width: 100%;
     min-height: 100vh;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: center;
+`;
+
+const SearchHeader = styled.div`
+    position: fixed;
+    top: 0;
+    width: 375px;
+    background-color: #fff;
+    z-index: 10;
+    padding: 0 20px;
+    box-sizing: border-box;
+`;
+
+const ScrollContent = styled.div`
+    margin-top: 80px;
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
 `;
 
 const CenterIcon = styled.div`
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -64,19 +86,20 @@ const CenterIcon = styled.div`
     }
 `;
 const SearchWrapper = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
     max-width: 335px;
     height: 100px;
+    width: 100%;
 `;
-
-const SearchInputWrapper = styled.div<{ $isSearching: boolean }>`
+const SearchInputWrapper = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${(props) => (props.$isSearching ? "275px" : "335px")};
+    width: 335px;
     transition: width 0.3s ease;
     height: 100px;
 
@@ -93,7 +116,7 @@ const HashTagButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
+    width: 66px;
     border: 1px solid var(--color-main-1);
     color: var(--color-main-1);
     background: rgba(198, 212, 255, 0.3);
@@ -103,7 +126,7 @@ const HashTagButton = styled.div`
     font-weight: 500;
     cursor: pointer;
     gap: 3px;
-    margin-right: 16px;
+    margin-left: auto;
 
     svg {
         width: 18px;
