@@ -10,23 +10,26 @@ import {
 } from "@/components/atoms/ItemInList";
 import timeAgo from "@/utils/TimeAgo";
 import { useNavigate } from "react-router-dom";
+import notFound from "@/assets/noPhotoImage.svg";
 
 type ItemInListProps = {
     itemId: number;
     title: string;
-    location: string;
     updatedAt: Date; //Date로 수정
     type: string;
     price: number;
+    imgUrl: string;
+    address: string;
 };
 
 export default function ItemInList({
     itemId,
     title,
-    location,
+    address,
     updatedAt,
     type,
     price,
+    imgUrl,
 }: ItemInListProps) {
     const cutOffTitle = title.length > 24 ? title.slice(0, 24) + "..." : title;
     const navigate = useNavigate();
@@ -35,11 +38,11 @@ export default function ItemInList({
     };
     return (
         <ItemBox onClick={() => onClickBox(itemId)}>
-            <ItemPhoto />
+            <ItemPhoto src={imgUrl || notFound} />
             <ItemBoxRight>
                 <ItemTitle>{cutOffTitle}</ItemTitle>
                 <ItemPropertiesBox>
-                    <ItemProp>{location}</ItemProp>
+                    <ItemProp>{address}</ItemProp>
                     <ItemPropDot />
                     <ItemProp>{timeAgo(updatedAt)}</ItemProp>
                     <ItemPropDot />

@@ -15,7 +15,7 @@ interface NavButtonProps {
 }
 
 interface NavigationBarProps {
-    children: ReactNode;
+    children?: ReactNode;
 }
 export default function NavigationBar({ children }: NavigationBarProps) {
     const location = useLocation();

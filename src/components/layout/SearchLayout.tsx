@@ -10,14 +10,21 @@ import { useState } from "react";
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
     const navigate = useNavigate();
     const [isSearching, setIsSearching] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
 
     const onClickHashTagButton = () => {
         navigate("/search/hashtag");
     };
 
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(event.target.value);
+    };
+
     const handleSearchClick = () => {
-        setIsSearching(true);
-        navigate("/search-result");
+        if (searchValue.trim() !== "") {
+            setIsSearching(true);
+            navigate("/search-result");
+        }
     };
 
     return (
@@ -26,7 +33,13 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                 <SearchWrapper>
                     <SearchInputWrapper>
                         <SearchIcon onClick={handleSearchClick} />
-                        <Input placeholder="검색어를 입력해요." required minLength={1} />
+                        <Input
+                            placeholder="검색어를 입력해요."
+                            required
+                            minLength={1}
+                            value={searchValue}
+                            onChange={handleInputChange}
+                        />
                     </SearchInputWrapper>
                 </SearchWrapper>
                 <HashTagButton onClick={onClickHashTagButton}>

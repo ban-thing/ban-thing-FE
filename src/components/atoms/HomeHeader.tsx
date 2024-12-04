@@ -22,6 +22,8 @@ const SearchButton = styled.button`
     padding: 0 5px;
 `;
 
+const dummyAddress = ["연수동", "연수1동", "연수2동"];
+
 export default function HomeHeader() {
     const navigate = useNavigate();
     const onClickSearch = () => {
@@ -30,7 +32,7 @@ export default function HomeHeader() {
 
     return (
         <HeaderBox>
-            <Dropdown option={["연수동", "연수1동", "연수2동", "동네 바꾸기"]} />
+            <Dropdown option={[...dummyAddress, "동네 바꾸기"]} />
             <SearchButton onClick={onClickSearch}>
                 <Search />
             </SearchButton>

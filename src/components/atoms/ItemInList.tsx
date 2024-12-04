@@ -29,11 +29,11 @@ export const ItemBoxRight = styled.div`
     gap: 8px;
 `;
 
-export const ItemPhoto = styled.div`
+export const ItemPhoto = styled.img`
     width: 120px;
     height: 120px;
     border-radius: 24px;
-    background-color: saddlebrown;
+    background-color: gray;
 `;
 
 export const ItemPropertiesBox = styled.div`
