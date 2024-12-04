@@ -1,6 +1,7 @@
 import CleanTypeButton from "./CleanTypeButton";
 import { Input } from "@/components/atoms/Input";
 import {
+    Control,
     FieldErrorsImpl,
     FieldValues,
     UseFormRegister,
@@ -10,6 +11,7 @@ import {
 import styled from "styled-components";
 import RadioButtonsList from "./RadioButtonsList";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import MaskedInput from "./MaskedInput";
 
 const RegisterSubTitle3 = styled.h3`
     color: var(--color-black-4);
@@ -27,6 +29,7 @@ interface CleanCheckListProps {
     errors: FieldErrorsImpl<FieldValues>;
     showDirectModal: boolean;
     setShowDirectModal: Dispatch<SetStateAction<boolean>>;
+    control: Control<FieldValues, any>;
 }
 
 const CleanCheckList = ({
@@ -35,6 +38,7 @@ const CleanCheckList = ({
     watch,
     setShowDirectModal,
     errors,
+    control,
 }: CleanCheckListProps) => {
     const [isChecked, setIsChecked] = useState([true, true, true]);
     const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
@@ -117,13 +121,14 @@ const CleanCheckList = ({
                         index={1}
                     />
                 </RegisterSubTitle3>
-                {/* TODO: input 형식 수정 */}
+
                 {isChecked[1] && (
-                    <Input
-                        placeholder="00.00.00"
-                        value={watch("clnExprice") === "모름" ? "" : watch("clnExprice") || ""}
-                        {...(register && register("clnExprice", { required: isChecked[1] }))}
-                        className={errors.clnExprice ? "error" : ""}
+                    <MaskedInput
+                        control={control}
+                        errors={errors}
+                        name="clnExprice"
+                        watch={watch}
+                        isChecked={isChecked[1]}
                     />
                 )}
             </div>

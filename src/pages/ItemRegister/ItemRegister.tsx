@@ -96,6 +96,8 @@ const ItemRegister = () => {
         if (data.type === "나눔") {
             data.price = 0;
         }
+        if (data.clnExprice === "00.00.00") {
+        }
         console.log(errors, "errors");
         console.log(data, "제출데이터");
     };
@@ -159,6 +161,7 @@ const ItemRegister = () => {
                 <RegisterElementBox3>
                     <CleanCheckTitle />
                     <CleanCheckList
+                        control={control}
                         setValue={setValue}
                         register={register}
                         watch={watch}
