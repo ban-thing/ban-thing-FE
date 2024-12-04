@@ -61,6 +61,7 @@ const ItemRegister = () => {
         watch,
         control,
         reset,
+        setError,
         formState: { isValid, errors },
     } = useForm();
 
@@ -97,6 +98,7 @@ const ItemRegister = () => {
             data.price = 0;
         }
         if (data.clnExprice === "00.00.00") {
+            setError("clnExprice", { message: "유통기한을 입력해주세요." });
         }
         console.log(errors, "errors");
         console.log(data, "제출데이터");
