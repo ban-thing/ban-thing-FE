@@ -284,7 +284,7 @@ const StyledMySellButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>
     background-color: var(--color-main-1);
     position: absolute;
     bottom: 70px;
-    right: 0;
+    right: 20px;
     font-size: 14px;
     box-sizing: border-box;
     box-shadow: 0 10px 15px 0 rgba(53, 101, 199, 0.2);

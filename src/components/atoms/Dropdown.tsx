@@ -1,7 +1,8 @@
 import { useDropdownModalStore } from "@/store/ModalStore";
-import { useState, useEffect, useRef, RefObject } from "react";
+import { useEffect, useRef, RefObject } from "react";
 import styled from "styled-components";
 import Arrow from "@/assets/icons/arrowDown.svg?react";
+import { useItemListLocationStore } from "@/store/LocationStore";
 
 type ShowProps = {
     $show?: boolean;
@@ -73,12 +74,16 @@ export const Dropdown = ({
     onChange,
 }: DropdownProps) => {
     const selectRef = useRef(null) as RefObject<HTMLDivElement>;
-    const [currentValue, setCurrentValue] = useState(option[0]);
     const { isDropdownOpen, closeDropdown, toggleDropdown } = useDropdownModalStore();
+    const { currentLocation, setCurrentLocation } = useItemListLocationStore();
+
+    useEffect(() => {
+        setCurrentLocation(option[0]);
+    }, []);
 
     const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLLIElement>) => {
         const value = e.currentTarget.getAttribute("value") || "";
-        setCurrentValue(value);
+        setCurrentLocation(value);
         onChange?.(value);
     };
 
@@ -89,7 +94,6 @@ export const Dropdown = ({
                 closeDropdown();
             }
         }
-
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -99,7 +103,7 @@ export const Dropdown = ({
     return (
         <SelectBox onClick={() => toggleDropdown()} ref={selectRef}>
             <Label>
-                <span>{currentValue}</span>
+                <span>{currentLocation}</span>
                 <ArrowWrap>
                     <Arrow />
                 </ArrowWrap>
