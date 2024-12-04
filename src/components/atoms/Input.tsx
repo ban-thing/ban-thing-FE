@@ -139,8 +139,8 @@ export function TextArea({ register, ...props }: TextAreaProps) {
     };
 
     const textarea = document.querySelector("textarea");
-    textarea?.addEventListener("click", () => {
-        if (textarea.classList.contains("error")) {
+    textarea?.addEventListener("input", () => {
+        if (textarea.value && textarea.classList.contains("error")) {
             textarea.classList.remove("error");
         }
     });

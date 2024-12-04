@@ -54,6 +54,16 @@ export const Button = styled.button<ButtonProps>`
         opacity: 0.8;
         opacity: ${(props) => (props.$hoverAction === false ? 1 : 0.8)};
     }
+
+    &.disabled {
+        cursor: default;
+        background-color: var(--color-black-6);
+        color: white;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 `;
 // 해시테크 버튼
 export const HashtagButton = styled.button<ButtonProps>`
