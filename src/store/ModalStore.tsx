@@ -37,3 +37,15 @@ export const useMyLocationModalStore = create<MyLocationModalState>((set) => ({
     showMyLocationModal: () => set({ isMyLocationModalVisible: true }),
     hideMyLocationModal: () => set({ isMyLocationModalVisible: false }),
 }));
+
+interface FilterModalState {
+    isFilterModalVisible: boolean;
+    showFilterModal: () => void;
+    hideFilterModal: () => void;
+}
+
+export const useFilterModalStore = create<FilterModalState>((set) => ({
+    isFilterModalVisible: false,
+    showFilterModal: () => set({ isFilterModalVisible: true }),
+    hideFilterModal: () => set({ isFilterModalVisible: false }),
+}));
