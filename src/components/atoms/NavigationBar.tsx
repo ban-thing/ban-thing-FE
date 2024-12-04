@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import HomeIcon from "../../assets/icons/home.svg?react";
 import HomeActiveIcon from "../../assets/icons/homeActive.svg?react";
 import SearchIcon from "../../assets/icons/search.svg?react";
@@ -13,7 +13,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 interface NavButtonProps {
     $activeTab: boolean;
 }
-export default function NavigationBar() {
+
+interface NavigationBarProps {
+    children: ReactNode;
+}
+export default function NavigationBar({ children }: NavigationBarProps) {
     const location = useLocation();
     const initialTab = location.pathname.slice(1) || "home";
     const [$activeTab, set$activeTab] = useState(initialTab);
@@ -26,41 +30,55 @@ export default function NavigationBar() {
 
     return (
         <NavContainer>
-            <NavButton $activeTab={$activeTab === "home"} onClick={() => handleNavigation("home")}>
-                {$activeTab === "home" ? <HomeActiveIcon /> : <HomeIcon />}
-                <span>홈</span>
-            </NavButton>
-            <NavButton
-                $activeTab={$activeTab === "search"}
-                onClick={() => handleNavigation("search")}
-            >
-                {$activeTab === "search" ? <SearchActiveIcon /> : <SearchIcon />}
-                <span>검색</span>
-            </NavButton>
-            <NavButton $activeTab={$activeTab === "chat"} onClick={() => handleNavigation("chat")}>
-                {$activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
-                <span>채팅</span>
-            </NavButton>
-            <NavButton $activeTab={$activeTab === "my"} onClick={() => handleNavigation("my")}>
-                {$activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
-                <span>마이</span>
-            </NavButton>
+            <div style={{ height: "100%" }}>
+                <NavButton
+                    $activeTab={$activeTab === "home"}
+                    onClick={() => handleNavigation("home")}
+                >
+                    {$activeTab === "home" ? <HomeActiveIcon /> : <HomeIcon />}
+                    <span>홈</span>
+                </NavButton>
+                <NavButton
+                    $activeTab={$activeTab === "search"}
+                    onClick={() => handleNavigation("search")}
+                >
+                    {$activeTab === "search" ? <SearchActiveIcon /> : <SearchIcon />}
+                    <span>검색</span>
+                </NavButton>
+                <NavButton
+                    $activeTab={$activeTab === "chat"}
+                    onClick={() => handleNavigation("chat")}
+                >
+                    {$activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
+                    <span>채팅</span>
+                </NavButton>
+                <NavButton $activeTab={$activeTab === "my"} onClick={() => handleNavigation("my")}>
+                    {$activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
+                    <span>마이</span>
+                </NavButton>
+                {children}
+            </div>
         </NavContainer>
     );
 }
 
-const NavContainer = styled.div`
+const NavContainer = styled.nav`
     width: 375px;
-    height: 60px;
+    height: 56px;
     background: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
     border-top: 1px solid #eee;
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+
+    & > div {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 `;
 
 const NavButton = styled.button<NavButtonProps>`
@@ -71,7 +89,7 @@ const NavButton = styled.button<NavButtonProps>`
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 3px 8px 0 8px;
 
     span {
         font-size: 12px;
