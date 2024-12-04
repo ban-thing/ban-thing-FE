@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input } from "@/components/atoms/Input";
+import { InputWithHashIcon } from "@/components/atoms/Input";
 import {
     ChangeEventHandler,
     Dispatch,
@@ -59,27 +59,40 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
     };
     const onEnterDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
         if (e.keyCode === 13 || e.key === "Enter") {
+            const targetInput = e.target as HTMLInputElement;
+
             // TODO: 모바일에서 작동하는지 확인
             if (inputValue.trim() === "") {
-                // TODO: 공백값 주의문구 추가
-                // 중복값 입력시 주의문구 띄울지 등록할 때 알아서 거를지?
+                targetInput.placeholder = "공백은 입력할 수 없습니다.";
+                targetInput.classList.add("blank");
                 return console.log("공백");
+            } else if (targetInput.classList.contains("blank")) {
+                targetInput.placeholder = "태그는 최대 5개까지 입력 가능합니다.";
+                targetInput.classList.remove("blank");
             }
+
             if (formDataHashList) {
-                setValue("hashtags", [...formDataHashList, inputValue]);
+                setValue("hashtags", [
+                    ...formDataHashList.filter((item: string) => item),
+                    inputValue,
+                ]);
             }
             setInputValue("");
         }
     };
 
-    const onClickComplete = () => {
-        setShowModal(false);
-    };
+    const blankInput = document.querySelector("input.blank");
+    blankInput?.addEventListener("click", () => {
+        blankInput.classList.remove("blank");
+    });
 
     return (
-        <ItemRegisterModalLayout titleText="태그 등록" onClickComplete={onClickComplete}>
-            {/* TODO: input에 해시태그 아이콘 추가 */}
-            <Input
+        <ItemRegisterModalLayout
+            titleText="태그 등록"
+            onClickComplete={() => setShowModal(false)}
+            setShowModal={setShowModal}
+        >
+            <InputWithHashIcon
                 placeholder={
                     formDataHashList.length > 5
                         ? "태그는 최대 5개까지 입력 가능합니다."

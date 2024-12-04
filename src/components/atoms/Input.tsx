@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import HashTag from "@/assets/icons/hashtag.svg?react";
 
 export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
     width: 301px;
@@ -28,6 +29,13 @@ export const Input = styled.input<InputHTMLAttributes<HTMLInputElement>>`
         &::placeholder {
             color: red;
         }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &.blank {
+        border-color: var(--color-red-1);
         &:focus {
             outline: none;
         }
@@ -75,6 +83,30 @@ export function NumberInput<T extends FieldValues>({
                 />
             )}
         />
+    );
+}
+
+const HashInputWrap = styled.div`
+    position: relative;
+`;
+
+const HashIconWrap = styled.div`
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+`;
+
+export function InputWithHashIcon({ ...props }: InputHTMLAttributes<HTMLInputElement>) {
+    return (
+        <HashInputWrap>
+            <Input {...props} style={{ paddingLeft: "33px" }} />
+            <HashIconWrap>
+                <HashTag />
+            </HashIconWrap>
+        </HashInputWrap>
     );
 }
 

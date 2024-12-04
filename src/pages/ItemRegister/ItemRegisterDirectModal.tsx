@@ -35,6 +35,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
             buttonDisabled={!watch("directLocation")}
             titleText="직거래 설정"
             onClickComplete={onClickComplete}
+            setShowModal={setShowModal}
         >
             <StyledInputWrap>
                 <div>

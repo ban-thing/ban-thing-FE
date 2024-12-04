@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import ModalBaseWithCharacter from "@/components/molecules/ItemRegister/ModalBaseWithCharacter";
-import { MouseEventHandler, ReactNode } from "react";
+import { Dispatch, MouseEventHandler, ReactNode, SetStateAction } from "react";
 import BottomButtonBar from "@/components/molecules/BottomButtonBar";
 
 const ItemRegisterModalWrap = styled.div`
@@ -26,6 +26,7 @@ type ItemRegisterModalProps = {
     buttonText?: string;
     onClickComplete?: MouseEventHandler<HTMLButtonElement>;
     buttonDisabled?: boolean;
+    setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
 const ItemRegisterModalLayout = ({
@@ -34,10 +35,11 @@ const ItemRegisterModalLayout = ({
     buttonText = "완료",
     onClickComplete = () => {},
     buttonDisabled = false,
+    setShowModal,
 }: ItemRegisterModalProps) => {
     return (
         <>
-            <ModalBaseWithCharacter />
+            <ModalBaseWithCharacter setShowModal={setShowModal} />
             <ItemRegisterModalWrap>
                 <PageTitle $margin="32px 0 40px">{titleText}</PageTitle>
                 {children}

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Character from "@/assets/characterWhite.svg?react";
 import { ModalBase } from "@/components/atoms/ModalBackground";
+import { Dispatch, HTMLAttributes, SetStateAction, useRef } from "react";
 
-export const ModalBase2 = styled.div`
+export const ModalBase2 = styled.div<HTMLAttributes<HTMLDivElement>>`
     position: fixed;
     width: 100%;
     max-width: 375px;
@@ -18,12 +19,33 @@ export const CharacterWrap = styled.div`
     z-index: 15;
 `;
 
-const ModalBaseWithCharacter = () => {
+type ModalBaseProps = {
+    setShowModal: Dispatch<SetStateAction<boolean>>;
+};
+
+const ModalBaseWithCharacter = ({ setShowModal }: ModalBaseProps) => {
+    const modalBaseRef = useRef<HTMLDivElement | null>(null);
+    const modalBaseRef2 = useRef<HTMLDivElement | null>(null);
+
+    const onClickBase = (e: any) => {
+        if (e.target === modalBaseRef.current || e.target === modalBaseRef2.current) {
+            setShowModal(false);
+        }
+    };
     return (
         <>
-            <ModalBase $bottom={"0px"} opacity={0.4} id="ModalBase" />
-            <ModalBase2 id="ModalBase2">
-                <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <ModalBase
+                $bottom={"0px"}
+                opacity={0.4}
+                id="ModalBase"
+                ref={modalBaseRef}
+                onClick={onClickBase}
+            />
+            <ModalBase2 id="ModalBase2" onClick={onClickBase}>
+                <div
+                    ref={modalBaseRef2}
+                    style={{ position: "relative", width: "100%", height: "100%" }}
+                >
                     <CharacterWrap>
                         <Character />
                     </CharacterWrap>

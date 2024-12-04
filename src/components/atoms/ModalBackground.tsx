@@ -1,6 +1,7 @@
+import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
-type ModalBaseProps = {
+type ModalBaseProps = HTMLAttributes<HTMLDivElement> & {
     opacity?: number;
     $bottom?: string;
 };
