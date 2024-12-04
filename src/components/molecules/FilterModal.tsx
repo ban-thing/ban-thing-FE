@@ -1,27 +1,18 @@
 import styled from "styled-components";
 import { useFilterModalStore } from "@/store/ModalStore";
 import { useState } from "react";
+import ReactSlider from "react-slider";
+import { Button, FilterResetButton } from "../atoms/Button";
 
 export default function FilterModal() {
     const { hideFilterModal } = useFilterModalStore();
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1000000);
 
-    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>, type: "min" | "max") => {
-        const value = Number(e.target.value);
-        if (type === "min") {
-            setMinPrice(Math.min(value, maxPrice));
-        } else {
-            setMaxPrice(Math.max(value, minPrice));
-        }
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, type: "min" | "max") => {
-        const value = Number(e.target.value);
-        if (type === "min") {
-            setMinPrice(Math.min(value, maxPrice));
-        } else {
-            setMaxPrice(Math.max(value, minPrice));
+    const handleSliderChange = (value: number | readonly number[]) => {
+        if (Array.isArray(value)) {
+            setMinPrice(value[0]);
+            setMaxPrice(value[1]);
         }
     };
 
@@ -34,46 +25,50 @@ export default function FilterModal() {
                     <PriceInput
                         placeholder="무료 나눔"
                         value={minPrice}
-                        onChange={(e) => handleInputChange(e, "min")}
+                        onChange={(e) => setMinPrice(Number(e.target.value))}
                         type="number"
                     />
                     <RangeDivider>~</RangeDivider>
                     <PriceInput
                         placeholder="최대"
                         value={maxPrice}
-                        onChange={(e) => handleInputChange(e, "max")}
+                        onChange={(e) => setMaxPrice(Number(e.target.value))}
                         type="number"
                     />
                 </PriceRangeContainer>
                 <SliderContainer>
-                    <input
-                        type="range"
-                        min="0"
-                        max="1000000"
-                        step="100"
-                        value={minPrice}
-                        onChange={(e) => handleSliderChange(e, "min")}
-                    />
-                    <input
-                        type="range"
-                        min="0"
-                        max="1000000"
-                        step="100"
-                        value={maxPrice}
-                        onChange={(e) => handleSliderChange(e, "max")}
+                    <PriceLabel>0원</PriceLabel>
+                    <StyledSlider
+                        value={[minPrice, maxPrice]}
+                        min={0}
+                        max={1000000}
+                        step={1000}
+                        onChange={handleSliderChange}
+                        renderTrack={(props, state) => (
+                            <div
+                                {...props}
+                                style={{
+                                    ...props.style,
+                                    background:
+                                        state.index === 1
+                                            ? "var(--color-main-1)"
+                                            : "var(--color-black-6)",
+                                }}
+                            />
+                        )}
+                        renderThumb={(props) => <div {...props} />}
                     />
                 </SliderContainer>
                 <ButtonContainer>
-                    <ResetButton
+                    <FilterResetButton
                         onClick={() => {
                             setMinPrice(0);
                             setMaxPrice(1000000);
                         }}
-                    >
-                        <ResetIcon />
-                        초기화
-                    </ResetButton>
-                    <ApplyButton>적용하기</ApplyButton>
+                    />
+                    <Button variant="filled" size="small">
+                        적용하기
+                    </Button>
                 </ButtonContainer>
             </ModalContainer>
         </>
@@ -97,7 +92,7 @@ const ModalContainer = styled.div`
     transform: translate(-50%, 0);
     width: 375px;
     height: 294px;
-    padding: 24px;
+    padding: 40px 19px 0 19px;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
     background-color: white;
@@ -108,7 +103,7 @@ const ModalContainer = styled.div`
 const Title = styled.h2`
     font-size: 18px;
     font-weight: 700;
-    margin: 16px 0;
+    margin-bottom: 16px;
 `;
 
 const PriceRangeContainer = styled.div`
@@ -116,7 +111,7 @@ const PriceRangeContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 `;
 
 const PriceInput = styled.input`
@@ -136,110 +131,46 @@ const RangeDivider = styled.span`
     color: var(--color-black-5);
     font-size: 16px;
 `;
-
 const SliderContainer = styled.div`
-    position: relative;
     width: 100%;
-    height: 24px;
-    margin-bottom: 24px;
+    height: 43px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+`;
 
-    input[type="range"] {
-        position: absolute;
-        width: 100%;
-        -webkit-appearance: none;
-        pointer-events: none;
-        background: none;
+const PriceLabel = styled.span`
+    font-size: 12px;
+    color: var(--color-black-5);
+    margin-bottom: 14px;
+    margin-left: 4px;
+`;
 
-        &::-webkit-slider-thumb {
-            pointer-events: auto;
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border: 2px solid var(--color-black-6);
-            border-radius: 50%;
-            cursor: pointer;
-            margin-top: -10px;
-        }
+const StyledSlider = styled(ReactSlider)`
+    width: 100%;
+    height: 4px;
+    display: flex;
+    align-items: center;
 
-        &::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            background: var(--color-main-1);
-            border-radius: 2px;
-        }
+    .thumb {
+        height: 24px;
+        width: 24px;
+        background-color: white;
+        border: 2px solid var(--color-black-6);
+        border-radius: 50%;
+        cursor: pointer;
+    }
 
-        &:nth-child(1) {
-            z-index: 2;
-            &::-webkit-slider-runnable-track {
-                background: var(--color-black-6);
-                z-index: 1;
-            }
-        }
-        &:nth-child(2) {
-            z-index: 2;
-            &::-webkit-slider-runnable-track {
-                background: var(--color-black-6);
-                z-index: 1;
-            }
-        }
+    .track {
+        top: 0;
+        bottom: 0;
+        background: var(--color-main-1);
+        border-radius: 2px;
     }
 `;
 
-// const PriceSlider = styled.input`
-//     width: 100%;
-//     margin-bottom: 24px;
-
-//     &::-webkit-slider-thumb {
-//         -webkit-appearance: none;
-//         width: 24px;
-//         height: 24px;
-//         background: white;
-//         border: 2px solid var(--color-black-6);
-//         border-radius: 50%;
-//         cursor: pointer;
-//     }
-
-//     &::-webkit-slider-runnable-track {
-//         width: 100%;
-//         height: 4px;
-//         background: var(--color-main-1);
-//         border-radius: 2px;
-//     }
-// `;
-
 const ButtonContainer = styled.div`
     display: flex;
-    gap: 8px;
-`;
-
-const ResetButton = styled.button`
-    flex: 1;
-    height: 52px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 4px;
-    border: 1px solid var(--color-black-6);
-    border-radius: 12px;
-    background: white;
-    font-size: 16px;
-    color: var(--color-black-4);
-`;
-
-const ApplyButton = styled.button`
-    flex: 1;
-    height: 52px;
-    border: none;
-    border-radius: 12px;
-    background: var(--color-main-1);
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-`;
-
-const ResetIcon = styled.div`
-    width: 20px;
-    height: 20px;
-    background: url("/path-to-reset-icon.svg") no-repeat center;
+    gap: 15px;
 `;
