@@ -305,6 +305,22 @@ type MySellButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     showPlus?: boolean;
 };
 
+interface PlusButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    width?: string;
+    height?: string;
+}
+
+const PlusButton = styled.button<PlusButtonProps>`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    background-color: var(--color-main-1);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+`;
+
 export const MySellButton = ({ showPlus = false, ...props }: MySellButtonProps) => {
     return (
         <StyledMySellButton {...props}>
@@ -325,5 +341,13 @@ export const ItemFilterButton = (props: ButtonHTMLAttributes<HTMLButtonElement>)
         <FilterButton {...props}>
             <FilterIcon />
         </FilterButton>
+    );
+};
+
+export const ItemPlusButton = ({ width, height, ...props }: PlusButtonProps) => {
+    return (
+        <PlusButton width={width} height={height} {...props}>
+            <Plus stroke="white" width="13px" height="13px" />
+        </PlusButton>
     );
 };
