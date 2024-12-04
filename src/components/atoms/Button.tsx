@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plusBold.svg?react";
 import Snack from "@/assets/icons/snackWhite.svg?react";
 import FilterIcon from "@/assets/icons/filter.svg?react";
-
+import ResetIcon from "@/assets/icons/reset.svg?react";
 // TODO: $variant로 수정
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
@@ -349,5 +349,14 @@ export const ItemPlusButton = ({ width, height, ...props }: PlusButtonProps) => 
         <PlusButton width={width} height={height} {...props}>
             <Plus stroke="white" width="13px" height="13px" />
         </PlusButton>
+    );
+};
+
+export const FilterResetButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+    return (
+        <ResetButton {...props}>
+            <ResetIcon />
+            초기화
+        </ResetButton>
     );
 };
