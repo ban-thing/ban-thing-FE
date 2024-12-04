@@ -4,11 +4,12 @@ import styled from "styled-components";
 type ModalBaseProps = HTMLAttributes<HTMLDivElement> & {
     opacity?: number;
     $bottom?: string;
+    $maxWidth?: string;
 };
 export const ModalBase = styled.div<ModalBaseProps>`
     position: fixed;
     width: 100%;
-    /* max-width: 375px; */
+    max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : null)};
     height: 100vh;
     background-color: #000;
     opacity: ${(props) => (props.opacity ? props.opacity : 0.8)};

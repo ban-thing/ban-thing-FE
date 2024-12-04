@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <>
             <HomeLayout>
-                {isDropdownOpen && <ModalBase opacity={0.4} />} <ItemList />
+                {isDropdownOpen && <ModalBase opacity={0.4} $maxWidth="375px" />} <ItemList />
             </HomeLayout>
         </>
     );
