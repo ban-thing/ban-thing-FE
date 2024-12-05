@@ -2,7 +2,7 @@ export const dummyItemList = [
     {
         itemId: 1,
         title: "Lorem ipsum dolor",
-        imgUrl: "https://placehold.co/400",
+        imgUrl: "",
         address: "연수동",
         price: 10000,
         location: "연수역 1번 출구 앞",

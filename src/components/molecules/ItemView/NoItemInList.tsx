@@ -20,13 +20,13 @@ const NoItemText = styled.div`
     font-size: 14px;
 `;
 
-const NoItemInList = () => {
+const NoItemInList = ({ text }: { text?: string }) => {
     return (
         <NoItemWrap>
             <CharacterWrap>
                 <Character />
             </CharacterWrap>
-            <NoItemText>아직 등록된 상품이 없어요.</NoItemText>
+            <NoItemText>{text || "아직 등록된 상품이 없어요."}</NoItemText>
         </NoItemWrap>
     );
 };

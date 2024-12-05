@@ -6,6 +6,7 @@ type ItemBoxProps = {
 };
 
 export const ItemBox = styled.figure<ItemBoxProps>`
+    position: relative;
     width: 335px;
     height: 166px;
     padding: 22px 0;
@@ -22,11 +23,12 @@ export const ItemBox = styled.figure<ItemBoxProps>`
     }
 `;
 
-export const ItemBoxRight = styled.div`
+export const ItemBoxRight = styled.div<{ $maxWidth?: string }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 8px;
+    max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : null)};
 `;
 
 export const ItemPhoto = styled.img`
@@ -62,4 +64,14 @@ export const ItemPrice = styled.div`
     grid-area: itemPrice;
     font-size: 18px;
     font-weight: 700;
+`;
+
+export const ItemEditButton = styled.div`
+    position: absolute;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    top: 32px;
+    right: 0;
+    margin: 3px;
 `;

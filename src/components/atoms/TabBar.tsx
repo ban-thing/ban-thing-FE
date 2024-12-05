@@ -1,27 +1,31 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const TABS = ["전체", "구매", "판매"] as const;
-type TabBarProps = (typeof TABS)[number];
-
 interface ButtonProps {
-    active: boolean;
+    $active: boolean;
 }
 
-export default function TabBar() {
-    const [activeTab, setActiveTab] = useState<TabBarProps>("전체");
+interface TabBarProps {
+    tabsList: string[];
+    initTab: string;
+    handleTabClick: (tab: string) => void;
+}
 
-    const handleButtonClick = (tab: TabBarProps): void => {
+export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProps) {
+    const [activeTab, setActiveTab] = useState<string>(initTab);
+
+    const handleButtonClick = (tab: string): void => {
         setActiveTab(tab);
+        handleTabClick(tab);
     };
 
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
             <ButtonGroup>
-                {TABS.map((tab) => (
+                {tabsList.map((tab) => (
                     <Button
                         key={tab}
-                        active={activeTab === tab}
+                        $active={activeTab === tab}
                         onClick={() => handleButtonClick(tab)}
                     >
                         {tab}
@@ -37,19 +41,19 @@ const ButtonGroup = styled.div`
     height: auto;
     width: 375px;
     background: white;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #eee;
 `;
 
 const Button = styled.button<ButtonProps>`
-    padding: 10px 20px;
+    padding: 19px 20px 14px;
     width: 100%;
     border: none;
     background-color: transparent;
     cursor: pointer;
-    color: ${({ active }) => (active ? "black" : "gray")};
-    font-weight: ${({ active }) => (active ? "bold" : "normal")};
-    border-bottom: 2px solid ${({ active }) => (active ? "black" : "transparent")};
+    font-size: 18px;
+    color: ${({ $active }) => ($active ? "black" : "gray")};
+    font-weight: ${({ $active }) => ($active ? "bold" : "normal")};
+    border-bottom: 2px solid ${({ $active }) => ($active ? "black" : "transparent")};
 `;

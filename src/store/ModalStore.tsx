@@ -49,3 +49,15 @@ export const useFilterModalStore = create<FilterModalState>((set) => ({
     showFilterModal: () => set({ isFilterModalVisible: true }),
     hideFilterModal: () => set({ isFilterModalVisible: false }),
 }));
+
+interface EditModalState {
+    isEditModalVisible: boolean;
+    showEditModal: () => void;
+    hideEditModal: () => void;
+}
+
+export const useEditModalStore = create<EditModalState>((set) => ({
+    isEditModalVisible: false,
+    showEditModal: () => set({ isEditModalVisible: true }),
+    hideEditModal: () => set({ isEditModalVisible: false }),
+}));
