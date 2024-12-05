@@ -1,26 +1,26 @@
 import styled from "styled-components";
-import { UserProfile } from "../../types/User";
+import PointIcon from "../../assets/icons/point.svg?react";
+import type { ChatList as ChatListType } from "../../types/Chat";
+import timeAgo from "../../utils/TimeAgo";
 
 interface ChatListItemProps {
-    user: UserProfile;
-    message: string;
-    timeAgo: number;
-    unreadCount: number;
+    chat: ChatListType;
 }
 
-export default function ChatList({ user, message, timeAgo, unreadCount }: ChatListItemProps) {
+export default function ChatList({ chat }: ChatListItemProps) {
     return (
         <ChatItemContainer>
-            <ProfileImage src={user.profileImgUrl} />
+            <ProfileImage src={chat.profileImgUrl} />
             <ChatInfo>
                 <UserDetails>
-                    <UserName>{user.nickname}</UserName>
-                    <UserLocation>{user.address1}</UserLocation>
-                    <TimeAgo>{timeAgo}일 전</TimeAgo>
+                    <UserName>{chat.nickname}</UserName>
+                    <UserLocation>{chat.address}</UserLocation>
+                    <PointIcon />
+                    <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>
                 </UserDetails>
-                <Message>{message}</Message>
+                <Message>{chat.latestMessage}</Message>
             </ChatInfo>
-            {unreadCount > 0 && <UnreadBadge>{unreadCount}</UnreadBadge>}
+            {chat.unreadMessageCount > 0 && <UnreadBadge>{chat.unreadMessageCount}</UnreadBadge>}
         </ChatItemContainer>
     );
 }
@@ -28,9 +28,13 @@ export default function ChatList({ user, message, timeAgo, unreadCount }: ChatLi
 const ChatItemContainer = styled.div`
     display: flex;
     align-items: center;
+    height: 59px;
     padding: 20px;
     border-bottom: 1px solid #eee;
     background-color: #f9f9f9;
+    &:last-child {
+        border-bottom: none;
+    }
 `;
 
 const ProfileImage = styled.img`
@@ -49,7 +53,7 @@ const ChatInfo = styled.div`
 const UserDetails = styled.div`
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
 `;
 
 const UserName = styled.div`
@@ -58,12 +62,12 @@ const UserName = styled.div`
 `;
 
 const UserLocation = styled.div`
-    color: gray;
+    color: var(--color-black-5);
     font-size: 12px;
 `;
 
 const TimeAgo = styled.div`
-    color: gray;
+    color: var(--color-black-5);
     font-size: 12px;
 `;
 
