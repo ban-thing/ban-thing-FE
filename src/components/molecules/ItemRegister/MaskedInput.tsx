@@ -48,16 +48,16 @@ const MaskedInput = ({ control, errors, name, watch, isChecked }: MaskedInputPro
                 control={control}
                 rules={{
                     required: isChecked,
-                    validate: (value) => value !== "00.00.00" && value !== "모름",
+                    validate: (value) => value !== "OO.OO.OO" && value !== "모름",
                 }}
                 render={({ field }) => (
                     <InputMask
-                        mask="00.00.00"
-                        replacement={{ 0: /\d/ }}
+                        mask="OO.OO.OO"
+                        replacement={{ O: /[0-9]/ }}
                         showMask
-                        {...field} // value와 onChange 자동 전달
+                        {...field}
                         className={`masked-input ${errors.clnExprice && "error"}`}
-                        placeholder="00.00.00"
+                        placeholder="OO.OO.OO"
                         value={watch(name) === "모름" ? "" : watch(name) || ""}
                     />
                 )}

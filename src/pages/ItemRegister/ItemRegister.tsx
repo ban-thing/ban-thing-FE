@@ -97,7 +97,7 @@ const ItemRegister = () => {
         if (data.type === "나눔") {
             data.price = 0;
         }
-        if (data.clnExprice === "00.00.00") {
+        if (data.clnExprice === "OO.OO.OO") {
             setError("clnExprice", { message: "유통기한을 입력해주세요." });
         }
         console.log(errors, "errors");
