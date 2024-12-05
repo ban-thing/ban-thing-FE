@@ -17,6 +17,11 @@ const StyledMyPageProfile = styled.div`
     gap: 4px 16px;
     align-items: start; /* 아이템을 상단 정렬 */
 
+    & img {
+        width: 56px;
+        height: 56px;
+    }
+
     & .MyPageProfilePhoto {
         width: 56px;
         height: 56px;

@@ -15,6 +15,8 @@ import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
 import MyPage from "./pages/MyPage/MyPage";
+import MyPageEdit from "./pages/MyPage/MyPageEdit";
+import MyPageLayout from "./pages/MyPage/MyPageLayout";
 
 const queryClient = new QueryClient();
 
@@ -37,10 +39,11 @@ const router = createBrowserRouter([
             { path: "search-result", element: <SearchResult /> },
             {
                 path: "my-page",
-                element: <MyPage />,
+                element: <MyPageLayout />,
                 errorElement: <NotFound />,
                 children: [
-                    { path: "edit" },
+                    { path: "", element: <MyPage /> },
+                    { path: "edit", element: <MyPageEdit /> },
                     { path: "purchase-list" },
                     { path: "sale-list" },
                     { path: "terms-of-use" },
