@@ -14,6 +14,7 @@ import { LoadScript } from "@react-google-maps/api";
 import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
+import MyPage from "./pages/MyPage/MyPage";
 
 const queryClient = new QueryClient();
 
@@ -34,10 +35,20 @@ const router = createBrowserRouter([
             { path: "search", element: <Search /> },
             { path: "search/hashtag", element: <SearchHashtag /> },
             { path: "search-result", element: <SearchResult /> },
-            { path: "my-page" },
-            { path: "my-page/edit" },
-            { path: "my-page/purchase-list" },
-            { path: "my-page/sale-list" },
+            {
+                path: "my-page",
+                element: <MyPage />,
+                errorElement: <NotFound />,
+                children: [
+                    { path: "edit" },
+                    { path: "purchase-list" },
+                    { path: "sale-list" },
+                    { path: "terms-of-use" },
+                    { path: "personal-info" },
+                    { path: "location-based" },
+                    { path: "version-info" },
+                ],
+            },
         ],
     },
 ]);
