@@ -18,6 +18,7 @@ import MyPage from "./pages/MyPage/MyPage";
 import MyPageEdit from "./pages/MyPage/MyPageEdit";
 import MyPageLayout from "./pages/MyPage/MyPageLayout";
 import MyPageItemList from "./pages/MyPage/MyPageItemList";
+import MyPageTerms from "./pages/MyPage/MyPageTerms";
 
 const queryClient = new QueryClient();
 
@@ -47,10 +48,10 @@ const router = createBrowserRouter([
                     { path: "edit", element: <MyPageEdit /> },
                     { path: "purchase-list", element: <MyPageItemList /> },
                     { path: "sale-list", element: <MyPageItemList /> },
-                    { path: "terms-of-use" },
-                    { path: "personal-info" },
-                    { path: "location-based" },
-                    { path: "version-info" },
+                    { path: "terms-of-use", element: <MyPageTerms /> },
+                    { path: "personal-info", element: <MyPageTerms /> },
+                    { path: "location-based", element: <MyPageTerms /> },
+                    { path: "version-info", element: <MyPageTerms /> },
                 ],
             },
         ],
