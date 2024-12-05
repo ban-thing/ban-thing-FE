@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ItemContainer from "@/components/molecules/ItemContainer";
-import NoItemInList from "@/components/molecules/ItemView/noItemInList";
-import { dummyItemList } from "@/store/ITemListDummyData";
+import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
+import { dummyItemList } from "@/store/ItemListDummyData";
 
 const StyledItemList = styled.div<{ height: string }>`
     height: ${({ height }) => (height ? height : null)};
