@@ -131,31 +131,6 @@ const SearchInputWrapper = styled.div`
         cursor: pointer;
     }
 `;
-// const HashTagButton = styled.div`
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     width: 66px;
-//     border: 1px solid var(--color-main-1);
-//     color: var(--color-main-1);
-//     background: rgba(198, 212, 255, 0.3);
-//     padding: 4px 8px;
-//     border-radius: 24px;
-//     font-size: 12px;
-//     font-weight: 500;
-//     cursor: pointer;
-//     gap: 3px;
-//     margin-left: auto;
-
-//     svg {
-//         width: 18px;
-//         height: 18px;
-//     }
-
-//     svg path {
-//         fill: var(--color-main-1);
-//     }
-// `;
 
 const HashTagArea = styled.div`
     display: flex;
