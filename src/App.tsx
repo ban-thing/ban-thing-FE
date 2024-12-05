@@ -19,6 +19,7 @@ import MyPageEdit from "./pages/MyPage/MyPageEdit";
 import MyPageLayout from "./pages/MyPage/MyPageLayout";
 import MyPageItemList from "./pages/MyPage/MyPageItemList";
 import MyPageTerms from "./pages/MyPage/MyPageTerms";
+import ChattingList from "./pages/ChattingList";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             { path: "location-select", element: <LocationSelect /> },
             { path: "my-location-setting", element: <MyLocationSetting /> },
             { path: "item-view/:id", element: <ItemView /> },
-            { path: "chatting-list" },
+            { path: "chatting-list", element: <ChattingList /> },
             { path: "chatting/:id" },
             { path: "item-register", element: <ItemRegister /> },
             { path: "search", element: <Search /> },
