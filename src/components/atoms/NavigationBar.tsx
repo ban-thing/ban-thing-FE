@@ -46,14 +46,17 @@ export default function NavigationBar({ children }: NavigationBarProps) {
                     <span>검색</span>
                 </NavButton>
                 <NavButton
-                    $activeTab={$activeTab === "chat"}
-                    onClick={() => handleNavigation("chat")}
+                    $activeTab={location.pathname.includes("chatting")}
+                    onClick={() => handleNavigation("chatting-list")}
                 >
-                    {$activeTab === "chat" ? <ChatActiveIcon /> : <ChatIcon />}
+                    {location.pathname.includes("chatting") ? <ChatActiveIcon /> : <ChatIcon />}
                     <span>채팅</span>
                 </NavButton>
-                <NavButton $activeTab={$activeTab === "my"} onClick={() => handleNavigation("my")}>
-                    {$activeTab === "my" ? <PetsActiveIcon /> : <PetsIcon />}
+                <NavButton
+                    $activeTab={location.pathname.includes("my-page")}
+                    onClick={() => handleNavigation("my-page")}
+                >
+                    {location.pathname.includes("my-page") ? <PetsActiveIcon /> : <PetsIcon />}
                     <span>마이</span>
                 </NavButton>
                 {children}
