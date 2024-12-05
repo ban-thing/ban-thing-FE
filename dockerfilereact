@@ -5,13 +5,14 @@ FROM node
 WORKDIR /react_app
 
 # Copy the application code to the container
-COPY ./package.json .
+COPY package.json .
 
 # Install Python dependencies
 RUN npm i
 
 # Copy the application code to the container
 COPY . .
+RUN ls
 
 RUN npm run build
 
