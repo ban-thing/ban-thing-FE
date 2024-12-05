@@ -18,8 +18,11 @@ export default function SearchHashtag() {
         if (searchHashList) {
             setHashList(searchHashList.filter((tag) => tag.trim() !== ""));
         }
-        console.log(searchHashList);
     }, [searchHashList]);
+
+    const handleSetValue = (name: string, value: string[]) => {
+        setHashList(value);
+    };
 
     const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setInputValue(e.target.value);
@@ -63,9 +66,8 @@ export default function SearchHashtag() {
                     value={inputValue}
                 />
             </InputWrapper>
-            {hashList.length > 0 && (
-                <HashTagButtonList hashList={hashList} setHashList={setHashList} />
-            )}
+
+            <HashTagButtonList hashList={hashList} setValue={handleSetValue} margin="10px 0 0 0" />
 
             <DescriptionWrap>
                 <div>내 상품을 다양한 태그로 표현해요 (최대 5개)</div>

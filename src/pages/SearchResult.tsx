@@ -1,33 +1,75 @@
 import { Input } from "@/components/atoms/Input";
 import styled from "styled-components";
 import SearchIcon from "@/assets/icons/search.svg?react";
-// import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import { useNavigate } from "react-router-dom";
 import { ItemFilterButton, ItemPlusButton } from "@/components/atoms/Button";
 import ItemList from "@/components/layout/ItemList";
 import { useFilterModalStore } from "@/store/ModalStore";
 import FilterModal from "@/components/molecules/FilterModal";
+import { useSearchHashListStore } from "@/store/SearchHashList";
+import { useForm, UseFormSetValue, FieldValues } from "react-hook-form";
+import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
+import { useState } from "react";
 
 export default function SearchResult() {
     const navigate = useNavigate();
     const { showFilterModal } = useFilterModalStore();
     const { isFilterModalVisible } = useFilterModalStore();
+    const { searchHashList, setSearchHashList } = useSearchHashListStore();
+    const { setValue } = useForm();
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleSetValue: UseFormSetValue<FieldValues> = (name, value) => {
+        if (name === "hashtags") {
+            setSearchHashList(value);
+        }
+        setValue(name, value);
+    };
 
     const onClickHashTagButton = () => {
         navigate("/search/hashtag");
     };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(event.target.value);
+    };
+    const handleSearchClick = () => {
+        if (searchValue.trim() !== "") {
+            setSearchValue("");
+        }
+    };
+    const isMaxTags = searchHashList.length >= 5;
 
     return (
         <SearchContainer>
             <SearchHeader>
                 <SearchWrapper>
                     <SearchInputWrapper>
-                        <SearchIcon />
-                        <Input placeholder="검색어를 입력해요." required minLength={1} />
+                        <SearchIcon onClick={handleSearchClick} />
+                        <Input
+                            placeholder="검색어를 입력해요."
+                            required
+                            minLength={1}
+                            value={searchValue}
+                            onChange={handleInputChange}
+                        />
                     </SearchInputWrapper>
                     <ItemFilterButton onClick={showFilterModal} />
                 </SearchWrapper>
-                <ItemPlusButton width="26px" height="26px" onClick={onClickHashTagButton} />
+                <HashTagArea>
+                    <HashTagListWrapper>
+                        {searchHashList && searchHashList.length > 0 && (
+                            <HashTagButtonWithCloseList
+                                hashList={searchHashList}
+                                setValue={handleSetValue}
+                                margin="0"
+                            />
+                        )}
+                    </HashTagListWrapper>
+                    {!isMaxTags && (
+                        <ItemPlusButton width="26px" height="26px" onClick={onClickHashTagButton} />
+                    )}
+                </HashTagArea>
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
@@ -68,7 +110,7 @@ const SearchWrapper = styled.div`
     align-items: center;
     gap: 8px;
     max-width: 335px;
-    height: 100px;
+    height: 66px;
     width: 100%;
 `;
 const SearchInputWrapper = styled.div`
@@ -114,3 +156,19 @@ const SearchInputWrapper = styled.div`
 //         fill: var(--color-main-1);
 //     }
 // `;
+
+const HashTagArea = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 52px;
+`;
+
+const HashTagListWrapper = styled.div`
+    flex: 1;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
