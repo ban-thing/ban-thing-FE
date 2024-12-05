@@ -42,10 +42,12 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                         />
                     </SearchInputWrapper>
                 </SearchWrapper>
-                <HashTagButton onClick={onClickHashTagButton}>
-                    <HashTagIcon />
-                    태그 검색
-                </HashTagButton>
+                <HashTagArea>
+                    <HashTagButton onClick={onClickHashTagButton}>
+                        <HashTagIcon />
+                        태그 검색
+                    </HashTagButton>
+                </HashTagArea>
             </SearchHeader>
 
             <ScrollContent>
@@ -104,7 +106,7 @@ const SearchWrapper = styled.div`
     align-items: center;
     gap: 8px;
     max-width: 335px;
-    height: 100px;
+    height: auto;
     width: 100%;
 `;
 const SearchInputWrapper = styled.div`
@@ -114,7 +116,7 @@ const SearchInputWrapper = styled.div`
     align-items: center;
     width: 335px;
     transition: width 0.3s ease;
-    height: 100px;
+    height: 66px;
 
     svg {
         position: absolute;
@@ -125,6 +127,15 @@ const SearchInputWrapper = styled.div`
         cursor: pointer;
     }
 `;
+
+const HashTagArea = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 52px;
+`;
+
 const HashTagButton = styled.div`
     display: flex;
     align-items: center;
