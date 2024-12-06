@@ -4,6 +4,12 @@ import ItemList from "@/components/layout/ItemList";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const MyPageItemListWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const MyPageBottom = styled.div`
     height: 0;
     width: 100%;
@@ -33,7 +39,7 @@ const MyPageItemList = () => {
     };
 
     return (
-        <>
+        <MyPageItemListWrap>
             <TabBar
                 tabsList={tabsList}
                 initTab={isSalePage ? tabsList[1] : tabsList[0]}
@@ -45,7 +51,7 @@ const MyPageItemList = () => {
                     <MySellButton onClick={onClickSellButton} />
                 </div>
             </MyPageBottom>
-        </>
+        </MyPageItemListWrap>
     );
 };
 

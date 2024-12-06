@@ -5,6 +5,7 @@ type ModalBaseProps = HTMLAttributes<HTMLDivElement> & {
     opacity?: number;
     $bottom?: string;
     $maxWidth?: string;
+    $inset?: string;
 };
 export const ModalBase = styled.div<ModalBaseProps>`
     position: fixed;
@@ -15,6 +16,7 @@ export const ModalBase = styled.div<ModalBaseProps>`
     opacity: ${(props) => (props.opacity ? props.opacity : 0.8)};
     z-index: 10;
     bottom: ${(props) => (props.$bottom ? props.$bottom : null)};
+    inset: ${(props) => (props.$inset ? props.$inset : "auto")};
 `;
 
 export const ModalContainer = styled.div`
