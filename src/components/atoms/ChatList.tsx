@@ -32,6 +32,7 @@ const ChatItemContainer = styled.div`
     padding: 20px;
     border-bottom: 1px solid #eee;
     background-color: #f9f9f9;
+    cursor: pointer;
     &:last-child {
         border-bottom: none;
     }
