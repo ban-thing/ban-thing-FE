@@ -98,7 +98,7 @@ type ItemViewInfoProps = Omit<
     | "directLocation"
     | "price"
     | "address"
-    | "directLocation"
+    | "isDirect"
 >;
 
 export default function ItemViewInfo({
@@ -111,7 +111,6 @@ export default function ItemViewInfo({
     clnCleaned = "없음",
     clnExpire = "모름",
     updatedAt = new Date(),
-    isDirect = true,
 }: ItemViewInfoProps) {
     const pollList = ["없음", "1-3개", "3개 이상"];
     const timeList = ["없음", "5회 미만", "5회 이상"];
@@ -169,11 +168,6 @@ export default function ItemViewInfo({
                     <span>유통기한</span>
                     <CleanCheckListOption>
                         <span className={clnExpire !== "모름" ? "highlight" : ""}>{clnExpire}</span>
-                    </CleanCheckListOption>
-                    <span>직거래</span>
-                    <CleanCheckListOption>
-                        <span className={isDirect ? "highlight" : ""}>가능</span>
-                        <span className={!isDirect ? "highlight" : ""}>불가능</span>
                     </CleanCheckListOption>
                 </CleanCheckListContentWrap>
             </CleanCheckListWrap>

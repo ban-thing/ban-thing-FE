@@ -58,6 +58,7 @@ const ItemView = () => {
                 sellerImgUrl={dummyData.sellerImgUrl}
                 address={dummyData.address}
                 directLocation={dummyData.directLocation}
+                isDirect={dummyData.isDirect}
             />
             <ItemViewInfo
                 title={dummyData.title}
@@ -68,7 +69,6 @@ const ItemView = () => {
                 clnPurchasedDate={dummyData.clnPurchasedDate}
                 clnCleaned={dummyData.clnCleaned}
                 clnExpire={dummyData.clnExpire}
-                isDirect={dummyData.isDirect}
                 updatedAt={dummyData.updatedAt}
             />
         </ItemViewLayout>

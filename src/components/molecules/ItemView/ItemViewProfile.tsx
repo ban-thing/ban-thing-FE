@@ -1,3 +1,4 @@
+import { ItemView } from "@/types/Item";
 import styled from "styled-components";
 
 const ProfileWrap = styled.div`
@@ -38,19 +39,17 @@ const ProfilePlace2 = styled.div`
     color: #949494;
 `;
 
-type ItemViewProfileProps = {
-    sellerNickname: string;
-    sellerImgUrl: string;
-    address: string;
-    directLocation: string;
-    // sellerImgUrl: string
-};
+type ItemViewProfileProps = Pick<
+    ItemView,
+    "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "isDirect"
+>;
 
 export default function ItemViewProfile({
     sellerNickname,
     sellerImgUrl,
     address,
     directLocation,
+    isDirect,
 }: ItemViewProfileProps) {
     return (
         <ProfileWrap>
@@ -60,7 +59,7 @@ export default function ItemViewProfile({
             <ProfileTextWrap>
                 <ProfileName>{sellerNickname}</ProfileName>
                 <ProfilePlace>{address}</ProfilePlace>
-                <ProfilePlace2>{directLocation}</ProfilePlace2>
+                <ProfilePlace2>{isDirect ? directLocation : "직거래 불가능"}</ProfilePlace2>
             </ProfileTextWrap>
         </ProfileWrap>
     );
