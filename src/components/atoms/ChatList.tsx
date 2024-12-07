@@ -5,11 +5,12 @@ import timeAgo from "../../utils/TimeAgo";
 
 interface ChatListItemProps {
     chat: ChatListType;
+    onClick: (chatroomId: number) => void;
 }
 
-export default function ChatList({ chat }: ChatListItemProps) {
+export default function ChatList({ chat, onClick }: ChatListItemProps) {
     return (
-        <ChatItemContainer>
+        <ChatItemContainer onClick={() => onClick(chat.chatroomId)}>
             <ProfileImage src={chat.profileImgUrl} />
             <ChatInfo>
                 <UserDetails>
