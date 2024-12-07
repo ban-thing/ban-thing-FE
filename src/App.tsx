@@ -2,6 +2,7 @@ import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { CookiesProvider } from "react-cookie";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -62,12 +63,14 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAP_API_KEY}>
-            <QueryClientProvider client={queryClient}>
-                <ReactQueryDevtools initialIsOpen={true} />
-                <RouterProvider router={router} />
-            </QueryClientProvider>
-        </LoadScript>
+        <CookiesProvider>
+            <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAP_API_KEY}>
+                <QueryClientProvider client={queryClient}>
+                    <ReactQueryDevtools initialIsOpen={true} />
+                    <RouterProvider router={router} />
+                </QueryClientProvider>
+            </LoadScript>
+        </CookiesProvider>
     );
 }
 
