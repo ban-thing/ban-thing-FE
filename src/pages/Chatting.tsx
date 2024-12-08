@@ -5,6 +5,7 @@ import AlbumIcon from "../assets/icons/album.svg?react";
 import SendIcon from "../assets/icons/send.svg?react";
 
 export default function Chatting() {
+    //TODO: 채팅 데이터 받아오기
     const navigate = useNavigate();
 
     return (
@@ -29,8 +30,6 @@ export default function Chatting() {
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <DateDivider>2024년 12월 28일</DateDivider>
                 </div>
-
-                {/* 채팅 메시지 예시 */}
                 <MessageBubble isMe={false}>
                     안녕하세요! 구매원해요~!
                     <MessageTime>오후 8:18</MessageTime>

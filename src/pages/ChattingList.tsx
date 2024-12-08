@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ChatList from "@/components/atoms/ChatList";
 import NavigationBar from "@/components/atoms/NavigationBar";
 import TabBar from "@/components/atoms/TabBar";
@@ -8,6 +9,7 @@ import styled from "styled-components";
 const tabsList = ["전체", "판매", "구매"];
 
 export default function ChattingList() {
+    const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState("전체");
 
     const handleTabClick = (tab: string) => {
@@ -19,6 +21,10 @@ export default function ChattingList() {
         return chat.type === selectedTab;
     });
 
+    const onClickBox = (chatroomId: number) => {
+        navigate(`/chatting/${chatroomId}`);
+    };
+
     return (
         <ChattingListContainer>
             <FixedTabBar>
@@ -26,7 +32,7 @@ export default function ChattingList() {
             </FixedTabBar>
             <ChatListContainer>
                 {filteredChatList.map((chat) => (
-                    <ChatList key={chat.chatroomId} chat={chat} />
+                    <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
                 ))}
             </ChatListContainer>
             <FixedNavigationBar>
