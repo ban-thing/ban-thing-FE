@@ -31,7 +31,7 @@ const ProfileName = styled.div`
 
 const ProfilePlace = styled.div`
     font-size: 16px;
-    color: #505050;
+    color: var(--color-black-4);
 `;
 
 const ProfilePlace2 = styled.div`
