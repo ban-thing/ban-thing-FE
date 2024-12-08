@@ -20,6 +20,7 @@ import CleanCheckTitle from "@/components/molecules/CleanCheckTitle";
 import ItemRegisterHashTag from "./HashTagModal";
 import ItemRegisterDirectModal from "./ItemRegisterDirectModal";
 import { TextArea } from "@/components/molecules/TextAreaWithCount";
+import { ToastContainer, toast, Slide } from "react-toastify";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
@@ -39,16 +40,25 @@ const ItemRegisterContentBox = styled.form`
     box-sizing: border-box;
 `;
 
-const PhotosErrorMsg = styled.div`
-    width: 334px;
-    height: 51px;
-    border: 1px solid var(--color-red-1);
-    border-radius: 8px;
-    padding: 13px 16px;
-    font-size: 15px;
-    color: red;
-    background-color: rgba(255, 0, 0, 0.08);
-    box-sizing: border-box;
+const StyledToastContainer = styled(ToastContainer)`
+    bottom: 70px;
+    .Toastify__toast {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 170px;
+        height: 48px;
+        margin: 10px auto;
+        padding: 0;
+    }
+    .Toastify__toast-body {
+        margin: 0;
+        padding: 0;
+    }
+    & * {
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+    }
 `;
 
 const ItemRegister = () => {
@@ -93,16 +103,24 @@ const ItemRegister = () => {
         };
     }, [showHashModal, showDirectModal]);
 
+    console.log(errors, "errors");
+
     const onSubmit: SubmitHandler<any> = (data) => {
         if (data.type === "나눔") {
             data.price = 0;
         }
         if (data.clnExprice === "OO.OO.OO") {
-            setError("clnExprice", { message: "유통기한을 입력해주세요." });
+            setError("clnExprice", { message: "유통기한을 입력해요." });
         }
-        console.log(errors, "errors");
+
         console.log(data, "제출데이터");
     };
+
+    useEffect(() => {
+        if (errors.photos) {
+            toast("상품 사진을 등록해요.");
+        }
+    }, [errors.photos]);
 
     const type = watch("type");
 
@@ -111,20 +129,26 @@ const ItemRegister = () => {
             <ItemRegisterContentBox>
                 <PageTitle>내 물건 팔기</PageTitle>
                 <RegisterElementBox style={{ width: "375px", overflow: "hidden" }}>
-                    {/* TODO: 이미지 선택순으로 들어가게 수정 */}
                     <RegisterSubTitle>상품 사진</RegisterSubTitle>
                     <ItemRegisterPhotoList
                         setValue={setValue}
                         Controller={Controller}
                         control={control}
                     />
-                    {errors.photos && <PhotosErrorMsg>사진을 선택해주세요.</PhotosErrorMsg>}
+                    <StyledToastContainer
+                        position="bottom-center"
+                        autoClose={1500}
+                        hideProgressBar={true}
+                        closeButton={false}
+                        closeOnClick
+                        transition={Slide}
+                    />
                 </RegisterElementBox>
                 <RegisterElementBox>
                     <RegisterSubTitle>제목</RegisterSubTitle>
                     <Input
-                        placeholder="제목을 입력하세요."
-                        {...register("title", { required: "제목을 입력하세요." })}
+                        placeholder="제목을 입력해요."
+                        {...register("title", { required: "제목을 입력해요." })}
                         className={errors.title ? "error" : ""}
                     />
                 </RegisterElementBox>
@@ -134,7 +158,7 @@ const ItemRegister = () => {
                     <NumberInput
                         control={control}
                         name="price"
-                        placeholder="가격을 입력하세요."
+                        placeholder="가격을 입력해요."
                         sellType={type}
                         className={type === "판매" && errors.price ? "error" : ""}
                     />
@@ -142,7 +166,7 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterSubTitle>자세한 설명</RegisterSubTitle>
                     <TextArea
-                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 입력 하세요."
+                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 입력 해요."
                         register={register}
                         required
                         className={errors.content ? "error" : ""}
@@ -175,6 +199,7 @@ const ItemRegister = () => {
             </ItemRegisterContentBox>
             <BottomButtonBar
                 variant={isValid ? "filled" : "gray"}
+                className={isValid ? "" : "disabled"}
                 buttonText="작성 완료"
                 type="submit"
                 onClick={handleSubmit(onSubmit)}

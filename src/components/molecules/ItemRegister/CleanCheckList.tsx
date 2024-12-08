@@ -105,7 +105,7 @@ const CleanCheckList = ({
                                 ? ""
                                 : watch("clnPurchaseDate") || ""
                         }
-                        placeholder="구매 시기를 입력하세요."
+                        placeholder="구매 시기를 입력해요."
                         {...(register && register("clnPurchaseDate", { required: isChecked[0] }))}
                         className={errors.clnPurchaseDate ? "error" : ""}
                     />
@@ -145,7 +145,7 @@ const CleanCheckList = ({
                 </RegisterSubTitle3>
                 {isChecked[2] && (
                     <Input
-                        placeholder="직거래 할 장소를 입력하세요."
+                        placeholder="직거래 할 장소를 입력해요."
                         {...(register && register("directLocation", { required: isChecked[2] }))}
                         onClick={() => setShowDirectModal(true)}
                         style={{ caretColor: "transparent" }}
