@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button, UnderlineTextButton } from "@/components/atoms/Button";
-import LogoBlue from "@/assets/icons/logoBlue.svg?react";
 import { Link } from "react-router-dom";
 import { useLoginModalStore } from "@/store/ModalStore";
+import MainLogo from "@/components/atoms/MainLogo";
 
 const LoginTextBox = styled.div`
     width: 100%;
@@ -24,12 +24,6 @@ const WelcomeSubTitle = styled.h2`
     font-size: 18px;
 `;
 
-const LogoWrap = styled.div`
-    width: 150px;
-    height: 150px;
-    margin-bottom: 160px;
-`;
-
 const ButtonWrap = styled.div`
     z-index: 10;
     margin-bottom: 20px;
@@ -45,9 +39,7 @@ export default function LoginContainer() {
                     <WelcomeSubTitle>반려동물용품</WelcomeSubTitle>
                     <WelcomeTitle>중고거래는?</WelcomeTitle>
                 </div>
-                <LogoWrap>
-                    <LogoBlue />
-                </LogoWrap>
+                <MainLogo />
                 <ButtonWrap>
                     <Button variant="yellow" $hoverAction={false} onClick={showLoginModal}>
                         카카오로 3초만에 로그인
