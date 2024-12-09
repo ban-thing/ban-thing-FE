@@ -1,6 +1,6 @@
-import { MySellButton } from "@/components/atoms/Button";
 import TabBar from "@/components/atoms/TabBar";
 import ItemList from "@/components/layout/ItemList";
+import { MySellButton } from "@/components/molecules/MySellButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -34,10 +34,6 @@ const MyPageItemList = () => {
         else if (tab === "판매 내역") navigate("/my-page/sale-list");
     };
 
-    const onClickSellButton = () => {
-        navigate("/item-register");
-    };
-
     return (
         <MyPageItemListWrap>
             <TabBar
@@ -48,7 +44,7 @@ const MyPageItemList = () => {
             <ItemList padding="0 20px" viewEditButton={true} noItemText="앗! 아직 내역이 없어요." />
             <MyPageBottom>
                 <div>
-                    <MySellButton onClick={onClickSellButton} />
+                    <MySellButton />
                 </div>
             </MyPageBottom>
         </MyPageItemListWrap>

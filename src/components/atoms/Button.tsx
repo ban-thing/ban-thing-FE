@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plusBold.svg?react";
-import Snack from "@/assets/icons/snackWhite.svg?react";
 import FilterIcon from "@/assets/icons/filter.svg?react";
 import ResetIcon from "@/assets/icons/reset.svg?react";
 // TODO: $variant로 수정
@@ -272,39 +271,6 @@ export const UnderlineTextButton = styled.button<UnderlineTextButtonProps>`
     width: ${(props) => (props.width ? props.width : "auto")};
 `;
 
-const StyledMySellButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
-    width: 128px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 15px 13px;
-    border-radius: 32px;
-    background-color: var(--color-main-1);
-    position: absolute;
-    bottom: 70px;
-    right: 20px;
-    font-size: 14px;
-    box-sizing: border-box;
-    box-shadow: 0 10px 15px 0 rgba(53, 101, 199, 0.2);
-    transition: all 0.25s;
-    white-space: nowrap;
-    &.small {
-        width: 50px;
-        border-radius: 50%;
-    }
-
-    & > * {
-        color: white;
-        font-weight: 700;
-    }
-`;
-
-type MySellButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-    showPlus?: boolean;
-};
-
 interface PlusButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     width?: string;
     height?: string;
@@ -320,21 +286,6 @@ const PlusButton = styled.button<PlusButtonProps>`
     align-items: center;
     border-radius: 50%;
 `;
-
-export const MySellButton = ({ showPlus = false, ...props }: MySellButtonProps) => {
-    return (
-        <StyledMySellButton {...props}>
-            {showPlus ? (
-                <Plus stroke="white" />
-            ) : (
-                <>
-                    <Snack />
-                    <div>내 물건 팔기</div>
-                </>
-            )}
-        </StyledMySellButton>
-    );
-};
 
 export const ItemFilterButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
