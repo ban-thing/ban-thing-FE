@@ -43,27 +43,30 @@ export default function ChattingList() {
 }
 
 const ChattingListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    padding-top: 62px;
+    padding-bottom: 57px;
+    min-height: 100vh;
 `;
 
 const FixedTabBar = styled.div`
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    background: white;
 `;
 
 const ChatListContainer = styled.div`
-    flex-grow: 1;
-    margin-top: 62px;
-    margin-bottom: 57px;
-    overflow-y: auto;
+    width: 100%;
 `;
 
 const FixedNavigationBar = styled.div`
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
+    background: white;
 `;
