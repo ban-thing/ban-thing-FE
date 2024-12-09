@@ -39,6 +39,11 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                             minLength={1}
                             value={searchValue}
                             onChange={handleInputChange}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    handleSearchClick();
+                                }
+                            }}
                         />
                     </SearchInputWrapper>
                 </SearchWrapper>
