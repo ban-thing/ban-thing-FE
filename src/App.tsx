@@ -23,13 +23,18 @@ import MyPageItemList from "./pages/MyPage/MyPageItemList";
 import MyPageTerms from "./pages/MyPage/MyPageTerms";
 import ChattingList from "./pages/ChattingList";
 import Chatting from "./pages/Chatting";
+import SplashWrap from "./pages/SplashWrap";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />,
+        element: (
+            <SplashWrap>
+                <Layout />
+            </SplashWrap>
+        ),
         errorElement: <NotFound />,
         children: [
             { path: "", element: <Home /> },
