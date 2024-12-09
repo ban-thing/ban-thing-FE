@@ -3,10 +3,43 @@ import BackButtonIcon from "../assets/icons/back.svg?react";
 import { useNavigate } from "react-router-dom";
 import AlbumIcon from "../assets/icons/album.svg?react";
 import SendIcon from "../assets/icons/send.svg?react";
+import { useState } from "react";
 
 export default function Chatting() {
-    //TODO: 채팅 데이터 받아오기
     const navigate = useNavigate();
+    const [messages, setMessages] = useState<
+        Array<{
+            text: string;
+            isMe: boolean;
+            time: string;
+        }>
+    >([
+        {
+            text: "안녕하세요! 구매원해요~!",
+            isMe: false,
+            time: "오후 8:18",
+        },
+    ]);
+    const [inputText, setInputText] = useState("");
+
+    const handleSendMessage = () => {
+        if (inputText.trim() === "") return;
+
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const timeString = `${hours > 12 ? "오후" : "오전"} ${hours > 12 ? hours - 12 : hours}:${minutes.toString().padStart(2, "0")}`;
+
+        setMessages([
+            ...messages,
+            {
+                text: inputText,
+                isMe: true,
+                time: timeString,
+            },
+        ]);
+        setInputText("");
+    };
 
     return (
         <Container>
@@ -30,10 +63,12 @@ export default function Chatting() {
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <DateDivider>2024년 12월 28일</DateDivider>
                 </div>
-                <MessageBubble isMe={false}>
-                    안녕하세요! 구매원해요~!
-                    <MessageTime>오후 8:18</MessageTime>
-                </MessageBubble>
+                {messages.map((message, index) => (
+                    <MessageBubble key={index} isMe={message.isMe}>
+                        {message.text}
+                        <MessageTime isMe={message.isMe}>{message.time}</MessageTime>
+                    </MessageBubble>
+                ))}
             </ChatContainer>
 
             <Footer>
@@ -41,8 +76,13 @@ export default function Chatting() {
                     <AlbumIcon />
                 </ImageButton>
                 <InputContainer>
-                    <ChatInput placeholder="내용을 입력해주세요" />
-                    <SendButton>
+                    <ChatInput
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                        placeholder="내용을 입력해주세요"
+                    />
+                    <SendButton onClick={handleSendMessage}>
                         <SendIcon />
                     </SendButton>
                 </InputContainer>
@@ -52,17 +92,21 @@ export default function Chatting() {
 }
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    position: relative;
+    min-height: 100vh;
+    padding-top: calc(56px + 76px);
+    padding-bottom: 60px;
 `;
 
 const Header = styled.div`
-    width: 100%;
+    width: 375px;
     height: 56px;
     display: flex;
     align-items: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    background: white;
+    z-index: 10;
 `;
 
 const Title = styled.h1`
@@ -76,11 +120,10 @@ const Price = styled.span`
 `;
 
 const ChatContainer = styled.div`
-    flex: 1;
-    overflow-y: auto;
     padding: 0 20px;
-    margin-top: 0;
-    margin-bottom: 60px;
+    padding-bottom: 55px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const DateDivider = styled.div`
@@ -102,31 +145,34 @@ const MessageBubble = styled.div<{ isMe: boolean }>`
     display: flex;
     align-items: center;
     width: fit-content;
+    height: fit-content;
     max-width: 70%;
-    height: 20px;
     padding: 10px 16px;
     border-radius: 24px;
     position: relative;
-    background-color: ${(props) => (props.isMe ? "#007AFF" : "#f1f1f1")};
+    background-color: ${(props) => (props.isMe ? "var(--color-main-1)" : "var(--color-black-8)")};
     color: ${(props) => (props.isMe ? "white" : "black")};
     align-self: ${(props) => (props.isMe ? "flex-end" : "flex-start")};
+    margin-bottom: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `;
 
-const MessageTime = styled.span`
+const MessageTime = styled.span<{ isMe: boolean }>`
     font-size: 10px;
     color: var(--color-black-5);
     position: absolute;
     bottom: 0;
-    right: -50px;
+    ${(props) => (props.isMe ? "left: -48px;" : "right: -48px;")}
 `;
 
 const Footer = styled.div`
-    width: 375px;
+    width: 343px;
     height: 60px;
     padding: 16px 16px 36px 16px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
     position: fixed;
     bottom: 0;
     background: white;
@@ -161,7 +207,7 @@ const InputContainer = styled.div`
 const ChatInput = styled.input`
     flex: 1;
     height: 24px;
-    padding: 6px 16px;
+    padding: 6px 38px 6px 16px;
     border-radius: 20px;
     border: none;
     background-color: var(--color-black-8);
@@ -195,6 +241,8 @@ const HeaderTitle = styled.h1`
 `;
 
 const ProductInfo = styled.div`
+    box-sizing: border-box;
+    width: 375px;
     display: flex;
     align-items: center;
     padding: 8px 20px;
@@ -202,6 +250,9 @@ const ProductInfo = styled.div`
     border-bottom: 1px solid #eee;
     background: white;
     cursor: pointer;
+    position: fixed;
+    top: 56px;
+    z-index: 10;
 `;
 
 const ProductImage = styled.img`
