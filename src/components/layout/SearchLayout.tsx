@@ -145,7 +145,6 @@ const HashTagButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 66px;
     border: 1px solid var(--color-main-1);
     color: var(--color-main-1);
     background: rgba(198, 212, 255, 0.3);
