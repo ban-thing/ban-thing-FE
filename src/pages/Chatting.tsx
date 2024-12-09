@@ -96,7 +96,6 @@ const DateDivider = styled.div`
     background: rgba(198, 212, 255, 0.3);
     padding: 4px 8px;
     border-radius: 24px;
-    cursor: pointer;
 `;
 
 const MessageBubble = styled.div<{ isMe: boolean }>`
@@ -202,6 +201,7 @@ const ProductInfo = styled.div`
     gap: 12px;
     border-bottom: 1px solid #eee;
     background: white;
+    cursor: pointer;
 `;
 
 const ProductImage = styled.img`
