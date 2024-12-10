@@ -50,7 +50,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
                 <div style={showDropdown ? { marginTop: "110px" } : undefined}>
                     <RegisterSubTitle>거래 희망 장소</RegisterSubTitle>
                     <Input
-                        placeholder="거래 희망 장소를 입력해주세요."
+                        placeholder="거래 희망 장소를 입력해요."
                         {...register("directLocation")}
                     />
                 </div>

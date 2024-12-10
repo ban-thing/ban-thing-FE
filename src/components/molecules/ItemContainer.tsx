@@ -16,6 +16,7 @@ import { ItemSearchList } from "@/types/Item";
 import EditBtn from "@/assets/icons/meatballIcon.svg?react";
 import { MouseEvent, useState } from "react";
 import EditModal from "./MyPage.tsx/EditModal";
+import Gps from "@/assets/icons/gps.svg?react";
 
 type ItemInListProps = ItemSearchList & {
     viewEditButton?: boolean;
@@ -58,7 +59,9 @@ export default function ItemInList({
                 <ItemBoxRight $maxWidth={viewEditButton ? "155px" : ""}>
                     <ItemTitle>{cutOffTitle}</ItemTitle>
                     <ItemPropertiesBox>
-                        <ItemProp>{address}</ItemProp>
+                        <ItemProp>
+                            <Gps /> {address}
+                        </ItemProp>
                         <ItemPropDot />
                         <ItemProp>{timeAgo(updatedAt)}</ItemProp>
                         <ItemPropDot />

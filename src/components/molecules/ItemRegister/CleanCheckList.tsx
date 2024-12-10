@@ -145,7 +145,7 @@ const CleanCheckList = ({
                 </RegisterSubTitle3>
                 {isChecked[2] && (
                     <Input
-                        placeholder="직거래 할 장소를 입력해요."
+                        placeholder="거래 희망 장소를 입력해요."
                         {...(register && register("directLocation", { required: isChecked[2] }))}
                         onClick={() => setShowDirectModal(true)}
                         style={{ caretColor: "transparent" }}

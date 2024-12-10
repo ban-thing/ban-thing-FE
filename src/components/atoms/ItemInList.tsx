@@ -52,6 +52,9 @@ export const ItemTitle = styled.h3`
 export const ItemProp = styled.div`
     font-size: 12px;
     color: var(--color-black-5);
+    display: flex;
+    align-items: center;
+    gap: 4px;
 `;
 
 export const ItemPropDot = styled.div`

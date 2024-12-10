@@ -29,10 +29,13 @@ export default function HomeHeader() {
     const onClickSearch = () => {
         navigate("/search");
     };
+    const onChange = (value: string) => {
+        if (value === "동네 바꾸기") navigate("location-select");
+    };
 
     return (
         <HeaderBox>
-            <Dropdown option={[...dummyAddress, "동네 바꾸기"]} />
+            <Dropdown option={[...dummyAddress, "동네 바꾸기"]} onChange={onChange} />
             <SearchButton onClick={onClickSearch}>
                 <Search />
             </SearchButton>

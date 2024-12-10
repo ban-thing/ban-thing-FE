@@ -137,7 +137,7 @@ const ItemRegister = () => {
                     />
                     <StyledToastContainer
                         position="bottom-center"
-                        autoClose={1500}
+                        autoClose={3000}
                         hideProgressBar={true}
                         closeButton={false}
                         closeOnClick
@@ -166,7 +166,7 @@ const ItemRegister = () => {
                 <RegisterElementBox>
                     <RegisterSubTitle>자세한 설명</RegisterSubTitle>
                     <TextArea
-                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 입력 해요."
+                        placeholder="신뢰도 있는 거래를 위해 상품의 내용을 자세히 작성 해주세요."
                         register={register}
                         required
                         className={errors.content ? "error" : ""}
