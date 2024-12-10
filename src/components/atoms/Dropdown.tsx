@@ -3,6 +3,7 @@ import { useEffect, useRef, RefObject } from "react";
 import styled from "styled-components";
 import Arrow from "@/assets/icons/arrowDown.svg?react";
 import { useItemListLocationStore } from "@/store/LocationStore";
+import { motion } from "motion/react";
 
 type ShowProps = {
     $show?: boolean;
@@ -24,12 +25,16 @@ const Label = styled.label`
     gap: 4px;
 `;
 
-const ArrowWrap = styled.span`
+const ArrowWrap = styled(motion.span)`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    & svg {
+        transform: rotate(180deg);
+    }
 `;
-const SelectOptions = styled.ul<ShowProps>`
+const SelectOptions = styled(motion.ul)<ShowProps>`
     position: absolute;
     top: 50px;
     left: -5px;
@@ -104,7 +109,10 @@ export const Dropdown = ({
         <SelectBox onClick={() => toggleDropdown()} ref={selectRef}>
             <Label>
                 <span>{currentLocation}</span>
-                <ArrowWrap>
+                <ArrowWrap
+                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                >
                     <Arrow />
                 </ArrowWrap>
             </Label>

@@ -6,6 +6,7 @@ import { dummyItemList } from "@/store/ItemListDummyData";
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
     width: 100%;
+    max-width: 375px;
     padding: ${({ padding }) => (padding ? padding : "50px 20px 60px")};
     box-sizing: border-box;
     display: flex;

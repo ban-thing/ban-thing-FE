@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
+import { motion } from "motion/react";
 
 type ModalBaseProps = HTMLAttributes<HTMLDivElement> & {
     opacity?: number;
@@ -7,7 +8,7 @@ type ModalBaseProps = HTMLAttributes<HTMLDivElement> & {
     $maxWidth?: string;
     $inset?: string;
 };
-export const ModalBase = styled.div<ModalBaseProps>`
+export const ModalBase = styled(motion.div)<ModalBaseProps>`
     position: fixed;
     width: 100%;
     max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : null)};
