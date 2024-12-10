@@ -34,12 +34,14 @@ export default function SearchHashtag() {
 
             const trimmedValue = inputValue.trim();
             if (trimmedValue === "") {
-                return console.log("공백");
+                return alert("태그를 입력해주세요.");
             }
             if (hashList.length >= 5) {
                 return;
             }
-
+            if (hashList.includes(trimmedValue)) {
+                return alert("이미 입력된 태그입니다."), setInputValue("");
+            }
             setHashList((prev) => [...prev, trimmedValue]);
             setInputValue("");
         }
@@ -62,7 +64,9 @@ export default function SearchHashtag() {
                         hashList.length === 5 ? "태그는 최대 5개까지 입력 가능합니다." : "태그 입력"
                     }
                     onChange={onInputChange}
-                    onKeyDown={onEnterDown}
+                    onKeyPress={onEnterDown}
+                    // onKeyUp={onEnterDown}
+                    // onKeyDown={onEnterDown}
                     value={inputValue}
                 />
             </InputWrapper>
