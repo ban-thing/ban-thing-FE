@@ -71,6 +71,7 @@ export function NumberInput<T extends FieldValues>({
                     type="tel"
                     inputMode="numeric"
                     pattern="\d*"
+                    maxLength={8}
                     ref={ref}
                     value={sellType === "판매" ? formatNumber(value || "") : 0}
                     onChange={(e) => {
