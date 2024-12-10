@@ -7,7 +7,7 @@ import { Button, FilterResetButton } from "../atoms/Button";
 export default function FilterModal() {
     const { hideFilterModal } = useFilterModalStore();
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(1000000);
+    const [maxPrice, setMaxPrice] = useState(9999999);
 
     const handleSliderChange = (value: number | readonly number[]) => {
         if (Array.isArray(value)) {
@@ -41,8 +41,8 @@ export default function FilterModal() {
                     <StyledSlider
                         value={[minPrice, maxPrice]}
                         min={0}
-                        max={1000000}
-                        step={1000}
+                        max={9999999}
+                        step={5000}
                         onChange={handleSliderChange}
                         renderTrack={(props, state) => (
                             <div
@@ -63,7 +63,7 @@ export default function FilterModal() {
                     <FilterResetButton
                         onClick={() => {
                             setMinPrice(0);
-                            setMaxPrice(1000000);
+                            setMaxPrice(9999999);
                         }}
                     />
                     <Button variant="filled" size="small">
