@@ -3,8 +3,10 @@ import { PageTitle } from "@/components/atoms/PageTitle";
 import ModalBaseWithCharacter from "@/components/molecules/ItemRegister/ModalBaseWithCharacter";
 import { Dispatch, MouseEventHandler, ReactNode, SetStateAction } from "react";
 import BottomButtonBar from "@/components/molecules/BottomButtonBar";
+import { motion } from "motion/react";
+import { slideUpMotion } from "@/utils/animation";
 
-const ItemRegisterModalWrap = styled.div`
+const ItemRegisterModalWrap = styled(motion.div)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,8 +41,8 @@ const ItemRegisterModalLayout = ({
 }: ItemRegisterModalProps) => {
     return (
         <>
-            <ModalBaseWithCharacter setShowModal={setShowModal} />
-            <ItemRegisterModalWrap>
+            <ModalBaseWithCharacter setShowModal={setShowModal} {...slideUpMotion} />
+            <ItemRegisterModalWrap {...slideUpMotion}>
                 <PageTitle $margin="32px 0 40px">{titleText}</PageTitle>
                 {children}
                 <BottomButtonBar

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Character from "@/assets/characterWhite.svg?react";
 import { ModalBase } from "@/components/atoms/ModalBackground";
 import { Dispatch, HTMLAttributes, SetStateAction, useRef } from "react";
+import { motion } from "motion/react";
+import { slideUpMotion } from "@/utils/animation";
 
 export const ModalBase2 = styled.div<HTMLAttributes<HTMLDivElement>>`
     position: fixed;
@@ -12,7 +14,7 @@ export const ModalBase2 = styled.div<HTMLAttributes<HTMLDivElement>>`
     bottom: 0;
 `;
 
-export const CharacterWrap = styled.div`
+export const CharacterWrap = styled(motion.div)`
     position: absolute;
     bottom: 575px;
     right: 20px;
@@ -46,7 +48,7 @@ const ModalBaseWithCharacter = ({ setShowModal }: ModalBaseProps) => {
                     ref={modalBaseRef2}
                     style={{ position: "relative", width: "100%", height: "100%" }}
                 >
-                    <CharacterWrap>
+                    <CharacterWrap {...slideUpMotion}>
                         <Character />
                     </CharacterWrap>
                 </div>
