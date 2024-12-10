@@ -10,6 +10,8 @@ import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useForm, UseFormSetValue, FieldValues } from "react-hook-form";
 import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useState } from "react";
+import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
+import { dummyItemList } from "@/store/ItemListDummyData";
 
 export default function SearchResult() {
     const navigate = useNavigate();
@@ -73,7 +75,7 @@ export default function SearchResult() {
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
-                <ItemList />
+                {dummyItemList.length ? <ItemList /> : <NoItemInList text="앗! 검색된 결과가 없어요." />}
             </ScrollContent>
         </SearchContainer>
     );
@@ -98,7 +100,12 @@ const SearchHeader = styled.div`
 `;
 
 const ScrollContent = styled.div`
-    margin-top: 80px;
+    width: 100%;
+    height: 100%;
+    margin-top: ${dummyItemList.length ? "68px" : "0"};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     overflow-y: auto;
     position: relative;

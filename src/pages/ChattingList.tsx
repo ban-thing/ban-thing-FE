@@ -5,6 +5,7 @@ import NavigationBar from "@/components/atoms/NavigationBar";
 import TabBar from "@/components/atoms/TabBar";
 import { dummyChatList } from "@/store/ChatListDummyData";
 import styled from "styled-components";
+import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 
 const tabsList = ["전체", "판매", "구매"];
 
@@ -31,9 +32,13 @@ export default function ChattingList() {
                 <TabBar tabsList={tabsList} initTab={selectedTab} handleTabClick={handleTabClick} />
             </FixedTabBar>
             <ChatListContainer>
-                {filteredChatList.map((chat) => (
-                    <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
-                ))}
+                {filteredChatList.length ? (
+                    filteredChatList.map((chat) => (
+                        <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
+                    ))
+                ) : (
+                    <NoItemInList text="앗! 채팅 내역이 없어요." />
+                )}
             </ChatListContainer>
             <FixedNavigationBar>
                 <NavigationBar />
@@ -58,7 +63,15 @@ const FixedTabBar = styled.div`
 `;
 
 const ChatListContainer = styled.div`
+    height: 100%;
     width: 100%;
+    ${dummyChatList.length
+        ? ""
+        : `position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;`}
 `;
 
 const FixedNavigationBar = styled.div`
