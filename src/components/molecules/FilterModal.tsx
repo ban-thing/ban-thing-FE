@@ -4,15 +4,26 @@ import { useState } from "react";
 import ReactSlider from "react-slider";
 import { Button, FilterResetButton } from "../atoms/Button";
 
+const formatPrice = (price: number) => {
+    return price.toLocaleString("ko-KR");
+};
+
+const removeCommas = (str: string) => {
+    return str.replace(/,/g, "");
+};
+
 export default function FilterModal() {
     const { hideFilterModal } = useFilterModalStore();
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(9999999);
+    const [maxPrice, setMaxPrice] = useState(5000000);
 
     const handleSliderChange = (value: number | readonly number[]) => {
         if (Array.isArray(value)) {
-            setMinPrice(value[0]);
-            setMaxPrice(value[1]);
+            const [newMin, newMax] = value;
+            if (newMax - newMin >= 5000) {
+                setMinPrice(newMin);
+                setMaxPrice(newMax);
+            }
         }
     };
 
@@ -24,16 +35,16 @@ export default function FilterModal() {
                 <PriceRangeContainer>
                     <PriceInput
                         placeholder="무료 나눔"
-                        value={minPrice}
-                        onChange={(e) => setMinPrice(Number(e.target.value))}
-                        type="number"
+                        value={formatPrice(minPrice)}
+                        onChange={(e) => setMinPrice(Number(removeCommas(e.target.value)))}
+                        type="text"
                     />
                     <RangeDivider>~</RangeDivider>
                     <PriceInput
                         placeholder="최대"
-                        value={maxPrice}
-                        onChange={(e) => setMaxPrice(Number(e.target.value))}
-                        type="number"
+                        value={formatPrice(maxPrice)}
+                        onChange={(e) => setMaxPrice(Number(removeCommas(e.target.value)))}
+                        type="text"
                     />
                 </PriceRangeContainer>
                 <SliderContainer>
@@ -41,8 +52,9 @@ export default function FilterModal() {
                     <StyledSlider
                         value={[minPrice, maxPrice]}
                         min={0}
-                        max={9999999}
+                        max={5000000}
                         step={5000}
+                        minDistance={5000}
                         onChange={handleSliderChange}
                         renderTrack={(props, state) => (
                             <div
@@ -63,7 +75,7 @@ export default function FilterModal() {
                     <FilterResetButton
                         onClick={() => {
                             setMinPrice(0);
-                            setMaxPrice(9999999);
+                            setMaxPrice(5000000);
                         }}
                     />
                     <Button variant="filled" size="small">
