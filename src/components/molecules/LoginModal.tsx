@@ -19,17 +19,29 @@ const ModalTextBox = styled.div<ModalTextBoxProps>`
     border-bottom: 1px solid var(--color-black-6);
     box-sizing: border-box;
 
-    &:last-child {
-        padding-top: 10px;
-        border-bottom: none;
-    }
-
-    &:not(:first-child):not(:last-child) {
+    &:not(:first-child) {
         padding: 10px 0;
     }
 
     &:nth-child(2) {
         cursor: pointer;
+    }
+`;
+
+const ModalApproveBox = styled.div`
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 14px;
+    row-gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+
+    & > span {
+        width: 24px;
+        height: 24px;
+    }
+    & * {
+        color: var(--color-black-5);
     }
 `;
 
@@ -57,16 +69,9 @@ const LogoText = styled.div`
 const ApproveCheck = styled.div`
     min-width: 24px;
     width: 24px;
-    padding: 2px 0 0 2px;
-`;
-
-const ApproveTextBox = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 3px;
+    display: grid;
+    grid-template-rows: 24px 24px;
+    gap: 7px;
 `;
 
 const ApproveAllTextBox = styled.div`
@@ -110,7 +115,7 @@ export default function LoginModal() {
     };
 
     const onClickApprove = (index: number) => {
-        if (approveList[index]) return;
+        // if (approveList[index]) return;
         setApproveList((prev) => prev.map((item, i) => (i === index ? !item : item)));
     };
 
@@ -149,26 +154,22 @@ export default function LoginModal() {
                                 정보는 동의 철회 또는 서비스 탈퇴 시 지체없이 파기됩니다.
                             </ApproveText>
                         </ModalTextBox>
-                        <ModalTextBox height="65px">
-                            <ApproveCheck>
-                                {approveList[0] && <Check />}
-                                {approveList[1] && <Check />}
-                            </ApproveCheck>
-                            <ApproveTextBox>
-                                <RequiredText>
-                                    <RequiredApprove onClick={() => onClickApprove(0)}>
-                                        [필수] 카카오 개인정보 제3자 제공 동의
-                                    </RequiredApprove>
-                                    <ViewTerms>보기</ViewTerms>
-                                </RequiredText>
-                                <RequiredText>
-                                    <RequiredApprove onClick={() => onClickApprove(1)}>
-                                        [필수] 카카오 개인정보 제3자 제공 동의
-                                    </RequiredApprove>
-                                    <ViewTerms>보기</ViewTerms>
-                                </RequiredText>
-                            </ApproveTextBox>
-                        </ModalTextBox>
+                        <ModalApproveBox>
+                            <span>{approveList[0] && <Check />}</span>
+                            <RequiredText>
+                                <RequiredApprove onClick={() => onClickApprove(0)}>
+                                    [필수] 카카오 개인정보 제3자 제공 동의
+                                </RequiredApprove>
+                                <ViewTerms>보기</ViewTerms>
+                            </RequiredText>
+                            <span>{approveList[1] && <Check />}</span>
+                            <RequiredText>
+                                <RequiredApprove onClick={() => onClickApprove(1)}>
+                                    [필수] 카카오 개인정보 제3자 제공 동의
+                                </RequiredApprove>
+                                <ViewTerms>보기</ViewTerms>
+                            </RequiredText>
+                        </ModalApproveBox>
                     </ModalTextContainer>
                     <ModalButton $enable={approveList[0] && approveList[1]}>
                         동의하고 계속하기

@@ -42,4 +42,5 @@ export const ModalTextContainer = styled.div`
     background-color: white;
     padding: 24px;
     box-sizing: border-box;
+    user-select: none;
 `;
