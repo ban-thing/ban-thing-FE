@@ -50,6 +50,9 @@ const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
     const onClickEdit = () => {
         console.log("수정", itemId);
     };
+    const onClickSoldOut = () => {
+        console.log("판매완료", itemId);
+    };
     const onClickDelete = () => {
         console.log("삭제", itemId);
     };
@@ -60,6 +63,7 @@ const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
             <ModalBase2 ref={modalBaseRef2} onClick={onClickBase}>
                 <StyledEditModal $inset={`${topPosition}px 40px auto auto`}>
                     <StyledEditButton onClick={onClickEdit}>게시글 수정</StyledEditButton>
+                    <StyledEditButton onClick={onClickSoldOut}>판매 완료</StyledEditButton>
                     <StyledEditButton onClick={onClickDelete}>삭제</StyledEditButton>
                 </StyledEditModal>
             </ModalBase2>
