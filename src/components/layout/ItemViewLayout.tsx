@@ -9,10 +9,10 @@ type ItemViewLayout = {
 
 const ItemViewLayout = ({ children, type, price }: ItemViewLayout) => {
     return (
+        // 스켈레톤은 아니지만 로딩상태 반영
         <>
-            {/* TODO: 상단바 추가? */}
             {children}
-            <ItemViewBottomBar type={type} price={price} />
+            {true ? <ItemViewBottomBar type={type} price={price} /> : <></>}
         </>
     );
 };

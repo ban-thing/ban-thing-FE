@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
+import { ItemImgSkt } from "@/components/atoms/Skeleton";
 
 const StyledItemImg = styled.div`
     width: 100%;
@@ -44,15 +45,21 @@ const dummyData = {
 const ItemView = () => {
     return (
         <ItemViewLayout type={dummyData.type} price={dummyData.price}>
-            <StyledItemImg>
-                <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                    {dummyData.itemImgs.map((value, index) => (
-                        <SwiperSlide key={index}>
-                            <img src={value} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </StyledItemImg>
+            {/* 스켈레톤 */}
+            {true ? (
+                <StyledItemImg>
+                    <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                        {dummyData.itemImgs.map((value, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={value} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </StyledItemImg>
+            ) : (
+                <ItemImgSkt />
+            )}
+
             <ItemViewProfile
                 sellerNickname={dummyData.sellerNickname}
                 sellerImgUrl={dummyData.sellerImgUrl}

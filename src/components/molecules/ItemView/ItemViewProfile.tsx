@@ -1,3 +1,4 @@
+import { ProfileAddressSkt, ProfileImgSkt, ProfileNameSkt } from "@/components/atoms/Skeleton";
 import { ItemView } from "@/types/Item";
 import styled from "styled-components";
 
@@ -21,6 +22,7 @@ const ProfileImgWrap = styled.div`
 const ProfileTextWrap = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `;
 
 const ProfileName = styled.div`
@@ -52,14 +54,28 @@ export default function ItemViewProfile({
     isDirect,
 }: ItemViewProfileProps) {
     return (
+        // 스켈레톤
         <ProfileWrap>
-            <ProfileImgWrap>
-                <img src={sellerImgUrl} />
-            </ProfileImgWrap>
+            {true ? (
+                <ProfileImgWrap>
+                    <img src={sellerImgUrl} />
+                </ProfileImgWrap>
+            ) : (
+                <ProfileImgSkt circle />
+            )}
             <ProfileTextWrap>
-                <ProfileName>{sellerNickname}</ProfileName>
-                <ProfilePlace>{address}</ProfilePlace>
-                <ProfilePlace2>{isDirect ? directLocation : "직거래 불가능"}</ProfilePlace2>
+                {true ? (
+                    <>
+                        <ProfileName>{sellerNickname}</ProfileName>
+                        <ProfilePlace>{address}</ProfilePlace>
+                        <ProfilePlace2>{isDirect ? directLocation : "직거래 불가능"}</ProfilePlace2>
+                    </>
+                ) : (
+                    <>
+                        <ProfileNameSkt />
+                        <ProfileAddressSkt />
+                    </>
+                )}
             </ProfileTextWrap>
         </ProfileWrap>
     );

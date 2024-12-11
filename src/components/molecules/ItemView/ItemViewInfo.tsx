@@ -4,6 +4,7 @@ import timeAgo from "@/utils/TimeAgo";
 import CleanCheckTitle from "../CleanCheckTitle";
 import check from "@/assets/checkBackground.png";
 import { ItemView } from "@/types/Item";
+import { ItemDescSkt, ItemDescSktBox, ItemTagSkt, ItemTitleSkt } from "@/components/atoms/Skeleton";
 
 const ItemViewInfoBox = styled.div`
     width: 100%;
@@ -117,60 +118,84 @@ export default function ItemViewInfo({
     const cleanList = ["새 상품", "있음", "없음"];
 
     return (
+        // 스켈레톤
         <ItemViewInfoBox>
-            <TitleWrap>
-                <ItemViewTitle>{title}</ItemViewTitle>
-                <ItemViewTime>{timeAgo(updatedAt)}</ItemViewTime>
-            </TitleWrap>
-            <HashtagWrap>
-                {hashtags.map((tag, index) => (
-                    <HashtagButton key={index} text={tag} />
-                ))}
-            </HashtagWrap>
-            <ContentWrap>
-                {content ||
-                    "Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do eiusmod tempor incidid unt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco "}
-            </ContentWrap>
-            <CleanCheckListWrap>
-                <CleanCheckListGridBackground src={check} />
-                <CleanCheckTitle titleWeight={700} />
-                <CleanCheckListContentWrap>
-                    <span>오염</span>
-                    <CleanCheckListOption>
-                        {pollList.map((value, index) => (
-                            <span key={index} className={clnPollution === value ? "highlight" : ""}>
-                                {value}
-                            </span>
+            {true ? (
+                <>
+                    <TitleWrap>
+                        <ItemViewTitle>{title}</ItemViewTitle>
+                        <ItemViewTime>{timeAgo(updatedAt)}</ItemViewTime>
+                    </TitleWrap>
+                    <HashtagWrap>
+                        {hashtags.map((tag, index) => (
+                            <HashtagButton key={index} text={tag} />
                         ))}
-                    </CleanCheckListOption>
-                    <span>사용횟수</span>
-                    <CleanCheckListOption>
-                        {timeList.map((value, index) => (
-                            <span key={index} className={clnTimeUsed === value ? "highlight" : ""}>
-                                {value}
-                            </span>
-                        ))}
-                    </CleanCheckListOption>
-                    <span>구매시기</span>
-                    <CleanCheckListOption>
-                        <span className={clnPurchasedDate !== "모름" ? "highlight" : ""}>
-                            {clnPurchasedDate}
-                        </span>
-                    </CleanCheckListOption>
-                    <span>세탁유무</span>
-                    <CleanCheckListOption>
-                        {cleanList.map((value, index) => (
-                            <span key={index} className={clnCleaned === value ? "highlight" : ""}>
-                                {value}
-                            </span>
-                        ))}
-                    </CleanCheckListOption>
-                    <span>유통기한</span>
-                    <CleanCheckListOption>
-                        <span className={clnExpire !== "모름" ? "highlight" : ""}>{clnExpire}</span>
-                    </CleanCheckListOption>
-                </CleanCheckListContentWrap>
-            </CleanCheckListWrap>
+                    </HashtagWrap>
+                    <ContentWrap>
+                        {content ||
+                            "Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do eiusmod tempor incidid unt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco "}
+                    </ContentWrap>
+                    <CleanCheckListWrap>
+                        <CleanCheckListGridBackground src={check} />
+                        <CleanCheckTitle titleWeight={700} />
+                        <CleanCheckListContentWrap>
+                            <span>오염</span>
+                            <CleanCheckListOption>
+                                {pollList.map((value, index) => (
+                                    <span
+                                        key={index}
+                                        className={clnPollution === value ? "highlight" : ""}
+                                    >
+                                        {value}
+                                    </span>
+                                ))}
+                            </CleanCheckListOption>
+                            <span>사용횟수</span>
+                            <CleanCheckListOption>
+                                {timeList.map((value, index) => (
+                                    <span
+                                        key={index}
+                                        className={clnTimeUsed === value ? "highlight" : ""}
+                                    >
+                                        {value}
+                                    </span>
+                                ))}
+                            </CleanCheckListOption>
+                            <span>구매시기</span>
+                            <CleanCheckListOption>
+                                <span className={clnPurchasedDate !== "모름" ? "highlight" : ""}>
+                                    {clnPurchasedDate}
+                                </span>
+                            </CleanCheckListOption>
+                            <span>세탁유무</span>
+                            <CleanCheckListOption>
+                                {cleanList.map((value, index) => (
+                                    <span
+                                        key={index}
+                                        className={clnCleaned === value ? "highlight" : ""}
+                                    >
+                                        {value}
+                                    </span>
+                                ))}
+                            </CleanCheckListOption>
+                            <span>유통기한</span>
+                            <CleanCheckListOption>
+                                <span className={clnExpire !== "모름" ? "highlight" : ""}>
+                                    {clnExpire}
+                                </span>
+                            </CleanCheckListOption>
+                        </CleanCheckListContentWrap>
+                    </CleanCheckListWrap>
+                </>
+            ) : (
+                <>
+                    <ItemTitleSkt />
+                    <ItemTagSkt />
+                    <ItemDescSktBox>
+                        <ItemDescSkt count={2} />
+                    </ItemDescSktBox>
+                </>
+            )}
         </ItemViewInfoBox>
     );
 }
