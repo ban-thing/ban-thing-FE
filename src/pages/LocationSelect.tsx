@@ -7,90 +7,28 @@ import CheckIcon from "../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useMyLocationModalStore } from "@/store/ModalStore";
 import MyLocationModal from "@/components/molecules/MyLocationModal";
-
-interface Region {
-    id: string;
-    name: string;
-}
-
-interface AdmVO {
-    admCode: string;
-    admCodeNm: string;
-    lowestAdmCodeNm: string;
-}
-
-interface ApiResponse {
-    admVOList: {
-        pageNo: string;
-        admVOList: AdmVO[];
-        totalCount: string;
-        error: string;
-        message: string;
-        numOfRows: string;
-    };
-}
-
-const API_KEY = "DF267C57-FC4C-337B-BADF-F0A952C4F4B3";
-const BASE_URL = "/api";
-
-const fetchCities = async () => {
-    try {
-        const response = await fetch(
-            `${BASE_URL}/admCodeList?format=json&numOfRows=20&pageNo=1&key=${API_KEY}&domain=http://localhost:5173`,
-        );
-        const data = await response.json();
-        return (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
-            id: item.admCode,
-            name: item.lowestAdmCodeNm.slice(0, 2),
-        }));
-    } catch (error) {
-        console.error("Error fetching cities:", error);
-        return [];
-    }
-};
-
-const fetchDistricts = async (cityCode: string, cityName: string) => {
-    try {
-        const response = await fetch(
-            `${BASE_URL}/admSiList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${cityCode}`,
-        );
-        const data = await response.json();
-        const districts = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
-            id: item.admCode,
-            name: item.lowestAdmCodeNm,
-        }));
-        return [{ id: `${cityCode}_all`, name: `${cityName} 전체` }, ...districts];
-    } catch (error) {
-        console.error("Error fetching districts:", error);
-        return [];
-    }
-};
-const fetchTowns = async (districtCode: string, districtName: string) => {
-    try {
-        const response = await fetch(
-            `${BASE_URL}/admDongList?key=${API_KEY}&domain=http://localhost:5173&format=json&admCode=${districtCode}`,
-        );
-        const data = await response.json();
-        const towns = (data as ApiResponse).admVOList.admVOList.map((item: AdmVO) => ({
-            id: item.admCode,
-            name: item.lowestAdmCodeNm,
-        }));
-        return [{ id: `${districtCode}_all`, name: `${districtName} 전체` }, ...towns];
-    } catch (error) {
-        console.error("Error fetching towns:", error);
-        return [];
-    }
-};
+import { useLocationData } from "@/hooks/useLocationData";
+import { Region } from "@/types/location";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function LocationSelect() {
-    const [cities, setCities] = useState<Region[]>([]);
-    const [districts, setDistricts] = useState<Region[]>([]);
-    const [towns, setTowns] = useState<Region[]>([]);
+    const {
+        cities,
+        districts,
+        towns,
+        isLoading,
+        error,
+        loadCities,
+        loadDistricts,
+        loadTowns,
+        setDistricts,
+        setTowns,
+    } = useLocationData();
+
     const [selectedCity, setSelectedCity] = useState<Region | null>(null);
     const [selectedDistrict, setSelectedDistrict] = useState<Region | null>(null);
     const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
-    const { isMyLocationModalVisible } = useMyLocationModalStore();
-    const { showMyLocationModal } = useMyLocationModalStore();
+    const { isMyLocationModalVisible, showMyLocationModal } = useMyLocationModalStore();
 
     const handleCitySelect = (city: Region) => {
         setSelectedCity(city);
@@ -129,39 +67,38 @@ export default function LocationSelect() {
     };
 
     useEffect(() => {
-        const loadCities = async () => {
-            const citiesData = await fetchCities();
-            setCities(citiesData);
-        };
         loadCities();
     }, []);
 
     useEffect(() => {
-        const loadDistricts = async () => {
-            if (selectedCity) {
-                const districtsData = await fetchDistricts(selectedCity.id, selectedCity.name);
-                setDistricts(districtsData);
-                setSelectedDistrict(null);
-                setSelectedTowns([]);
-            } else {
-                setDistricts([]);
-            }
-        };
-        loadDistricts();
+        if (selectedCity) {
+            loadDistricts(selectedCity.id, selectedCity.name);
+            setSelectedDistrict(null);
+            setSelectedTowns([]);
+        } else {
+            setDistricts([]);
+        }
     }, [selectedCity]);
 
     useEffect(() => {
-        const loadTowns = async () => {
-            if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
-                const townsData = await fetchTowns(selectedDistrict.id, selectedDistrict.name);
-                setTowns(townsData);
-                setSelectedTowns([]);
-            } else {
-                setTowns([]);
-            }
-        };
-        loadTowns();
+        if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
+            loadTowns(selectedDistrict.id, selectedDistrict.name);
+            setSelectedTowns([]);
+        } else {
+            setTowns([]);
+        }
     }, [selectedDistrict]);
+
+    if (isLoading) {
+        return (
+            <LoaderContainer>
+                <ClipLoader color="#6290EC" size={50} />
+            </LoaderContainer>
+        );
+    }
+    if (error) {
+        return <ErrorContainer>{error}</ErrorContainer>;
+    }
 
     return (
         <Container>
@@ -312,6 +249,24 @@ export default function LocationSelect() {
         </Container>
     );
 }
+
+const LoaderContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+`;
+
+const ErrorContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    color: red;
+    font-size: 16px;
+`;
 
 const Container = styled.div`
     width: 100%;
