@@ -3,6 +3,8 @@ import { useFilterModalStore } from "@/store/ModalStore";
 import { useState } from "react";
 import ReactSlider from "react-slider";
 import { Button, FilterResetButton } from "../atoms/Button";
+import { motion } from "motion/react";
+import { slideUpMotionWithX } from "@/utils/animation";
 
 const formatPrice = (price: number) => {
     return price.toLocaleString("ko-KR");
@@ -30,7 +32,7 @@ export default function FilterModal() {
     return (
         <>
             <ModalBase onClick={hideFilterModal} />
-            <ModalContainer>
+            <ModalContainer {...slideUpMotionWithX}>
                 <Title>가격</Title>
                 <PriceRangeContainer>
                     <PriceInput
@@ -97,7 +99,7 @@ const ModalBase = styled.div`
     z-index: 10;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled(motion.div)`
     position: fixed;
     bottom: 0;
     left: 50%;
