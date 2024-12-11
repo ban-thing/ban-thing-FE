@@ -21,7 +21,6 @@ import ItemRegisterHashTag from "./HashTagModal";
 import ItemRegisterDirectModal from "./ItemRegisterDirectModal";
 import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
-import { AnimatePresence } from "motion/react";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
@@ -206,13 +205,11 @@ const ItemRegister = () => {
                 onClick={handleSubmit(onSubmit)}
             />
             {showHashModal && (
-                <AnimatePresence>
-                    <ItemRegisterHashTag
-                        setShowModal={setShowHashModal}
-                        setValue={setValue}
-                        watch={watch}
-                    />
-                </AnimatePresence>
+                <ItemRegisterHashTag
+                    setShowModal={setShowHashModal}
+                    setValue={setValue}
+                    watch={watch}
+                />
             )}
             {showDirectModal && (
                 <ItemRegisterDirectModal

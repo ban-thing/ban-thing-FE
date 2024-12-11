@@ -1,4 +1,4 @@
-import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from "react";
+import { ChangeEvent, TextareaHTMLAttributes, useState } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 import { StyledTextArea } from "@/components/atoms/Input";
@@ -21,16 +21,10 @@ type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 
 export function TextArea({ register, ...props }: TextAreaProps) {
     const [typingCount, setTypingCount] = useState(0);
-    const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTypingCount(e.target.value.length);
-        handleResizeHeight();
-    };
-    const handleResizeHeight = () => {
-        if (textAreaRef.current) {
-            textAreaRef.current.style.height = "auto";
-            textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-        }
+        e.target.style.height = "auto";
+        e.target.style.height = `${e.target.scrollHeight}px`;
     };
 
     const textarea = document.querySelector("textarea");
