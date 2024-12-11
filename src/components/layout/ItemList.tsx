@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ItemContainer from "@/components/molecules/ItemContainer";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import { dummyItemList } from "@/store/ItemListDummyData";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -11,6 +12,8 @@ const StyledItemList = styled.div<{ height: string; padding?: string }>`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 type ItemListProps = {
@@ -25,24 +28,33 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
     // const { currentLocation } = useItemListLocationStore();
     // 수정삭제 모달창
     // const { isEditModalVisible, showEditModal, hideEditModal } = useEditModalStore();
+    // 스피너
+    const isLoading = false;
     return (
-        <StyledItemList height={!dummyItemList.length ? "100vh" : ""} padding={padding}>
-            {dummyItemList.length ? (
-                dummyItemList?.map((item, index) => (
-                    <ItemContainer
-                        key={index}
-                        imgUrl={item.imgUrl}
-                        itemId={item.itemId}
-                        title={item.title}
-                        price={item.price}
-                        address={item.address}
-                        updatedAt={item.updatedAt}
-                        type={item.type}
-                        viewEditButton={viewEditButton}
-                    />
-                ))
+        <StyledItemList
+            height={isLoading ? "100vh" : dummyItemList.length ? "" : "100vh"}
+            padding={padding}
+        >
+            {!isLoading ? ( //로딩중/로딩끝
+                dummyItemList.length ? ( //로딩끝나고 목록 데이터 있을 때/없을 때
+                    dummyItemList?.map((item, index) => (
+                        <ItemContainer
+                            key={index}
+                            imgUrl={item.imgUrl}
+                            itemId={item.itemId}
+                            title={item.title}
+                            price={item.price}
+                            address={item.address}
+                            updatedAt={item.updatedAt}
+                            type={item.type}
+                            viewEditButton={viewEditButton}
+                        />
+                    ))
+                ) : (
+                    <NoItemInList text={noItemText} />
+                )
             ) : (
-                <NoItemInList text={noItemText} />
+                <ClipLoader />
             )}
         </StyledItemList>
     );
