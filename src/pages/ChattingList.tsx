@@ -6,12 +6,15 @@ import TabBar from "@/components/atoms/TabBar";
 import { dummyChatList } from "@/store/ChatListDummyData";
 import styled from "styled-components";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const tabsList = ["전체", "판매", "구매"];
 
 export default function ChattingList() {
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState("전체");
+
+    const isLoading = false;
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
@@ -31,13 +34,17 @@ export default function ChattingList() {
             <FixedTabBar>
                 <TabBar tabsList={tabsList} initTab={selectedTab} handleTabClick={handleTabClick} />
             </FixedTabBar>
-            <ChatListContainer>
-                {filteredChatList.length ? (
-                    filteredChatList.map((chat) => (
-                        <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
-                    ))
+            <ChatListContainer isLoading={isLoading}>
+                {!isLoading ? (
+                    filteredChatList.length ? (
+                        filteredChatList.map((chat) => (
+                            <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
+                        ))
+                    ) : (
+                        <NoItemInList text="앗! 채팅 내역이 없어요." />
+                    )
                 ) : (
-                    <NoItemInList text="앗! 채팅 내역이 없어요." />
+                    <ClipLoader />
                 )}
             </ChatListContainer>
             <FixedNavigationBar>
@@ -62,7 +69,7 @@ const FixedTabBar = styled.div`
     background: white;
 `;
 
-const ChatListContainer = styled.div`
+const ChatListContainer = styled.div<{ isLoading: boolean }>`
     height: 100%;
     width: 100%;
     ${dummyChatList.length
@@ -72,6 +79,18 @@ const ChatListContainer = styled.div`
         left: 0;
         right: 0;
         bottom: 0;`}
+
+    ${({ isLoading }) =>
+        isLoading
+            ? `display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;`
+            : ""}
 `;
 
 const FixedNavigationBar = styled.div`
