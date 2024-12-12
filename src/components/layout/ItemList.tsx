@@ -27,7 +27,7 @@ type ItemListProps = {
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
     const { data, error, isLoading } = useFetchItemsList({
         keyword: "머신",
-        hashtags: ["파란색"],
+        hashtags: "파란색",
         minPrice: 1000,
         maxPrice: 30000,
         address: "파주",
