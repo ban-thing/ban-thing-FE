@@ -1,7 +1,7 @@
 export const dummyChatList = [
     {
-        chatroomId: 1,
-        profileImgUrl: "/images/profile1.jpg",
+        chatRoomId: 1,
+        profileImg: "/images/profile1.jpg",
         nickname: "레오엄마",
         latestMessage: "안녕하세요",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -10,8 +10,8 @@ export const dummyChatList = [
         type: "구매",
     },
     {
-        chatroomId: 2,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 2,
+        profileImg: "https://placehold.co/400",
         nickname: "쿠키",
         latestMessage: "안녕하세요 구매원해요~~!!",
         latestMessageDateTime: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
@@ -20,8 +20,8 @@ export const dummyChatList = [
         type: "구매",
     },
     {
-        chatroomId: 3,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 3,
+        profileImg: "https://placehold.co/400",
         nickname: "이코코",
         latestMessage: "넹 감사합니다.",
         latestMessageDateTime: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
@@ -30,8 +30,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 4,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 4,
+        profileImg: "https://placehold.co/400",
         nickname: "호두언니",
         latestMessage: "흠.. 고민해볼게요.",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -40,8 +40,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 5,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 5,
+        profileImg: "https://placehold.co/400",
         nickname: "시리",
         latestMessage: "네고 원해요",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -50,8 +50,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 6,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 6,
+        profileImg: "https://placehold.co/400",
         nickname: "반띠잉",
         latestMessage: "네네네",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -60,8 +60,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 7,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 7,
+        profileImg: "https://placehold.co/400",
         nickname: "비비",
         latestMessage: "7시요",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -70,8 +70,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 8,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 8,
+        profileImg: "https://placehold.co/400",
         nickname: "지수",
         latestMessage: "hello",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -80,8 +80,8 @@ export const dummyChatList = [
         type: "판매",
     },
     {
-        chatroomId: 9,
-        profileImgUrl: "https://placehold.co/400",
+        chatRoomId: 9,
+        profileImg: "https://placehold.co/400",
         nickname: "에일리",
         latestMessage: "12시요",
         latestMessageDateTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),

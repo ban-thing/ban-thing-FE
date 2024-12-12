@@ -74,12 +74,7 @@ const MyPageEdit = () => {
                 <EditButton>
                     <Camera />
                 </EditButton>
-                <input
-                    type="file"
-                    id="photoUpload"
-                    accept="image/*"
-                    {...register("profileImgUrl")}
-                />
+                <input type="file" id="photoUpload" accept="image/*" {...register("profileImg")} />
             </PhotoEditWrap>
             <Input placeholder="닉네임을 입력해주세요." {...register("nickname")} />
             <BottomButtonBar buttonText="완료" type="submit" />

@@ -3,7 +3,7 @@ export type UserProfile = {
     userId: number;
     nickname: string;
     email: string;
-    profileImgUrl: string;
+    profileImg: string;
     address1: string;
     address2: string;
     address3: string;

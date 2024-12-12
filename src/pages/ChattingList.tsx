@@ -25,8 +25,8 @@ export default function ChattingList() {
         return chat.type === selectedTab;
     });
 
-    const onClickBox = (chatroomId: number) => {
-        navigate(`/chatting/${chatroomId}`);
+    const onClickBox = (chatRoomId: number) => {
+        navigate(`/chatting/${chatRoomId}`);
     };
 
     return (
@@ -38,7 +38,7 @@ export default function ChattingList() {
                 {!isLoading ? (
                     filteredChatList.length ? (
                         filteredChatList.map((chat) => (
-                            <ChatList key={chat.chatroomId} chat={chat} onClick={onClickBox} />
+                            <ChatList key={chat.chatRoomId} chat={chat} onClick={onClickBox} />
                         ))
                     ) : (
                         <NoItemInList text="앗! 채팅 내역이 없어요." />

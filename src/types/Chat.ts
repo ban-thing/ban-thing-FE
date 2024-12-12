@@ -1,7 +1,7 @@
 // 채팅 목록 조회
 export type ChatList = {
-    chatroomId: number;
-    profileImgUrl: string;
+    chatRoomId: number;
+    profileImg: string;
     nickname: string;
     latestMessage: string;
     latestMessageDateTime: Date;

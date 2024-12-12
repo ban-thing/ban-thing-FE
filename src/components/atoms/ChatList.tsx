@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import PointIcon from "../../assets/icons/point.svg?react";
-import type { ChatList as ChatListType } from "../../types/Chat";
-import timeAgo from "../../utils/TimeAgo";
+import PointIcon from "@/assets/icons/point.svg?react";
+import type { ChatList as ChatListType } from "@/types/Chat";
+import timeAgo from "@/utils/TimeAgo";
 
 interface ChatListItemProps {
     chat: ChatListType;
-    onClick: (chatroomId: number) => void;
+    onClick: (chatRoomId: number) => void;
 }
 
 export default function ChatList({ chat, onClick }: ChatListItemProps) {
     return (
-        <ChatItemContainer onClick={() => onClick(chat.chatroomId)}>
-            <ProfileImage src={chat.profileImgUrl} />
+        <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
+            <ProfileImage src={chat.profileImg} />
             <ChatInfo>
                 <UserDetails>
                     <UserName>{chat.nickname}</UserName>

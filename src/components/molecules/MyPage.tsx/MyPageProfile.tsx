@@ -53,16 +53,16 @@ const MyPageProfileEditButton = styled.button`
     }
 `;
 
-type ProfileProps = Pick<UserProfile, "profileImgUrl" | "address1" | "nickname">;
+type ProfileProps = Pick<UserProfile, "profileImg" | "address1" | "nickname">;
 
-const MyPageProfile = ({ profileImgUrl, address1, nickname }: ProfileProps) => {
+const MyPageProfile = ({ profileImg, address1, nickname }: ProfileProps) => {
     const navigate = useNavigate();
 
     return (
         <MyPageProfileWrap>
             <StyledMyPageProfile>
                 <div className="MyPageProfilePhoto">
-                    <img src={profileImgUrl} alt="프로필 이미지" />
+                    <img src={profileImg} alt="프로필 이미지" />
                 </div>
                 <div className="MyPageProfileId">{nickname}</div>
                 <div className="MyPageProfileAddress">{address1}</div>

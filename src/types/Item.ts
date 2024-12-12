@@ -8,7 +8,7 @@ export type Item = {
     price: number;
     directLocation: string;
     address: string;
-    itemImgs: string[];
+    itemImgs?: string[];
     hashtags: string[];
     clnPollution: string;
     clnTimeUsed: string;
@@ -20,7 +20,7 @@ export type Item = {
 // 상품 검색
 export type ItemSearch = {
     keyword: string;
-    hashtag: string[];
+    hashtags: string[];
     minPrice: number;
     maxPrice: number;
     address: string;

@@ -19,7 +19,7 @@ const LogoutButton = styled.div`
 `;
 
 const dummyProfile = {
-    profileImgUrl: photo,
+    profileImg: photo,
     address1: "ㅇㅇ시 ㅇㅇ동",
     nickname: "반띵#5784",
 };
@@ -29,7 +29,7 @@ const MyPage = () => {
         <MyPageWrap>
             <PageTitle>마이페이지</PageTitle>
             <MyPageProfile
-                profileImgUrl={dummyProfile.profileImgUrl}
+                profileImg={dummyProfile.profileImg}
                 address1={dummyProfile.address1}
                 nickname={dummyProfile.nickname}
             />
