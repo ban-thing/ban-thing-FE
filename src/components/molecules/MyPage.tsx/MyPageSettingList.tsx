@@ -20,8 +20,8 @@ const SettingText = styled.div`
 
 const MyPageSettingList = () => {
     const navigate = useNavigate();
-    let url = ["terms-of-use", "personal-info", "location-based", "version-info"];
-    const settings = ["이용약관", "개인정보", "위치기반", "버전정보"];
+    let url = ["terms-of-use", "personal-info", "location-based", "open-source"];
+    const settings = ["이용약관", "개인정보", "위치기반", "오픈소스 라이센스"];
     return (
         <StyledMyPageSettingList>
             <SettingTitle>설정</SettingTitle>

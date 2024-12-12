@@ -61,7 +61,7 @@ const router = createBrowserRouter([
                     { path: "terms-of-use", element: <MyPageTerms /> },
                     { path: "personal-info", element: <MyPageTerms /> },
                     { path: "location-based", element: <MyPageTerms /> },
-                    { path: "version-info", element: <MyPageTerms /> },
+                    { path: "open-source", element: <MyPageTerms /> },
                 ],
             },
         ],

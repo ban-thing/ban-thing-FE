@@ -4,7 +4,7 @@ import { PageTitle } from "@/components/atoms/PageTitle";
 const VersionInfo = () => {
     return (
         <>
-            <PageTitle $margin="16px 0 40px">버전 정보</PageTitle>
+            <PageTitle $margin="16px 0 40px">오픈소스 라이센스</PageTitle>
         </>
     );
 };
