@@ -25,6 +25,7 @@ import MyPageTerms from "./pages/MyPage/MyPageTerms";
 import ChattingList from "./pages/ChattingList";
 import Chatting from "./pages/Chatting";
 import SplashWrap from "./pages/SplashWrap";
+import LoginRedirect from "./pages/LoginRedirect";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
         children: [
             { path: "", element: <Home /> },
             { path: "login", element: <Login /> },
+            { path: "login/kakao", element: <LoginRedirect /> },
             { path: "location-select", element: <LocationSelect /> },
             { path: "my-location-setting", element: <MyLocationSetting /> },
             { path: "item-view/:id", element: <ItemView /> },

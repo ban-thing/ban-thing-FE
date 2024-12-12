@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Button, UnderlineTextButton } from "@/components/atoms/Button";
 import { Link } from "react-router-dom";
-import { useLoginModalStore } from "@/store/ModalStore";
 import MainLogo from "@/components/atoms/MainLogo";
 
 const LoginTextBox = styled.div`
@@ -30,7 +29,9 @@ const ButtonWrap = styled.div`
 `;
 
 export default function LoginContainer() {
-    const { showLoginModal } = useLoginModalStore();
+    const onClickLogin = () => {
+        window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&response_type=code`;
+    };
 
     return (
         <>
@@ -41,7 +42,7 @@ export default function LoginContainer() {
                 </div>
                 <MainLogo />
                 <ButtonWrap>
-                    <Button variant="yellow" $hoverAction={false} onClick={showLoginModal}>
+                    <Button variant="yellow" $hoverAction={false} onClick={onClickLogin}>
                         카카오로 3초만에 로그인
                     </Button>
                 </ButtonWrap>

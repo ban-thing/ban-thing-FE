@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 
 /**
  * 사용법: apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터)
- * formData 전송시 apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터, "formData")
+ * formData 전송시 apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터, "multipart/form-data")
  */
 export default class ApiService {
     axiosInstance: AxiosInstance;
@@ -52,29 +52,18 @@ export default class ApiService {
 
         const config: AxiosRequestConfig = {
             headers: {
-                "Content-Type": header === "formData" ? "multipart/form-data" : "application/json",
+                "Content-Type": header ? header : "application/json",
             },
         };
         if (method === "get" || method === "delete") {
             config.params = parameters;
         }
 
-        this.axiosInstance[method](
-            path,
-            method === "get" || method === "delete" ? config : parameters,
-            config,
-        )
+        (path.startsWith("http") ? axios : this.axiosInstance)
+            [method](path, method === "get" || method === "delete" ? config : parameters, config)
             .then((response: AxiosResponse) => {
-                if (response.data.head.status !== "success") {
-                    console.log(`🔴 ${method} `, path, parameters, response);
-                    const message = response.data.head.message ?? "";
-                    reject({
-                        message: response.data.head.status === "empty" ? "no data" : message,
-                    });
-                    return;
-                }
                 console.log(`🟢 ${method} `, path, parameters, response);
-                resolve(response.data?.body);
+                resolve(response.data);
             })
             .catch((error: AxiosError) => {
                 console.log(`🔴 ${method} `, path, parameters, error);
