@@ -9,7 +9,7 @@ export default class ApiService {
 
     constructor() {
         const config: AxiosRequestConfig = {
-            baseURL: `/baseURL`, // TODO: 수정
+            baseURL: `211.188.62.82:8080`,
         };
 
         this.axiosInstance = axios.create(config);
