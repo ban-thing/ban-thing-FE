@@ -1,4 +1,5 @@
 import Map from "../components/molecules/Map";
+import KakaoMap from "../components/molecules/KakaoMap";
 import styled from "styled-components";
 import BackButtonIcon from "../assets/icons/back.svg?react";
 import { Button } from "@/components/atoms/Button";
@@ -18,6 +19,7 @@ const MyLocationSetting = () => {
     const navigate = useNavigate();
     const { currentLocation } = useLocationStore();
     const [locationName, setLocationName] = useState<string>("");
+    const [mapType, setMapType] = useState<"google" | "kakao">("google");
 
     const handleBack = () => {
         navigate("/location-select");
@@ -63,12 +65,30 @@ const MyLocationSetting = () => {
                 </BackButton>
                 <Title>내 위치</Title>
             </Header>
-            <Map
-                center={currentLocation || DEFAULT_CENTER}
-                markers={[currentLocation || DEFAULT_CENTER]}
-                height="294px"
-                width="100%"
-            />
+            <MapTypeSelector>
+                <MapTypeButton selected={mapType === "google"} onClick={() => setMapType("google")}>
+                    Google Map
+                </MapTypeButton>
+                <MapTypeButton selected={mapType === "kakao"} onClick={() => setMapType("kakao")}>
+                    Kakao Map
+                </MapTypeButton>
+            </MapTypeSelector>
+            {mapType === "google" ? (
+                <Map
+                    center={currentLocation || DEFAULT_CENTER}
+                    markers={[currentLocation || DEFAULT_CENTER]}
+                    height="294px"
+                    width="100%"
+                />
+            ) : (
+                <KakaoMap
+                    center={currentLocation || DEFAULT_CENTER}
+                    markers={[currentLocation || DEFAULT_CENTER]}
+                    height="294px"
+                    width="100%"
+                />
+            )}
+
             <LocationInfoWrapper>
                 <LocationButton>
                     현재 위치는
@@ -98,6 +118,26 @@ const Header = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+`;
+
+const MapTypeSelector = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+`;
+
+const MapTypeButton = styled.button<{ selected: boolean }>`
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: ${(props) => (props.selected ? "#007bff" : "white")};
+    color: ${(props) => (props.selected ? "white" : "black")};
+    cursor: pointer;
+
+    &:hover {
+        background-color: ${(props) => (props.selected ? "#0056b3" : "#f8f9fa")};
+    }
 `;
 
 const Title = styled.h1`
@@ -140,3 +180,12 @@ const BackButton = styled.div`
     cursor: pointer;
     margin-left: 20px;
 `;
+
+// const MapContainer = styled.div`
+//     width: 100%;
+//     height: 294px;
+//     position: relative;
+//     overflow: hidden;
+//     margin: 0;
+//     padding: 0;
+// `;
