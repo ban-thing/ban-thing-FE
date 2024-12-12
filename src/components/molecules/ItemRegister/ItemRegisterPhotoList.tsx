@@ -8,7 +8,7 @@ import Camera from "@/assets/icons/camera.svg?react";
 import Exit from "@/assets/icons/exit.svg?react";
 import { Control, Controller, FieldValues, UseFormSetValue } from "react-hook-form";
 import { GrayCloseButton } from "@/components/atoms/Button";
-import usePhotoUpload from "@/utils/usePhotoUpload";
+import usePhotoUpload from "@/hooks/usePhotoUpload";
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

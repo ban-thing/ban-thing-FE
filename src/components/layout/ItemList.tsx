@@ -54,7 +54,7 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
                     <NoItemInList text={noItemText} />
                 )
             ) : (
-                <ClipLoader />
+                <ClipLoader size={48} color="#d7d7d7" />
             )}
         </StyledItemList>
     );
