@@ -3,6 +3,7 @@ import ItemContainer from "@/components/molecules/ItemContainer";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import { dummyItemList } from "@/store/ItemListDummyData";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -24,12 +25,17 @@ type ItemListProps = {
 };
 
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
+    const { data, error, isLoading } = useFetchItemsList({
+        keyword: "머신",
+        hashtags: [],
+        minPrice: 1000,
+        maxPrice: 30000,
+        address: "",
+    });
     // TODO: 선택된 주소로 아이템 리스트 필터링
     // const { currentLocation } = useItemListLocationStore();
-    // 수정삭제 모달창
-    // const { isEditModalVisible, showEditModal, hideEditModal } = useEditModalStore();
     // 스피너
-    const isLoading = false;
+    // const isLoading = false;
     return (
         <StyledItemList
             height={isLoading ? "100vh" : dummyItemList.length ? "" : "100vh"}

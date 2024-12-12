@@ -21,8 +21,8 @@ export type Item = {
 export type ItemSearch = {
     keyword: string;
     hashtags: string[];
-    minPrice: number;
-    maxPrice: number;
+    minPrice?: number;
+    maxPrice?: number;
     address: string;
 };
 // 상품 검색 결과 조회

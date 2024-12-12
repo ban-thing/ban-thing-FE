@@ -1,15 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
+import { ItemSearch } from "@/types/Item";
 
 const apiService = new ApiService();
 
-export const useFetchItems = (keywords: any) => {
+//TODO: 반환값 any 수정
+export const useFetchItemsList = ({
+    keyword,
+    hashtags,
+    minPrice,
+    maxPrice,
+    address,
+}: ItemSearch) => {
     return useQuery({
-        queryKey: ["items", keywords], // 쿼리 키에 keywords 추가
+        queryKey: ["items", keyword],
         queryFn: async () => {
-            return await apiService.get<any>("items", { keywords });
+            return await apiService.get<any>("items", {
+                keyword,
+                hashtags,
+                minPrice,
+                maxPrice,
+                address,
+            });
         },
+        retry: false,
     });
 };
 
-// const { data, error, isLoading } = useFetchItems("search keyword");
+export const useFetchItem = (itemId: number) => {
+    return useQuery({
+        queryKey: ["item", itemId],
+        queryFn: async () => {
+            return await apiService.get<any>(`items/${itemId}`, {});
+        },
+        retry: false,
+    });
+};

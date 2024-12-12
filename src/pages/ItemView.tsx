@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import { ItemImgSkt } from "@/components/atoms/Skeleton";
+import { useFetchItem } from "@/hooks/api/ItemsQuery";
 
 const StyledItemImg = styled.div`
     width: 100%;
@@ -43,6 +44,7 @@ const dummyData = {
 };
 
 const ItemView = () => {
+    // const { data, error, isLoading } = useFetchItem(1);
     return (
         <ItemViewLayout type={dummyData.type} price={dummyData.price}>
             {/* 스켈레톤 */}
