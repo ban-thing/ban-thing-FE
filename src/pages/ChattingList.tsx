@@ -3,30 +3,30 @@ import { useNavigate } from "react-router-dom";
 import ChatList from "@/components/atoms/ChatList";
 import NavigationBar from "@/components/atoms/NavigationBar";
 import TabBar from "@/components/atoms/TabBar";
-import { dummyChatList } from "@/store/ChatListDummyData";
 import styled from "styled-components";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useChatsListQuery } from "@/hooks/api/ChatsQuery";
 
 const tabsList = ["전체", "판매", "구매"];
 
 export default function ChattingList() {
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState("전체");
-
-    const isLoading = false;
+    const { data, isLoading } = useChatsListQuery();
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
 
-    const filteredChatList = dummyChatList.filter((chat) => {
-        if (selectedTab === "전체") return true;
-        return chat.type === selectedTab;
-    });
+    const filteredChatList =
+        data?.filter((chat) => {
+            if (selectedTab === "전체") return true;
+            return chat.type === selectedTab;
+        }) || [];
 
-    const onClickBox = (chatRoomId: number) => {
-        navigate(`/chatting/${chatRoomId}`);
+    const onClickBox = (chatroomId: number) => {
+        navigate(`/chatting/${chatroomId}`);
     };
 
     return (
@@ -34,7 +34,7 @@ export default function ChattingList() {
             <FixedTabBar>
                 <TabBar tabsList={tabsList} initTab={selectedTab} handleTabClick={handleTabClick} />
             </FixedTabBar>
-            <ChatListContainer isLoading={isLoading}>
+            <ChatListContainer isLoading={isLoading} isEmpty={filteredChatList.length === 0}>
                 {!isLoading ? (
                     filteredChatList.length ? (
                         filteredChatList.map((chat) => (
@@ -69,19 +69,11 @@ const FixedTabBar = styled.div`
     background: white;
 `;
 
-const ChatListContainer = styled.div<{ isLoading: boolean }>`
+const ChatListContainer = styled.div<{ isLoading: boolean; isEmpty: boolean }>`
     height: 100%;
     width: 100%;
-    ${dummyChatList.length
-        ? ""
-        : `position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;`}
-
-    ${({ isLoading }) =>
-        isLoading
+    ${({ isLoading, isEmpty }) =>
+        isLoading || isEmpty
             ? `display: flex;
             align-items: center;
             justify-content: center;
