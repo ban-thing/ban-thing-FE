@@ -27,10 +27,10 @@ type ItemListProps = {
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
     const { data, error, isLoading } = useFetchItemsList({
         keyword: "머신",
-        hashtags: [],
+        hashtags: "",
         minPrice: 1000,
         maxPrice: 30000,
-        address: "",
+        address: "파주",
     });
     // TODO: 선택된 주소로 아이템 리스트 필터링
     // const { currentLocation } = useItemListLocationStore();

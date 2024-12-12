@@ -20,7 +20,7 @@ export type Item = {
 // 상품 검색
 export type ItemSearch = {
     keyword: string;
-    hashtags: string[];
+    hashtags: string[] | string;
     minPrice?: number;
     maxPrice?: number;
     address: string;

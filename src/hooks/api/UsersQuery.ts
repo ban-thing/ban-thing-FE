@@ -1,8 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
+import { Address } from "@/types/User";
 
 const apiService = new ApiService();
 
+/**
+ * 
+ * export const useFetch = () => {
+    return useQuery({
+        queryKey: [""],
+        queryFn: async () => {
+            return await apiService.get("url", {})
+        }
+    })
+}
+ */
+
+// 카카오 로그인
 export const useFetchKakaoLogin = (code: string) => {
     const KEY = import.meta.env.VITE_REST_API_KEY;
     const URI = import.meta.env.VITE_REDIRECT_URI;
@@ -20,12 +34,29 @@ export const useFetchKakaoLogin = (code: string) => {
                 "application/x-www-form-urlencoded;charset=utf-8",
             );
         },
-        // queryFn: () => {
-        //     return new Promise((_, reject) => {
-        //         reject(new Error("테스트를 위한 강제 에러"));
-        //     });
-        // },
         enabled: !!code,
         retry: false,
+    });
+};
+
+// 프로필 조회
+export const useFetchMyProfile = () => {
+    return useQuery({
+        queryKey: ["myProfile"],
+        queryFn: async () => {
+            return await apiService.get("my/profile", {});
+        },
+    });
+};
+
+// 위치 등록 및 수정
+export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
+    return useMutation({
+        mutationFn: async () => {
+            return await apiService.patch("my/address", { address1, address2, address3 });
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        },
     });
 };

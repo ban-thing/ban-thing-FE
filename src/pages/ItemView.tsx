@@ -44,7 +44,9 @@ const dummyData = {
 };
 
 const ItemView = () => {
-    // const { data, error, isLoading } = useFetchItem(1);
+    const { data, isLoading } = useFetchItem(1);
+    console.log(data);
+
     return (
         <ItemViewLayout type={dummyData.type} price={dummyData.price}>
             {/* 스켈레톤 */}
