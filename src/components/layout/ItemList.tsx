@@ -32,6 +32,8 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
         maxPrice: 30000,
         address: "파주",
     });
+    console.log(data, error);
+
     // TODO: 선택된 주소로 아이템 리스트 필터링
     // const { currentLocation } = useItemListLocationStore();
     // 스피너

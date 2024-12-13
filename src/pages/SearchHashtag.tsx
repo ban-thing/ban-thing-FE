@@ -21,6 +21,7 @@ export default function SearchHashtag() {
     }, [searchHashList]);
 
     const handleSetValue = (name: string, value: string[]) => {
+        console.log(name);
         setHashList(value);
     };
 
