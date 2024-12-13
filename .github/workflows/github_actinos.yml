@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
+    - name: Make .env
+      run : |
+        echo ${{ ENV }} >> /.env
+    
     - name: Docker build & push to prod
       if: contains(github.ref, 'main')
       run: |
@@ -23,10 +27,6 @@ jobs:
         docker build -f ./dockerfilereact -t ${{ secrets.DOCKER_USERNAME }}/cicdtestfe .
         docker push ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
 
-    - name: Make .env
-      run: |
-        echo ${{ ENV }} >> /.env
-    
   deploy:
     runs-on: ubuntu-24.04
     needs: build
