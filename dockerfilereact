@@ -22,4 +22,4 @@ EXPOSE 5173
 ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["serve", "-s", "build", "--host"]
+CMD ["serve", "-s", "build"]
