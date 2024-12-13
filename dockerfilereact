@@ -13,7 +13,7 @@ RUN npm i -g serve
 
 # Copy the application code to the container
 COPY . .
-RUN npm build
+RUN npm run build
 
 # Expose the port the app runs on (optional)
 EXPOSE 5173
