@@ -16,10 +16,6 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
-    - name: Make .env
-      run : |
-        sudo echo ${{ ENV }} >> /.env
-    
     - name: Docker build & push to prod
       if: contains(github.ref, 'main')
       run: |
