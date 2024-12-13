@@ -1,43 +1,42 @@
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 env:
-  AZURE_WEBAPP_NAME: ban-thing-FE    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '22.12'                # set this to the node version to use
+    AZURE_WEBAPP_NAME: ban-thing-FE # set this to your application's name
+    AZURE_WEBAPP_PACKAGE_PATH: "." # set this to the path to your web app project, defaults to the repository root
+    NODE_VERSION: "22.12" # set this to the node version to use
 
 permissions:
-  contents: read
+    contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-24.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Docker build & push to prod
-      if: contains(github.ref, 'main')
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PWD }}
-        docker build -f ./dockerfilereact -t ${{ secrets.DOCKER_USERNAME }}/cicdtestfe .
-        docker push ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
+    build:
+        runs-on: ubuntu-24.04
+        steps:
+            - uses: actions/checkout@v4
+            - name: Docker build & push to prod
+              if: contains(github.ref, 'main')
+              run: |
+                  docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PWD }}
+                  docker build -f ./dockerfilereact -t ${{ secrets.DOCKER_USERNAME }}/cicdtestfe .
+                  docker push ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
 
-  deploy:
-    runs-on: ubuntu-24.04
-    needs: build
-    steps:
-    - name: Deploy to prod
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST_PROD }}
-        username: root
-        password: ${{ secrets.HOST_PWD }}
-        envs:
-          GITHUB_SHA
-        script: |
-          sudo docker stop react-container
-          sudo docker rm react-container
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
-          sudo docker run -d --name react-container --network docker-network -p 5173:5173 ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
-          sudo docker image prune -f
+    deploy:
+        runs-on: ubuntu-24.04
+        needs: build
+        steps:
+            - name: Deploy to prod
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST_PROD }}
+                  username: root
+                  password: ${{ secrets.HOST_PWD }}
+                  envs: GITHUB_SHA
+                  script: |
+                      sudo docker stop react-container
+                      sudo docker rm react-container
+                      sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
+                      sudo docker run -d --name react-container --network docker-network -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
+                      sudo docker image prune -f

@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port the app runs on (optional)
-EXPOSE 5173
+EXPOSE 3000
 
 # Set environment variables (optional)
 ENV PYTHONUNBUFFERED=1
