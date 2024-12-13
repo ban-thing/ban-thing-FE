@@ -23,20 +23,20 @@ type ItemInListProps = ItemSearchList & {
 };
 
 export default function ItemInList({
-    itemId,
+    id,
     title,
     address,
     updatedAt,
     type,
     price,
-    imgUrl,
+    images,
     viewEditButton = false,
 }: ItemInListProps) {
     const [topPosition, setTopPosition] = useState<number | null>(null);
     const cutOffTitle = title.length > 24 ? title.slice(0, 24) + "..." : title;
     const navigate = useNavigate();
-    const onClickBox = (itemId: number) => {
-        navigate(`/item-view/${itemId}`);
+    const onClickBox = (id: number) => {
+        navigate(`/item-view/${id}`);
     };
     const onClickEdit = (event: MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
@@ -54,8 +54,8 @@ export default function ItemInList({
     };
     return (
         <>
-            <ItemBox onClick={() => onClickBox(itemId)}>
-                <ItemPhoto src={imgUrl || notFound} />
+            <ItemBox onClick={() => onClickBox(id)}>
+                <ItemPhoto src={images || notFound} />
                 <ItemBoxRight $maxWidth={viewEditButton ? "155px" : ""}>
                     <ItemTitle>{cutOffTitle}</ItemTitle>
                     <ItemPropertiesBox>
@@ -76,11 +76,7 @@ export default function ItemInList({
                 )}
             </ItemBox>
             {topPosition && (
-                <EditModal
-                    setTopPosition={setTopPosition}
-                    topPosition={topPosition}
-                    itemId={itemId}
-                />
+                <EditModal setTopPosition={setTopPosition} topPosition={topPosition} itemId={id} />
             )}
         </>
     );

@@ -47,6 +47,7 @@ const dummyData = {
 const ItemView = () => {
     const location = useLocation();
     const { data } = useFetchItem(Number(location.pathname.split("/")[2]));
+    console.log(data);
 
     return (
         <ItemViewLayout type={dummyData.type} price={dummyData.price}>
