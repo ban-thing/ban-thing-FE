@@ -25,7 +25,7 @@ jobs:
 
     - name: Make .env
       run: |
-        ls -a
+        echo ${{ ENV }} >> /.env
     
   deploy:
     runs-on: ubuntu-24.04
