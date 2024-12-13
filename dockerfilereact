@@ -9,6 +9,7 @@ COPY package.json .
 
 # Install Python dependencies
 RUN npm i
+RUN npm i -g serve
 
 # Copy the application code to the container
 COPY . .
@@ -21,4 +22,4 @@ EXPOSE 5173
 ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["npm", "run", "build", "--host"]
+CMD ["serve", "-s", "build", "--host"]
