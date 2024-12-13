@@ -52,10 +52,17 @@ const CleanCheckList = ({
 
     const onChangeRadio = (index: number, checked: boolean) => {
         setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));
-        if (!checked) {
+        if (!checked && index !== 2) {
             setValue(fieldNames[index], "모름");
-        } else {
+        }
+        if (!checked && index === 2) {
+            setValue(fieldNames[index], false);
+        }
+        if (checked && index !== 2) {
             setValue(fieldNames[index], "");
+        }
+        if (checked && index === 2) {
+            setValue(fieldNames[index], true);
         }
     };
 
