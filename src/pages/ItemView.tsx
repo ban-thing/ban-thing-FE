@@ -44,7 +44,7 @@ const dummyData = {
 };
 
 const ItemView = () => {
-    const { data, isLoading } = useFetchItem(1);
+    const { data } = useFetchItem(1);
     console.log(data);
 
     return (

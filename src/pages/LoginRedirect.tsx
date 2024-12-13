@@ -1,11 +1,11 @@
 import { useFetchKakaoLogin } from "@/hooks/api/UsersQuery";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LoginRedirect = () => {
+    // const navigate = useNavigate();
     const [loginText, setLoginText] = useState("로그인 중");
-    const navigate = useNavigate();
     const code = new URL(document.location.toString()).searchParams.get("code");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
 
@@ -15,6 +15,7 @@ const LoginRedirect = () => {
             localStorage.setItem("refresh_token", data.refresh_token);
         }
         if (!isLoading && data) {
+            setLoginText("로그인 성공");
             // navigate("/location-select");
         } else {
             setLoginText("로그인 실패");
