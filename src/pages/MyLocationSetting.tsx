@@ -4,64 +4,58 @@ import { Button } from "@/components/atoms/Button";
 import { useLocationStore } from "@/store/LocationStore";
 import { useEffect, useState } from "react";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-
-const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
-
-interface AddressComponent {
-    long_name: string;
-    short_name: string;
-    types: string[];
-}
+import { useLocationSetting } from "@/hooks/useLocationSetting";
 
 const MyLocationSetting = () => {
-    const { currentLocation } = useLocationStore();
-    const [locationName, setLocationName] = useState<string>("");
+    const { getAddress } = useLocationSetting();
+    const { currentLocation, setCurrentLocation } = useLocationStore();
+    const [currentCoor, setCurrentCoor] = useState({ lat: 37.5665, lng: 126.978 });
 
-    // useEffect(() => {
-    //     if (!currentLocation) {
-    //         navigate("/location-select");
-    //     }
-    // }, [currentLocation, navigate]);
+    async function handleAddressLookup(lat: number, lng: number) {
+        try {
+            const data = await getAddress(lat, lng);
+            setCurrentLocation(data);
+            return data;
+        } catch (error) {
+            console.error("주소 정보를 가져오지 못했어요.", error);
+        }
+    }
 
     useEffect(() => {
-        const fetchLocationName = async () => {
-            console.log(currentLocation, "currentLocation");
-            if (currentLocation) {
-                try {
-                    const response = await fetch(
-                        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentLocation.lat},${currentLocation.lng}&language=ko&key=AIzaSyDL86mTnLYIFovG0Z7TaRUw4_vtM2rRh2s`,
-                    );
-                    const data = await response.json();
-                    if (data.results[0]) {
-                        const address = data.results[0].address_components.find(
-                            (component: AddressComponent) =>
-                                component.types.includes("sublocality_level_2") ||
-                                component.types.includes("sublocality_level_1"),
-                        );
-                        setLocationName(address?.long_name || "알 수 없는 위치");
-                    }
-                } catch (error) {
-                    console.error("Error fetching location name:", error);
-                    setLocationName("알 수 없는 위치");
-                }
-            }
-        };
-        fetchLocationName();
-    }, [currentLocation]);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    setCurrentCoor(location);
+                },
+                (error) => {
+                    console.error("Error getting location:", error);
+                    alert("위치 정보를 가져오는데 실패했습니다.");
+                },
+            );
+        } else {
+            alert("이 브라우저에서는 위치 정보를 사용할 수 없습니다.");
+        }
+    }, []);
+
+    useEffect(() => {
+        const lat = currentCoor.lat;
+        const lng = currentCoor.lng;
+        handleAddressLookup(lat, lng);
+        console.log(currentLocation);
+    }, [currentCoor]);
 
     return (
         <Container>
             <PageTitleWithBackButton text="내 위치" $margin="16px 0" />
-            <KakaoMap
-                center={currentLocation || DEFAULT_CENTER}
-                markers={[currentLocation || DEFAULT_CENTER]}
-                height="294px"
-                width="100%"
-            />
+            <KakaoMap center={currentCoor} markers={[currentCoor]} height="294px" width="100%" />
             <LocationInfoWrapper>
                 <LocationButton>
                     현재 위치는
-                    <LocationText> "{locationName}" </LocationText>
+                    <LocationText> "{currentLocation?.region_3depth_name}" </LocationText>
                     이에요.
                 </LocationButton>
             </LocationInfoWrapper>

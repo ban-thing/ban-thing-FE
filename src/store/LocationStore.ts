@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface LocationState {
-    currentLocation: { lat: number; lng: number } | null;
-    setCurrentLocation: (location: { lat: number; lng: number } | null) => void;
+    currentLocation: Record<string, string> | null;
+    setCurrentLocation: (location: Record<string, string> | null) => void;
 }
 
 export const useLocationStore = create<LocationState>((set) => ({

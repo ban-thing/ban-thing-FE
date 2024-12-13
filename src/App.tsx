@@ -13,7 +13,6 @@ import LocationSelect from "./pages/LocationSelect";
 import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
 import ItemRegister from "./pages/ItemRegister/ItemRegister";
-// import { LoadScript } from "@react-google-maps/api";
 import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
