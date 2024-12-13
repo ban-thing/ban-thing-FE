@@ -25,6 +25,7 @@ jobs:
 
     - name: Make .env
       run: |
+        ls
         touch ./.env
         echo "${{ ENV }}" > ./.env
     
