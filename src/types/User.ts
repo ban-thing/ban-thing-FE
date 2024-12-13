@@ -12,19 +12,20 @@ export type UserProfile = {
 export type Address = Pick<UserProfile, "address1" | "address2" | "address3">;
 
 // 구매 목록 조회
-export type UserPurchasesList = ItemsList & {
-    type: string; // 나눔/판매
-};
+export type UserPurchasesList = ItemsList;
+
 // 판매 목록 조회
 export type UserSalesList = ItemsList & {
     status: string; // 판매여부
 };
 
 export type ItemsList = {
-    itemId: number;
+    id: number;
     title: string;
-    imgUrl: string;
+    images: string;
     price: number;
     address: string;
     updatedAt: Date;
+    hashtags?: string[];
+    type?: string;
 };

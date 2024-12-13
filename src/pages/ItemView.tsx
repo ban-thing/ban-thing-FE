@@ -7,6 +7,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import { ItemImgSkt } from "@/components/atoms/Skeleton";
 import { useFetchItem } from "@/hooks/api/ItemsQuery";
+import { useLocation } from "react-router-dom";
 
 const StyledItemImg = styled.div`
     width: 100%;
@@ -44,8 +45,8 @@ const dummyData = {
 };
 
 const ItemView = () => {
-    const { data } = useFetchItem(1);
-    console.log(data);
+    const location = useLocation();
+    const { data } = useFetchItem(Number(location.pathname.split("/")[2]));
 
     return (
         <ItemViewLayout type={dummyData.type} price={dummyData.price}>

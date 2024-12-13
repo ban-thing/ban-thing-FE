@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
 import { ItemSearch } from "@/types/Item";
+import { ItemsList } from "@/types/User";
 
 const apiService = new ApiService();
 

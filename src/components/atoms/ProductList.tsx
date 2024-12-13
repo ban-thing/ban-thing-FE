@@ -8,7 +8,7 @@ interface ProductListItemProps {
 export default function ProductList({ item, timeAgo }: ProductListItemProps) {
     return (
         <ProductItemContainer>
-            <ProductImage src={item.imgUrl} />
+            <ProductImage src={item.images} />
             <ProductInfo>
                 <ProductName>{item.title}</ProductName>
                 <ProductDetails>

@@ -4,6 +4,9 @@ import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import { dummyItemList } from "@/store/ItemListDummyData";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
+import { ItemsList } from "@/types/User";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -25,31 +28,36 @@ type ItemListProps = {
 };
 
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
-    const { data, error, isLoading } = useFetchItemsList({
-        keyword: "머신",
-        hashtags: "파란색",
-        minPrice: 1000,
-        maxPrice: 30000,
-        address: "파주",
+    const [listData, setListData] = useState<ItemsList[]>();
+    const { data: { data } = {}, isLoading } = useFetchItemsList({
+        keyword: "",
+        hashtags: "",
+        minPrice: 0,
+        maxPrice: 5000000000,
+        address: "",
     });
-    console.log(data, error);
+    useEffect(() => {
+        if (data) {
+            setListData(data?.items);
+        }
+        console.log(listData);
+    }, [data, isLoading]);
 
     // TODO: 선택된 주소로 아이템 리스트 필터링
     // const { currentLocation } = useItemListLocationStore();
-    // 스피너
-    // const isLoading = false;
+
     return (
         <StyledItemList
-            height={isLoading ? "100vh" : dummyItemList.length ? "" : "100vh"}
+            height={isLoading ? "100vh" : dummyItemList?.length ? "" : "100vh"}
             padding={padding}
         >
             {!isLoading ? ( //로딩중/로딩끝
-                dummyItemList.length ? ( //로딩끝나고 목록 데이터 있을 때/없을 때
+                dummyItemList?.length ? ( //로딩끝나고 목록 데이터 있을 때/없을 때
                     dummyItemList?.map((item, index) => (
                         <ItemContainer
                             key={index}
-                            imgUrl={item.imgUrl}
-                            itemId={item.itemId}
+                            images={item.imgUrl}
+                            id={item.itemId}
                             title={item.title}
                             price={item.price}
                             address={item.address}
