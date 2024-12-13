@@ -15,7 +15,7 @@ const LoginRedirect = () => {
             localStorage.setItem("refresh_token", data.refresh_token);
         }
         if (!isLoading && data) {
-            navigate("/location-select");
+            // navigate("/location-select");
         } else {
             setLoginText("로그인 실패");
         }
