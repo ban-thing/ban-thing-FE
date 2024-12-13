@@ -1,4 +1,5 @@
-export default function timeAgo(date: Date): string {
+export default function timeAgo(paramDate: Date | string): string {
+    let date = typeof paramDate === "string" ? new Date(paramDate) : paramDate;
     const now = new Date();
     const diffInMs = now.getTime() - date.getTime();
 

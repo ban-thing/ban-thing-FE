@@ -19,43 +19,19 @@ const StyledItemImg = styled.div`
     }
 `;
 
-const dummyData = {
-    title: "상품 제목",
-    content:
-        "Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do eiusmod tempor incidid unt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco ",
-    sellerImgUrl:
-        "https://fastly.picsum.photos/id/588/56/56.jpg?hmac=Q5IXrX009yD-wG4f7qAHsq0_TRTcY0AHN_77hBHr7dM",
-    sellerNickname: "닉네임",
-    type: "판매",
-    price: 5000,
-    directLocation: "연수역 1번 출구 앞",
-    address: "연수동",
-    itemImgs: [
-        "https://fastly.picsum.photos/id/481/375/375.jpg?hmac=t373WijYdP9inn7tZbKcD7ITS7vEWV6TS3gVfJg_4FY",
-        "https://fastly.picsum.photos/id/130/375/375.jpg?hmac=oSTydHYiz0dB24ZAUR1GMbNkum0ZDISyOjsjsW8IzzY",
-    ],
-    hashtags: ["고양이", "장난감"],
-    clnPollution: "모름",
-    clnTimeUsed: "5회 미만",
-    clnPurchasedDate: "모름",
-    clnCleaned: "있음",
-    clnExpire: "24.08.12",
-    isDirect: true,
-    updatedAt: new Date(),
-};
-
-const ItemView = () => {
+const ItemViewPage = () => {
     const location = useLocation();
-    const { data } = useFetchItem(Number(location.pathname.split("/")[2]));
-    console.log(data);
+    const { data: { data: itemData } = {}, isLoading } = useFetchItem(
+        Number(location.pathname.split("/")[2]),
+    );
 
     return (
-        <ItemViewLayout type={dummyData.type} price={dummyData.price}>
+        <ItemViewLayout type={itemData?.type || ""} price={itemData?.price || 0}>
             {/* 스켈레톤 */}
-            {true ? (
+            {!isLoading ? (
                 <StyledItemImg>
                     <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                        {dummyData.itemImgs.map((value, index) => (
+                        {itemData?.itemImgs.map((value, index) => (
                             <SwiperSlide key={index}>
                                 <img src={value} />
                             </SwiperSlide>
@@ -67,25 +43,29 @@ const ItemView = () => {
             )}
 
             <ItemViewProfile
-                sellerNickname={dummyData.sellerNickname}
-                sellerImgUrl={dummyData.sellerImgUrl}
-                address={dummyData.address}
-                directLocation={dummyData.directLocation}
-                isDirect={dummyData.isDirect}
+                sellerNickname={itemData?.sellerNickname ?? ""}
+                sellerImgUrl={itemData?.sellerImgUrl ?? { id: 0, data: "", type: "" }}
+                address={itemData?.address ?? ""}
+                directLocation={itemData?.directLocation ?? ""}
+                direct={itemData?.direct ?? false}
             />
             <ItemViewInfo
-                title={dummyData.title}
-                content={dummyData.content}
-                hashtags={dummyData.hashtags}
-                clnPollution={dummyData.clnPollution}
-                clnTimeUsed={dummyData.clnTimeUsed}
-                clnPurchasedDate={dummyData.clnPurchasedDate}
-                clnCleaned={dummyData.clnCleaned}
-                clnExpire={dummyData.clnExpire}
-                updatedAt={dummyData.updatedAt}
+                title={itemData?.title ?? ""}
+                content={itemData?.content ?? ""}
+                hashtags={itemData?.hashtags ?? [{ id: 0, hashtag: "" }]}
+                cleaningDetail={
+                    itemData?.cleaningDetail ?? {
+                        pollution: "",
+                        timeUsed: "",
+                        purchasedDate: "",
+                        cleaned: "",
+                        expire: "",
+                    }
+                }
+                updateTime={itemData?.updateTime ?? ""}
             />
         </ItemViewLayout>
     );
 };
 
-export default ItemView;
+export default ItemViewPage;

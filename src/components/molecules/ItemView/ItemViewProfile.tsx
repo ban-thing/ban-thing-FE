@@ -41,9 +41,11 @@ const ProfilePlace2 = styled.div`
     color: #949494;
 `;
 
+const imageUrl = "https://kr.object.ncloudstorage.com/banthing-images/itemImage";
+
 type ItemViewProfileProps = Pick<
     ItemView,
-    "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "isDirect"
+    "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "direct"
 >;
 
 export default function ItemViewProfile({
@@ -51,14 +53,18 @@ export default function ItemViewProfile({
     sellerImgUrl,
     address,
     directLocation,
-    isDirect,
+    direct,
 }: ItemViewProfileProps) {
+    console.log(sellerImgUrl);
+
     return (
         // 스켈레톤
         <ProfileWrap>
             {true ? (
                 <ProfileImgWrap>
-                    <img src={sellerImgUrl} />
+                    <img
+                        src={`${imageUrl}/${sellerImgUrl.id}/${sellerImgUrl.data}.${sellerImgUrl.type}`}
+                    />
                 </ProfileImgWrap>
             ) : (
                 <ProfileImgSkt circle />
@@ -68,7 +74,7 @@ export default function ItemViewProfile({
                     <>
                         <ProfileName>{sellerNickname}</ProfileName>
                         <ProfilePlace>{address}</ProfilePlace>
-                        <ProfilePlace2>{isDirect ? directLocation : "직거래 불가능"}</ProfilePlace2>
+                        <ProfilePlace2>{direct ? directLocation : "직거래 불가능"}</ProfilePlace2>
                     </>
                 ) : (
                     <>

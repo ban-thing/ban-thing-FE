@@ -1,7 +1,7 @@
 import { UserPurchasesList } from "./User";
 
 // 상품 등록/수정
-export type Item = {
+export type CreateItem = {
     title: string;
     content: string;
     type: string;
@@ -27,9 +27,39 @@ export type ItemSearch = {
 };
 // 상품 검색 결과 조회
 export type ItemSearchList = UserPurchasesList;
+
 // 상품 단건 조회
-export type ItemView = Item & {
-    sellerImgUrl: string;
+export interface ItemView {
+    title: string;
+    content: string;
+    sellerImgUrl: SellerImgUrl;
     sellerNickname: string;
-    updatedAt: Date;
-};
+    type: string;
+    price: number;
+    directLocation: string;
+    address: string;
+    itemImgs: any[];
+    hashtags: Hashtag[];
+    cleaningDetail: CleaningDetail;
+    updateTime: string;
+    direct: boolean;
+}
+
+interface CleaningDetail {
+    pollution: string;
+    timeUsed: string;
+    purchasedDate: string;
+    cleaned: string;
+    expire: string;
+}
+
+interface Hashtag {
+    id: number;
+    hashtag: string;
+}
+
+interface SellerImgUrl {
+    id: number;
+    data: string;
+    type: string;
+}

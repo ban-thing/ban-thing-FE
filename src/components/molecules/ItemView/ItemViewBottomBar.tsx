@@ -53,7 +53,7 @@ export default function ItemViewBottomBar({ type, price }: ItemViewLayout) {
                     <PriceNumber>
                         {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
                     </PriceNumber>
-                    <PriceText>원</PriceText>
+                    <PriceText>{type === "판매" ? "원" : ""}</PriceText>
                 </Price>
             </PriceWrap>
             <Button size="small">채팅하기</Button>

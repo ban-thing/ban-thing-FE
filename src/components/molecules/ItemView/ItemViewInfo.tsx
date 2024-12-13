@@ -99,20 +99,17 @@ type ItemViewInfoProps = Omit<
     | "directLocation"
     | "price"
     | "address"
-    | "isDirect"
+    | "direct"
 >;
 
 export default function ItemViewInfo({
     title = "상품 제목",
     content,
-    hashtags = ["해시태그1", "해시태그2"],
-    clnPollution = "없음",
-    clnTimeUsed = "없음",
-    clnPurchasedDate = "모름",
-    clnCleaned = "없음",
-    clnExpire = "모름",
-    updatedAt = new Date(),
+    hashtags = [{ id: 0, hashtag: "" }],
+    cleaningDetail,
+    updateTime,
 }: ItemViewInfoProps) {
+    const { pollution, timeUsed, purchasedDate, cleaned, expire } = cleaningDetail;
     const pollList = ["없음", "1-3개", "3개 이상"];
     const timeList = ["없음", "5회 미만", "5회 이상"];
     const cleanList = ["새 상품", "있음", "없음"];
@@ -124,11 +121,11 @@ export default function ItemViewInfo({
                 <>
                     <TitleWrap>
                         <ItemViewTitle>{title}</ItemViewTitle>
-                        <ItemViewTime>{timeAgo(updatedAt)}</ItemViewTime>
+                        <ItemViewTime>{timeAgo(updateTime ?? new Date())}</ItemViewTime>
                     </TitleWrap>
                     <HashtagWrap>
                         {hashtags.map((tag, index) => (
-                            <HashtagButton key={index} text={tag} />
+                            <HashtagButton key={index} text={tag.hashtag} />
                         ))}
                     </HashtagWrap>
                     <ContentWrap>
@@ -144,7 +141,7 @@ export default function ItemViewInfo({
                                 {pollList.map((value, index) => (
                                     <span
                                         key={index}
-                                        className={clnPollution === value ? "highlight" : ""}
+                                        className={pollution === value ? "highlight" : ""}
                                     >
                                         {value}
                                     </span>
@@ -155,7 +152,7 @@ export default function ItemViewInfo({
                                 {timeList.map((value, index) => (
                                     <span
                                         key={index}
-                                        className={clnTimeUsed === value ? "highlight" : ""}
+                                        className={timeUsed === value ? "highlight" : ""}
                                     >
                                         {value}
                                     </span>
@@ -163,8 +160,8 @@ export default function ItemViewInfo({
                             </CleanCheckListOption>
                             <span>구매시기</span>
                             <CleanCheckListOption>
-                                <span className={clnPurchasedDate !== "모름" ? "highlight" : ""}>
-                                    {clnPurchasedDate}
+                                <span className={purchasedDate !== "모름" ? "highlight" : ""}>
+                                    {purchasedDate}
                                 </span>
                             </CleanCheckListOption>
                             <span>세탁유무</span>
@@ -172,7 +169,7 @@ export default function ItemViewInfo({
                                 {cleanList.map((value, index) => (
                                     <span
                                         key={index}
-                                        className={clnCleaned === value ? "highlight" : ""}
+                                        className={cleaned === value ? "highlight" : ""}
                                     >
                                         {value}
                                     </span>
@@ -180,8 +177,8 @@ export default function ItemViewInfo({
                             </CleanCheckListOption>
                             <span>유통기한</span>
                             <CleanCheckListOption>
-                                <span className={clnExpire !== "모름" ? "highlight" : ""}>
-                                    {clnExpire}
+                                <span className={expire !== "모름" ? "highlight" : ""}>
+                                    {expire}
                                 </span>
                             </CleanCheckListOption>
                         </CleanCheckListContentWrap>
