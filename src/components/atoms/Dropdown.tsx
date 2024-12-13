@@ -110,7 +110,7 @@ export const Dropdown = ({
             <Label>
                 <span>{currentLocation}</span>
                 <ArrowWrap
-                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                    animate={{ rotate: isDropdownOpen ? 0 : 180 }}
                     transition={{ duration: 0.3 }}
                 >
                     <Arrow />

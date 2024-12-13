@@ -1,98 +1,35 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import BackButtonIcon from "../assets/icons/back.svg?react";
 import LocationIcon from "../assets/icons/location.svg?react";
 import PointIcon from "../assets/icons/point.svg?react";
 import CheckIcon from "../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
-import { useMyLocationModalStore } from "@/store/ModalStore";
-import MyLocationModal from "@/components/molecules/MyLocationModal";
-import { useLocationData } from "@/hooks/useLocationData";
-import { Region } from "@/types/location";
 import ClipLoader from "react-spinners/ClipLoader";
+import { PageTitle } from "@/components/atoms/PageTitle";
+import { useLocationSetting } from "@/hooks/useLocationSetting";
+import { useNavigate } from "react-router-dom";
 
 export default function LocationSelect() {
+    const navigate = useNavigate();
     const {
         cities,
         districts,
         towns,
         isLoading,
         error,
-        loadCities,
-        loadDistricts,
-        loadTowns,
-        setDistricts,
-        setTowns,
-    } = useLocationData();
-
-    const [selectedCity, setSelectedCity] = useState<Region | null>(null);
-    const [selectedDistrict, setSelectedDistrict] = useState<Region | null>(null);
-    const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
-    const { isMyLocationModalVisible, showMyLocationModal } = useMyLocationModalStore();
-
-    const handleCitySelect = (city: Region) => {
-        setSelectedCity(city);
-    };
-
-    const handleDistrictSelect = (district: Region) => {
-        setSelectedDistrict(district);
-        if (district.id.endsWith("_all")) {
-            setSelectedTowns([district]);
-        }
-    };
-
-    const handleTownToggle = (town: Region) => {
-        setSelectedTowns((prev) => {
-            if (town.id.endsWith("_all")) {
-                return [town];
-            }
-
-            if (prev.some((t) => t.id.endsWith("_all"))) {
-                return [town];
-            }
-
-            if (prev.find((t) => t.id === town.id)) {
-                const filtered = prev.filter((t) => t.id !== town.id);
-                return filtered.filter((t) => !t.id.endsWith("_all"));
-            }
-            if (prev.length < 3) {
-                return [...prev, town];
-            }
-            return prev;
-        });
-    };
-
-    const handleRemoveTown = (townId: string) => {
-        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
-    };
-
-    useEffect(() => {
-        loadCities();
-    }, []);
-
-    useEffect(() => {
-        if (selectedCity) {
-            loadDistricts(selectedCity.id, selectedCity.name);
-            setSelectedDistrict(null);
-            setSelectedTowns([]);
-        } else {
-            setDistricts([]);
-        }
-    }, [selectedCity]);
-
-    useEffect(() => {
-        if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
-            loadTowns(selectedDistrict.id, selectedDistrict.name);
-            setSelectedTowns([]);
-        } else {
-            setTowns([]);
-        }
-    }, [selectedDistrict]);
+        selectedCity,
+        selectedDistrict,
+        selectedTowns,
+        handleCitySelect,
+        handleDistrictSelect,
+        handleTownToggle,
+        handleRemoveTown,
+        onClickCurrent,
+    } = useLocationSetting();
 
     if (isLoading) {
         return (
             <LoaderContainer>
-                <ClipLoader color="#6290EC" size={50} />
+                <ClipLoader color="#d7d7d7" size={48} />
             </LoaderContainer>
         );
     }
@@ -102,10 +39,7 @@ export default function LocationSelect() {
 
     return (
         <Container>
-            <Header>
-                <BackButtonIcon style={{ cursor: "pointer", marginLeft: 20 }} />
-                <Title>지역 선택하기</Title>
-            </Header>
+            <PageTitle $margin="16px 0 16px">지역 선택하기</PageTitle>
             <div
                 style={{
                     width: "100%",
@@ -115,29 +49,21 @@ export default function LocationSelect() {
                     alignItems: "center",
                 }}
             >
-                <CurrentLocationButton onClick={showMyLocationModal}>
+                <CurrentLocationButton onClick={() => onClickCurrent(navigate)}>
                     <LocationIcon style={{ width: 16, height: 16 }} />
                     현재 위치 추가
                 </CurrentLocationButton>
-                {isMyLocationModalVisible && <MyLocationModal />}
             </div>
 
             <CategoryLabels>
                 <span>
-                    시
-                    <PointIcon style={{ width: 2, height: 2, margin: "0 4px" }} />도
+                    시<PointIcon />도
                 </span>
                 <span>
-                    시
-                    <PointIcon style={{ width: 2, height: 2, margin: "0 4px" }} />
-                    군
-                    <PointIcon style={{ width: 2, height: 2, margin: "0 4px" }} />구
+                    시<PointIcon />군<PointIcon />구
                 </span>
                 <span>
-                    동
-                    <PointIcon style={{ width: 2, height: 2, margin: "0 4px" }} />
-                    읍
-                    <PointIcon style={{ width: 2, height: 2, margin: "0 4px" }} />면
+                    동<PointIcon />읍<PointIcon />면
                 </span>
             </CategoryLabels>
             <RegionContainer>
@@ -275,23 +201,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-const Header = styled.div`
-    width: 100%;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    position: relative;
-`;
-
-const Title = styled.h1`
-    text-align: center;
-    flex-grow: 1;
-    font-size: 20px;
-    font-weight: 500;
-    margin-right: 40px;
-`;
-
 const CurrentLocationButton = styled.div`
     display: flex;
     align-items: center;
@@ -299,7 +208,7 @@ const CurrentLocationButton = styled.div`
     margin-left: auto;
     border: 1px solid var(--color-main-1);
     color: var(--color-main-1);
-    background: white;
+    background: rgba(198, 212, 255, 0.3);
     padding: 2px 6px;
     border-radius: 24px;
     font-size: 12px;
@@ -321,6 +230,12 @@ const CategoryLabels = styled.div`
         color: var(--color-black-5);
         display: flex;
         align-items: center;
+    }
+
+    & svg {
+        width: 2px;
+        height: 2px;
+        margin: 0 4px;
     }
 `;
 

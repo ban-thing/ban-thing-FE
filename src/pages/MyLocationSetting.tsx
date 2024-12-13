@@ -1,10 +1,9 @@
 import KakaoMap from "../components/molecules/KakaoMap";
 import styled from "styled-components";
-import BackButtonIcon from "../assets/icons/back.svg?react";
 import { Button } from "@/components/atoms/Button";
-import { useNavigate } from "react-router-dom";
 import { useLocationStore } from "@/store/LocationStore";
 import { useEffect, useState } from "react";
+import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
 
@@ -15,19 +14,14 @@ interface AddressComponent {
 }
 
 const MyLocationSetting = () => {
-    const navigate = useNavigate();
     const { currentLocation } = useLocationStore();
     const [locationName, setLocationName] = useState<string>("");
 
-    const handleBack = () => {
-        navigate("/location-select");
-    };
-
-    useEffect(() => {
-        if (!currentLocation) {
-            navigate("/location-select");
-        }
-    }, [currentLocation, navigate]);
+    // useEffect(() => {
+    //     if (!currentLocation) {
+    //         navigate("/location-select");
+    //     }
+    // }, [currentLocation, navigate]);
 
     useEffect(() => {
         const fetchLocationName = async () => {
@@ -57,13 +51,7 @@ const MyLocationSetting = () => {
 
     return (
         <Container>
-            <Header>
-                <BackButton onClick={handleBack}>
-                    <BackButtonIcon style={{ display: "flex" }} />
-                </BackButton>
-                <Title>내 위치</Title>
-            </Header>
-
+            <PageTitleWithBackButton text="내 위치" $margin="16px 0" />
             <KakaoMap
                 center={currentLocation || DEFAULT_CENTER}
                 markers={[currentLocation || DEFAULT_CENTER]}
@@ -87,27 +75,10 @@ const MyLocationSetting = () => {
 export default MyLocationSetting;
 
 const Container = styled.div`
-    padding: 20px 0;
     width: 100%;
     background: white;
 `;
 
-const Header = styled.div`
-    width: 100%;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-`;
-
-const Title = styled.h1`
-    text-align: center;
-    flex-grow: 1;
-    font-size: 20px;
-    font-weight: 500;
-    margin-right: 40px;
-`;
 const LocationInfoWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -136,8 +107,4 @@ const BottomButtonWrapper = styled.div`
     bottom: 20px;
     right: 0;
     width: 100%;
-`;
-const BackButton = styled.div`
-    cursor: pointer;
-    margin-left: 20px;
 `;

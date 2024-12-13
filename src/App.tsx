@@ -13,7 +13,7 @@ import LocationSelect from "./pages/LocationSelect";
 import MyLocationSetting from "./pages/MyLocationSetting";
 import ItemView from "./pages/ItemView";
 import ItemRegister from "./pages/ItemRegister/ItemRegister";
-import { LoadScript } from "@react-google-maps/api";
+// import { LoadScript } from "@react-google-maps/api";
 import Search from "./pages/Search";
 import SearchHashtag from "./pages/SearchHashtag";
 import SearchResult from "./pages/SearchResult";
@@ -73,12 +73,10 @@ const router = createBrowserRouter([
 function App() {
     return (
         <CookiesProvider>
-            <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAP_API_KEY}>
-                <QueryClientProvider client={queryClient}>
-                    <ReactQueryDevtools initialIsOpen={true} />
-                    <RouterProvider router={router} />
-                </QueryClientProvider>
-            </LoadScript>
+            <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={true} />
+                <RouterProvider router={router} />
+            </QueryClientProvider>
         </CookiesProvider>
     );
 }
