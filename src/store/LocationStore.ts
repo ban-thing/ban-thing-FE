@@ -10,6 +10,18 @@ export const useLocationStore = create<LocationState>((set) => ({
     setCurrentLocation: (location) => set({ currentLocation: location }),
 }));
 
+interface CoorState {
+    currentCoor: { lat: number; lng: number };
+    setCurrentCoor: (location: { lat: number; lng: number }) => void;
+    resetCurrentCoor: () => void;
+}
+
+export const useCoorStore = create<CoorState>((set) => ({
+    currentCoor: { lat: 35, lng: 27 },
+    setCurrentCoor: (coor) => set({ currentCoor: coor }),
+    resetCurrentCoor: () => set({ currentCoor: { lat: 35, lng: 27 } }),
+}));
+
 interface ItemListLocationState {
     currentLocation: string;
     setCurrentLocation: (location: string) => void;

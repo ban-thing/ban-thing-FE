@@ -1,15 +1,17 @@
 import KakaoMap from "../components/molecules/KakaoMap";
 import styled from "styled-components";
 import { Button } from "@/components/atoms/Button";
-import { useLocationStore } from "@/store/LocationStore";
-import { useEffect, useState } from "react";
+import { useCoorStore, useLocationStore } from "@/store/LocationStore";
+import { useEffect } from "react";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
+import { useNavigate } from "react-router-dom";
 
 const MyLocationSetting = () => {
-    const { getAddress } = useLocationSetting();
+    const navigate = useNavigate();
+    const { getAddress, onClickCurrent } = useLocationSetting();
     const { currentLocation, setCurrentLocation } = useLocationStore();
-    const [currentCoor, setCurrentCoor] = useState({ lat: 37.5665, lng: 126.978 });
+    const { currentCoor } = useCoorStore();
 
     async function handleAddressLookup(lat: number, lng: number) {
         try {
@@ -22,36 +24,29 @@ const MyLocationSetting = () => {
     }
 
     useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const location = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-                    setCurrentCoor(location);
-                },
-                (error) => {
-                    console.error("Error getting location:", error);
-                    alert("위치 정보를 가져오는데 실패했습니다.");
-                },
-            );
-        } else {
-            alert("이 브라우저에서는 위치 정보를 사용할 수 없습니다.");
+        if (currentCoor.lat === 35 && currentCoor.lng === 27) {
+            return onClickCurrent();
         }
-    }, []);
-
-    useEffect(() => {
         const lat = currentCoor.lat;
         const lng = currentCoor.lng;
+
         handleAddressLookup(lat, lng);
-        console.log(currentLocation);
     }, [currentCoor]);
+
+    const onClickSubmit = () => {
+        navigate("/location-select");
+    };
 
     return (
         <Container>
             <PageTitleWithBackButton text="내 위치" $margin="16px 0" />
-            <KakaoMap center={currentCoor} markers={[currentCoor]} height="294px" width="100%" />
+            <KakaoMap
+                key={currentCoor.lat}
+                center={currentCoor}
+                markers={[currentCoor]}
+                height="294px"
+                width="100%"
+            />
             <LocationInfoWrapper>
                 <LocationButton>
                     현재 위치는
@@ -60,7 +55,7 @@ const MyLocationSetting = () => {
                 </LocationButton>
             </LocationInfoWrapper>
             <BottomButtonWrapper>
-                <Button>적용하기</Button>
+                <Button onClick={onClickSubmit}>적용하기</Button>
             </BottomButtonWrapper>
         </Container>
     );

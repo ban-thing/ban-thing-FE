@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Region } from "@/types/location";
 import { useLocationData } from "./useLocationData";
+import { useCoorStore, useLocationStore } from "@/store/LocationStore";
 
 export const useLocationSetting = () => {
+    const { currentLocation } = useLocationStore();
     const {
         cities,
         districts,
@@ -15,7 +17,7 @@ export const useLocationSetting = () => {
         setDistricts,
         setTowns,
     } = useLocationData();
-
+    const { setCurrentCoor } = useCoorStore();
     const [selectedCity, setSelectedCity] = useState<Region | null>(null);
     const [selectedDistrict, setSelectedDistrict] = useState<Region | null>(null);
     const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
@@ -54,11 +56,16 @@ export const useLocationSetting = () => {
         setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
     };
 
-    const onClickCurrent = (navigate: (path: string) => void) => {
+    const onClickCurrent = (navigate?: (path: string) => void) => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                () => {
-                    navigate("/my-location-setting");
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    setCurrentCoor(location);
+                    if (navigate) navigate("/my-location-setting");
                 },
                 (error) => {
                     console.error("Error getting location:", error);
@@ -85,6 +92,9 @@ export const useLocationSetting = () => {
     }, [selectedCity]);
 
     useEffect(() => {
+        if (selectedDistrict) {
+            loadTowns(selectedDistrict.id, selectedDistrict.name);
+        }
         if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
             loadTowns(selectedDistrict.id, selectedDistrict.name);
             setSelectedTowns([]);
@@ -110,6 +120,35 @@ export const useLocationSetting = () => {
         });
     };
 
+    // 좌표값으로 주소 불러왔을 때 주소 시/구/동 자동 선택
+    useEffect(() => {
+        if (currentLocation && cities.length > 0) {
+            // 시 선택
+            const city = cities.find((item) => item.name === currentLocation.region_1depth_name);
+            if (city) {
+                setSelectedCity(city);
+            }
+
+            // 구 선택 (cities가 로드된 후에)
+            if (districts.length > 0) {
+                const district = districts.find(
+                    (item) => item.name === currentLocation.region_2depth_name,
+                );
+                if (district) {
+                    setSelectedDistrict(district);
+                }
+            }
+
+            // 동 선택
+            if (towns.length > 0) {
+                const town = towns.find((item) => item.name === currentLocation.region_3depth_name);
+                if (town) {
+                    setSelectedTowns([town]);
+                }
+            }
+        }
+    }, [currentLocation, cities, districts, towns]);
+
     return {
         cities,
         districts,
@@ -119,6 +158,9 @@ export const useLocationSetting = () => {
         selectedCity,
         selectedDistrict,
         selectedTowns,
+        setSelectedCity,
+        setSelectedDistrict,
+        setSelectedTowns,
         handleCitySelect,
         handleDistrictSelect,
         handleTownToggle,

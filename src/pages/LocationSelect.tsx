@@ -7,9 +7,12 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useCoorStore } from "@/store/LocationStore";
 
 export default function LocationSelect() {
     const navigate = useNavigate();
+    const { currentCoor } = useCoorStore();
     const {
         cities,
         districts,
@@ -19,6 +22,9 @@ export default function LocationSelect() {
         selectedCity,
         selectedDistrict,
         selectedTowns,
+        setSelectedCity,
+        setSelectedDistrict,
+        setSelectedTowns,
         handleCitySelect,
         handleDistrictSelect,
         handleTownToggle,
@@ -311,6 +317,7 @@ const RegionButton = styled.button<{
 
     &:hover {
         background-color: #f5f5f5;
+        color: var(--color-black-5);
     }
 `;
 
