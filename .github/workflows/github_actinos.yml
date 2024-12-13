@@ -23,6 +23,10 @@ jobs:
         docker build -f ./dockerfilereact -t ${{ secrets.DOCKER_USERNAME }}/cicdtestfe .
         docker push ${{ secrets.DOCKER_USERNAME }}/cicdtestfe
 
+    - name: Make .env
+      run: |
+        touch ./.env
+        echo "${{ env }}"" > ./.env
     
   deploy:
     runs-on: ubuntu-24.04
