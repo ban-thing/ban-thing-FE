@@ -44,7 +44,7 @@ export const useFetchKakaoLogin = (code: string) => {
     return useQuery({
         queryKey: ["kakaoLogin", code],
         queryFn: async () => {
-            return await apiService.get<any>(`user/kakao/code=${code}`, {});
+            return await apiService.get<any>(`user/kakao?token=${code}`, {});
         },
         enabled: !!code,
         retry: false,
