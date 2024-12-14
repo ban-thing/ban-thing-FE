@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Button } from "@/components/atoms/Button";
 import Tag from "@/assets/icons/priceTagBlue.svg?react";
+import { useNavigate } from "react-router-dom";
+import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -45,6 +47,21 @@ type ItemViewLayout = {
 };
 
 export default function ItemViewBottomBar({ type, price }: ItemViewLayout) {
+    const navigate = useNavigate();
+    const createChatRoomMutation = useCreateChatRoomMutation();
+
+    const handleChatButtonClick = async () => {
+        try {
+            const chatRoomId = await createChatRoomMutation.mutateAsync({
+                sellerId: 1,
+                itemId: 1,
+            });
+            navigate(`/chat/${chatRoomId}`);
+        } catch (error) {
+            console.error("채팅방 생성 실패:", error);
+        }
+    };
+
     return (
         <StyledItemViewBottomBar>
             <PriceWrap>
@@ -53,10 +70,12 @@ export default function ItemViewBottomBar({ type, price }: ItemViewLayout) {
                     <PriceNumber>
                         {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
                     </PriceNumber>
-                    <PriceText>{type === "판매" ? "원" : ""}</PriceText>
+                    <PriceText>원</PriceText>
                 </Price>
             </PriceWrap>
-            <Button size="small">채팅하기</Button>
+            <Button size="small" onClick={handleChatButtonClick}>
+                채팅하기
+            </Button>
         </StyledItemViewBottomBar>
     );
 }

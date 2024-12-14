@@ -1,45 +1,40 @@
 import styled from "styled-components";
 import BackButtonIcon from "../assets/icons/back.svg?react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AlbumIcon from "../assets/icons/album.svg?react";
 import SendIcon from "../assets/icons/send.svg?react";
 import { useState } from "react";
+import { useChatRoomMessagesQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Chatting() {
     const navigate = useNavigate();
-    const [messages, setMessages] = useState<
-        Array<{
-            text: string;
-            isMe: boolean;
-            time: string;
-        }>
-    >([
-        {
-            text: "안녕하세요! 구매원해요~!",
-            isMe: false,
-            time: "오후 8:18",
-        },
-    ]);
+    const { chatRoomId } = useParams<{ chatRoomId: string }>();
     const [inputText, setInputText] = useState("");
 
-    const handleSendMessage = () => {
+    const { data, fetchNextPage, hasNextPage } = useChatRoomMessagesQuery(Number(chatRoomId));
+
+    const sendMessageMutation = useSendMessageMutation();
+
+    const handleSendMessage = async () => {
         if (inputText.trim() === "") return;
 
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const timeString = `${hours > 12 ? "오후" : "오전"} ${hours > 12 ? hours - 12 : hours}:${minutes.toString().padStart(2, "0")}`;
-
-        setMessages([
-            ...messages,
-            {
-                text: inputText,
-                isMe: true,
-                time: timeString,
-            },
-        ]);
-        setInputText("");
+        try {
+            await sendMessageMutation.mutateAsync({
+                roomId: Number(chatRoomId),
+                message: inputText,
+            });
+            setInputText("");
+        } catch (error) {
+            console.error("Failed to send message:", error);
+        }
     };
+
+    if (!data) {
+        return <ClipLoader />;
+    }
+
+    const messages = data.pages.flatMap((page) => page.messages);
 
     return (
         <Container>
@@ -48,14 +43,21 @@ export default function Chatting() {
                     style={{ cursor: "pointer", marginLeft: 20 }}
                     onClick={() => navigate("/chatting-list")}
                 />
-                <HeaderTitle>구름이네</HeaderTitle>
+                <HeaderTitle>{data.pages[0].title}</HeaderTitle>
             </Header>
 
             <ProductInfo>
-                <ProductImage src="/path-to-image.jpg" alt="고양이 장난감" />
+                <ProductImage
+                    src={
+                        Array.isArray(data.pages[0].itemImage)
+                            ? data.pages[0].itemImage[0]
+                            : data.pages[0].itemImage || ""
+                    }
+                    alt={data.pages[0].title}
+                />
                 <ProductDetails>
-                    <Title>고양이 장난감</Title>
-                    <Price>8,000원</Price>
+                    <Title>{data.pages[0].title}</Title>
+                    <Price>{data.pages[0].price.toLocaleString()}원</Price>
                 </ProductDetails>
             </ProductInfo>
 
@@ -64,11 +66,17 @@ export default function Chatting() {
                     <DateDivider>2024년 12월 28일</DateDivider>
                 </div>
                 {messages.map((message, index) => (
-                    <MessageBubble key={index} isMe={message.isMe}>
-                        {message.text}
-                        <MessageTime isMe={message.isMe}>{message.time}</MessageTime>
+                    <MessageBubble
+                        key={index}
+                        isMe={message.senderId === 1 /* 실제 사용자 ID로 대체 */}
+                    >
+                        {message.message}
+                        <MessageTime isMe={message.senderId === 1}>
+                            {new Date(message.time).toLocaleString()}
+                        </MessageTime>
                     </MessageBubble>
                 ))}
+                {hasNextPage && <button onClick={() => fetchNextPage()}>Load more</button>}
             </ChatContainer>
 
             <Footer>
