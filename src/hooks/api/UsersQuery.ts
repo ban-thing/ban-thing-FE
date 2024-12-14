@@ -17,36 +17,36 @@ const apiService = new ApiService();
  */
 
 // 카카오 로그인
-// export const useFetchKakaoLogin = (code: string) => {
-//     const KEY = import.meta.env.VITE_REST_API_KEY;
-//     const URI = import.meta.env.VITE_REDIRECT_URI;
-//     return useQuery({
-//         queryKey: ["kakaoLogin", code],
-//         queryFn: async () => {
-//             return await apiService.post<any>(
-//                 "https://kauth.kakao.com/oauth/token",
-//                 {
-//                     grant_type: "authorization_code",
-//                     client_id: KEY,
-//                     redirect_uri: URI,
-//                     code: code,
-//                 },
-//                 "application/x-www-form-urlencoded;charset=utf-8",
-//             );
-//         },
-//         enabled: !!code,
-//         retry: false,
-//     });
-// };
 export const useFetchKakaoLogin = (code: string) => {
-    // const KEY = import.meta.env.VITE_REST_API_KEY;
-    // const URI = import.meta.env.VITE_REDIRECT_URI;
+    const KEY = import.meta.env.VITE_REST_API_KEY;
+    const URI = import.meta.env.VITE_REDIRECT_URI;
     return useQuery({
         queryKey: ["kakaoLogin", code],
         queryFn: async () => {
-            return await apiService.get<any>(`user/kakao?token=${code}`, {});
+            return await apiService.post<any>(
+                "https://kauth.kakao.com/oauth/token",
+                {
+                    grant_type: "authorization_code",
+                    client_id: KEY,
+                    redirect_uri: URI,
+                    code: code,
+                },
+                "application/x-www-form-urlencoded;charset=utf-8",
+            );
         },
         enabled: !!code,
+        retry: false,
+    });
+};
+export const useFetchKakaoLogin_token = (token: string) => {
+    // const KEY = import.meta.env.VITE_REST_API_KEY;
+    // const URI = import.meta.env.VITE_REDIRECT_URI;
+    return useQuery({
+        queryKey: ["kakaoLogin", token],
+        queryFn: async () => {
+            return await apiService.get<any>(`user/kakao?token=${token}`, {});
+        },
+        enabled: !!token,
         retry: false,
     });
 };
