@@ -1,21 +1,27 @@
 import { useState, useEffect } from "react";
 import { Region } from "@/types/location";
 import { useLocationData } from "./useLocationData";
-import { useCoorStore, useLocationStore } from "@/store/LocationStore";
+import { useCoorStore, useAddressStore } from "@/store/LocationStore";
 
 export const useLocationSetting = () => {
-    const { currentLocation } = useLocationStore();
+    const {
+        currentAddress,
+        setCurrentCity,
+        setCurrentDistrict,
+        setCurrentTowns,
+        resetCurrentAddress,
+    } = useAddressStore();
     const {
         cities,
         districts,
         towns,
         isLoading,
         error,
+        setDistricts,
+        setTowns,
         loadCities,
         loadDistricts,
         loadTowns,
-        setDistricts,
-        setTowns,
     } = useLocationData();
     const { setCurrentCoor } = useCoorStore();
     const [selectedCity, setSelectedCity] = useState<Region | null>(null);
@@ -23,37 +29,38 @@ export const useLocationSetting = () => {
     const [selectedTowns, setSelectedTowns] = useState<Region[]>([]);
 
     const handleCitySelect = (city: Region) => {
-        setSelectedCity(city);
+        setCurrentCity(city.name);
     };
 
     const handleDistrictSelect = (district: Region) => {
-        setSelectedDistrict(district);
+        setCurrentDistrict(district.name);
         if (district.id.endsWith("_all")) {
-            setSelectedTowns([district]);
+            setCurrentTowns([district.name]);
         }
     };
 
     const handleTownToggle = (town: Region) => {
-        setSelectedTowns((prev) => {
+        if (Array.isArray(currentAddress?.[2]) && town) {
+            if (currentAddress?.[2].includes(town.name)) {
+                return;
+            }
             if (town.id.endsWith("_all")) {
-                return [town];
+                return setCurrentTowns([town.name]);
             }
-            if (prev.some((t) => t.id.endsWith("_all"))) {
-                return [town];
+            if (currentAddress?.[2].length < 3) {
+                const filtered = currentAddress?.[2].filter((town) => !town.includes("전체"));
+                return setCurrentTowns([...filtered, town.name]);
             }
-            if (prev.find((t) => t.id === town.id)) {
-                const filtered = prev.filter((t) => t.id !== town.id);
-                return filtered.filter((t) => !t.id.endsWith("_all"));
+            if (currentAddress?.[2].length === 3) {
+                return;
             }
-            if (prev.length < 3) {
-                return [...prev, town];
-            }
-            return prev;
-        });
+        }
+        setCurrentTowns([town.name]);
     };
 
-    const handleRemoveTown = (townId: string) => {
-        setSelectedTowns((prev) => prev.filter((t) => t.id !== townId));
+    const handleRemoveTown = (town: string) => {
+        const filtered = currentAddress?.[2]?.filter((prevTown) => prevTown !== town);
+        setCurrentTowns(filtered?.length === 0 ? [] : filtered || []);
     };
 
     const onClickCurrent = (navigate?: (path: string) => void) => {
@@ -82,26 +89,36 @@ export const useLocationSetting = () => {
     }, []);
 
     useEffect(() => {
-        if (selectedCity) {
-            loadDistricts(selectedCity.id, selectedCity.name);
-            setSelectedDistrict(null);
-            setSelectedTowns([]);
-        } else {
-            setDistricts([]);
+        if (currentAddress?.[0]) {
+            const cityId = cities.find((item) => item.name === currentAddress[0])?.id as string;
+            setTowns([]);
+            loadDistricts(cityId, currentAddress[0] as string);
+            setSelectedCity({ id: cityId, name: currentAddress[0] });
         }
-    }, [selectedCity]);
+    }, [currentAddress?.[0], cities]);
 
     useEffect(() => {
-        if (selectedDistrict) {
-            loadTowns(selectedDistrict.id, selectedDistrict.name);
-        }
-        if (selectedDistrict && !selectedDistrict.id.endsWith("_all")) {
-            loadTowns(selectedDistrict.id, selectedDistrict.name);
+        if (currentAddress?.[1]) {
+            const districtsId = districts.find((item) => item.name === currentAddress[1])
+                ?.id as string;
+            setSelectedDistrict({ id: districtsId, name: currentAddress[1] });
             setSelectedTowns([]);
-        } else {
-            setTowns([]);
+            if (!currentAddress[1].includes("전체")) {
+                loadTowns(districtsId, currentAddress[1] as string);
+            }
         }
-    }, [selectedDistrict]);
+    }, [currentAddress?.[1], districts]);
+
+    useEffect(() => {
+        if (currentAddress?.[2]) {
+            const townsArray = currentAddress?.[2];
+            const resultArray = townsArray.map((name) => {
+                const id = towns.find((item) => item.name === name)?.id as string;
+                return { id, name };
+            });
+            setSelectedTowns(resultArray);
+        }
+    }, [currentAddress?.[2], towns]);
 
     // 좌표값으로 주소 얻기
     const getAddress = (lat: number, lng: number): Promise<any> => {
@@ -120,34 +137,17 @@ export const useLocationSetting = () => {
         });
     };
 
-    // 좌표값으로 주소 불러왔을 때 주소 시/구/동 자동 선택
-    useEffect(() => {
-        if (currentLocation && cities.length > 0) {
-            // 시 선택
-            const city = cities.find((item) => item.name === currentLocation.region_1depth_name);
-            if (city) {
-                setSelectedCity(city);
-            }
-
-            // 구 선택 (cities가 로드된 후에)
-            if (districts.length > 0) {
-                const district = districts.find(
-                    (item) => item.name === currentLocation.region_2depth_name,
-                );
-                if (district) {
-                    setSelectedDistrict(district);
-                }
-            }
-
-            // 동 선택
-            if (towns.length > 0) {
-                const town = towns.find((item) => item.name === currentLocation.region_3depth_name);
-                if (town) {
-                    setSelectedTowns([town]);
-                }
-            }
-        }
-    }, [currentLocation, cities, districts, towns]);
+    const resetData = () => {
+        setDistricts([]);
+        setTowns([]);
+        setCurrentCity(null);
+        setCurrentDistrict(null);
+        setCurrentTowns([]);
+        setSelectedCity(null);
+        setSelectedDistrict(null);
+        setCurrentTowns([]);
+        resetCurrentAddress();
+    };
 
     return {
         cities,
@@ -167,5 +167,6 @@ export const useLocationSetting = () => {
         handleRemoveTown,
         onClickCurrent,
         getAddress,
+        resetData,
     };
 };

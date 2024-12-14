@@ -34,9 +34,9 @@ const Login = () => {
     const uri = window.location.href.includes("localhost")
         ? import.meta.env.VITE_REDIRECT_URI_LOCAL
         : import.meta.env.VITE_REDIRECT_URI;
-    console.log(uri);
 
     const onClickLogin = () => {
+        // 인가코드 요청
         window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${uri}&response_type=code`;
     };
     return (

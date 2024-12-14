@@ -1,7 +1,7 @@
 import KakaoMap from "../components/molecules/KakaoMap";
 import styled from "styled-components";
 import { Button } from "@/components/atoms/Button";
-import { useCoorStore, useLocationStore } from "@/store/LocationStore";
+import { useCoorStore, useAddressStore } from "@/store/LocationStore";
 import { useEffect } from "react";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
@@ -10,13 +10,17 @@ import { useNavigate } from "react-router-dom";
 const MyLocationSetting = () => {
     const navigate = useNavigate();
     const { getAddress, onClickCurrent } = useLocationSetting();
-    const { currentLocation, setCurrentLocation } = useLocationStore();
+    const { currentAddress, setCurrentAddress } = useAddressStore();
     const { currentCoor } = useCoorStore();
 
     async function handleAddressLookup(lat: number, lng: number) {
         try {
             const data = await getAddress(lat, lng);
-            setCurrentLocation(data);
+            setCurrentAddress([
+                data.region_1depth_name,
+                data.region_2depth_name,
+                [data.region_3depth_name],
+            ]);
             return data;
         } catch (error) {
             console.error("주소 정보를 가져오지 못했어요.", error);
@@ -29,12 +33,11 @@ const MyLocationSetting = () => {
         }
         const lat = currentCoor.lat;
         const lng = currentCoor.lng;
-
         handleAddressLookup(lat, lng);
     }, [currentCoor]);
 
-    const onClickSubmit = () => {
-        navigate("/location-select");
+    const onClickSubmit = async () => {
+        navigate("/location-select?my");
     };
 
     return (
@@ -50,7 +53,7 @@ const MyLocationSetting = () => {
             <LocationInfoWrapper>
                 <LocationButton>
                     현재 위치는
-                    <LocationText> "{currentLocation?.region_3depth_name}" </LocationText>
+                    <LocationText> "{currentAddress?.[2]?.[0]}" </LocationText>
                     이에요.
                 </LocationButton>
             </LocationInfoWrapper>

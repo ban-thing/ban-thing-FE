@@ -1,13 +1,32 @@
 import { create } from "zustand";
 
-interface LocationState {
-    currentLocation: Record<string, string> | null;
-    setCurrentLocation: (location: Record<string, string> | null) => void;
+interface AddressState {
+    currentAddress: [string | null, string | null, string[] | null] | null;
+    setCurrentAddress: (address: [string, string, string[]] | null) => void;
+    setCurrentCity: (value: string | null) => void;
+    setCurrentDistrict: (value: string | null) => void;
+    setCurrentTowns: (value: string[] | []) => void;
+    resetCurrentAddress: () => void;
 }
 
-export const useLocationStore = create<LocationState>((set) => ({
-    currentLocation: null,
-    setCurrentLocation: (location) => set({ currentLocation: location }),
+export const useAddressStore = create<AddressState>((set) => ({
+    currentAddress: [null, null, []],
+    setCurrentAddress: (address) => set({ currentAddress: address }),
+    setCurrentCity: (value: string | null) =>
+        set((state) => ({
+            currentAddress: state.currentAddress ? [value, null, null] : null,
+        })),
+    setCurrentDistrict: (value: string | null) =>
+        set((state) => ({
+            currentAddress: state.currentAddress ? [state.currentAddress[0], value, null] : null,
+        })),
+    setCurrentTowns: (value: string[] | []) =>
+        set((state) => ({
+            currentAddress: state.currentAddress
+                ? [state.currentAddress[0], state.currentAddress[1], value]
+                : null,
+        })),
+    resetCurrentAddress: () => set({ currentAddress: [null, null, []] }),
 }));
 
 interface CoorState {

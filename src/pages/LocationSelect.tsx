@@ -7,6 +7,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
+import { useFetchAddress } from "@/hooks/api/UsersQuery";
+
 export default function LocationSelect() {
     const navigate = useNavigate();
     const {
@@ -23,7 +25,23 @@ export default function LocationSelect() {
         handleTownToggle,
         handleRemoveTown,
         onClickCurrent,
+        resetData,
     } = useLocationSetting();
+    const { mutate } = useFetchAddress({
+        address1: selectedTowns[0]?.name,
+        address2: selectedTowns[1]?.name || "",
+        address3: selectedTowns[2]?.name || "",
+    });
+
+    const onClickCancel = () => {
+        resetData();
+    };
+
+    const onClickSubmit = () => {
+        if (selectedTowns[0]) {
+            mutate();
+        }
+    };
 
     if (isLoading) {
         return (
@@ -94,10 +112,10 @@ export default function LocationSelect() {
 
                 <RegionSection>
                     {towns.map((town) => {
-                        const isAllSelected = selectedTowns.some((t) => t.id.endsWith("_all"));
+                        const isAllSelected = selectedTowns.some((t) => t.id?.endsWith("_all"));
                         const isSelected =
                             selectedTowns.some((t) => t.id === town.id) ||
-                            (isAllSelected && !town.id.endsWith("_all"));
+                            (isAllSelected && !town.id?.endsWith("_all"));
 
                         return (
                             <RegionButton
@@ -133,7 +151,7 @@ export default function LocationSelect() {
                                 <TagLabel>대표 지역</TagLabel>
                                 <Tag
                                     key={selectedTowns[0].id}
-                                    onClick={() => handleRemoveTown(selectedTowns[0].id)}
+                                    onClick={() => handleRemoveTown(selectedTowns[0].name)}
                                 >
                                     {selectedTowns[0].name}
                                 </Tag>
@@ -144,7 +162,7 @@ export default function LocationSelect() {
                         <TagSection>
                             <TagLabel>추가 지역</TagLabel>
                             {selectedTowns.slice(1).map((town) => (
-                                <Tag key={town.id} onClick={() => handleRemoveTown(town.id)}>
+                                <Tag key={town.id} onClick={() => handleRemoveTown(town.name)}>
                                     {town.name}
                                 </Tag>
                             ))}
@@ -159,6 +177,7 @@ export default function LocationSelect() {
                             color: "var(--color-black-5)",
                             borderColor: "var(--color-black-6)",
                         }}
+                        onClick={onClickCancel}
                     >
                         취소
                     </Button>
@@ -166,6 +185,7 @@ export default function LocationSelect() {
                         variant={selectedTowns.length > 0 ? "filled" : "gray"}
                         size="small"
                         disabled={selectedTowns.length === 0}
+                        onClick={onClickSubmit}
                     >
                         확인
                     </Button>
@@ -268,6 +288,10 @@ const RegionButton = styled.button<{
     align-items: center;
     color: var(--color-black-5);
 
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
     ${({ selected, variant }) => {
         switch (variant) {
             case "city":
@@ -307,11 +331,6 @@ const RegionButton = styled.button<{
                 return "";
         }
     }}
-
-    &:hover {
-        background-color: #f5f5f5;
-        color: var(--color-black-5);
-    }
 `;
 
 const SelectedArea = styled.div`

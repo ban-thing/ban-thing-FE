@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
-import { Address } from "@/types/User";
+import { Address, UserProfile } from "@/types/User";
+import { useNavigate } from "react-router-dom";
 
 const apiService = new ApiService();
 
@@ -10,7 +11,7 @@ const apiService = new ApiService();
     return useQuery({
         queryKey: [""],
         queryFn: async () => {
-            return await apiService.get("url", {})
+            return await apiService.get<any>("url", {})
         }
     })
 }
@@ -19,7 +20,9 @@ const apiService = new ApiService();
 // 카카오 로그인
 export const useFetchKakaoLogin = (code: string) => {
     const KEY = import.meta.env.VITE_REST_API_KEY;
-    const URI = import.meta.env.VITE_REDIRECT_URI;
+    const URI = window.location.href.includes("localhost")
+        ? import.meta.env.VITE_REDIRECT_URI_LOCAL
+        : import.meta.env.VITE_REDIRECT_URI;
     return useQuery({
         queryKey: ["kakaoLogin", code],
         queryFn: async () => {
@@ -54,19 +57,50 @@ export const useFetchMyProfile = () => {
     return useQuery({
         queryKey: ["myProfile"],
         queryFn: async () => {
-            return await apiService.get("my/profile", {});
+            return await apiService.get<any>("my/profile", {});
+        },
+    });
+};
+
+// 프로필 수정
+export const useFetchMyProfileEdit = ({
+    nickname,
+    profileImg,
+}: Pick<UserProfile, "nickname" | "profileImg">) => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: async () => {
+            return await apiService.patch<void>(
+                "my/profile",
+                { nickname, profileImg },
+                "multipart/form-data",
+            );
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        },
+        onSuccess: () => {
+            // navigate("my-page");
         },
     });
 };
 
 // 위치 등록 및 수정
 export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
+    const navigate = useNavigate();
     return useMutation({
         mutationFn: async () => {
-            return await apiService.patch("my/address", { address1, address2, address3 });
+            return await apiService.patch<Record<string, string>>("my/address", {
+                address1,
+                address2,
+                address3,
+            });
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);
+        },
+        onSuccess: () => {
+            // navigate("");
         },
     });
 };
