@@ -41,13 +41,13 @@ export const useFetchKakaoLogin = (code: string) => {
         retry: false,
     });
 };
-export const useFetchKakaoLogin_token = (token: string) => {
+export const useFetchKakaoLogin_token = (token: string, code: string) => {
     return useQuery({
-        queryKey: ["kakaoLogin_token", token],
+        queryKey: ["kakaoLogin_token", token, code],
         queryFn: async () => {
             return await apiService.get<any>(`user/kakao?token=${token}`, {});
         },
-        enabled: !!token,
+        enabled: !!token && !!code,
         retry: false,
     });
 };
