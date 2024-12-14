@@ -1,4 +1,5 @@
 import { useFetchKakaoLogin, useFetchKakaoLogin_token } from "@/hooks/api/UsersQuery";
+import { setCookie } from "@/utils/Cookie";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,7 +9,7 @@ const LoginRedirect = () => {
     const [loginText, setLoginText] = useState("로그인 중");
     const code = new URL(document.location.toString()).searchParams.get("code");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
-    const { data: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
+    const { status: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
         data?.access_token || "",
     );
 
@@ -17,6 +18,8 @@ const LoginRedirect = () => {
         if (!isLoading && !isTokenLoading) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
+            setCookie("access_token", data.access_token);
+            setCookie("access_token", data.access_token);
         }
         if (!isLoading && !isTokenLoading && data && tokenData) {
             setLoginText("로그인 성공");
