@@ -3,6 +3,7 @@ import { Button } from "@/components/atoms/Button";
 import Tag from "@/assets/icons/priceTagBlue.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
+import { useEffect } from "react";
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -50,11 +51,15 @@ type ItemViewLayout = {
 
 export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
     const navigate = useNavigate();
-    const { mutate } = useCreateChatRoomMutation();
+    const { mutate, isSuccess } = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
         mutate({ sellerId, itemId });
     };
+
+    useEffect(() => {
+        // navigate("/chatting/")
+    }, [isSuccess]);
 
     return (
         <StyledItemViewBottomBar>
@@ -64,7 +69,7 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId }: Ite
                     <PriceNumber>
                         {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
                     </PriceNumber>
-                    <PriceText>원</PriceText>
+                    <PriceText>{type === "판매" ? "원" : ""}</PriceText>
                 </Price>
             </PriceWrap>
             <Button size="small" onClick={handleChatButtonClick}>

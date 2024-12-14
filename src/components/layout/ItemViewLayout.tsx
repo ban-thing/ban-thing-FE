@@ -11,14 +11,9 @@ type ItemViewLayout = {
 
 const ItemViewLayout = ({ children, type, price, sellerId, itemId }: ItemViewLayout) => {
     return (
-        // 스켈레톤은 아니지만 로딩상태 반영
         <>
             {children}
-            {true ? (
-                <ItemViewBottomBar type={type} price={price} sellerId={sellerId} itemId={itemId} />
-            ) : (
-                <></>
-            )}
+            <ItemViewBottomBar type={type} price={price} sellerId={sellerId} itemId={itemId} />
         </>
     );
 };
