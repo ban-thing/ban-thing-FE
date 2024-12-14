@@ -21,12 +21,11 @@ const LoginRedirect = () => {
             queryClient.invalidateQueries({
                 queryKey: ["kakaoLogin_token"],
             });
-            localStorage.setItem("access_token", data.access_token);
-            localStorage.setItem("refresh_token", data.refresh_token);
-            setCookie("access_token", data.access_token, { path: "/login" });
-            setCookie("refresh_token", data.refresh_token, { path: "/login" });
         }
         if (!isLoading && data && !isTokenLoading && tokenData) {
+            localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("refresh_token", data.refresh_token);
+            setCookie("Authorization", tokenData.data, { path: "/", maxAge: 2592000 });
             if (tokenData.message.includes("로그인")) {
                 navigate("/");
             } else navigate("/location-select");
