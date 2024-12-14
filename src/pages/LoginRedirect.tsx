@@ -15,11 +15,11 @@ const LoginRedirect = () => {
 
     useEffect(() => {
         console.log(data, isLoading, tokenData, isTokenLoading);
-        if (!isLoading && !isTokenLoading) {
+        if (!isLoading && data) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
-            setCookie("access_token", data.access_token);
-            setCookie("access_token", data.access_token);
+            setCookie("access_token", data.access_token, { path: "/login" });
+            setCookie("refresh_token", data.refresh_token, { path: "/login" });
         }
         if (!isLoading && !isTokenLoading && data && tokenData) {
             setLoginText("로그인 성공");
