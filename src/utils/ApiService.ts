@@ -1,9 +1,12 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { getCookie } from "./Cookie";
 
+const authCookie = getCookie("Authorization");
 /**
  * 사용법: apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터)
  * formData 전송시 apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터, "multipart/form-data")
  */
+
 export default class ApiService {
     axiosInstance: AxiosInstance;
 
@@ -17,29 +20,54 @@ export default class ApiService {
 
     // ... (getCsrfToken method remains the same)
 
-    get<T>(path: string, parameters: unknown, header?: string): Promise<T> {
+    get<T>(
+        path: string,
+        parameters: unknown,
+        header?: string,
+        withCredentials?: boolean,
+    ): Promise<T> {
         console.log("🟣 get ", path, parameters);
-        return this.makeRequest<T>("get", path, parameters, header);
+        return this.makeRequest<T>("get", path, parameters, header, withCredentials);
     }
 
-    post<T>(path: string, parameters: unknown, header?: string): Promise<T> {
+    post<T>(
+        path: string,
+        parameters: unknown,
+        header?: string,
+        withCredentials?: boolean,
+    ): Promise<T> {
         console.log("🟣 post ", path, parameters);
-        return this.makeRequest<T>("post", path, parameters, header);
+        return this.makeRequest<T>("post", path, parameters, header, withCredentials);
     }
 
-    put<T>(path: string, parameters: unknown, header?: string): Promise<T> {
+    put<T>(
+        path: string,
+        parameters: unknown,
+        header?: string,
+        withCredentials?: boolean,
+    ): Promise<T> {
         console.log("🟣 put ", path, parameters);
-        return this.makeRequest<T>("put", path, parameters, header);
+        return this.makeRequest<T>("put", path, parameters, header, withCredentials);
     }
 
-    patch<T>(path: string, parameters: unknown, header?: string): Promise<T> {
+    patch<T>(
+        path: string,
+        parameters: unknown,
+        header?: string,
+        withCredentials?: boolean,
+    ): Promise<T> {
         console.log("🟣 patch ", path, parameters);
-        return this.makeRequest<T>("patch", path, parameters, header);
+        return this.makeRequest<T>("patch", path, parameters, header, withCredentials);
     }
 
-    delete<T>(path: string, parameters: unknown, header?: string): Promise<T> {
+    delete<T>(
+        path: string,
+        parameters: unknown,
+        header?: string,
+        withCredentials?: boolean,
+    ): Promise<T> {
         console.log("🟣 delete ", path, parameters);
-        return this.makeRequest<T>("delete", path, parameters, header);
+        return this.makeRequest<T>("delete", path, parameters, header, withCredentials);
     }
 
     private makeRequest<T>(
@@ -47,13 +75,16 @@ export default class ApiService {
         path: string,
         parameters: unknown,
         header?: string,
+        withCredentials = false,
     ): Promise<T> {
         const { promise, resolve, reject } = Promise.withResolvers<T>();
 
         const config: AxiosRequestConfig = {
             headers: {
+                Authorization: authCookie ? authCookie : "",
                 "Content-Type": header ? header : "application/json",
             },
+            withCredentials,
         };
         if (method === "get" || method === "delete") {
             config.params = parameters;
