@@ -13,7 +13,7 @@ const tabsList = ["전체", "판매", "구매"];
 export default function ChattingList() {
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState("전체");
-    const { data, isLoading } = useChatsListQuery(1);
+    const { data, isLoading } = useChatsListQuery();
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);

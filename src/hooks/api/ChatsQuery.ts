@@ -5,11 +5,11 @@ import ApiService from "@/utils/ApiService";
 const apiService = new ApiService();
 
 // 채팅 목록 조회 Query
-export const useChatsListQuery = (chatRoomId: number) => {
+export const useChatsListQuery = () => {
     return useQuery<ChatList[]>({
-        queryKey: ["chats", chatRoomId],
+        queryKey: ["chats"],
         queryFn: async () => {
-            return await apiService.get<ChatList[]>(`chats/${chatRoomId}`, {});
+            return await apiService.get<ChatList[]>(`chats`, {});
         },
     });
 };
