@@ -26,7 +26,7 @@ export default usePhotoUpload;
 export const useProfilePhotoUpload = () => {
     const [photoPreview, setPhotoPreview] = useState("");
 
-    const onChangeFile = (file: File) => {
+    const onChangeFile = (file: any) => {
         if (!file) return;
         setPhotoPreview(URL.createObjectURL(file));
     };

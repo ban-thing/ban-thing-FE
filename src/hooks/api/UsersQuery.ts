@@ -58,24 +58,25 @@ export const useFetchMyProfile = () => {
     return useQuery({
         queryKey: ["myProfile"],
         queryFn: async () => {
-            return await apiService.get<any>("my/profile", {}, "", true);
+            return await apiService.get<Record<string, any>>("my/profile", {}, "", true);
         },
         retry: false,
     });
 };
 
 // 프로필 수정
-export const useFetchMyProfileEdit = ({
-    nickname,
-    profileImg,
-}: Pick<UserProfile, "nickname" | "profileImg">) => {
+export const useFetchMyProfileEdit = () => {
     // const navigate = useNavigate();
-    const formData = new FormData();
-    formData.append("jsonData", JSON.stringify({ nickname }));
-    formData.append("profileImg", profileImg);
     return useMutation({
-        mutationFn: async () => {
-            return await apiService.patch<void>("my/profile", formData, "multipart/form-data");
+        mutationFn: async ({
+            nickname,
+            profileImg,
+        }: Pick<UserProfile, "nickname" | "profileImg">) => {
+            const formData = new FormData();
+            formData.append("nickname", JSON.stringify({ nickname }));
+            formData.append("profileImg", profileImg);
+
+            return await apiService.patch<any>("my/profile", formData, "multipart/form-data");
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);

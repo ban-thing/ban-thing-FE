@@ -82,7 +82,8 @@ export default class ApiService {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: authCookie ? authCookie : "",
-                "Content-Type": header ? header : "application/json",
+                "Content-Type":
+                    header === "multipart/form-data" ? "" : header ? header : "application/json",
             },
             withCredentials,
         };

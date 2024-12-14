@@ -7,3 +7,25 @@ export const setImgUrl = (id: string | number, data: string, type: string) => {
 export const setImg64 = (string: string) => {
     return `data:image/png;base64,${string}`;
 };
+
+export const base64ToFile = (base64: string, filename = "imgFile"): File => {
+    // base64 데이터에서 MIME 타입 추출
+    const match = base64.match(/^data:(\w+\/\w+);base64,/);
+    const mime = match ? match[1] : "image/png";
+
+    // base64 데이터에서 실제 base64 문자열 추출
+    const base64Data = base64.replace(/^data:\w+\/\w+;base64,/, "");
+
+    try {
+        const bstr = atob(base64Data);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    } catch (error) {
+        throw new Error("Failed to decode Base64 string. Ensure it is correctly encoded.");
+    }
+};
