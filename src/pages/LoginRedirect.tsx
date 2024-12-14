@@ -1,4 +1,4 @@
-import { useFetchKakaoLogin } from "@/hooks/api/UsersQuery";
+import { useFetchKakaoLogin, useFetchKakaoLogin_token } from "@/hooks/api/UsersQuery";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -11,6 +11,7 @@ const LoginRedirect = () => {
 
     useEffect(() => {
         if (!isLoading) {
+            useFetchKakaoLogin_token(data.access_token);
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
         }

@@ -39,10 +39,8 @@ export const useFetchKakaoLogin = (code: string) => {
     });
 };
 export const useFetchKakaoLogin_token = (token: string) => {
-    // const KEY = import.meta.env.VITE_REST_API_KEY;
-    // const URI = import.meta.env.VITE_REDIRECT_URI;
     return useQuery({
-        queryKey: ["kakaoLogin", token],
+        queryKey: ["kakaoLogin_token", token],
         queryFn: async () => {
             return await apiService.get<any>(`user/kakao?token=${token}`, {});
         },
