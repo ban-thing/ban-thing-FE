@@ -6,6 +6,9 @@ import { Input } from "@/components/atoms/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Camera from "@/assets/icons/camera.svg?react";
 import photo from "@/assets/tempProfile.png";
+import { useProfilePhotoUpload } from "@/hooks/usePhotoUpload";
+import { useEffect } from "react";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const ProfileEditWrap = styled.form`
     width: 100%;
@@ -28,6 +31,7 @@ const PhotoEditWrap = styled.label`
 
 const PhotoWrap = styled.div`
     border-radius: 50%;
+    overflow: hidden;
 
     & img {
         width: 100px;
@@ -56,12 +60,22 @@ const EditButton = styled.div`
 `;
 
 const MyPageEdit = () => {
-    // const { photoPreview, photoFile, onChangeFile } = useProfilePhotoUpload(photo);
-    const { register, handleSubmit } = useForm();
+    // const { data, isLoading } = useFetchMyProfile();
+    // const {mutate, isLoading} = useFetchMyProfileEdit()
+    const { photoPreview, onChangeFile } = useProfilePhotoUpload();
+    const { register, handleSubmit, watch } = useForm();
+
+    const profileImg = watch("profileImg");
+    useEffect(() => {
+        if (profileImg) {
+            onChangeFile(profileImg[0]);
+        }
+    }, [profileImg]);
 
     // TODO: 프리뷰, 기존 데이터 불러오기 기능 추가
     const onSubmit: SubmitHandler<any> = (data) => {
-        console.log(data);
+        const submitData = { nickname: data.nickname, profileImg: data.profileImg[0] };
+        console.log(submitData);
     };
 
     return (
@@ -69,7 +83,7 @@ const MyPageEdit = () => {
             <PageTitle>프로필 수정</PageTitle>
             <PhotoEditWrap htmlFor="photoUpload">
                 <PhotoWrap>
-                    <img src={photo} alt="프로필 사진" />
+                    <img src={photoPreview || photo} alt="프로필 사진" />
                 </PhotoWrap>
                 <EditButton>
                     <Camera />
