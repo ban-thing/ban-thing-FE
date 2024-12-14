@@ -8,14 +8,16 @@ const LoginRedirect = () => {
     const [loginText, setLoginText] = useState("로그인 중");
     const code = new URL(document.location.toString()).searchParams.get("code");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
+    const { data: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
+        data.access_token,
+    );
 
     useEffect(() => {
-        if (!isLoading) {
-            useFetchKakaoLogin_token(data.access_token);
+        if (!isLoading && !isTokenLoading) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
         }
-        if (!isLoading && data) {
+        if (!isLoading && !isTokenLoading && data && tokenData) {
             setLoginText("로그인 성공");
             // navigate("/location-select");
         } else {
