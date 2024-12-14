@@ -73,7 +73,7 @@ export const useFetchMyProfileEdit = () => {
             profileImg,
         }: Pick<UserProfile, "nickname" | "profileImg">) => {
             const formData = new FormData();
-            formData.append("nickname", JSON.stringify({ nickname }));
+            formData.append("nickname", nickname);
             formData.append("profileImg", profileImg);
 
             return await apiService.patch<any>("my/profile", formData, "multipart/form-data");
