@@ -50,18 +50,10 @@ type ItemViewLayout = {
 
 export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
     const navigate = useNavigate();
-    const createChatRoomMutation = useCreateChatRoomMutation();
+    const { mutate } = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
-        try {
-            const chatRoomId = await createChatRoomMutation.mutateAsync({
-                sellerId,
-                itemId,
-            });
-            navigate(`/chatting/${chatRoomId}`);
-        } catch (error) {
-            console.error("채팅방 생성 실패:", error);
-        }
+        mutate({ sellerId, itemId });
     };
 
     return (

@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { getCookie } from "./Cookie";
 
-const authCookie = getCookie("Authorization");
 /**
  * 사용법: apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터)
  * formData 전송시 apiService.메서드<리스폰스 데이터 타입>('/주소', 전송데이터, "multipart/form-data")
@@ -77,11 +76,11 @@ export default class ApiService {
         header?: string,
         withCredentials = false,
     ): Promise<T> {
+        const authCookie = getCookie("Authorization");
         const { promise, resolve, reject } = Promise.withResolvers<T>();
-
         const config: AxiosRequestConfig = {
             headers: {
-                Authorization: authCookie ? authCookie : "",
+                Authorization: authCookie || "",
                 "Content-Type":
                     header === "multipart/form-data" ? "" : header ? header : "application/json",
             },
