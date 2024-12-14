@@ -5,6 +5,7 @@ import styled from "styled-components";
 import photo from "@/assets/tempProfile.png";
 import SquareButtonList from "@/components/molecules/MyPage.tsx/SquareButtons";
 import MyPageSettingList from "@/components/molecules/MyPage.tsx/MyPageSettingList";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const MyPageWrap = styled.div`
     padding: 0 20px;
@@ -25,6 +26,9 @@ const dummyProfile = {
 };
 
 const MyPage = () => {
+    const { data } = useFetchMyProfile();
+    console.log(data);
+
     return (
         <MyPageWrap>
             <PageTitle>마이페이지</PageTitle>
