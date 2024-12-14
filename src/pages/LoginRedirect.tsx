@@ -9,7 +9,7 @@ const LoginRedirect = () => {
     const code = new URL(document.location.toString()).searchParams.get("code");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
     const { data: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
-        data.access_token,
+        data?.access_token || "",
     );
 
     useEffect(() => {
