@@ -29,10 +29,6 @@ const ArrowWrap = styled(motion.span)`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    & svg {
-        transform: rotate(180deg);
-    }
 `;
 const SelectOptions = styled(motion.ul)<ShowProps>`
     position: absolute;
@@ -70,21 +66,18 @@ const Option = styled.li<ShowProps>`
 `;
 
 type DropdownProps = {
-    option?: string[];
+    option: string[];
     onChange?: (value: string) => void;
 };
 
-export const Dropdown = ({
-    option = ["연수동", "연수1동", "연수2동", "동네바꾸기"],
-    onChange,
-}: DropdownProps) => {
+export const Dropdown = ({ option, onChange }: DropdownProps) => {
     const selectRef = useRef(null) as RefObject<HTMLDivElement>;
     const { isDropdownOpen, closeDropdown, toggleDropdown } = useDropdownModalStore();
     const { currentLocation, setCurrentLocation } = useItemListLocationStore();
 
     useEffect(() => {
         setCurrentLocation(option[0]);
-    }, []);
+    }, [option]);
 
     const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLLIElement>) => {
         const value = e.currentTarget.getAttribute("value") || "";
@@ -110,14 +103,14 @@ export const Dropdown = ({
             <Label>
                 <span>{currentLocation}</span>
                 <ArrowWrap
-                    animate={{ rotate: isDropdownOpen ? 0 : 180 }}
+                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
                     <Arrow />
                 </ArrowWrap>
             </Label>
             <SelectOptions $show={isDropdownOpen}>
-                {option.map((data, index) => (
+                {[...option, "동네 바꾸기"].map((data, index) => (
                     <Option
                         key={index}
                         value={data}

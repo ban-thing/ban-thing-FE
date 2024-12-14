@@ -6,6 +6,8 @@ import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import { ItemsList } from "@/types/User";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useItemListLocationStore } from "@/store/LocationStore";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -27,7 +29,10 @@ type ItemListProps = {
 };
 
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
-    const [listData, setListData] = useState<ItemsList[]>();
+    const [addressList, setAddressList] = useState<string[]>();
+    const [listData, setListData] = useState<ItemsList[] | null>();
+    const { currentLocation } = useItemListLocationStore();
+    const { data: profileData, isSuccess } = useFetchMyProfile();
     const { data: { data } = {}, isLoading } = useFetchItemsList({
         keyword: "",
         hashtags: "",
@@ -36,13 +41,22 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
         address: "",
     });
     useEffect(() => {
-        if (data) {
-            setListData(data?.items);
+        if (isSuccess && profileData) {
+            setAddressList([
+                profileData.data.address1,
+                profileData.data.address2 || "",
+                profileData.data.address3 || "",
+            ]);
         }
-    }, [data, isLoading]);
+    }, [profileData, isSuccess]);
 
-    // TODO: 선택된 주소로 아이템 리스트 필터링
-    // const { currentLocation } = useItemListLocationStore();
+    useEffect(() => {
+        if (data && addressList) {
+            const filtered = data.items.filter((item) => item.address === currentLocation);
+            if (!filtered) return setListData(null);
+            return setListData(filtered);
+        }
+    }, [data, isLoading, addressList, currentLocation]);
 
     return (
         <StyledItemList

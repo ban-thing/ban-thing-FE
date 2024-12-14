@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Search from "@/assets/icons/search.svg?react";
 import { Dropdown } from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useEffect, useState } from "react";
 
 const HeaderBox = styled.header`
     height: 50px;
@@ -22,10 +24,19 @@ const SearchButton = styled.button`
     padding: 0 5px;
 `;
 
-const dummyAddress = ["연수동", "연수1동", "연수2동"];
-
 export default function HomeHeader() {
+    const [addressList, setAddressList] = useState<string[]>();
+    const { data, isSuccess } = useFetchMyProfile();
     const navigate = useNavigate();
+    useEffect(() => {
+        if (isSuccess && data) {
+            setAddressList([
+                data.data.address1,
+                data.data.address2 || "",
+                data.data.address3 || "",
+            ]);
+        }
+    }, [data, isSuccess]);
     const onClickSearch = () => {
         navigate("/search");
     };
@@ -35,7 +46,11 @@ export default function HomeHeader() {
 
     return (
         <HeaderBox>
-            <Dropdown option={[...dummyAddress, "동네 바꾸기"]} onChange={onChange} />
+            {isSuccess && addressList ? (
+                <Dropdown option={addressList} onChange={onChange} />
+            ) : (
+                <div></div>
+            )}
             <SearchButton onClick={onClickSearch}>
                 <Search />
             </SearchButton>

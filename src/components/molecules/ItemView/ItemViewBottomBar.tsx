@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Button } from "@/components/atoms/Button";
 import Tag from "@/assets/icons/priceTagBlue.svg?react";
-import { useNavigate } from "react-router-dom";
 import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
-import { useEffect } from "react";
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -50,16 +48,11 @@ type ItemViewLayout = {
 };
 
 export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
-    const navigate = useNavigate();
-    const { mutate, isSuccess } = useCreateChatRoomMutation();
+    const { mutate } = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
-        mutate({ sellerId, itemId });
+        mutate({ sellerId, itemId }); //채팅방 이동은 useCreateChatRoomMutation 내부 onSuccess에서 실행
     };
-
-    useEffect(() => {
-        // navigate("/chatting/")
-    }, [isSuccess]);
 
     return (
         <StyledItemViewBottomBar>
