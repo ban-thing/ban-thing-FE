@@ -1,14 +1,14 @@
 import { useFetchKakaoLogin, useFetchKakaoLogin_token } from "@/hooks/api/UsersQuery";
 import { setCookie } from "@/utils/Cookie";
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 
 const LoginRedirect = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const [loginText, setLoginText] = useState("로그인 중");
     const code = new URL(document.location.toString()).searchParams.get("code");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
     const { data: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
@@ -27,14 +27,17 @@ const LoginRedirect = () => {
             setCookie("refresh_token", data.refresh_token, { path: "/login" });
         }
         if (!isLoading && data && !isTokenLoading && tokenData) {
-            setLoginText("로그인 성공");
             if (tokenData.message.includes("로그인")) {
-                navigate("");
+                navigate("/");
             } else navigate("/location-select");
         }
     }, [data, isLoading, tokenData, isTokenLoading, code]);
 
-    return <LoginFailed>{loginText}</LoginFailed>;
+    return (
+        <LoginFailed>
+            <ClipLoader size={48} color="#d7d7d7" />
+        </LoginFailed>
+    );
 };
 
 export default LoginRedirect;
