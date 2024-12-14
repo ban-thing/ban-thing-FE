@@ -13,6 +13,7 @@ const LoginRedirect = () => {
     );
 
     useEffect(() => {
+        console.log(data, isLoading, tokenData, isTokenLoading);
         if (!isLoading && !isTokenLoading) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
@@ -20,8 +21,6 @@ const LoginRedirect = () => {
         if (!isLoading && !isTokenLoading && data && tokenData) {
             setLoginText("로그인 성공");
             // navigate("/location-select");
-        } else {
-            setLoginText("로그인 실패");
         }
     }, [data, isLoading, code]);
 
