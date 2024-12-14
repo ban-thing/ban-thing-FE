@@ -5,11 +5,11 @@ import ApiService from "@/utils/ApiService";
 const apiService = new ApiService();
 
 // 채팅 목록 조회 Query
-export const useChatsListQuery = () => {
+export const useChatsListQuery = (chatRoomId: number) => {
     return useQuery<ChatList[]>({
-        queryKey: ["chats", "list"],
+        queryKey: ["chats", chatRoomId],
         queryFn: async () => {
-            return await apiService.get<ChatList[]>("/api/chats/list", {});
+            return await apiService.get<ChatList[]>(`chats/${chatRoomId}`, {});
         },
     });
 };
@@ -18,7 +18,7 @@ export const useChatsListQuery = () => {
 export const useCreateChatRoomMutation = () => {
     return useMutation({
         mutationFn: async (chatRoomData: ChatRoomCreate) => {
-            return await apiService.post<number>("/api/chats/room", chatRoomData);
+            return await apiService.post<number>("chats", chatRoomData);
         },
     });
 };
@@ -26,9 +26,9 @@ export const useCreateChatRoomMutation = () => {
 // 채팅방 메시지 조회 (무한 스크롤)
 export const useChatRoomMessagesQuery = (roomId: number) => {
     return useInfiniteQuery<ChatRoomView>({
-        queryKey: ["chats", "room", roomId],
+        queryKey: ["chats", roomId],
         queryFn: async ({ pageParam = 0 }) => {
-            return await apiService.get<ChatRoomView>(`/api/chats/room/${roomId}`, {
+            return await apiService.get<ChatRoomView>(`chats${roomId}`, {
                 page: pageParam,
             });
         },
