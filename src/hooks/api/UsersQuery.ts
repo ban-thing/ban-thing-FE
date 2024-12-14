@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
 import { Address, UserProfile } from "@/types/User";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const apiService = new ApiService();
 
@@ -66,7 +66,7 @@ export const useFetchMyProfile = () => {
 
 // 프로필 수정
 export const useFetchMyProfileEdit = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     return useMutation({
         mutationFn: async ({
             nickname,
@@ -82,14 +82,14 @@ export const useFetchMyProfileEdit = () => {
             console.log(error, variables, context);
         },
         onSuccess: () => {
-            // navigate("my-page");
+            navigate("/my-page");
         },
     });
 };
 
 // 위치 등록 및 수정
 export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     return useMutation({
         mutationFn: async () => {
             return await apiService.patch<Record<string, string>>("my/address", {
@@ -102,7 +102,7 @@ export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
             console.log(error, variables, context);
         },
         onSuccess: () => {
-            // navigate("");
+            navigate("/");
         },
     });
 };

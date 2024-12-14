@@ -20,6 +20,9 @@ export const useCreateChatRoomMutation = () => {
         mutationFn: async (chatRoomData: ChatRoomCreate) => {
             return await apiService.post<number>("chats", chatRoomData);
         },
+        // onSuccess: () => {
+        //     navigate("/chatting/")
+        // }
     });
 };
 
