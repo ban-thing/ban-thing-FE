@@ -75,7 +75,11 @@ export default function SearchResult() {
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
-                {dummyItemList.length ? <ItemList /> : <NoItemInList text="앗! 검색된 결과가 없어요." />}
+                {dummyItemList.length ? (
+                    <ItemList />
+                ) : (
+                    <NoItemInList text="앗! 검색된 결과가 없어요." />
+                )}
             </ScrollContent>
         </SearchContainer>
     );

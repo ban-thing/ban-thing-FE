@@ -9,7 +9,6 @@ import { useState } from "react";
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
     const navigate = useNavigate();
-    const [isSearching, setIsSearching] = useState(false);
     const [searchValue, setSearchValue] = useState("");
 
     const onClickHashTagButton = () => {
@@ -22,8 +21,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
 
     const handleSearchClick = () => {
         if (searchValue.trim() !== "") {
-            setIsSearching(true);
-            navigate("/search-result");
+            navigate("/search-result", { state: searchValue });
         }
     };
 
@@ -56,12 +54,9 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
             </SearchHeader>
 
             <ScrollContent>
-                {isSearching && children}
-                {!isSearching && (
-                    <CenterIcon>
-                        <FootprintIcon />
-                    </CenterIcon>
-                )}
+                <CenterIcon>
+                    <FootprintIcon />
+                </CenterIcon>
             </ScrollContent>
 
             <NavigationBar />
