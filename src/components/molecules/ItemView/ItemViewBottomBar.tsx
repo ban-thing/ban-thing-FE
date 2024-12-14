@@ -44,19 +44,21 @@ const PriceText = styled.div``;
 type ItemViewLayout = {
     type: string;
     price: number;
+    sellerId: number;
+    itemId: number;
 };
 
-export default function ItemViewBottomBar({ type, price }: ItemViewLayout) {
+export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
     const navigate = useNavigate();
     const createChatRoomMutation = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
         try {
             const chatRoomId = await createChatRoomMutation.mutateAsync({
-                sellerId: 1,
-                itemId: 1,
+                sellerId,
+                itemId,
             });
-            navigate(`/chat/${chatRoomId}`);
+            navigate(`/chatting/${chatRoomId}`);
         } catch (error) {
             console.error("채팅방 생성 실패:", error);
         }
