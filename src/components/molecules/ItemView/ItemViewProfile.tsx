@@ -1,5 +1,6 @@
 import { ProfileAddressSkt, ProfileImgSkt, ProfileNameSkt } from "@/components/atoms/Skeleton";
 import { ItemView } from "@/types/Item";
+import { setImgUrl } from "@/utils/SetImageUrl";
 import styled from "styled-components";
 
 const ProfileWrap = styled.div`
@@ -41,8 +42,6 @@ const ProfilePlace2 = styled.div`
     color: #949494;
 `;
 
-const imageUrl = "https://kr.object.ncloudstorage.com/banthing-images/itemImage";
-
 type ItemViewProfileProps = Pick<
     ItemView,
     "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "direct"
@@ -62,9 +61,7 @@ export default function ItemViewProfile({
         <ProfileWrap>
             {true ? (
                 <ProfileImgWrap>
-                    <img
-                        src={`${imageUrl}/${sellerImgUrl.id}/${sellerImgUrl.data}.${sellerImgUrl.type}`}
-                    />
+                    <img src={setImgUrl(sellerImgUrl.id, sellerImgUrl.data, sellerImgUrl.type)} />
                 </ProfileImgWrap>
             ) : (
                 <ProfileImgSkt circle />

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Setting from "@/assets/icons/setting.svg?react";
 import { UserProfile } from "@/types/User";
 import { useNavigate } from "react-router-dom";
+import { setImg64 } from "@/utils/SetImageUrl";
 
 const MyPageProfileWrap = styled.div`
     display: flex;
@@ -62,7 +63,7 @@ const MyPageProfile = ({ profileImg, address1, nickname }: ProfileProps) => {
         <MyPageProfileWrap>
             <StyledMyPageProfile>
                 <div className="MyPageProfilePhoto">
-                    <img src={profileImg} alt="프로필 이미지" />
+                    <img src={setImg64(profileImg)} alt="프로필 이미지" />
                 </div>
                 <div className="MyPageProfileId">{nickname}</div>
                 <div className="MyPageProfileAddress">{address1}</div>
