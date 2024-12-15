@@ -17,18 +17,21 @@ export default function SearchResult() {
     const location = useLocation();
     const { showFilterModal } = useFilterModalStore();
     const { isFilterModalVisible } = useFilterModalStore();
+    const { priceRange } = useFilterModalStore();
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
     const { setValue } = useForm();
     const [searchValue, setSearchValue] = useState(location.state?.searchKeyword || "");
     const [searchKeyword, setSearchKeyword] = useState(location.state?.searchKeyword || "");
 
-    const { data: { data } = {}, isLoading } = useFetchItemsList({
+    const searchParams = {
         keyword: searchKeyword,
         hashtags: searchHashList.join(","),
-        minPrice: 0,
-        maxPrice: 5000000000,
+        minPrice: priceRange.minPrice,
+        maxPrice: priceRange.maxPrice,
         address: "",
-    });
+    };
+
+    const { data: { data } = {}, isLoading, refetch } = useFetchItemsList(searchParams);
 
     const handleSetValue: UseFormSetValue<FieldValues> = (name, value) => {
         if (name === "hashtags") {
@@ -48,6 +51,7 @@ export default function SearchResult() {
     const handleSearch = () => {
         if (searchValue.trim() !== "") {
             setSearchKeyword(searchValue.trim());
+            setSearchValue("");
         }
     };
 
@@ -56,6 +60,10 @@ export default function SearchResult() {
             setSearchKeyword(location.state.searchKeyword);
         }
     }, [location.state]);
+
+    useEffect(() => {
+        refetch();
+    }, [priceRange, refetch]);
 
     const isMaxTags = searchHashList.length >= 5;
 
