@@ -3,8 +3,12 @@ import HomeLayout from "@/components/layout/HomeLayout";
 import ItemList from "@/components/layout/ItemList";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import { useDropdownModalStore } from "@/store/ModalStore";
+import { getCookie } from "@/utils/Cookie";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
     const { isDropdownOpen } = useDropdownModalStore();
     const { data: { data } = {}, isLoading } = useFetchItemsList({
         keyword: "",
@@ -13,6 +17,18 @@ const Home = () => {
         maxPrice: 5000000000,
         address: "",
     });
+
+    useEffect(() => {
+        const lastChecked = localStorage.getItem("lastChecked");
+        const currentTime = new Date().getTime();
+        const oneWeekInMs = 7 * 24 * 60 * 60 * 1000;
+
+        if (!lastChecked || currentTime - Number(lastChecked) > oneWeekInMs) {
+            const authCookie = getCookie("Authorization");
+            if (!authCookie) navigate("/login");
+            localStorage.setItem("lastChecked", String(currentTime));
+        }
+    }, []);
 
     return (
         <>
