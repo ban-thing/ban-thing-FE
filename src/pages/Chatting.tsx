@@ -1,37 +1,79 @@
 import styled from "styled-components";
 import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
-// import AlbumIcon from "@/assets/icons/album.svg?react";
 import SendIcon from "@/assets/icons/send.svg?react";
-import { useState } from "react";
-import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
+import { useEffect, useState } from "react";
+import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { setImgUrl } from "@/utils/SetImageUrl";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { formatDate } from "@/utils/formatData";
 
 export default function Chatting() {
     const navigate = useNavigate();
-    const { id: chatRoomId } = useParams();
+    const { data: myProfileData } = useFetchMyProfile();
+    const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
+    const [messagesList, setMessagesList] = useState<any[]>([]);
+    console.log(chatRoomId, "채팅방 아이디");
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
         Number(chatRoomId),
     );
 
-    const sendMessageMutation = useSendMessageMutation();
+    // const sendMessageMutation = useSendMessageMutation();
 
     const handleSendMessage = async () => {
         if (inputText.trim() === "") return;
+        sendMessage(inputText);
+        // try {
+        //     await sendMessageMutation.mutateAsync({
+        //         roomId: Number(chatRoomId),
+        //         message: inputText,
+        //     });
+        //     setInputText("");
+        // } catch (error) {
+        //     console.error("Failed to send message:", error);
+        // }
+    };
 
-        try {
-            await sendMessageMutation.mutateAsync({
-                roomId: Number(chatRoomId),
-                message: inputText,
-            });
-            setInputText("");
-        } catch (error) {
-            console.error("Failed to send message:", error);
+    useEffect(() => {
+        // 웹소켓 연결 (chatroomId에 맞는 채팅방 URL로 연결)
+        const socket = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
+        // 서버에서 오는 메시지 처리
+        socket.onmessage = (event) => {
+            if (event.data.includes("{")) {
+                const msg = JSON.parse(event.data);
+                console.log(msg, "메시지");
+
+                // return setMessagesList((prevMessagesList) => [...prevMessagesList, event.data]);
+            }
+            setMessagesList((prevMessagesList) => [...prevMessagesList, event.data]);
+        };
+        // 웹소켓 연결 종료 시 클린업
+        return () => {
+            socket.close();
+        };
+    }, []);
+    // 메시지전송
+    const sendMessage = (inputText: string) => {
+        if (inputText.trim()) {
+            const socket = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
+            socket.onopen = () => {
+                const sendData = {
+                    chatRoomId: chatRoomId,
+                    senderId: myProfileData?.data.userId,
+                    message: inputText,
+                };
+                socket.send(JSON.stringify(sendData));
+                setInputText("");
+            };
         }
     };
+
+    useEffect(() => {
+        console.log("메시지리스트:", messagesList);
+    }, [messagesList]);
 
     if (!data) {
         return (
@@ -40,8 +82,6 @@ export default function Chatting() {
             </LoaderWrap>
         );
     }
-
-    console.log(data, "데이터");
 
     const messages = data.pages.flatMap((page) => page.messages);
 
@@ -89,13 +129,10 @@ export default function Chatting() {
                     <DateDivider>2024년 12월 28일</DateDivider>
                 </div>
                 {messages.map((message, index) => (
-                    <MessageBubble
-                        key={index}
-                        isMe={message.senderId === 1 /* 실제 사용자 ID로 대체 */}
-                    >
+                    <MessageBubble key={index} $isMe={message.senderId === myProfileData?.userId}>
                         {message.message}
-                        <MessageTime isMe={message.senderId === 1}>
-                            {new Date(message.time).toLocaleString()}
+                        <MessageTime $isMe={message.senderId === 1}>
+                            {formatDate(message.time)}
                         </MessageTime>
                     </MessageBubble>
                 ))}
@@ -172,7 +209,7 @@ const DateDivider = styled.div`
     border-radius: 24px;
 `;
 
-const MessageBubble = styled.div<{ isMe: boolean }>`
+const MessageBubble = styled.div<{ $isMe: boolean }>`
     display: flex;
     align-items: center;
     width: fit-content;
@@ -181,20 +218,20 @@ const MessageBubble = styled.div<{ isMe: boolean }>`
     padding: 10px 16px;
     border-radius: 24px;
     position: relative;
-    background-color: ${(props) => (props.isMe ? "var(--color-main-1)" : "var(--color-black-8)")};
-    color: ${(props) => (props.isMe ? "white" : "black")};
-    align-self: ${(props) => (props.isMe ? "flex-end" : "flex-start")};
+    background-color: ${(props) => (props.$isMe ? "var(--color-main-1)" : "var(--color-black-8)")};
+    color: ${(props) => (props.$isMe ? "white" : "black")};
+    align-self: ${(props) => (props.$isMe ? "flex-end" : "flex-start")};
     margin-bottom: 16px;
     word-wrap: break-word;
     white-space: pre-wrap;
 `;
 
-const MessageTime = styled.span<{ isMe: boolean }>`
+const MessageTime = styled.span<{ $isMe: boolean }>`
     font-size: 10px;
     color: var(--color-black-5);
     position: absolute;
     bottom: 0;
-    ${(props) => (props.isMe ? "left: -48px;" : "right: -48px;")}
+    ${(props) => (props.$isMe ? "left: -48px;" : "right: -48px;")}
 `;
 
 const Footer = styled.div`

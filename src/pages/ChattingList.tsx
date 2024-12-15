@@ -27,7 +27,7 @@ export default function ChattingList() {
         : [];
 
     const onClickBox = (chatroomId: number) => {
-        navigate(`/chatting/${chatroomId}`);
+        navigate(`/chats/${chatroomId}`);
     };
 
     return (
