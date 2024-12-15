@@ -19270,3 +19270,123 @@ export const Towns_47113 = [
         lowestAdmCodeNm: "흥해읍",
     },
 ];
+
+export const Towns_48310 = [
+    {
+        admCode: "48310340",
+        admCodeNm: "경상남도 거제시 거제면",
+        lowestAdmCodeNm: "거제면",
+    },
+    {
+        admCode: "48310109",
+        admCodeNm: "경상남도 거제시 고현동",
+        lowestAdmCodeNm: "고현동",
+    },
+    {
+        admCode: "48310330",
+        admCodeNm: "경상남도 거제시 남부면",
+        lowestAdmCodeNm: "남부면",
+    },
+    {
+        admCode: "48310101",
+        admCodeNm: "경상남도 거제시 능포동",
+        lowestAdmCodeNm: "능포동",
+    },
+    {
+        admCode: "48310107",
+        admCodeNm: "경상남도 거제시 덕포동",
+        lowestAdmCodeNm: "덕포동",
+    },
+    {
+        admCode: "48310320",
+        admCodeNm: "경상남도 거제시 동부면",
+        lowestAdmCodeNm: "동부면",
+    },
+    {
+        admCode: "48310103",
+        admCodeNm: "경상남도 거제시 두모동",
+        lowestAdmCodeNm: "두모동",
+    },
+    {
+        admCode: "48310350",
+        admCodeNm: "경상남도 거제시 둔덕면",
+        lowestAdmCodeNm: "둔덕면",
+    },
+    {
+        admCode: "48310111",
+        admCodeNm: "경상남도 거제시 문동동",
+        lowestAdmCodeNm: "문동동",
+    },
+    {
+        admCode: "48310360",
+        admCodeNm: "경상남도 거제시 사등면",
+        lowestAdmCodeNm: "사등면",
+    },
+    {
+        admCode: "48310112",
+        admCodeNm: "경상남도 거제시 삼거동",
+        lowestAdmCodeNm: "삼거동",
+    },
+    {
+        admCode: "48310110",
+        admCodeNm: "경상남도 거제시 상동동",
+        lowestAdmCodeNm: "상동동",
+    },
+    {
+        admCode: "48310114",
+        admCodeNm: "경상남도 거제시 수월동",
+        lowestAdmCodeNm: "수월동",
+    },
+    {
+        admCode: "48310104",
+        admCodeNm: "경상남도 거제시 아양동",
+        lowestAdmCodeNm: "아양동",
+    },
+    {
+        admCode: "48310105",
+        admCodeNm: "경상남도 거제시 아주동",
+        lowestAdmCodeNm: "아주동",
+    },
+    {
+        admCode: "48310113",
+        admCodeNm: "경상남도 거제시 양정동",
+        lowestAdmCodeNm: "양정동",
+    },
+    {
+        admCode: "48310370",
+        admCodeNm: "경상남도 거제시 연초면",
+        lowestAdmCodeNm: "연초면",
+    },
+    {
+        admCode: "48310106",
+        admCodeNm: "경상남도 거제시 옥포동",
+        lowestAdmCodeNm: "옥포동",
+    },
+    {
+        admCode: "48310310",
+        admCodeNm: "경상남도 거제시 일운면",
+        lowestAdmCodeNm: "일운면",
+    },
+    {
+        admCode: "48310390",
+        admCodeNm: "경상남도 거제시 장목면",
+        lowestAdmCodeNm: "장목면",
+    },
+    {
+        admCode: "48310102",
+        admCodeNm: "경상남도 거제시 장승포동",
+        lowestAdmCodeNm: "장승포동",
+    },
+    {
+        admCode: "48310108",
+        admCodeNm: "경상남도 거제시 장평동",
+        lowestAdmCodeNm: "장평동",
+    },
+    {
+        admCode: "48310380",
+        admCodeNm: "경상남도 거제시 하청면",
+        lowestAdmCodeNm: "하청면",
+    },
+];
+
+export const Towns_48880 = [];
