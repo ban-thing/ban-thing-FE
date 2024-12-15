@@ -37,7 +37,7 @@ const ItemViewPage = () => {
         <ItemViewLayout
             type={itemData?.type || ""}
             price={itemData?.price || 0}
-            sellerId={Number(itemId)}
+            sellerId={Number(itemData?.sellerId)}
             itemId={Number(itemId)}
         >
             {/* 스켈레톤 */}
