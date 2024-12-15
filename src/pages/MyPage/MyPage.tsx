@@ -8,6 +8,8 @@ import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect, useState } from "react";
 import { UserProfile } from "@/types/User";
+import { removeCookie } from "@/utils/Cookie";
+import { useNavigate } from "react-router-dom";
 
 const MyPageWrap = styled.div`
     padding: 0 20px;
@@ -33,12 +35,18 @@ const ProfileLoadingWrap = styled.div`
 const MyPage = () => {
     const [profileData, setProfileData] = useState<UserProfile>();
     const { data, isLoading } = useFetchMyProfile();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (data) {
             setProfileData(data.data);
         }
     }, [data, isLoading]);
+
+    const onClickLogOut = () => {
+        removeCookie("Authorization");
+        navigate("/login");
+    };
 
     return (
         <MyPageWrap>
@@ -57,8 +65,7 @@ const MyPage = () => {
             <SquareButtonList />
             <MyPageSettingList />
             <NavigationBar />
-            {/* TODO: 로그아웃 이벤트 추가 */}
-            <LogoutButton>로그아웃</LogoutButton>
+            <LogoutButton onClick={onClickLogOut}>로그아웃</LogoutButton>
         </MyPageWrap>
     );
 };
