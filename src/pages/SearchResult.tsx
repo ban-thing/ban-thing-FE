@@ -1,21 +1,22 @@
 import { Input } from "@/components/atoms/Input";
 import styled from "styled-components";
 import SearchIcon from "@/assets/icons/search.svg?react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ItemFilterButton, ItemPlusButton } from "@/components/atoms/Button";
 import ItemList from "@/components/layout/ItemList";
-import { useFilterModalStore } from "@/store/ModalStore";
+import { useFilterModalStore, useHashtagFilterModalStore } from "@/store/ModalStore";
 import FilterModal from "@/components/molecules/FilterModal";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useForm, UseFormSetValue, FieldValues } from "react-hook-form";
 import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useEffect, useState } from "react";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
+import HashTagFilterModal from "@/components/molecules/HashTagFilterModal";
 
 export default function SearchResult() {
-    const navigate = useNavigate();
     const location = useLocation();
     const { showFilterModal } = useFilterModalStore();
+    const { showHashtagFilterModal, isHashtagFilterModalVisible } = useHashtagFilterModalStore();
     const { isFilterModalVisible } = useFilterModalStore();
     const { priceRange } = useFilterModalStore();
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
@@ -41,7 +42,7 @@ export default function SearchResult() {
     };
 
     const onClickHashTagButton = () => {
-        navigate("/search/hashtag");
+        showHashtagFilterModal();
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +64,13 @@ export default function SearchResult() {
 
     useEffect(() => {
         refetch();
-    }, [priceRange, refetch]);
+    }, [searchKeyword, searchHashList, priceRange, refetch]);
+
+    useEffect(() => {
+        if (location.state?.fromHashtag) {
+            refetch();
+        }
+    }, [location.state, refetch]);
 
     const isMaxTags = searchHashList.length >= 5;
 
@@ -102,13 +109,18 @@ export default function SearchResult() {
                         <ItemPlusButton width="26px" height="26px" onClick={onClickHashTagButton} />
                     )}
                 </HashTagArea>
+                {isHashtagFilterModalVisible && <HashTagFilterModal />}
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
                 <ItemList
                     data={data?.items}
                     isLoading={isLoading}
-                    noItemText={searchKeyword ? "검색 결과가 없습니다." : "검색어를 입력해주세요."}
+                    noItemText={
+                        searchKeyword || searchHashList.length > 0
+                            ? "검색 결과가 없습니다."
+                            : "검색어를 입력해주세요."
+                    }
                 />
             </ScrollContent>
         </SearchContainer>

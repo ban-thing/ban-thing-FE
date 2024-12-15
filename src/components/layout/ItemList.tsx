@@ -6,6 +6,7 @@ import { ItemsList } from "@/types/User";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useItemListLocationStore } from "@/store/LocationStore";
+import { useSearchHashListStore } from "@/store/SearchHashList";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -37,6 +38,7 @@ const ItemList = ({
     isLoading,
     isHome = false,
 }: ItemListProps) => {
+    const { searchHashList } = useSearchHashListStore();
     const { currentLocation } = useItemListLocationStore();
     const [listData, setListData] = useState<ItemsList[] | null>();
 
@@ -51,6 +53,23 @@ const ItemList = ({
             return setListData(data);
         }
     }, [data, isLoading, currentLocation]);
+
+    useEffect(() => {
+        if (!data) return setListData(null);
+
+        let filtered = [...data];
+
+        // 해시태그 필터링
+        if (searchHashList && searchHashList.length > 0) {
+            filtered = filtered.filter((item) => {
+                // hashtags를 hashtag로 수정
+                return searchHashList.some((tag) => item.hashtags?.includes(tag));
+            });
+        }
+
+        setListData(filtered);
+        console.log("filtered", filtered); // 디버깅용
+    }, [data, isLoading, currentLocation, searchHashList]);
 
     return (
         <StyledItemList

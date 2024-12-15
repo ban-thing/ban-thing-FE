@@ -6,13 +6,19 @@ import FootprintIcon from "@/assets/icons/footPrintBackground.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useHashtagFilterModalStore } from "@/store/ModalStore";
+import HashTagFilterModal from "@/components/molecules/HashTagFilterModal";
+import { useSearchHashListStore } from "@/store/SearchHashList";
+import HashTagButtonWithCloseList from "../molecules/ItemRegister/HashTagButtonWithCloseList";
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
     const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState("");
+    const { showHashtagFilterModal, isHashtagFilterModalVisible } = useHashtagFilterModalStore();
+    const { searchHashList, setSearchHashList } = useSearchHashListStore();
 
     const onClickHashTagButton = () => {
-        navigate("/search/hashtag");
+        showHashtagFilterModal();
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +31,10 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                 state: { searchKeyword: searchValue.trim() },
             });
         }
+    };
+
+    const handleSetValue = (name: string, value: string[]) => {
+        setSearchHashList(value);
     };
 
     console.log(children);
@@ -50,11 +60,21 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                     </SearchInputWrapper>
                 </SearchWrapper>
                 <HashTagArea>
+                    <HashTagListWrapper>
+                        {searchHashList && searchHashList.length > 0 && (
+                            <HashTagButtonWithCloseList
+                                hashList={searchHashList}
+                                setValue={handleSetValue}
+                                margin="0"
+                            />
+                        )}
+                    </HashTagListWrapper>
                     <HashTagButton onClick={onClickHashTagButton}>
                         <HashTagIcon />
                         태그 검색
                     </HashTagButton>
                 </HashTagArea>
+                {isHashtagFilterModalVisible && <HashTagFilterModal />}
             </SearchHeader>
 
             <ScrollContent>
@@ -162,5 +182,15 @@ const HashTagButton = styled.div`
 
     svg path {
         fill: var(--color-main-1);
+    }
+`;
+
+const HashTagListWrapper = styled.div`
+    flex: 1;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    &::-webkit-scrollbar {
+        display: none;
     }
 `;
