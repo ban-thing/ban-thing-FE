@@ -17,6 +17,7 @@ import EditBtn from "@/assets/icons/meatballIcon.svg?react";
 import { MouseEvent, useState } from "react";
 import EditModal from "./MyPage.tsx/EditModal";
 import Gps from "@/assets/icons/gps.svg?react";
+import { setImgUrl } from "@/utils/SetImageUrl";
 
 type ItemInListProps = ItemSearchList & {
     viewEditButton?: boolean;
@@ -55,7 +56,17 @@ export default function ItemInList({
     return (
         <>
             <ItemBox onClick={() => onClickBox(itemId || 0)}>
-                <ItemPhoto src={images || notFound} />
+                <ItemPhoto
+                    src={
+                        images
+                            ? setImgUrl(
+                                  Number(itemId),
+                                  images?.split(".")[0],
+                                  images?.split(".")[1],
+                              )
+                            : notFound
+                    }
+                />
                 <ItemBoxRight $maxWidth={viewEditButton ? "155px" : ""}>
                     <ItemTitle>{cutOffTitle}</ItemTitle>
                     <ItemPropertiesBox>
