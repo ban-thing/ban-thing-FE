@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { Input } from "@/components/atoms/Input";
-import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from "react";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import Character from "@/assets/characterWhite.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
-import { Button } from "@/components/atoms/Button";
+import { Button } from "../atoms/Button";
+import { Input } from "../atoms/Input";
+import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from "react";
 import { useSearchHashListStore } from "@/store/SearchHashList";
-import { useNavigate } from "react-router-dom";
+import { useHashtagFilterModalStore } from "@/store/ModalStore";
 
-export default function SearchHashtag() {
+export default function HashTagFilterModal() {
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
+    const { hideHashtagFilterModal } = useHashtagFilterModalStore();
     const [inputValue, setInputValue] = useState("");
     const [hashList, setHashList] = useState<string[]>([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (searchHashList) {
@@ -49,13 +49,8 @@ export default function SearchHashtag() {
 
     const onClickComplete = () => {
         setSearchHashList(hashList);
-        navigate("/search-result", {
-            state: {
-                fromHashtag: true,
-            },
-        });
+        hideHashtagFilterModal();
     };
-
     return (
         <HashTagPageWrap>
             <CharacterWrap>
@@ -69,8 +64,6 @@ export default function SearchHashtag() {
                     }
                     onChange={onInputChange}
                     onKeyPress={onEnterDown}
-                    // onKeyUp={onEnterDown}
-                    // onKeyDown={onEnterDown}
                     value={inputValue}
                 />
             </InputWrapper>
@@ -116,7 +109,10 @@ const CharacterWrap = styled.div`
 
 const HashTagPageWrap = styled.div`
     display: flex;
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
     padding: 0 20px;

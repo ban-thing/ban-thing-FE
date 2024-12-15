@@ -26,6 +26,18 @@ export const useMyLocationModalStore = create<MyLocationModalState>((set) => ({
     hideMyLocationModal: () => set({ isMyLocationModalVisible: false }),
 }));
 
+interface HashtagFilterModalState {
+    isHashtagFilterModalVisible: boolean;
+    showHashtagFilterModal: () => void;
+    hideHashtagFilterModal: () => void;
+}
+
+export const useHashtagFilterModalStore = create<HashtagFilterModalState>((set) => ({
+    isHashtagFilterModalVisible: false,
+    showHashtagFilterModal: () => set({ isHashtagFilterModalVisible: true }),
+    hideHashtagFilterModal: () => set({ isHashtagFilterModalVisible: false }),
+}));
+
 interface FilterModalState {
     isFilterModalVisible: boolean;
     showFilterModal: () => void;
