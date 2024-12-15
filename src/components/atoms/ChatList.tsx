@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PointIcon from "@/assets/icons/point.svg?react";
 import type { ChatList as ChatListType } from "@/types/Chat";
 import timeAgo from "@/utils/TimeAgo";
+import { base64ToFile } from "@/utils/SetImageUrl";
 
 interface ChatListItemProps {
     chat: ChatListType;
@@ -11,7 +12,7 @@ interface ChatListItemProps {
 export default function ChatList({ chat, onClick }: ChatListItemProps) {
     return (
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
-            <ProfileImage src={chat.profileImg} />
+            <ProfileImage src={URL.createObjectURL(base64ToFile(chat.profileImg))} />
             <ChatInfo>
                 <UserDetails>
                     <UserName>{chat.nickname}</UserName>
