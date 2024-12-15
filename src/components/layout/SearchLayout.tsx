@@ -7,7 +7,7 @@ import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useHashtagFilterModalStore } from "@/store/ModalStore";
-import HashTagFilterModal from "@/components/molecules/HashTagFilterModal";
+import HashtagFilterModal from "@/components/molecules/HashtagFilterModal";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import HashTagButtonWithCloseList from "../molecules/ItemRegister/HashTagButtonWithCloseList";
 
@@ -74,7 +74,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                         태그 검색
                     </HashTagButton>
                 </HashTagArea>
-                {isHashtagFilterModalVisible && <HashTagFilterModal />}
+                {isHashtagFilterModalVisible && <HashtagFilterModal />}
             </SearchHeader>
 
             <ScrollContent>

@@ -11,7 +11,7 @@ import { useForm, UseFormSetValue, FieldValues } from "react-hook-form";
 import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import { useEffect, useState } from "react";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
-import HashTagFilterModal from "@/components/molecules/HashTagFilterModal";
+import HashtagFilterModal from "@/components/molecules/HashtagFilterModal";
 
 export default function SearchResult() {
     const location = useLocation();
@@ -109,7 +109,7 @@ export default function SearchResult() {
                         <ItemPlusButton width="26px" height="26px" onClick={onClickHashTagButton} />
                     )}
                 </HashTagArea>
-                {isHashtagFilterModalVisible && <HashTagFilterModal />}
+                {isHashtagFilterModalVisible && <HashtagFilterModal />}
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
