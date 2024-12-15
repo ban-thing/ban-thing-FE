@@ -109,7 +109,7 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
                 <div>태그를 등록해두면 많은 사람들이 내 상품을 볼 수 있어요!</div>
                 <div>상품에 관련없는 태그를 입력할 경우, 판매에 제재를 받을 수 있어요</div>
             </DescriptionWrap>
-            <TagExample>#강아지 #멍멍이 #댕댕이 #장난감 #바잇미</TagExample>
+            <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
         </ItemRegisterModalLayout>
     );
 };

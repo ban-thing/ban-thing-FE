@@ -74,7 +74,7 @@ export default function HashTagFilterModal() {
                 <div>내 상품을 다양한 태그로 표현해요 (최대 5개)</div>
                 <div>태그를 등록해두면 많은 사람들이 내 상품을 볼 수 있어요!</div>
             </DescriptionWrap>
-            <TagExample>#강아지 #멍멍이 #댕댕이 #장난감 #바잇미</TagExample>
+            <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
             <div
                 style={{
                     display: "flex",
