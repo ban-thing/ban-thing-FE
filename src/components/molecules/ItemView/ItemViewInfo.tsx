@@ -115,8 +115,6 @@ export default function ItemViewInfo({
     const timeList = ["없음", "5회 미만", "5회 이상"];
     const cleanList = ["새 상품", "있음", "없음"];
 
-    console.log(content);
-
     return (
         // 스켈레톤
         <ItemViewInfoBox>

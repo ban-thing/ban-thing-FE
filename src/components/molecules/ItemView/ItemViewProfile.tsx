@@ -1,6 +1,6 @@
 import { ProfileAddressSkt, ProfileImgSkt, ProfileNameSkt } from "@/components/atoms/Skeleton";
 import { ItemView } from "@/types/Item";
-import { setImgUrl } from "@/utils/SetImageUrl";
+import { base64ToFile } from "@/utils/SetImageUrl";
 import styled from "styled-components";
 
 const ProfileWrap = styled.div`
@@ -18,6 +18,11 @@ const ProfileImgWrap = styled.div`
     margin: 4.5px 0;
     border-radius: 50%;
     overflow: hidden;
+
+    & img {
+        width: 56px;
+        height: 56px;
+    }
 `;
 
 const ProfileTextWrap = styled.div`
@@ -54,14 +59,12 @@ export default function ItemViewProfile({
     directLocation,
     direct,
 }: ItemViewProfileProps) {
-    console.log(sellerImgUrl);
-
     return (
         // 스켈레톤
         <ProfileWrap>
             {true ? (
                 <ProfileImgWrap>
-                    <img src={setImgUrl(sellerImgUrl.id, sellerImgUrl.data, sellerImgUrl.type)} />
+                    <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
                 </ProfileImgWrap>
             ) : (
                 <ProfileImgSkt circle />
