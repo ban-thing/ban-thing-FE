@@ -41,7 +41,7 @@ const CleanCheckList = ({
     control,
 }: CleanCheckListProps) => {
     const [isChecked, setIsChecked] = useState([true, true, true]);
-    const fieldNames = ["clnPurchaseDate", "clnExprice", "isDirect"];
+    const fieldNames = ["clnPurchasedDate", "clnExpire", "isDirect"];
     useEffect(() => {
         fieldNames.map((name, index) => {
             if (watch(name) === "모름" || watch(name) === false) {
@@ -50,7 +50,7 @@ const CleanCheckList = ({
                 setIsChecked((prev) => prev.map((item, i) => (i === index ? true : item)));
             }
         });
-    }, [watch("clnPurchaseDate"), watch("clnExprice"), watch("isDirect")]);
+    }, [watch("clnPurchasedDate"), watch("clnExpire"), watch("isDirect")]);
 
     const onChangeRadio = (index: number, checked: boolean) => {
         setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));
@@ -101,7 +101,7 @@ const CleanCheckList = ({
                 <RegisterSubTitle3>
                     <span>구매 시기</span>
                     <RadioButtonsList
-                        name="clnPurchaseDate"
+                        name="clnPurchasedDate"
                         isChecked={isChecked[0]}
                         onChangeRadio={onChangeRadio}
                         index={0}
@@ -110,13 +110,13 @@ const CleanCheckList = ({
                 {isChecked[0] && (
                     <Input
                         value={
-                            watch("clnPurchaseDate") === "모름"
+                            watch("clnPurchasedDate") === "모름"
                                 ? ""
-                                : watch("clnPurchaseDate") || ""
+                                : watch("clnPurchasedDate") || ""
                         }
                         placeholder="구매 시기를 입력해요."
-                        {...(register && register("clnPurchaseDate", { required: isChecked[0] }))}
-                        className={errors.clnPurchaseDate ? "error" : ""}
+                        {...(register && register("clnPurchasedDate", { required: isChecked[0] }))}
+                        className={errors.clnPurchasedDate ? "error" : ""}
                     />
                 )}
             </div>
@@ -124,7 +124,7 @@ const CleanCheckList = ({
                 <RegisterSubTitle3>
                     <span>유통 기한</span>
                     <RadioButtonsList
-                        name="clnExprice"
+                        name="clnExpire"
                         isChecked={isChecked[1]}
                         onChangeRadio={onChangeRadio}
                         index={1}
@@ -135,7 +135,7 @@ const CleanCheckList = ({
                     <MaskedInput
                         control={control}
                         errors={errors}
-                        name="clnExprice"
+                        name="clnExpire"
                         watch={watch}
                         isChecked={isChecked[1]}
                     />

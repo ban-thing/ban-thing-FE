@@ -56,7 +56,7 @@ const MaskedInput = ({ control, errors, name, watch, isChecked }: MaskedInputPro
                         replacement={{ O: /[0-9]/ }}
                         showMask
                         {...field}
-                        className={`masked-input ${errors.clnExprice && "error"}`}
+                        className={`masked-input ${errors.clnExpire && "error"}`}
                         placeholder="OO.OO.OO"
                         value={watch(name) === "모름" ? "" : watch(name) || ""}
                     />

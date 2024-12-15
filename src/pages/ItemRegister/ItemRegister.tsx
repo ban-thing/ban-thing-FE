@@ -93,8 +93,8 @@ const ItemRegister = () => {
             clnPollution: "없음",
             clnTimeUsed: "없음",
             clnCleaned: "새 상품",
-            clnPurchaseDate: "모름",
-            clnExprice: "모름",
+            clnPurchasedDate: "모름",
+            clnExpire: "모름",
             isDirect: false,
             directLocation: "",
         });
@@ -116,8 +116,8 @@ const ItemRegister = () => {
                 clnPollution: data?.data.cleaningDetail.pollution,
                 clnTimeUsed: data?.data.cleaningDetail.timeUsed,
                 clnCleaned: data?.data.cleaningDetail.cleaned,
-                clnPurchaseDate: data?.data.cleaningDetail.purchasedDate,
-                clnExprice: expire,
+                clnPurchasedDate: data?.data.cleaningDetail.purchasedDate,
+                clnExpire: expire,
                 isDirect: data?.data.direct,
                 directLocation: data?.data.directLocation,
             });
@@ -142,8 +142,8 @@ const ItemRegister = () => {
         if (data.type === "나눔") {
             data.price = 0;
         }
-        if (data.clnExprice === "OO.OO.OO") {
-            setError("clnExprice", { message: "유통기한을 입력해요." });
+        if (data.clnExpire === "OO.OO.OO") {
+            setError("clnExpire", { message: "유통기한을 입력해요." });
         }
         if (data.hashtags && data.hashtags?.some((item: any) => item.id)) {
             data.hashtags = data.hashtags.map((item: any) =>
