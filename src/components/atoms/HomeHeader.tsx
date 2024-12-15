@@ -34,6 +34,7 @@ export default function HomeHeader() {
                 data.data.address1,
                 data.data.address2 || "",
                 data.data.address3 || "",
+                "동네 바꾸기",
             ]);
         }
     }, [data, isSuccess]);
@@ -41,16 +42,16 @@ export default function HomeHeader() {
         navigate("/search");
     };
     const onChange = (value: string) => {
-        if (value === "동네 바꾸기") navigate("location-select");
+        if (value === "동네 바꾸기") navigate("/location-select");
+        if (value === "지역 설정하기") navigate("/login");
     };
 
     return (
         <HeaderBox>
-            {isSuccess && addressList ? (
-                <Dropdown option={addressList} onChange={onChange} />
-            ) : (
-                <div></div>
-            )}
+            <Dropdown
+                option={addressList ? addressList : ["논현동", "지역 설정하기"]}
+                onChange={onChange}
+            />
             <SearchButton onClick={onClickSearch}>
                 <Search />
             </SearchButton>

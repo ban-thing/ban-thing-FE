@@ -110,7 +110,7 @@ export const Dropdown = ({ option, onChange }: DropdownProps) => {
                 </ArrowWrap>
             </Label>
             <SelectOptions $show={isDropdownOpen}>
-                {[...option, "동네 바꾸기"].map((data, index) => (
+                {option.map((data, index) => (
                     <Option
                         key={index}
                         value={data}
