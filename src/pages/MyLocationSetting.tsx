@@ -56,6 +56,7 @@ const MyLocationSetting = () => {
                     <LocationText> "{currentAddress?.[2]?.[0]}" </LocationText>
                     이에요.
                 </LocationButton>
+                <span>실제 위치와 지도상의 위치는 약간 차이날 수 있어요.</span>
             </LocationInfoWrapper>
             <BottomButtonWrapper>
                 <Button onClick={onClickSubmit}>적용하기</Button>
@@ -77,6 +78,12 @@ const LocationInfoWrapper = styled.div`
     align-items: center;
     margin-top: 20px;
     flex-direction: column;
+
+    & > span {
+        font-size: 13px;
+        color: var(--color-black-4);
+        margin-top: 16px;
+    }
 `;
 
 const LocationButton = styled(Button).attrs({ variant: "gray" })`
