@@ -19,11 +19,12 @@ export default function ChattingList() {
         setSelectedTab(tab);
     };
 
-    const filteredChatList =
-        data?.filter((chat) => {
-            if (selectedTab === "전체") return true;
-            return chat.type === selectedTab;
-        }) || [];
+    const filteredChatList = Array.isArray(data)
+        ? data.filter((chat) => {
+              if (selectedTab === "전체") return true;
+              return chat.type === selectedTab;
+          })
+        : [];
 
     const onClickBox = (chatroomId: number) => {
         navigate(`/chatting/${chatroomId}`);

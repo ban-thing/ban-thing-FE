@@ -56,7 +56,14 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId }: Ite
     const handleChatButtonClick = async () => {
         const authCookie = getCookie("Authorization");
         if (!authCookie) return navigate("/login");
-        mutate({ sellerId, itemId }); //채팅방 이동은 useCreateChatRoomMutation 내부 onSuccess에서 실행
+        mutate(
+            { sellerId, itemId },
+            {
+                onSuccess: (res) => {
+                    navigate(`/chatting/${Number(res)}`);
+                },
+            },
+        );
     };
 
     return (
