@@ -84,6 +84,10 @@ export const useFetchItemCreate = () => {
                 });
             }
 
+            if (!formData.has("hashtags")) {
+                formData.append("hashtags", JSON.stringify([]));
+            }
+
             return await apiService.post<Record<string, any>>(
                 "items",
                 formData,
@@ -135,16 +139,15 @@ export const useFetchItemUpdate = () => {
 
 // 판매완료
 export const useFetchItemSold = () => {
-    const navigate = useNavigate();
     return useMutation({
-        mutationFn: async () => {
-            return await apiService.patch("items/", {}, "multipart/form-data");
+        mutationFn: async (id: number | string) => {
+            return await apiService.patch(`items/sell/${id}`, {});
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);
         },
         onSuccess: () => {
-            navigate(`기획자료참고`);
+            console.log("판매완료됨");
         },
     });
 };

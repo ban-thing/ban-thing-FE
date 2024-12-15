@@ -125,9 +125,12 @@ export default function ItemViewInfo({
                         <ItemViewTime>{timeAgo(updateTime ?? new Date())}</ItemViewTime>
                     </TitleWrap>
                     <HashtagWrap>
-                        {hashtags.map((tag, index) => (
-                            <HashtagButton key={index} text={tag.hashtag} />
-                        ))}
+                        {hashtags.map(
+                            (tag, index) =>
+                                tag.hashtag !== "[]" && (
+                                    <HashtagButton key={index} text={tag.hashtag} />
+                                ),
+                        )}
                     </HashtagWrap>
                     <ContentWrap>
                         {content ||
