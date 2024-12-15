@@ -53,7 +53,6 @@ const EditModal = ({ setTopPosition, topPosition, itemId, isSold = false }: Edit
             setTopPosition(null);
         }
     };
-    // TODO
     const onClickEdit = () => {
         navigate(`/item-register?edit=${itemId}`);
     };

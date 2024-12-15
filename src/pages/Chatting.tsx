@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import BackButtonIcon from "../assets/icons/back.svg?react";
+import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
-import AlbumIcon from "../assets/icons/album.svg?react";
-import SendIcon from "../assets/icons/send.svg?react";
+// import AlbumIcon from "@/assets/icons/album.svg?react";
+import SendIcon from "@/assets/icons/send.svg?react";
 import { useState } from "react";
 import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
+import { setImgUrl } from "@/utils/SetImageUrl";
 
 export default function Chatting() {
     const navigate = useNavigate();
-    const { chatRoomId } = useParams<{ chatRoomId: string }>();
+    const { id: chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
@@ -33,13 +34,21 @@ export default function Chatting() {
     };
 
     if (!data) {
-        return <ClipLoader />;
+        return (
+            <LoaderWrap>
+                <ClipLoader size={48} color="#d7d7d7" />
+            </LoaderWrap>
+        );
     }
+
+    console.log(data, "데이터");
 
     const messages = data.pages.flatMap((page) => page.messages);
 
     return isLoading ? (
-        <ClipLoader />
+        <LoaderWrap>
+            <ClipLoader size={48} color="#d7d7d7" />
+        </LoaderWrap>
     ) : (
         <Container>
             <Header>
@@ -50,18 +59,28 @@ export default function Chatting() {
                 <HeaderTitle>{data.pages[0].title}</HeaderTitle>
             </Header>
 
-            <ProductInfo>
+            <ProductInfo onClick={() => navigate(`/item-view/${data.pages[0].itemId}`)}>
                 <ProductImage
                     src={
                         Array.isArray(data.pages[0].itemImage)
-                            ? data.pages[0].itemImage[0]
-                            : data.pages[0].itemImage || ""
+                            ? setImgUrl(
+                                  data.pages[0].itemId,
+                                  data.pages[0].itemImage[0].split(".")[0],
+                                  data.pages[0].itemImage[0].split(".")[1],
+                              )
+                            : setImgUrl(
+                                  data.pages[0].itemId,
+                                  data.pages[0].itemImage.split(".")[0],
+                                  data.pages[0].itemImage.split(".")[1],
+                              ) || ""
                     }
                     alt={data.pages[0].title}
                 />
                 <ProductDetails>
                     <Title>{data.pages[0].title}</Title>
-                    <Price>{data.pages[0].price.toLocaleString()}원</Price>
+                    <Price>
+                        {data.pages[0].price ? `${data.pages[0].price.toLocaleString()}원` : "나눔"}
+                    </Price>
                 </ProductDetails>
             </ProductInfo>
 
@@ -84,9 +103,9 @@ export default function Chatting() {
             </ChatContainer>
 
             <Footer>
-                <ImageButton>
+                {/* <ImageButton>
                     <AlbumIcon />
-                </ImageButton>
+                </ImageButton> */}
                 <InputContainer>
                     <ChatInput
                         value={inputText}
@@ -191,23 +210,23 @@ const Footer = styled.div`
     border-top: 1px solid #eee;
 `;
 
-const ImageButton = styled.button`
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    color: var(--color-black-8);
-    background-color: var(--color-black-8);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+// const ImageButton = styled.button`
+//     width: 36px;
+//     height: 36px;
+//     border-radius: 50%;
+//     color: var(--color-black-8);
+//     background-color: var(--color-black-8);
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
 
-    svg path {
-        width: 24px;
-        height: 24px;
-        stroke: var(--color-black-5);
-    }
-`;
+//     svg path {
+//         width: 24px;
+//         height: 24px;
+//         stroke: var(--color-black-5);
+//     }
+// `;
 
 const InputContainer = styled.div`
     flex: 1;
@@ -248,7 +267,7 @@ const HeaderTitle = styled.h1`
     text-align: center;
     flex-grow: 1;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
     margin-right: 40px;
 `;
 
@@ -278,4 +297,12 @@ const ProductDetails = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2px;
+`;
+
+const LoaderWrap = styled.div`
+    width: 375px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

@@ -35,7 +35,7 @@ export default function ChattingList() {
             <FixedTabBar>
                 <TabBar tabsList={tabsList} initTab={selectedTab} handleTabClick={handleTabClick} />
             </FixedTabBar>
-            <ChatListContainer isLoading={isLoading} isEmpty={filteredChatList.length === 0}>
+            <ChatListContainer $isLoading={isLoading} $isEmpty={filteredChatList.length === 0}>
                 {!isLoading ? (
                     filteredChatList.length ? (
                         filteredChatList.map((chat) => (
@@ -70,11 +70,11 @@ const FixedTabBar = styled.div`
     background: white;
 `;
 
-const ChatListContainer = styled.div<{ isLoading: boolean; isEmpty: boolean }>`
+const ChatListContainer = styled.div<{ $isLoading: boolean; $isEmpty: boolean }>`
     height: 100%;
     width: 100%;
-    ${({ isLoading, isEmpty }) =>
-        isLoading || isEmpty
+    ${({ $isLoading, $isEmpty }) =>
+        $isLoading || $isEmpty
             ? `display: flex;
             align-items: center;
             justify-content: center;

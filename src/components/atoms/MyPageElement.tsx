@@ -11,6 +11,11 @@ export const TermsDesc = styled.div<{ $marginBottom?: string }>`
     font-size: 14px;
     color: var(--color-black-4);
     margin-bottom: ${({ $marginBottom }) => ($marginBottom ? $marginBottom : 0)};
+
+    & a {
+        color: var(--color-main-1);
+        text-decoration: underline;
+    }
 `;
 
 export const TermDescList = styled.ul`
@@ -24,5 +29,10 @@ export const TermDescList = styled.ul`
     & > li {
         list-style: decimal;
         color: var(--color-black-4);
+    }
+
+    & a {
+        color: var(--color-main-1);
+        text-decoration: underline;
     }
 `;

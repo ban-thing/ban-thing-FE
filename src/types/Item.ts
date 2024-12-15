@@ -44,6 +44,7 @@ export interface ItemView {
     cleaningDetail: CleaningDetail;
     updateTime: string;
     direct: boolean;
+    sellerId?: number;
 }
 
 interface CleaningDetail {

@@ -73,6 +73,7 @@ export const useChatRoomDetailsQuery = (roomId: number) => {
 
             return response.data;
         },
+        enabled: !!roomId,
         getNextPageParam: (lastPage) => {
             return lastPage.hasNext ? lastPage.messages.length : undefined;
         },
