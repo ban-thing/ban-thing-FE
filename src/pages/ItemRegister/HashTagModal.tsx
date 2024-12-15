@@ -65,7 +65,8 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
             if (inputValue.trim() === "") {
                 targetInput.placeholder = "공백은 입력할 수 없습니다.";
                 targetInput.classList.add("blank");
-                return console.log("공백");
+                // console.log("공백");
+                return;
             } else if (targetInput.classList.contains("blank")) {
                 targetInput.placeholder = "태그는 최대 5개까지 입력 가능합니다.";
                 targetInput.classList.remove("blank");

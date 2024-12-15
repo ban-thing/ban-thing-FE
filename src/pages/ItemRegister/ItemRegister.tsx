@@ -163,7 +163,7 @@ const ItemRegister = () => {
 
     const type = watch("type");
 
-    console.log(watch("photos"), "사진목록");
+    // console.log(watch("photos"), "사진목록");
 
     return (
         <ItemRegisterWrap>

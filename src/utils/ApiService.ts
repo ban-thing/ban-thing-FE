@@ -25,7 +25,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        console.log("🟣 get ", path, parameters);
+        // console.log("🟣 get ", path, parameters);
         return this.makeRequest<T>("get", path, parameters, header, withCredentials);
     }
 
@@ -35,7 +35,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        console.log("🟣 post ", path, parameters);
+        // console.log("🟣 post ", path, parameters);
         return this.makeRequest<T>("post", path, parameters, header, withCredentials);
     }
 
@@ -45,7 +45,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        console.log("🟣 put ", path, parameters);
+        // console.log("🟣 put ", path, parameters);
         return this.makeRequest<T>("put", path, parameters, header, withCredentials);
     }
 
@@ -55,7 +55,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        console.log("🟣 patch ", path, parameters);
+        // console.log("🟣 patch ", path, parameters);
         return this.makeRequest<T>("patch", path, parameters, header, withCredentials);
     }
 
@@ -65,7 +65,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        console.log("🟣 delete ", path, parameters);
+        // console.log("🟣 delete ", path, parameters);
         return this.makeRequest<T>("delete", path, parameters, header, withCredentials);
     }
 
