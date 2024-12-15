@@ -23,6 +23,7 @@ import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
+import { getFileFromUrl } from "@/utils/SetImageUrl";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
@@ -102,10 +103,14 @@ const ItemRegister = () => {
     useEffect(() => {
         // 수정페이지일 경우
         if (edit && data) {
-            const expire = data?.data.cleaningDetail.expire.slice(2).replace(/-/g, ".");
+            const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
+            const files = data?.data.itemImgs.map(
+                async (img) => await getFileFromUrl(edit, img.split(".")[0], img.split(".")[1]),
+            );
             reset({
                 title: data?.data.title,
                 content: data?.data.content,
+                photos: files,
                 type: data?.data.type,
                 hashtags: data?.data.hashtags,
                 clnPollution: data?.data.cleaningDetail.pollution,
@@ -131,7 +136,7 @@ const ItemRegister = () => {
         };
     }, [showHashModal, showDirectModal]);
 
-    console.log(errors, "errors");
+    // console.log(errors, "errors");
 
     const onSubmit: SubmitHandler<any> = (data) => {
         if (data.type === "나눔") {
@@ -157,6 +162,8 @@ const ItemRegister = () => {
     }, [errors.photos]);
 
     const type = watch("type");
+
+    console.log(watch("photos"), "사진목록");
 
     return (
         <ItemRegisterWrap>

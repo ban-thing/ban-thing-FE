@@ -29,3 +29,10 @@ export const base64ToFile = (base64: string, filename = "imgFile"): File => {
         throw new Error("Failed to decode Base64 string. Ensure it is correctly encoded.");
     }
 };
+
+export const getFileFromUrl = async (id: string | number, data: string, type: string) => {
+    const url = setImgUrl(id, data, type);
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new File([blob], `${data}.${type}`, { type: blob.type });
+};
