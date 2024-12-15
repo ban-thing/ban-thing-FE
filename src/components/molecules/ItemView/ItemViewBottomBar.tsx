@@ -61,7 +61,7 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId }: Ite
             {
                 onSuccess: (res) => {
                     const chatRoomId = res.data.chatRoomId;
-                    navigate(`/chatting/${chatRoomId}`);
+                    navigate(`/chats/${chatRoomId}`);
                 },
             },
         );
