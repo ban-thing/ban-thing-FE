@@ -21,6 +21,8 @@ import ItemRegisterHashTag from "./HashTagModal";
 import ItemRegisterDirectModal from "./ItemRegisterDirectModal";
 import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
+import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
@@ -62,6 +64,8 @@ const StyledToastContainer = styled(ToastContainer)`
 `;
 
 const ItemRegister = () => {
+    const [searchParams] = useSearchParams();
+    const edit = searchParams.get("edit");
     const [showHashModal, setShowHashModal] = useState(false);
     const [showDirectModal, setShowDirectModal] = useState(false);
     const {
@@ -74,11 +78,15 @@ const ItemRegister = () => {
         setError,
         formState: { isValid, errors },
     } = useForm();
+    const { data } = useFetchItem(Number(edit));
+    const { mutate: createMutate } = useFetchItemCreate();
+    const { mutate: updateMutate } = useFetchItemUpdate();
 
     useEffect(() => {
+        // 등록페이지일 경우
         reset({
-            // title: "임시 제목",
-            // content: "내용",
+            title: "",
+            content: "",
             type: "판매",
             // price: "500",
             clnPollution: "없음",
@@ -87,9 +95,29 @@ const ItemRegister = () => {
             clnPurchaseDate: "모름",
             clnExprice: "모름",
             isDirect: false,
-            // directLocation: "강남역 1번 출구",
+            directLocation: "",
         });
     }, []);
+
+    useEffect(() => {
+        // 수정페이지일 경우
+        if (edit && data) {
+            const expire = data?.data.cleaningDetail.expire.slice(2).replace(/-/g, ".");
+            reset({
+                title: data?.data.title,
+                content: data?.data.content,
+                type: data?.data.type,
+                hashtags: data?.data.hashtags,
+                clnPollution: data?.data.cleaningDetail.pollution,
+                clnTimeUsed: data?.data.cleaningDetail.timeUsed,
+                clnCleaned: data?.data.cleaningDetail.cleaned,
+                clnPurchaseDate: data?.data.cleaningDetail.purchasedDate,
+                clnExprice: expire,
+                isDirect: data?.data.direct,
+                directLocation: data?.data.directLocation,
+            });
+        }
+    }, [edit, data]);
 
     useEffect(() => {
         if (showHashModal || showDirectModal) {
@@ -112,8 +140,14 @@ const ItemRegister = () => {
         if (data.clnExprice === "OO.OO.OO") {
             setError("clnExprice", { message: "유통기한을 입력해요." });
         }
+        if (data.hashtags && data.hashtags?.some((item: any) => item.id)) {
+            data.hashtags = data.hashtags.map((item: any) =>
+                typeof item === "object" ? item.hashtag : item,
+            );
+        }
 
-        console.log(data, "제출데이터");
+        if (edit) return updateMutate(data);
+        createMutate(data);
     };
 
     useEffect(() => {

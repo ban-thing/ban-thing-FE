@@ -23,7 +23,7 @@ type ItemInListProps = ItemSearchList & {
 };
 
 export default function ItemInList({
-    id,
+    itemId,
     title,
     address,
     updatedAt,
@@ -54,7 +54,7 @@ export default function ItemInList({
     };
     return (
         <>
-            <ItemBox onClick={() => onClickBox(id)}>
+            <ItemBox onClick={() => onClickBox(itemId || 0)}>
                 <ItemPhoto src={images || notFound} />
                 <ItemBoxRight $maxWidth={viewEditButton ? "155px" : ""}>
                     <ItemTitle>{cutOffTitle}</ItemTitle>
@@ -67,7 +67,9 @@ export default function ItemInList({
                         <ItemPropDot />
                         <ItemProp>{type}</ItemProp>
                     </ItemPropertiesBox>
-                    <ItemPrice>{price.toLocaleString("en-US")}원</ItemPrice>
+                    <ItemPrice>
+                        {type === "판매" ? `${price.toLocaleString("en-US")}원` : "나눔"}
+                    </ItemPrice>
                 </ItemBoxRight>
                 {viewEditButton && (
                     <ItemEditButton onClick={onClickEdit}>
@@ -76,7 +78,11 @@ export default function ItemInList({
                 )}
             </ItemBox>
             {topPosition && (
-                <EditModal setTopPosition={setTopPosition} topPosition={topPosition} itemId={id} />
+                <EditModal
+                    setTopPosition={setTopPosition}
+                    topPosition={topPosition}
+                    itemId={itemId || 0}
+                />
             )}
         </>
     );

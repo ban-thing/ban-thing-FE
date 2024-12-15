@@ -1,5 +1,6 @@
 import { ModalBase } from "@/components/atoms/ModalBackground";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ModalBase2 = styled.div`
@@ -13,10 +14,10 @@ const ModalBase2 = styled.div`
 
 const StyledEditModal = styled.div<{ $inset: string }>`
     width: 159px;
-    height: 108px;
+    height: 152px;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 24px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,6 +41,7 @@ type EditModalProps = {
 };
 
 const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
+    const navigate = useNavigate();
     const modalBaseRef = useRef<HTMLDivElement | null>(null);
     const modalBaseRef2 = useRef<HTMLDivElement | null>(null);
     const onClickBase = (e: any) => {
@@ -47,8 +49,9 @@ const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
             setTopPosition(null);
         }
     };
+    // TODO
     const onClickEdit = () => {
-        console.log("수정", itemId);
+        navigate(`/item-register?edit=${itemId}`);
     };
     const onClickSoldOut = () => {
         console.log("판매완료", itemId);

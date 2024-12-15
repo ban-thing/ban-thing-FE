@@ -50,7 +50,7 @@ const CloseButtonWrap = styled.div`
 
 interface HashTagButtonProps {
     margin?: string;
-    hashList: string[];
+    hashList: any[];
     setValue: UseFormSetValue<FieldValues>;
 }
 
@@ -63,11 +63,11 @@ const HashTagButtonWithCloseList = ({ margin, hashList, setValue }: HashTagButto
     return (
         <HashTagList margin={margin}>
             {hashList
-                ?.filter((value) => value.trim() !== "")
+                ?.filter((value) => value?.hashtag?.trim() || value?.trim() !== "")
                 .map((value, index) => (
                     <HashTagWrap key={index}>
                         <HashtagButton variant="outlined" type="button">
-                            #{value}
+                            #{value.hashtag || value}
                         </HashtagButton>
                         <CloseButtonWrap onClick={() => onDeleteHash(index)}>
                             <CloseButton variant="outlined" type="button">

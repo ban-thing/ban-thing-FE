@@ -63,7 +63,7 @@ const ItemList = ({
                         <ItemContainer
                             key={index}
                             images={item.images}
-                            itemId={item.itemId}
+                            itemId={item.itemId || item.id}
                             title={item.title}
                             price={item.price}
                             address={item.address}

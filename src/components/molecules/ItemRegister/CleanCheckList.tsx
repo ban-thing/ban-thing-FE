@@ -46,9 +46,11 @@ const CleanCheckList = ({
         fieldNames.map((name, index) => {
             if (watch(name) === "모름" || watch(name) === false) {
                 setIsChecked((prev) => prev.map((item, i) => (i === index ? false : item)));
+            } else {
+                setIsChecked((prev) => prev.map((item, i) => (i === index ? true : item)));
             }
         });
-    }, []);
+    }, [watch("clnPurchaseDate"), watch("clnExprice"), watch("isDirect")]);
 
     const onChangeRadio = (index: number, checked: boolean) => {
         setIsChecked((prev) => prev.map((value, i) => (i === index ? checked : value)));

@@ -5,18 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const apiService = new ApiService();
 
-/**
- * 
- * export const useFetch = () => {
-    return useQuery({
-        queryKey: [""],
-        queryFn: async () => {
-            return await apiService.get<any>("url", {})
-        }
-    })
-}
- */
-
 // 카카오 로그인
 export const useFetchKakaoLogin = (code: string) => {
     const KEY = import.meta.env.VITE_REST_API_KEY;

@@ -24,7 +24,7 @@ const DoubleTypeButton = ({ setValue, watch }: DoubleTypeButtonProps) => {
         if (watch("type") === "나눔") {
             setIsSell(false);
         }
-    }, []);
+    }, [watch("type")]);
 
     const onClickSell = () => {
         setValue("type", "판매");

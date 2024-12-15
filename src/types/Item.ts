@@ -9,6 +9,7 @@ export type CreateItem = {
     directLocation: string;
     address: string;
     itemImgs?: string[];
+    photos?: any[];
     hashtags: string[];
     clnPollution: string;
     clnTimeUsed: string;

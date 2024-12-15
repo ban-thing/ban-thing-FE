@@ -2,7 +2,8 @@ import { Input } from "@/components/atoms/Input";
 import { RegisterSubTitle } from "@/components/atoms/ItemRegisterElement";
 import ItemRegisterModalLayout from "@/components/layout/ItemRegisterModalLayout";
 import { AddressDropdown } from "@/components/molecules/ItemRegister/AddressDropdown";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import styled from "styled-components";
 
@@ -19,16 +20,22 @@ type DirectModalProps = {
     watch: UseFormWatch<FieldValues>;
 };
 
-const dummyList = ["인천광역시 연수구 연수동", "인천광역시 연수구 송도동", "서울특별시 강남구"];
-
 const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: DirectModalProps) => {
+    const { data } = useFetchMyProfile();
     const [showDropdown, setShowDropdown] = useState(false);
-    const [address, setAddress] = useState(dummyList[0]);
+    const [addressList, setAddressList] = useState<any[]>(["동 데이터 불러오는 중"]);
+    const [address, setAddress] = useState(addressList[0]);
 
     const onClickComplete = () => {
         setValue("address", address);
         setShowModal(false);
     };
+
+    useEffect(() => {
+        if (data) {
+            setAddressList([data?.data.address1, data?.data.address2, data?.data.address3]);
+        }
+    }, [data]);
 
     return (
         <ItemRegisterModalLayout
@@ -43,7 +50,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
                     <AddressDropdown
                         showDropdown={showDropdown}
                         setShowDropdown={setShowDropdown}
-                        addresses={dummyList}
+                        addresses={addressList}
                         setAddress={setAddress}
                     />
                 </div>

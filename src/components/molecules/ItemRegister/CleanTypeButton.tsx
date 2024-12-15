@@ -25,7 +25,7 @@ const CleanTypeButton = ({ setValue, watch, text, setValueName }: CleanTypeButto
         if (index !== -1) {
             setIsEnable((prev) => prev.map((_, i) => (i === index ? true : false)));
         }
-    }, []);
+    }, [watch(setValueName)]);
 
     const onClick = (text: string, setValueName: string, index: number) => {
         if (isEnable[index]) return;
