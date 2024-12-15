@@ -20,7 +20,8 @@ export type UserSalesList = ItemsList & {
 };
 
 export type ItemsList = {
-    id: number;
+    id?: number;
+    itemId?: number;
     title: string;
     images: string;
     price: number;

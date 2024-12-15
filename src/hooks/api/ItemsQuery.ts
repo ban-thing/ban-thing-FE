@@ -5,7 +5,6 @@ import { ItemsList } from "@/types/User";
 
 const apiService = new ApiService();
 
-//TODO: 반환값 any 수정
 export const useFetchItemsList = ({
     keyword,
     hashtags,
@@ -33,6 +32,26 @@ export const useFetchItem = (itemId: number) => {
         queryKey: ["item", itemId],
         queryFn: async () => {
             return await apiService.get<{ data: ItemView }>(`items/${itemId}`, {});
+        },
+        retry: false,
+    });
+};
+
+export const useFetchMyPurchases = () => {
+    return useQuery({
+        queryKey: ["myPurchases"],
+        queryFn: async () => {
+            return await apiService.get<Record<string, any>>("/my/purchases", {});
+        },
+        retry: false,
+    });
+};
+
+export const useFetchMySales = () => {
+    return useQuery({
+        queryKey: ["mySales"],
+        queryFn: async () => {
+            return await apiService.get<Record<string, any>>("/my/sales", {});
         },
         retry: false,
     });

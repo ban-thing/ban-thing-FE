@@ -1,10 +1,19 @@
 import { ModalBase } from "@/components/atoms/ModalBackground";
 import HomeLayout from "@/components/layout/HomeLayout";
 import ItemList from "@/components/layout/ItemList";
+import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import { useDropdownModalStore } from "@/store/ModalStore";
 
 const Home = () => {
     const { isDropdownOpen } = useDropdownModalStore();
+    const { data: { data } = {}, isLoading } = useFetchItemsList({
+        keyword: "",
+        hashtags: "",
+        minPrice: 0,
+        maxPrice: 5000000000,
+        address: "",
+    });
+
     return (
         <>
             <HomeLayout>
@@ -16,7 +25,7 @@ const Home = () => {
                         $maxWidth="375px"
                     />
                 )}
-                <ItemList />
+                <ItemList isHome={true} data={data?.items} isLoading={isLoading} />
             </HomeLayout>
         </>
     );

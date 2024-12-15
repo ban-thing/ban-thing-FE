@@ -2,7 +2,6 @@ import styled from "styled-components";
 import ItemContainer from "@/components/molecules/ItemContainer";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import { ItemsList } from "@/types/User";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -25,24 +24,31 @@ type ItemListProps = {
     itemListData?: Record<string, any>[];
     viewEditButton?: boolean;
     noItemText?: string;
+    data: ItemsList[] | undefined;
+    isLoading: boolean;
+    isHome?: boolean;
 };
 
-const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
-    const [listData, setListData] = useState<ItemsList[] | null>();
+const ItemList = ({
+    padding,
+    viewEditButton = false,
+    noItemText,
+    data,
+    isLoading,
+    isHome = false,
+}: ItemListProps) => {
     const { currentLocation } = useItemListLocationStore();
-    const { data: { data } = {}, isLoading } = useFetchItemsList({
-        keyword: "",
-        hashtags: "",
-        minPrice: 0,
-        maxPrice: 5000000000,
-        address: "",
-    });
+    const [listData, setListData] = useState<ItemsList[] | null>();
 
     useEffect(() => {
-        if (data && currentLocation) {
-            const filtered = data.items.filter((item) => item.address === currentLocation);
+        // 홈 메뉴일 때만 지역 필터링
+        if (data && currentLocation && isHome) {
+            const filtered = data?.filter((item) => item.address === currentLocation);
             if (!filtered) return setListData(null);
             return setListData(filtered);
+        }
+        if (data) {
+            return setListData(data);
         }
     }, [data, isLoading, currentLocation]);
 
@@ -57,7 +63,7 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
                         <ItemContainer
                             key={index}
                             images={item.images}
-                            id={item.id}
+                            itemId={item.itemId}
                             title={item.title}
                             price={item.price}
                             address={item.address}
