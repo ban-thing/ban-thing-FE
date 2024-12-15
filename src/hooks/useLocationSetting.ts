@@ -33,29 +33,34 @@ export const useLocationSetting = () => {
     };
 
     const handleDistrictSelect = (district: Region) => {
-        setCurrentDistrict(district.name);
+        setSelectedDistrict(district);
         if (district.id.endsWith("_all")) {
-            setCurrentTowns([district.name]);
+            const existingTowns = currentAddress?.[2] || [];
+            setCurrentTowns([...existingTowns, district.name]);
+        } else {
+            const currentSelectedTowns = selectedTowns;
+            loadTowns(district.id, district.name, currentSelectedTowns);
         }
     };
 
     const handleTownToggle = (town: Region) => {
-        if (Array.isArray(currentAddress?.[2]) && town) {
-            if (currentAddress?.[2].includes(town.name)) {
+        if (Array.isArray(currentAddress?.[2])) {
+            if (currentAddress[2].includes(town.name)) {
                 return;
             }
             if (town.id.endsWith("_all")) {
-                return setCurrentTowns([town.name]);
+                const existingTowns = currentAddress[2].filter((t) => !t.includes("전체"));
+                return setCurrentTowns([...existingTowns, town.name]);
             }
-            if (currentAddress?.[2].length < 3) {
-                const filtered = currentAddress?.[2].filter((town) => !town.includes("전체"));
-                return setCurrentTowns([...filtered, town.name]);
+            if (currentAddress[2].length < 3) {
+                const filtered = currentAddress[2].filter((t) => !t.includes("전체"));
+                setCurrentTowns([...filtered, town.name]);
+                setSelectedTowns([...selectedTowns, town]);
             }
-            if (currentAddress?.[2].length === 3) {
-                return;
-            }
+        } else {
+            setCurrentTowns([town.name]);
+            setSelectedTowns([town]);
         }
-        setCurrentTowns([town.name]);
     };
 
     const handleRemoveTown = (town: string) => {
@@ -91,7 +96,6 @@ export const useLocationSetting = () => {
     useEffect(() => {
         if (currentAddress?.[0]) {
             const cityId = cities.find((item) => item.name === currentAddress[0])?.id as string;
-            setTowns([]);
             loadDistricts(cityId, currentAddress[0] as string);
             setSelectedCity({ id: cityId, name: currentAddress[0] });
         }
@@ -102,7 +106,6 @@ export const useLocationSetting = () => {
             const districtsId = districts.find((item) => item.name === currentAddress[1])
                 ?.id as string;
             setSelectedDistrict({ id: districtsId, name: currentAddress[1] });
-            setSelectedTowns([]);
             if (!currentAddress[1].includes("전체")) {
                 loadTowns(districtsId, currentAddress[1] as string);
             }
