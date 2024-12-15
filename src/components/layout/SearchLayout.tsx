@@ -27,6 +27,8 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         }
     };
 
+    console.log(children);
+
     return (
         <SearchContainer>
             <SearchHeader>
