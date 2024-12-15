@@ -17,7 +17,9 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
                     <UserName>{chat.nickname}</UserName>
                     <UserLocation>{chat.address}</UserLocation>
                     <PointIcon />
-                    <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>
+                    {chat.latestMessageDateTime && (
+                        <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>
+                    )}
                 </UserDetails>
                 <Message>{chat.latestMessage}</Message>
             </ChatInfo>
@@ -32,7 +34,7 @@ const ChatItemContainer = styled.div`
     height: 59px;
     padding: 20px;
     border-bottom: 1px solid #eee;
-    background-color: #f9f9f9;
+    background-color: #fff;
     cursor: pointer;
     &:last-child {
         border-bottom: none;
