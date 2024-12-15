@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Region, AdmVO, ApiResponse } from "@/types/location";
 
-const API_KEY = "DF267C57-FC4C-337B-BADF-F0A952C4F4B3";
+const API_KEY = window.location.href.includes("localhost")
+    ? "DF267C57-FC4C-337B-BADF-F0A952C4F4B3" // Local API key
+    : "15EB6A87-98E6-333C-BF19-30B0EEA78330"; // Server API key
 const BASE_URL = window.location.href.includes("localhost")
     ? "http://localhost:3000"
     : "http://211.188.62.82:3000";
