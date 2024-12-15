@@ -41,7 +41,15 @@ export const useLocationData = () => {
             setIsInitialLoading(true);
             const cityList = CityList.map((city) => ({
                 id: city.admCode,
-                name: city.lowestAdmCodeNm.replace(/특별시|광역시|특별자치시|도|특별자치도/g, ""),
+                name:
+                    city.lowestAdmCodeNm.includes("충청") ||
+                    city.lowestAdmCodeNm.includes("경상") ||
+                    city.lowestAdmCodeNm.includes("전라")
+                        ? `${city.lowestAdmCodeNm[0]}${city.lowestAdmCodeNm[2]}`
+                        : city.lowestAdmCodeNm.replace(
+                              /특별시|광역시|특별자치시|도|특별자치도/g,
+                              "",
+                          ),
             }));
             setCities(cityList);
         } catch (err) {
