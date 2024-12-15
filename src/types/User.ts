@@ -23,7 +23,8 @@ export type ItemsList = {
     id?: number;
     itemId?: number;
     title: string;
-    images: string;
+    images?: string;
+    imgUrl?: string;
     price: number;
     address: string;
     updatedAt: Date;
