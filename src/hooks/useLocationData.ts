@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Region, AdmVO, ApiResponse } from "@/types/location";
 
+const isLocal = window.location.href.includes("localhost");
+
+const BASE_URL = isLocal ? "/api" : "http://api.vworld.kr/ned/data";
 // const API_KEY = "15EB6A87-98E6-333C-BF19-30B0EEA78330";
-const API_KEY = window.location.href.includes("localhost")
+const API_KEY = isLocal
     ? "DF267C57-FC4C-337B-BADF-F0A952C4F4B3" // Local API key
     : "15EB6A87-98E6-333C-BF19-30B0EEA78330"; // Server API key
-const BASE_URL = window.location.href.includes("localhost")
-    ? "http://localhost:3000"
-    : "http://211.188.62.82:3000";
+const DOMAIN = isLocal ? "http://localhost:3000" : "http://211.188.62.82:3000";
 
 export const useLocationData = () => {
     const [cities, setCities] = useState<Region[]>([]);
@@ -37,7 +38,7 @@ export const useLocationData = () => {
 
     const loadCities = async () => {
         const data = await fetchData(
-            `/api/admCodeList?format=json&numOfRows=100&pageNo=1&key=${API_KEY}&domain=${BASE_URL}`,
+            `${BASE_URL}/admCodeList?format=json&numOfRows=100&pageNo=1&key=${API_KEY}&domain=${DOMAIN}`,
             true,
         );
         if (data) {
@@ -52,7 +53,7 @@ export const useLocationData = () => {
 
     const loadDistricts = async (cityCode: string, cityName: string) => {
         const data = await fetchData(
-            `/api/admSiList?key=${API_KEY}&numOfRows=100&domain=${BASE_URL}&format=json&admCode=${cityCode}`,
+            `${BASE_URL}/admSiList?key=${API_KEY}&numOfRows=100&domain=${DOMAIN}&format=json&admCode=${cityCode}`,
         );
         if (data) {
             const districts = data.admVOList.admVOList.map((item: AdmVO) => ({
@@ -65,7 +66,7 @@ export const useLocationData = () => {
 
     const loadTowns = async (districtCode: string, districtName: string) => {
         const data = await fetchData(
-            `/api/admDongList?key=${API_KEY}&numOfRows=100&domain=${BASE_URL}&format=json&admCode=${districtCode}`,
+            `${BASE_URL}/admDongList?key=${API_KEY}&numOfRows=100&domain=${DOMAIN}&format=json&admCode=${districtCode}`,
         );
         if (data) {
             const towns = data.admVOList.admVOList.map((item: AdmVO) => ({

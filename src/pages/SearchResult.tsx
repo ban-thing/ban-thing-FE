@@ -12,6 +12,7 @@ import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/Hash
 import { useState } from "react";
 import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import { dummyItemList } from "@/store/ItemListDummyData";
+import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 
 export default function SearchResult() {
     const navigate = useNavigate();
@@ -20,6 +21,13 @@ export default function SearchResult() {
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
     const { setValue } = useForm();
     const [searchValue, setSearchValue] = useState("");
+    const { data: { data } = {}, isLoading } = useFetchItemsList({
+        keyword: "",
+        hashtags: "",
+        minPrice: 0,
+        maxPrice: 5000000000,
+        address: "",
+    });
 
     const handleSetValue: UseFormSetValue<FieldValues> = (name, value) => {
         if (name === "hashtags") {
@@ -76,7 +84,7 @@ export default function SearchResult() {
             </SearchHeader>
             <ScrollContent>
                 {dummyItemList.length ? (
-                    <ItemList />
+                    <ItemList data={data?.items} isLoading={isLoading} />
                 ) : (
                     <NoItemInList text="앗! 검색된 결과가 없어요." />
                 )}
