@@ -19389,4 +19389,6695 @@ export const Towns_48310 = [
     },
 ];
 
-export const Towns_48880 = [];
+export const Towns_48880 = [
+    {
+        admCode: "48880410",
+        admCodeNm: "경상남도 거창군 가북면",
+        lowestAdmCodeNm: "가북면",
+    },
+    {
+        admCode: "48880400",
+        admCodeNm: "경상남도 거창군 가조면",
+        lowestAdmCodeNm: "가조면",
+    },
+    {
+        admCode: "48880250",
+        admCodeNm: "경상남도 거창군 거창읍",
+        lowestAdmCodeNm: "거창읍",
+    },
+    {
+        admCode: "48880330",
+        admCodeNm: "경상남도 거창군 고제면",
+        lowestAdmCodeNm: "고제면",
+    },
+    {
+        admCode: "48880370",
+        admCodeNm: "경상남도 거창군 남상면",
+        lowestAdmCodeNm: "남상면",
+    },
+    {
+        admCode: "48880380",
+        admCodeNm: "경상남도 거창군 남하면",
+        lowestAdmCodeNm: "남하면",
+    },
+    {
+        admCode: "48880360",
+        admCodeNm: "경상남도 거창군 마리면",
+        lowestAdmCodeNm: "마리면",
+    },
+    {
+        admCode: "48880340",
+        admCodeNm: "경상남도 거창군 북상면",
+        lowestAdmCodeNm: "북상면",
+    },
+    {
+        admCode: "48880390",
+        admCodeNm: "경상남도 거창군 신원면",
+        lowestAdmCodeNm: "신원면",
+    },
+    {
+        admCode: "48880320",
+        admCodeNm: "경상남도 거창군 웅양면",
+        lowestAdmCodeNm: "웅양면",
+    },
+    {
+        admCode: "48880350",
+        admCodeNm: "경상남도 거창군 위천면",
+        lowestAdmCodeNm: "위천면",
+    },
+    {
+        admCode: "48880310",
+        admCodeNm: "경상남도 거창군 주상면",
+        lowestAdmCodeNm: "주상면",
+    },
+];
+
+export const Towns_48820 = [
+    {
+        admCode: "48820380",
+        admCodeNm: "경상남도 고성군 개천면",
+        lowestAdmCodeNm: "개천면",
+    },
+    {
+        admCode: "48820430",
+        admCodeNm: "경상남도 고성군 거류면",
+        lowestAdmCodeNm: "거류면",
+    },
+    {
+        admCode: "48820250",
+        admCodeNm: "경상남도 고성군 고성읍",
+        lowestAdmCodeNm: "고성읍",
+    },
+    {
+        admCode: "48820390",
+        admCodeNm: "경상남도 고성군 구만면",
+        lowestAdmCodeNm: "구만면",
+    },
+    {
+        admCode: "48820350",
+        admCodeNm: "경상남도 고성군 대가면",
+        lowestAdmCodeNm: "대가면",
+    },
+    {
+        admCode: "48820420",
+        admCodeNm: "경상남도 고성군 동해면",
+        lowestAdmCodeNm: "동해면",
+    },
+    {
+        admCode: "48820410",
+        admCodeNm: "경상남도 고성군 마암면",
+        lowestAdmCodeNm: "마암면",
+    },
+    {
+        admCode: "48820310",
+        admCodeNm: "경상남도 고성군 삼산면",
+        lowestAdmCodeNm: "삼산면",
+    },
+    {
+        admCode: "48820340",
+        admCodeNm: "경상남도 고성군 상리면",
+        lowestAdmCodeNm: "상리면",
+    },
+    {
+        admCode: "48820370",
+        admCodeNm: "경상남도 고성군 영오면",
+        lowestAdmCodeNm: "영오면",
+    },
+    {
+        admCode: "48820360",
+        admCodeNm: "경상남도 고성군 영현면",
+        lowestAdmCodeNm: "영현면",
+    },
+    {
+        admCode: "48820330",
+        admCodeNm: "경상남도 고성군 하이면",
+        lowestAdmCodeNm: "하이면",
+    },
+    {
+        admCode: "48820320",
+        admCodeNm: "경상남도 고성군 하일면",
+        lowestAdmCodeNm: "하일면",
+    },
+    {
+        admCode: "48820400",
+        admCodeNm: "경상남도 고성군 회화면",
+        lowestAdmCodeNm: "회화면",
+    },
+];
+
+export const Towns_48250 = [
+    {
+        admCode: "48250116",
+        admCodeNm: "경상남도 김해시 강동",
+        lowestAdmCodeNm: "강동",
+    },
+    {
+        admCode: "48250130",
+        admCodeNm: "경상남도 김해시 관동동",
+        lowestAdmCodeNm: "관동동",
+    },
+    {
+        admCode: "48250106",
+        admCodeNm: "경상남도 김해시 구산동",
+        lowestAdmCodeNm: "구산동",
+    },
+    {
+        admCode: "48250124",
+        admCodeNm: "경상남도 김해시 내덕동",
+        lowestAdmCodeNm: "내덕동",
+    },
+    {
+        admCode: "48250108",
+        admCodeNm: "경상남도 김해시 내동",
+        lowestAdmCodeNm: "내동",
+    },
+    {
+        admCode: "48250370",
+        admCodeNm: "경상남도 김해시 대동면",
+        lowestAdmCodeNm: "대동면",
+    },
+    {
+        admCode: "48250105",
+        admCodeNm: "경상남도 김해시 대성동",
+        lowestAdmCodeNm: "대성동",
+    },
+    {
+        admCode: "48250129",
+        admCodeNm: "경상남도 김해시 대청동",
+        lowestAdmCodeNm: "대청동",
+    },
+    {
+        admCode: "48250101",
+        admCodeNm: "경상남도 김해시 동상동",
+        lowestAdmCodeNm: "동상동",
+    },
+    {
+        admCode: "48250112",
+        admCodeNm: "경상남도 김해시 명법동",
+        lowestAdmCodeNm: "명법동",
+    },
+    {
+        admCode: "48250126",
+        admCodeNm: "경상남도 김해시 무계동",
+        lowestAdmCodeNm: "무계동",
+    },
+    {
+        admCode: "48250104",
+        admCodeNm: "경상남도 김해시 봉황동",
+        lowestAdmCodeNm: "봉황동",
+    },
+    {
+        admCode: "48250125",
+        admCodeNm: "경상남도 김해시 부곡동",
+        lowestAdmCodeNm: "부곡동",
+    },
+    {
+        admCode: "48250103",
+        admCodeNm: "경상남도 김해시 부원동",
+        lowestAdmCodeNm: "부원동",
+    },
+    {
+        admCode: "48250122",
+        admCodeNm: "경상남도 김해시 불암동",
+        lowestAdmCodeNm: "불암동",
+    },
+    {
+        admCode: "48250107",
+        admCodeNm: "경상남도 김해시 삼계동",
+        lowestAdmCodeNm: "삼계동",
+    },
+    {
+        admCode: "48250128",
+        admCodeNm: "경상남도 김해시 삼문동",
+        lowestAdmCodeNm: "삼문동",
+    },
+    {
+        admCode: "48250119",
+        admCodeNm: "경상남도 김해시 삼방동",
+        lowestAdmCodeNm: "삼방동",
+    },
+    {
+        admCode: "48250117",
+        admCodeNm: "경상남도 김해시 삼정동",
+        lowestAdmCodeNm: "삼정동",
+    },
+    {
+        admCode: "48250360",
+        admCodeNm: "경상남도 김해시 상동면",
+        lowestAdmCodeNm: "상동면",
+    },
+    {
+        admCode: "48250350",
+        admCodeNm: "경상남도 김해시 생림면",
+        lowestAdmCodeNm: "생림면",
+    },
+    {
+        admCode: "48250102",
+        admCodeNm: "경상남도 김해시 서상동",
+        lowestAdmCodeNm: "서상동",
+    },
+    {
+        admCode: "48250134",
+        admCodeNm: "경상남도 김해시 수가동",
+        lowestAdmCodeNm: "수가동",
+    },
+    {
+        admCode: "48250127",
+        admCodeNm: "경상남도 김해시 신문동",
+        lowestAdmCodeNm: "신문동",
+    },
+    {
+        admCode: "48250120",
+        admCodeNm: "경상남도 김해시 안동",
+        lowestAdmCodeNm: "안동",
+    },
+    {
+        admCode: "48250118",
+        admCodeNm: "경상남도 김해시 어방동",
+        lowestAdmCodeNm: "어방동",
+    },
+    {
+        admCode: "48250109",
+        admCodeNm: "경상남도 김해시 외동",
+        lowestAdmCodeNm: "외동",
+    },
+    {
+        admCode: "48250123",
+        admCodeNm: "경상남도 김해시 유하동",
+        lowestAdmCodeNm: "유하동",
+    },
+    {
+        admCode: "48250131",
+        admCodeNm: "경상남도 김해시 율하동",
+        lowestAdmCodeNm: "율하동",
+    },
+    {
+        admCode: "48250133",
+        admCodeNm: "경상남도 김해시 응달동",
+        lowestAdmCodeNm: "응달동",
+    },
+    {
+        admCode: "48250113",
+        admCodeNm: "경상남도 김해시 이동",
+        lowestAdmCodeNm: "이동",
+    },
+    {
+        admCode: "48250132",
+        admCodeNm: "경상남도 김해시 장유동",
+        lowestAdmCodeNm: "장유동",
+    },
+    {
+        admCode: "48250115",
+        admCodeNm: "경상남도 김해시 전하동",
+        lowestAdmCodeNm: "전하동",
+    },
+    {
+        admCode: "48250320",
+        admCodeNm: "경상남도 김해시 주촌면",
+        lowestAdmCodeNm: "주촌면",
+    },
+    {
+        admCode: "48250121",
+        admCodeNm: "경상남도 김해시 지내동",
+        lowestAdmCodeNm: "지내동",
+    },
+    {
+        admCode: "48250330",
+        admCodeNm: "경상남도 김해시 진례면",
+        lowestAdmCodeNm: "진례면",
+    },
+    {
+        admCode: "48250250",
+        admCodeNm: "경상남도 김해시 진영읍",
+        lowestAdmCodeNm: "진영읍",
+    },
+    {
+        admCode: "48250111",
+        admCodeNm: "경상남도 김해시 풍유동",
+        lowestAdmCodeNm: "풍유동",
+    },
+    {
+        admCode: "48250340",
+        admCodeNm: "경상남도 김해시 한림면",
+        lowestAdmCodeNm: "한림면",
+    },
+    {
+        admCode: "48250114",
+        admCodeNm: "경상남도 김해시 화목동",
+        lowestAdmCodeNm: "화목동",
+    },
+    {
+        admCode: "48250110",
+        admCodeNm: "경상남도 김해시 흥동",
+        lowestAdmCodeNm: "흥동",
+    },
+];
+
+export const Towns_48840 = [
+    {
+        admCode: "48840370",
+        admCodeNm: "경상남도 남해군 고현면",
+        lowestAdmCodeNm: "고현면",
+    },
+    {
+        admCode: "48840350",
+        admCodeNm: "경상남도 남해군 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "48840250",
+        admCodeNm: "경상남도 남해군 남해읍",
+        lowestAdmCodeNm: "남해읍",
+    },
+    {
+        admCode: "48840340",
+        admCodeNm: "경상남도 남해군 미조면",
+        lowestAdmCodeNm: "미조면",
+    },
+    {
+        admCode: "48840330",
+        admCodeNm: "경상남도 남해군 삼동면",
+        lowestAdmCodeNm: "삼동면",
+    },
+    {
+        admCode: "48840320",
+        admCodeNm: "경상남도 남해군 상주면",
+        lowestAdmCodeNm: "상주면",
+    },
+    {
+        admCode: "48840360",
+        admCodeNm: "경상남도 남해군 서면",
+        lowestAdmCodeNm: "서면",
+    },
+    {
+        admCode: "48840380",
+        admCodeNm: "경상남도 남해군 설천면",
+        lowestAdmCodeNm: "설천면",
+    },
+    {
+        admCode: "48840310",
+        admCodeNm: "경상남도 남해군 이동면",
+        lowestAdmCodeNm: "이동면",
+    },
+    {
+        admCode: "48840390",
+        admCodeNm: "경상남도 남해군 창선면",
+        lowestAdmCodeNm: "창선면",
+    },
+];
+
+export const Towns_48270 = [
+    {
+        admCode: "48270108",
+        admCodeNm: "경상남도 밀양시 가곡동",
+        lowestAdmCodeNm: "가곡동",
+    },
+    {
+        admCode: "48270103",
+        admCodeNm: "경상남도 밀양시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "48270105",
+        admCodeNm: "경상남도 밀양시 남포동",
+        lowestAdmCodeNm: "남포동",
+    },
+    {
+        admCode: "48270102",
+        admCodeNm: "경상남도 밀양시 내이동",
+        lowestAdmCodeNm: "내이동",
+    },
+    {
+        admCode: "48270101",
+        admCodeNm: "경상남도 밀양시 내일동",
+        lowestAdmCodeNm: "내일동",
+    },
+    {
+        admCode: "48270350",
+        admCodeNm: "경상남도 밀양시 단장면",
+        lowestAdmCodeNm: "단장면",
+    },
+    {
+        admCode: "48270380",
+        admCodeNm: "경상남도 밀양시 무안면",
+        lowestAdmCodeNm: "무안면",
+    },
+    {
+        admCode: "48270310",
+        admCodeNm: "경상남도 밀양시 부북면",
+        lowestAdmCodeNm: "부북면",
+    },
+    {
+        admCode: "48270340",
+        admCodeNm: "경상남도 밀양시 산내면",
+        lowestAdmCodeNm: "산내면",
+    },
+    {
+        admCode: "48270330",
+        admCodeNm: "경상남도 밀양시 산외면",
+        lowestAdmCodeNm: "산외면",
+    },
+    {
+        admCode: "48270250",
+        admCodeNm: "경상남도 밀양시 삼랑진읍",
+        lowestAdmCodeNm: "삼랑진읍",
+    },
+    {
+        admCode: "48270104",
+        admCodeNm: "경상남도 밀양시 삼문동",
+        lowestAdmCodeNm: "삼문동",
+    },
+    {
+        admCode: "48270360",
+        admCodeNm: "경상남도 밀양시 상남면",
+        lowestAdmCodeNm: "상남면",
+    },
+    {
+        admCode: "48270320",
+        admCodeNm: "경상남도 밀양시 상동면",
+        lowestAdmCodeNm: "상동면",
+    },
+    {
+        admCode: "48270106",
+        admCodeNm: "경상남도 밀양시 용평동",
+        lowestAdmCodeNm: "용평동",
+    },
+    {
+        admCode: "48270390",
+        admCodeNm: "경상남도 밀양시 청도면",
+        lowestAdmCodeNm: "청도면",
+    },
+    {
+        admCode: "48270370",
+        admCodeNm: "경상남도 밀양시 초동면",
+        lowestAdmCodeNm: "초동면",
+    },
+    {
+        admCode: "48270253",
+        admCodeNm: "경상남도 밀양시 하남읍",
+        lowestAdmCodeNm: "하남읍",
+    },
+    {
+        admCode: "48270107",
+        admCodeNm: "경상남도 밀양시 활성동",
+        lowestAdmCodeNm: "활성동",
+    },
+];
+
+export const Towns_48240 = [
+    {
+        admCode: "48240360",
+        admCodeNm: "경상남도 사천시 곤명면",
+        lowestAdmCodeNm: "곤명면",
+    },
+    {
+        admCode: "48240350",
+        admCodeNm: "경상남도 사천시 곤양면",
+        lowestAdmCodeNm: "곤양면",
+    },
+    {
+        admCode: "48240114",
+        admCodeNm: "경상남도 사천시 궁지동",
+        lowestAdmCodeNm: "궁지동",
+    },
+    {
+        admCode: "48240124",
+        admCodeNm: "경상남도 사천시 노룡동",
+        lowestAdmCodeNm: "노룡동",
+    },
+    {
+        admCode: "48240120",
+        admCodeNm: "경상남도 사천시 늑도동",
+        lowestAdmCodeNm: "늑도동",
+    },
+    {
+        admCode: "48240117",
+        admCodeNm: "경상남도 사천시 대방동",
+        lowestAdmCodeNm: "대방동",
+    },
+    {
+        admCode: "48240125",
+        admCodeNm: "경상남도 사천시 대포동",
+        lowestAdmCodeNm: "대포동",
+    },
+    {
+        admCode: "48240104",
+        admCodeNm: "경상남도 사천시 동금동",
+        lowestAdmCodeNm: "동금동",
+    },
+    {
+        admCode: "48240101",
+        admCodeNm: "경상남도 사천시 동동",
+        lowestAdmCodeNm: "동동",
+    },
+    {
+        admCode: "48240106",
+        admCodeNm: "경상남도 사천시 동림동",
+        lowestAdmCodeNm: "동림동",
+    },
+    {
+        admCode: "48240119",
+        admCodeNm: "경상남도 사천시 마도동",
+        lowestAdmCodeNm: "마도동",
+    },
+    {
+        admCode: "48240122",
+        admCodeNm: "경상남도 사천시 백천동",
+        lowestAdmCodeNm: "백천동",
+    },
+    {
+        admCode: "48240108",
+        admCodeNm: "경상남도 사천시 벌리동",
+        lowestAdmCodeNm: "벌리동",
+    },
+    {
+        admCode: "48240111",
+        admCodeNm: "경상남도 사천시 봉남동",
+        lowestAdmCodeNm: "봉남동",
+    },
+    {
+        admCode: "48240320",
+        admCodeNm: "경상남도 사천시 사남면",
+        lowestAdmCodeNm: "사남면",
+    },
+    {
+        admCode: "48240115",
+        admCodeNm: "경상남도 사천시 사등동",
+        lowestAdmCodeNm: "사등동",
+    },
+    {
+        admCode: "48240250",
+        admCodeNm: "경상남도 사천시 사천읍",
+        lowestAdmCodeNm: "사천읍",
+    },
+    {
+        admCode: "48240105",
+        admCodeNm: "경상남도 사천시 서금동",
+        lowestAdmCodeNm: "서금동",
+    },
+    {
+        admCode: "48240102",
+        admCodeNm: "경상남도 사천시 서동",
+        lowestAdmCodeNm: "서동",
+    },
+    {
+        admCode: "48240370",
+        admCodeNm: "경상남도 사천시 서포면",
+        lowestAdmCodeNm: "서포면",
+    },
+    {
+        admCode: "48240103",
+        admCodeNm: "경상남도 사천시 선구동",
+        lowestAdmCodeNm: "선구동",
+    },
+    {
+        admCode: "48240126",
+        admCodeNm: "경상남도 사천시 송포동",
+        lowestAdmCodeNm: "송포동",
+    },
+    {
+        admCode: "48240123",
+        admCodeNm: "경상남도 사천시 신벽동",
+        lowestAdmCodeNm: "신벽동",
+    },
+    {
+        admCode: "48240121",
+        admCodeNm: "경상남도 사천시 신수동",
+        lowestAdmCodeNm: "신수동",
+    },
+    {
+        admCode: "48240118",
+        admCodeNm: "경상남도 사천시 실안동",
+        lowestAdmCodeNm: "실안동",
+    },
+    {
+        admCode: "48240110",
+        admCodeNm: "경상남도 사천시 와룡동",
+        lowestAdmCodeNm: "와룡동",
+    },
+    {
+        admCode: "48240109",
+        admCodeNm: "경상남도 사천시 용강동",
+        lowestAdmCodeNm: "용강동",
+    },
+    {
+        admCode: "48240330",
+        admCodeNm: "경상남도 사천시 용현면",
+        lowestAdmCodeNm: "용현면",
+    },
+    {
+        admCode: "48240112",
+        admCodeNm: "경상남도 사천시 이금동",
+        lowestAdmCodeNm: "이금동",
+    },
+    {
+        admCode: "48240113",
+        admCodeNm: "경상남도 사천시 이홀동",
+        lowestAdmCodeNm: "이홀동",
+    },
+    {
+        admCode: "48240310",
+        admCodeNm: "경상남도 사천시 정동면",
+        lowestAdmCodeNm: "정동면",
+    },
+    {
+        admCode: "48240107",
+        admCodeNm: "경상남도 사천시 좌룡동",
+        lowestAdmCodeNm: "좌룡동",
+    },
+    {
+        admCode: "48240127",
+        admCodeNm: "경상남도 사천시 죽림동",
+        lowestAdmCodeNm: "죽림동",
+    },
+    {
+        admCode: "48240340",
+        admCodeNm: "경상남도 사천시 축동면",
+        lowestAdmCodeNm: "축동면",
+    },
+    {
+        admCode: "48240116",
+        admCodeNm: "경상남도 사천시 향촌동",
+        lowestAdmCodeNm: "향촌동",
+    },
+];
+
+export const Towns_48860 = [
+    {
+        admCode: "48860340",
+        admCodeNm: "경상남도 산청군 금서면",
+        lowestAdmCodeNm: "금서면",
+    },
+    {
+        admCode: "48860370",
+        admCodeNm: "경상남도 산청군 단성면",
+        lowestAdmCodeNm: "단성면",
+    },
+    {
+        admCode: "48860250",
+        admCodeNm: "경상남도 산청군 산청읍",
+        lowestAdmCodeNm: "산청읍",
+    },
+    {
+        admCode: "48860350",
+        admCodeNm: "경상남도 산청군 삼장면",
+        lowestAdmCodeNm: "삼장면",
+    },
+    {
+        admCode: "48860390",
+        admCodeNm: "경상남도 산청군 생비량면",
+        lowestAdmCodeNm: "생비량면",
+    },
+    {
+        admCode: "48860330",
+        admCodeNm: "경상남도 산청군 생초면",
+        lowestAdmCodeNm: "생초면",
+    },
+    {
+        admCode: "48860360",
+        admCodeNm: "경상남도 산청군 시천면",
+        lowestAdmCodeNm: "시천면",
+    },
+    {
+        admCode: "48860400",
+        admCodeNm: "경상남도 산청군 신등면",
+        lowestAdmCodeNm: "신등면",
+    },
+    {
+        admCode: "48860380",
+        admCodeNm: "경상남도 산청군 신안면",
+        lowestAdmCodeNm: "신안면",
+    },
+    {
+        admCode: "48860320",
+        admCodeNm: "경상남도 산청군 오부면",
+        lowestAdmCodeNm: "오부면",
+    },
+    {
+        admCode: "48860310",
+        admCodeNm: "경상남도 산청군 차황면",
+        lowestAdmCodeNm: "차황면",
+    },
+];
+
+export const Towns_48330 = [
+    {
+        admCode: "48330110",
+        admCodeNm: "경상남도 양산시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "48330102",
+        admCodeNm: "경상남도 양산시 남부동",
+        lowestAdmCodeNm: "남부동",
+    },
+    {
+        admCode: "48330101",
+        admCodeNm: "경상남도 양산시 다방동",
+        lowestAdmCodeNm: "다방동",
+    },
+    {
+        admCode: "48330120",
+        admCodeNm: "경상남도 양산시 덕계동",
+        lowestAdmCodeNm: "덕계동",
+    },
+    {
+        admCode: "48330310",
+        admCodeNm: "경상남도 양산시 동면",
+        lowestAdmCodeNm: "동면",
+    },
+    {
+        admCode: "48330121",
+        admCodeNm: "경상남도 양산시 매곡동",
+        lowestAdmCodeNm: "매곡동",
+    },
+    {
+        admCode: "48330105",
+        admCodeNm: "경상남도 양산시 명곡동",
+        lowestAdmCodeNm: "명곡동",
+    },
+    {
+        admCode: "48330115",
+        admCodeNm: "경상남도 양산시 명동",
+        lowestAdmCodeNm: "명동",
+    },
+    {
+        admCode: "48330253",
+        admCodeNm: "경상남도 양산시 물금읍",
+        lowestAdmCodeNm: "물금읍",
+    },
+    {
+        admCode: "48330104",
+        admCodeNm: "경상남도 양산시 북부동",
+        lowestAdmCodeNm: "북부동",
+    },
+    {
+        admCode: "48330107",
+        admCodeNm: "경상남도 양산시 북정동",
+        lowestAdmCodeNm: "북정동",
+    },
+    {
+        admCode: "48330108",
+        admCodeNm: "경상남도 양산시 산막동",
+        lowestAdmCodeNm: "산막동",
+    },
+    {
+        admCode: "48330114",
+        admCodeNm: "경상남도 양산시 삼호동",
+        lowestAdmCodeNm: "삼호동",
+    },
+    {
+        admCode: "48330330",
+        admCodeNm: "경상남도 양산시 상북면",
+        lowestAdmCodeNm: "상북면",
+    },
+    {
+        admCode: "48330117",
+        admCodeNm: "경상남도 양산시 소주동",
+        lowestAdmCodeNm: "소주동",
+    },
+    {
+        admCode: "48330106",
+        admCodeNm: "경상남도 양산시 신기동",
+        lowestAdmCodeNm: "신기동",
+    },
+    {
+        admCode: "48330112",
+        admCodeNm: "경상남도 양산시 어곡동",
+        lowestAdmCodeNm: "어곡동",
+    },
+    {
+        admCode: "48330113",
+        admCodeNm: "경상남도 양산시 용당동",
+        lowestAdmCodeNm: "용당동",
+    },
+    {
+        admCode: "48330320",
+        admCodeNm: "경상남도 양산시 원동면",
+        lowestAdmCodeNm: "원동면",
+    },
+    {
+        admCode: "48330111",
+        admCodeNm: "경상남도 양산시 유산동",
+        lowestAdmCodeNm: "유산동",
+    },
+    {
+        admCode: "48330116",
+        admCodeNm: "경상남도 양산시 주남동",
+        lowestAdmCodeNm: "주남동",
+    },
+    {
+        admCode: "48330118",
+        admCodeNm: "경상남도 양산시 주진동",
+        lowestAdmCodeNm: "주진동",
+    },
+    {
+        admCode: "48330103",
+        admCodeNm: "경상남도 양산시 중부동",
+        lowestAdmCodeNm: "중부동",
+    },
+    {
+        admCode: "48330119",
+        admCodeNm: "경상남도 양산시 평산동",
+        lowestAdmCodeNm: "평산동",
+    },
+    {
+        admCode: "48330340",
+        admCodeNm: "경상남도 양산시 하북면",
+        lowestAdmCodeNm: "하북면",
+    },
+    {
+        admCode: "48330109",
+        admCodeNm: "경상남도 양산시 호계동",
+        lowestAdmCodeNm: "호계동",
+    },
+];
+
+export const Towns_48720 = [
+    {
+        admCode: "48720310",
+        admCodeNm: "경상남도 의령군 가례면",
+        lowestAdmCodeNm: "가례면",
+    },
+    {
+        admCode: "48720415",
+        admCodeNm: "경상남도 의령군 궁류면",
+        lowestAdmCodeNm: "궁류면",
+    },
+    {
+        admCode: "48720380",
+        admCodeNm: "경상남도 의령군 낙서면",
+        lowestAdmCodeNm: "낙서면",
+    },
+    {
+        admCode: "48720330",
+        admCodeNm: "경상남도 의령군 대의면",
+        lowestAdmCodeNm: "대의면",
+    },
+    {
+        admCode: "48720400",
+        admCodeNm: "경상남도 의령군 봉수면",
+        lowestAdmCodeNm: "봉수면",
+    },
+    {
+        admCode: "48720390",
+        admCodeNm: "경상남도 의령군 부림면",
+        lowestAdmCodeNm: "부림면",
+    },
+    {
+        admCode: "48720350",
+        admCodeNm: "경상남도 의령군 용덕면",
+        lowestAdmCodeNm: "용덕면",
+    },
+    {
+        admCode: "48720420",
+        admCodeNm: "경상남도 의령군 유곡면",
+        lowestAdmCodeNm: "유곡면",
+    },
+    {
+        admCode: "48720250",
+        admCodeNm: "경상남도 의령군 의령읍",
+        lowestAdmCodeNm: "의령읍",
+    },
+    {
+        admCode: "48720360",
+        admCodeNm: "경상남도 의령군 정곡면",
+        lowestAdmCodeNm: "정곡면",
+    },
+    {
+        admCode: "48720370",
+        admCodeNm: "경상남도 의령군 지정면",
+        lowestAdmCodeNm: "지정면",
+    },
+    {
+        admCode: "48720320",
+        admCodeNm: "경상남도 의령군 칠곡면",
+        lowestAdmCodeNm: "칠곡면",
+    },
+    {
+        admCode: "48720340",
+        admCodeNm: "경상남도 의령군 화정면",
+        lowestAdmCodeNm: "화정면",
+    },
+];
+
+export const Towns_48170 = [
+    {
+        admCode: "48170131",
+        admCodeNm: "경상남도 진주시 가좌동",
+        lowestAdmCodeNm: "가좌동",
+    },
+    {
+        admCode: "48170103",
+        admCodeNm: "경상남도 진주시 강남동",
+        lowestAdmCodeNm: "강남동",
+    },
+    {
+        admCode: "48170112",
+        admCodeNm: "경상남도 진주시 계동",
+        lowestAdmCodeNm: "계동",
+    },
+    {
+        admCode: "48170130",
+        admCodeNm: "경상남도 진주시 귀곡동",
+        lowestAdmCodeNm: "귀곡동",
+    },
+    {
+        admCode: "48170330",
+        admCodeNm: "경상남도 진주시 금곡면",
+        lowestAdmCodeNm: "금곡면",
+    },
+    {
+        admCode: "48170410",
+        admCodeNm: "경상남도 진주시 금산면",
+        lowestAdmCodeNm: "금산면",
+    },
+    {
+        admCode: "48170107",
+        admCodeNm: "경상남도 진주시 남성동",
+        lowestAdmCodeNm: "남성동",
+    },
+    {
+        admCode: "48170310",
+        admCodeNm: "경상남도 진주시 내동면",
+        lowestAdmCodeNm: "내동면",
+    },
+    {
+        admCode: "48170400",
+        admCodeNm: "경상남도 진주시 대곡면",
+        lowestAdmCodeNm: "대곡면",
+    },
+    {
+        admCode: "48170109",
+        admCodeNm: "경상남도 진주시 대안동",
+        lowestAdmCodeNm: "대안동",
+    },
+    {
+        admCode: "48170450",
+        admCodeNm: "경상남도 진주시 대평면",
+        lowestAdmCodeNm: "대평면",
+    },
+    {
+        admCode: "48170106",
+        admCodeNm: "경상남도 진주시 동성동",
+        lowestAdmCodeNm: "동성동",
+    },
+    {
+        admCode: "48170101",
+        admCodeNm: "경상남도 진주시 망경동",
+        lowestAdmCodeNm: "망경동",
+    },
+    {
+        admCode: "48170440",
+        admCodeNm: "경상남도 진주시 명석면",
+        lowestAdmCodeNm: "명석면",
+    },
+    {
+        admCode: "48170250",
+        admCodeNm: "경상남도 진주시 문산읍",
+        lowestAdmCodeNm: "문산읍",
+    },
+    {
+        admCode: "48170430",
+        admCodeNm: "경상남도 진주시 미천면",
+        lowestAdmCodeNm: "미천면",
+    },
+    {
+        admCode: "48170105",
+        admCodeNm: "경상남도 진주시 본성동",
+        lowestAdmCodeNm: "본성동",
+    },
+    {
+        admCode: "48170113",
+        admCodeNm: "경상남도 진주시 봉곡동",
+        lowestAdmCodeNm: "봉곡동",
+    },
+    {
+        admCode: "48170115",
+        admCodeNm: "경상남도 진주시 봉래동",
+        lowestAdmCodeNm: "봉래동",
+    },
+    {
+        admCode: "48170380",
+        admCodeNm: "경상남도 진주시 사봉면",
+        lowestAdmCodeNm: "사봉면",
+    },
+    {
+        admCode: "48170119",
+        admCodeNm: "경상남도 진주시 상대동",
+        lowestAdmCodeNm: "상대동",
+    },
+    {
+        admCode: "48170114",
+        admCodeNm: "경상남도 진주시 상봉동",
+        lowestAdmCodeNm: "상봉동",
+    },
+    {
+        admCode: "48170121",
+        admCodeNm: "경상남도 진주시 상평동",
+        lowestAdmCodeNm: "상평동",
+    },
+    {
+        admCode: "48170460",
+        admCodeNm: "경상남도 진주시 수곡면",
+        lowestAdmCodeNm: "수곡면",
+    },
+    {
+        admCode: "48170116",
+        admCodeNm: "경상남도 진주시 수정동",
+        lowestAdmCodeNm: "수정동",
+    },
+    {
+        admCode: "48170125",
+        admCodeNm: "경상남도 진주시 신안동",
+        lowestAdmCodeNm: "신안동",
+    },
+    {
+        admCode: "48170118",
+        admCodeNm: "경상남도 진주시 옥봉동",
+        lowestAdmCodeNm: "옥봉동",
+    },
+    {
+        admCode: "48170128",
+        admCodeNm: "경상남도 진주시 유곡동",
+        lowestAdmCodeNm: "유곡동",
+    },
+    {
+        admCode: "48170370",
+        admCodeNm: "경상남도 진주시 이반성면",
+        lowestAdmCodeNm: "이반성면",
+    },
+    {
+        admCode: "48170127",
+        admCodeNm: "경상남도 진주시 이현동",
+        lowestAdmCodeNm: "이현동",
+    },
+    {
+        admCode: "48170108",
+        admCodeNm: "경상남도 진주시 인사동",
+        lowestAdmCodeNm: "인사동",
+    },
+    {
+        admCode: "48170360",
+        admCodeNm: "경상남도 진주시 일반성면",
+        lowestAdmCodeNm: "일반성면",
+    },
+    {
+        admCode: "48170117",
+        admCodeNm: "경상남도 진주시 장대동",
+        lowestAdmCodeNm: "장대동",
+    },
+    {
+        admCode: "48170123",
+        admCodeNm: "경상남도 진주시 장재동",
+        lowestAdmCodeNm: "장재동",
+    },
+    {
+        admCode: "48170320",
+        admCodeNm: "경상남도 진주시 정촌면",
+        lowestAdmCodeNm: "정촌면",
+    },
+    {
+        admCode: "48170102",
+        admCodeNm: "경상남도 진주시 주약동",
+        lowestAdmCodeNm: "주약동",
+    },
+    {
+        admCode: "48170111",
+        admCodeNm: "경상남도 진주시 중안동",
+        lowestAdmCodeNm: "중안동",
+    },
+    {
+        admCode: "48170390",
+        admCodeNm: "경상남도 진주시 지수면",
+        lowestAdmCodeNm: "지수면",
+    },
+    {
+        admCode: "48170350",
+        admCodeNm: "경상남도 진주시 진성면",
+        lowestAdmCodeNm: "진성면",
+    },
+    {
+        admCode: "48170420",
+        admCodeNm: "경상남도 진주시 집현면",
+        lowestAdmCodeNm: "집현면",
+    },
+    {
+        admCode: "48170122",
+        admCodeNm: "경상남도 진주시 초전동",
+        lowestAdmCodeNm: "초전동",
+    },
+    {
+        admCode: "48170137",
+        admCodeNm: "경상남도 진주시 충무공동",
+        lowestAdmCodeNm: "충무공동",
+    },
+    {
+        admCode: "48170104",
+        admCodeNm: "경상남도 진주시 칠암동",
+        lowestAdmCodeNm: "칠암동",
+    },
+    {
+        admCode: "48170129",
+        admCodeNm: "경상남도 진주시 판문동",
+        lowestAdmCodeNm: "판문동",
+    },
+    {
+        admCode: "48170126",
+        admCodeNm: "경상남도 진주시 평거동",
+        lowestAdmCodeNm: "평거동",
+    },
+    {
+        admCode: "48170110",
+        admCodeNm: "경상남도 진주시 평안동",
+        lowestAdmCodeNm: "평안동",
+    },
+    {
+        admCode: "48170120",
+        admCodeNm: "경상남도 진주시 하대동",
+        lowestAdmCodeNm: "하대동",
+    },
+    {
+        admCode: "48170124",
+        admCodeNm: "경상남도 진주시 하촌동",
+        lowestAdmCodeNm: "하촌동",
+    },
+    {
+        admCode: "48170132",
+        admCodeNm: "경상남도 진주시 호탄동",
+        lowestAdmCodeNm: "호탄동",
+    },
+];
+
+export const Towns_48740 = [
+    {
+        admCode: "48740370",
+        admCodeNm: "경상남도 창녕군 계성면",
+        lowestAdmCodeNm: "계성면",
+    },
+    {
+        admCode: "48740310",
+        admCodeNm: "경상남도 창녕군 고암면",
+        lowestAdmCodeNm: "고암면",
+    },
+    {
+        admCode: "48740410",
+        admCodeNm: "경상남도 창녕군 길곡면",
+        lowestAdmCodeNm: "길곡면",
+    },
+    {
+        admCode: "48740253",
+        admCodeNm: "경상남도 창녕군 남지읍",
+        lowestAdmCodeNm: "남지읍",
+    },
+    {
+        admCode: "48740360",
+        admCodeNm: "경상남도 창녕군 대지면",
+        lowestAdmCodeNm: "대지면",
+    },
+    {
+        admCode: "48740330",
+        admCodeNm: "경상남도 창녕군 대합면",
+        lowestAdmCodeNm: "대합면",
+    },
+    {
+        admCode: "48740400",
+        admCodeNm: "경상남도 창녕군 도천면",
+        lowestAdmCodeNm: "도천면",
+    },
+    {
+        admCode: "48740420",
+        admCodeNm: "경상남도 창녕군 부곡면",
+        lowestAdmCodeNm: "부곡면",
+    },
+    {
+        admCode: "48740320",
+        admCodeNm: "경상남도 창녕군 성산면",
+        lowestAdmCodeNm: "성산면",
+    },
+    {
+        admCode: "48740380",
+        admCodeNm: "경상남도 창녕군 영산면",
+        lowestAdmCodeNm: "영산면",
+    },
+    {
+        admCode: "48740350",
+        admCodeNm: "경상남도 창녕군 유어면",
+        lowestAdmCodeNm: "유어면",
+    },
+    {
+        admCode: "48740340",
+        admCodeNm: "경상남도 창녕군 이방면",
+        lowestAdmCodeNm: "이방면",
+    },
+    {
+        admCode: "48740390",
+        admCodeNm: "경상남도 창녕군 장마면",
+        lowestAdmCodeNm: "장마면",
+    },
+    {
+        admCode: "48740250",
+        admCodeNm: "경상남도 창녕군 창녕읍",
+        lowestAdmCodeNm: "창녕읍",
+    },
+];
+
+export const Towns_48125 = [
+    {
+        admCode: "48125101",
+        admCodeNm: "경상남도 창원시 마산합포구 가포동",
+        lowestAdmCodeNm: "가포동",
+    },
+    {
+        admCode: "48125102",
+        admCodeNm: "경상남도 창원시 마산합포구 교방동",
+        lowestAdmCodeNm: "교방동",
+    },
+    {
+        admCode: "48125103",
+        admCodeNm: "경상남도 창원시 마산합포구 교원동",
+        lowestAdmCodeNm: "교원동",
+    },
+    {
+        admCode: "48125310",
+        admCodeNm: "경상남도 창원시 마산합포구 구산면",
+        lowestAdmCodeNm: "구산면",
+    },
+    {
+        admCode: "48125104",
+        admCodeNm: "경상남도 창원시 마산합포구 남성동",
+        lowestAdmCodeNm: "남성동",
+    },
+    {
+        admCode: "48125105",
+        admCodeNm: "경상남도 창원시 마산합포구 대내동",
+        lowestAdmCodeNm: "대내동",
+    },
+    {
+        admCode: "48125106",
+        admCodeNm: "경상남도 창원시 마산합포구 대성동1가",
+        lowestAdmCodeNm: "대성동1가",
+    },
+    {
+        admCode: "48125107",
+        admCodeNm: "경상남도 창원시 마산합포구 대성동2가",
+        lowestAdmCodeNm: "대성동2가",
+    },
+    {
+        admCode: "48125108",
+        admCodeNm: "경상남도 창원시 마산합포구 대외동",
+        lowestAdmCodeNm: "대외동",
+    },
+    {
+        admCode: "48125109",
+        admCodeNm: "경상남도 창원시 마산합포구 대창동",
+        lowestAdmCodeNm: "대창동",
+    },
+    {
+        admCode: "48125110",
+        admCodeNm: "경상남도 창원시 마산합포구 덕동동",
+        lowestAdmCodeNm: "덕동동",
+    },
+    {
+        admCode: "48125111",
+        admCodeNm: "경상남도 창원시 마산합포구 동성동",
+        lowestAdmCodeNm: "동성동",
+    },
+    {
+        admCode: "48125112",
+        admCodeNm: "경상남도 창원시 마산합포구 두월동1가",
+        lowestAdmCodeNm: "두월동1가",
+    },
+    {
+        admCode: "48125113",
+        admCodeNm: "경상남도 창원시 마산합포구 두월동2가",
+        lowestAdmCodeNm: "두월동2가",
+    },
+    {
+        admCode: "48125114",
+        admCodeNm: "경상남도 창원시 마산합포구 두월동3가",
+        lowestAdmCodeNm: "두월동3가",
+    },
+    {
+        admCode: "48125115",
+        admCodeNm: "경상남도 창원시 마산합포구 문화동",
+        lowestAdmCodeNm: "문화동",
+    },
+    {
+        admCode: "48125116",
+        admCodeNm: "경상남도 창원시 마산합포구 반월동",
+        lowestAdmCodeNm: "반월동",
+    },
+    {
+        admCode: "48125117",
+        admCodeNm: "경상남도 창원시 마산합포구 부림동",
+        lowestAdmCodeNm: "부림동",
+    },
+    {
+        admCode: "48125118",
+        admCodeNm: "경상남도 창원시 마산합포구 산호동",
+        lowestAdmCodeNm: "산호동",
+    },
+    {
+        admCode: "48125119",
+        admCodeNm: "경상남도 창원시 마산합포구 상남동",
+        lowestAdmCodeNm: "상남동",
+    },
+    {
+        admCode: "48125120",
+        admCodeNm: "경상남도 창원시 마산합포구 서성동",
+        lowestAdmCodeNm: "서성동",
+    },
+    {
+        admCode: "48125121",
+        admCodeNm: "경상남도 창원시 마산합포구 성호동",
+        lowestAdmCodeNm: "성호동",
+    },
+    {
+        admCode: "48125122",
+        admCodeNm: "경상남도 창원시 마산합포구 수성동",
+        lowestAdmCodeNm: "수성동",
+    },
+    {
+        admCode: "48125123",
+        admCodeNm: "경상남도 창원시 마산합포구 신월동",
+        lowestAdmCodeNm: "신월동",
+    },
+    {
+        admCode: "48125124",
+        admCodeNm: "경상남도 창원시 마산합포구 신창동",
+        lowestAdmCodeNm: "신창동",
+    },
+    {
+        admCode: "48125125",
+        admCodeNm: "경상남도 창원시 마산합포구 신포동1가",
+        lowestAdmCodeNm: "신포동1가",
+    },
+    {
+        admCode: "48125126",
+        admCodeNm: "경상남도 창원시 마산합포구 신포동2가",
+        lowestAdmCodeNm: "신포동2가",
+    },
+    {
+        admCode: "48125127",
+        admCodeNm: "경상남도 창원시 마산합포구 신흥동",
+        lowestAdmCodeNm: "신흥동",
+    },
+    {
+        admCode: "48125136",
+        admCodeNm: "경상남도 창원시 마산합포구 예곡동",
+        lowestAdmCodeNm: "예곡동",
+    },
+    {
+        admCode: "48125137",
+        admCodeNm: "경상남도 창원시 마산합포구 오동동",
+        lowestAdmCodeNm: "오동동",
+    },
+    {
+        admCode: "48125128",
+        admCodeNm: "경상남도 창원시 마산합포구 완월동",
+        lowestAdmCodeNm: "완월동",
+    },
+    {
+        admCode: "48125138",
+        admCodeNm: "경상남도 창원시 마산합포구 우산동",
+        lowestAdmCodeNm: "우산동",
+    },
+    {
+        admCode: "48125129",
+        admCodeNm: "경상남도 창원시 마산합포구 월남동1가",
+        lowestAdmCodeNm: "월남동1가",
+    },
+    {
+        admCode: "48125130",
+        admCodeNm: "경상남도 창원시 마산합포구 월남동2가",
+        lowestAdmCodeNm: "월남동2가",
+    },
+    {
+        admCode: "48125131",
+        admCodeNm: "경상남도 창원시 마산합포구 월남동3가",
+        lowestAdmCodeNm: "월남동3가",
+    },
+    {
+        admCode: "48125132",
+        admCodeNm: "경상남도 창원시 마산합포구 월남동4가",
+        lowestAdmCodeNm: "월남동4가",
+    },
+    {
+        admCode: "48125133",
+        admCodeNm: "경상남도 창원시 마산합포구 월남동5가",
+        lowestAdmCodeNm: "월남동5가",
+    },
+    {
+        admCode: "48125134",
+        admCodeNm: "경상남도 창원시 마산합포구 월영동",
+        lowestAdmCodeNm: "월영동",
+    },
+    {
+        admCode: "48125135",
+        admCodeNm: "경상남도 창원시 마산합포구 월포동",
+        lowestAdmCodeNm: "월포동",
+    },
+    {
+        admCode: "48125139",
+        admCodeNm: "경상남도 창원시 마산합포구 유록동",
+        lowestAdmCodeNm: "유록동",
+    },
+    {
+        admCode: "48125140",
+        admCodeNm: "경상남도 창원시 마산합포구 자산동",
+        lowestAdmCodeNm: "자산동",
+    },
+    {
+        admCode: "48125141",
+        admCodeNm: "경상남도 창원시 마산합포구 장군동1가",
+        lowestAdmCodeNm: "장군동1가",
+    },
+    {
+        admCode: "48125142",
+        admCodeNm: "경상남도 창원시 마산합포구 장군동2가",
+        lowestAdmCodeNm: "장군동2가",
+    },
+    {
+        admCode: "48125143",
+        admCodeNm: "경상남도 창원시 마산합포구 장군동3가",
+        lowestAdmCodeNm: "장군동3가",
+    },
+    {
+        admCode: "48125144",
+        admCodeNm: "경상남도 창원시 마산합포구 장군동4가",
+        lowestAdmCodeNm: "장군동4가",
+    },
+    {
+        admCode: "48125145",
+        admCodeNm: "경상남도 창원시 마산합포구 장군동5가",
+        lowestAdmCodeNm: "장군동5가",
+    },
+    {
+        admCode: "48125146",
+        admCodeNm: "경상남도 창원시 마산합포구 중성동",
+        lowestAdmCodeNm: "중성동",
+    },
+    {
+        admCode: "48125147",
+        admCodeNm: "경상남도 창원시 마산합포구 중앙동1가",
+        lowestAdmCodeNm: "중앙동1가",
+    },
+    {
+        admCode: "48125148",
+        admCodeNm: "경상남도 창원시 마산합포구 중앙동2가",
+        lowestAdmCodeNm: "중앙동2가",
+    },
+    {
+        admCode: "48125149",
+        admCodeNm: "경상남도 창원시 마산합포구 중앙동3가",
+        lowestAdmCodeNm: "중앙동3가",
+    },
+    {
+        admCode: "48125320",
+        admCodeNm: "경상남도 창원시 마산합포구 진동면",
+        lowestAdmCodeNm: "진동면",
+    },
+    {
+        admCode: "48125330",
+        admCodeNm: "경상남도 창원시 마산합포구 진북면",
+        lowestAdmCodeNm: "진북면",
+    },
+    {
+        admCode: "48125340",
+        admCodeNm: "경상남도 창원시 마산합포구 진전면",
+        lowestAdmCodeNm: "진전면",
+    },
+    {
+        admCode: "48125150",
+        admCodeNm: "경상남도 창원시 마산합포구 창동",
+        lowestAdmCodeNm: "창동",
+    },
+    {
+        admCode: "48125151",
+        admCodeNm: "경상남도 창원시 마산합포구 창포동1가",
+        lowestAdmCodeNm: "창포동1가",
+    },
+    {
+        admCode: "48125152",
+        admCodeNm: "경상남도 창원시 마산합포구 창포동2가",
+        lowestAdmCodeNm: "창포동2가",
+    },
+    {
+        admCode: "48125153",
+        admCodeNm: "경상남도 창원시 마산합포구 창포동3가",
+        lowestAdmCodeNm: "창포동3가",
+    },
+    {
+        admCode: "48125154",
+        admCodeNm: "경상남도 창원시 마산합포구 청계동",
+        lowestAdmCodeNm: "청계동",
+    },
+    {
+        admCode: "48125155",
+        admCodeNm: "경상남도 창원시 마산합포구 추산동",
+        lowestAdmCodeNm: "추산동",
+    },
+    {
+        admCode: "48125156",
+        admCodeNm: "경상남도 창원시 마산합포구 평화동",
+        lowestAdmCodeNm: "평화동",
+    },
+    {
+        admCode: "48125158",
+        admCodeNm: "경상남도 창원시 마산합포구 해운동",
+        lowestAdmCodeNm: "해운동",
+    },
+    {
+        admCode: "48125159",
+        admCodeNm: "경상남도 창원시 마산합포구 현동",
+        lowestAdmCodeNm: "현동",
+    },
+    {
+        admCode: "48125160",
+        admCodeNm: "경상남도 창원시 마산합포구 홍문동",
+        lowestAdmCodeNm: "홍문동",
+    },
+    {
+        admCode: "48125157",
+        admCodeNm: "경상남도 창원시 마산합포구 화영동",
+        lowestAdmCodeNm: "화영동",
+    },
+];
+
+export const Towns_48127 = [
+    {
+        admCode: "48127101",
+        admCodeNm: "경상남도 창원시 마산회원구 구암동",
+        lowestAdmCodeNm: "구암동",
+    },
+    {
+        admCode: "48127250",
+        admCodeNm: "경상남도 창원시 마산회원구 내서읍",
+        lowestAdmCodeNm: "내서읍",
+    },
+    {
+        admCode: "48127102",
+        admCodeNm: "경상남도 창원시 마산회원구 두척동",
+        lowestAdmCodeNm: "두척동",
+    },
+    {
+        admCode: "48127103",
+        admCodeNm: "경상남도 창원시 마산회원구 봉암동",
+        lowestAdmCodeNm: "봉암동",
+    },
+    {
+        admCode: "48127104",
+        admCodeNm: "경상남도 창원시 마산회원구 석전동",
+        lowestAdmCodeNm: "석전동",
+    },
+    {
+        admCode: "48127105",
+        admCodeNm: "경상남도 창원시 마산회원구 양덕동",
+        lowestAdmCodeNm: "양덕동",
+    },
+    {
+        admCode: "48127106",
+        admCodeNm: "경상남도 창원시 마산회원구 합성동",
+        lowestAdmCodeNm: "합성동",
+    },
+    {
+        admCode: "48127107",
+        admCodeNm: "경상남도 창원시 마산회원구 회성동",
+        lowestAdmCodeNm: "회성동",
+    },
+    {
+        admCode: "48127108",
+        admCodeNm: "경상남도 창원시 마산회원구 회원동",
+        lowestAdmCodeNm: "회원동",
+    },
+];
+
+export const Towns_48123 = [
+    {
+        admCode: "48123131",
+        admCodeNm: "경상남도 창원시 성산구 가음동",
+        lowestAdmCodeNm: "가음동",
+    },
+    {
+        admCode: "48123103",
+        admCodeNm: "경상남도 창원시 성산구 가음정동",
+        lowestAdmCodeNm: "가음정동",
+    },
+    {
+        admCode: "48123121",
+        admCodeNm: "경상남도 창원시 성산구 귀곡동",
+        lowestAdmCodeNm: "귀곡동",
+    },
+    {
+        admCode: "48123120",
+        admCodeNm: "경상남도 창원시 성산구 귀산동",
+        lowestAdmCodeNm: "귀산동",
+    },
+    {
+        admCode: "48123122",
+        admCodeNm: "경상남도 창원시 성산구 귀현동",
+        lowestAdmCodeNm: "귀현동",
+    },
+    {
+        admCode: "48123106",
+        admCodeNm: "경상남도 창원시 성산구 남산동",
+        lowestAdmCodeNm: "남산동",
+    },
+    {
+        admCode: "48123133",
+        admCodeNm: "경상남도 창원시 성산구 남양동",
+        lowestAdmCodeNm: "남양동",
+    },
+    {
+        admCode: "48123112",
+        admCodeNm: "경상남도 창원시 성산구 남지동",
+        lowestAdmCodeNm: "남지동",
+    },
+    {
+        admCode: "48123111",
+        admCodeNm: "경상남도 창원시 성산구 내동",
+        lowestAdmCodeNm: "내동",
+    },
+    {
+        admCode: "48123105",
+        admCodeNm: "경상남도 창원시 성산구 대방동",
+        lowestAdmCodeNm: "대방동",
+    },
+    {
+        admCode: "48123137",
+        admCodeNm: "경상남도 창원시 성산구 대원동",
+        lowestAdmCodeNm: "대원동",
+    },
+    {
+        admCode: "48123140",
+        admCodeNm: "경상남도 창원시 성산구 덕정동",
+        lowestAdmCodeNm: "덕정동",
+    },
+    {
+        admCode: "48123138",
+        admCodeNm: "경상남도 창원시 성산구 두대동",
+        lowestAdmCodeNm: "두대동",
+    },
+    {
+        admCode: "48123126",
+        admCodeNm: "경상남도 창원시 성산구 반림동",
+        lowestAdmCodeNm: "반림동",
+    },
+    {
+        admCode: "48123119",
+        admCodeNm: "경상남도 창원시 성산구 반송동",
+        lowestAdmCodeNm: "반송동",
+    },
+    {
+        admCode: "48123124",
+        admCodeNm: "경상남도 창원시 성산구 반지동",
+        lowestAdmCodeNm: "반지동",
+    },
+    {
+        admCode: "48123109",
+        admCodeNm: "경상남도 창원시 성산구 불모산동",
+        lowestAdmCodeNm: "불모산동",
+    },
+    {
+        admCode: "48123130",
+        admCodeNm: "경상남도 창원시 성산구 사파동",
+        lowestAdmCodeNm: "사파동",
+    },
+    {
+        admCode: "48123102",
+        admCodeNm: "경상남도 창원시 성산구 사파정동",
+        lowestAdmCodeNm: "사파정동",
+    },
+    {
+        admCode: "48123139",
+        admCodeNm: "경상남도 창원시 성산구 삼동동",
+        lowestAdmCodeNm: "삼동동",
+    },
+    {
+        admCode: "48123107",
+        admCodeNm: "경상남도 창원시 성산구 삼정자동",
+        lowestAdmCodeNm: "삼정자동",
+    },
+    {
+        admCode: "48123127",
+        admCodeNm: "경상남도 창원시 성산구 상남동",
+        lowestAdmCodeNm: "상남동",
+    },
+    {
+        admCode: "48123113",
+        admCodeNm: "경상남도 창원시 성산구 상복동",
+        lowestAdmCodeNm: "상복동",
+    },
+    {
+        admCode: "48123132",
+        admCodeNm: "경상남도 창원시 성산구 성산동",
+        lowestAdmCodeNm: "성산동",
+    },
+    {
+        admCode: "48123128",
+        admCodeNm: "경상남도 창원시 성산구 성주동",
+        lowestAdmCodeNm: "성주동",
+    },
+    {
+        admCode: "48123136",
+        admCodeNm: "경상남도 창원시 성산구 신월동",
+        lowestAdmCodeNm: "신월동",
+    },
+    {
+        admCode: "48123123",
+        admCodeNm: "경상남도 창원시 성산구 신촌동",
+        lowestAdmCodeNm: "신촌동",
+    },
+    {
+        admCode: "48123110",
+        admCodeNm: "경상남도 창원시 성산구 안민동",
+        lowestAdmCodeNm: "안민동",
+    },
+    {
+        admCode: "48123118",
+        admCodeNm: "경상남도 창원시 성산구 양곡동",
+        lowestAdmCodeNm: "양곡동",
+    },
+    {
+        admCode: "48123114",
+        admCodeNm: "경상남도 창원시 성산구 완암동",
+        lowestAdmCodeNm: "완암동",
+    },
+    {
+        admCode: "48123104",
+        admCodeNm: "경상남도 창원시 성산구 외동",
+        lowestAdmCodeNm: "외동",
+    },
+    {
+        admCode: "48123134",
+        admCodeNm: "경상남도 창원시 성산구 용지동",
+        lowestAdmCodeNm: "용지동",
+    },
+    {
+        admCode: "48123135",
+        admCodeNm: "경상남도 창원시 성산구 용호동",
+        lowestAdmCodeNm: "용호동",
+    },
+    {
+        admCode: "48123129",
+        admCodeNm: "경상남도 창원시 성산구 웅남동",
+        lowestAdmCodeNm: "웅남동",
+    },
+    {
+        admCode: "48123116",
+        admCodeNm: "경상남도 창원시 성산구 월림동",
+        lowestAdmCodeNm: "월림동",
+    },
+    {
+        admCode: "48123117",
+        admCodeNm: "경상남도 창원시 성산구 적현동",
+        lowestAdmCodeNm: "적현동",
+    },
+    {
+        admCode: "48123125",
+        admCodeNm: "경상남도 창원시 성산구 중앙동",
+        lowestAdmCodeNm: "중앙동",
+    },
+    {
+        admCode: "48123115",
+        admCodeNm: "경상남도 창원시 성산구 창곡동",
+        lowestAdmCodeNm: "창곡동",
+    },
+    {
+        admCode: "48123108",
+        admCodeNm: "경상남도 창원시 성산구 천선동",
+        lowestAdmCodeNm: "천선동",
+    },
+    {
+        admCode: "48123101",
+        admCodeNm: "경상남도 창원시 성산구 토월동",
+        lowestAdmCodeNm: "토월동",
+    },
+    {
+        admCode: "48123141",
+        admCodeNm: "경상남도 창원시 성산구 퇴촌동",
+        lowestAdmCodeNm: "퇴촌동",
+    },
+];
+
+export const Towns_48121 = [
+    {
+        admCode: "48121122",
+        admCodeNm: "경상남도 창원시 의창구 내리동",
+        lowestAdmCodeNm: "내리동",
+    },
+    {
+        admCode: "48121320",
+        admCodeNm: "경상남도 창원시 의창구 대산면",
+        lowestAdmCodeNm: "대산면",
+    },
+    {
+        admCode: "48121112",
+        admCodeNm: "경상남도 창원시 의창구 덕정동",
+        lowestAdmCodeNm: "덕정동",
+    },
+    {
+        admCode: "48121105",
+        admCodeNm: "경상남도 창원시 의창구 도계동",
+        lowestAdmCodeNm: "도계동",
+    },
+    {
+        admCode: "48121250",
+        admCodeNm: "경상남도 창원시 의창구 동읍",
+        lowestAdmCodeNm: "동읍",
+    },
+    {
+        admCode: "48121106",
+        admCodeNm: "경상남도 창원시 의창구 동정동",
+        lowestAdmCodeNm: "동정동",
+    },
+    {
+        admCode: "48121118",
+        admCodeNm: "경상남도 창원시 의창구 명곡동",
+        lowestAdmCodeNm: "명곡동",
+    },
+    {
+        admCode: "48121124",
+        admCodeNm: "경상남도 창원시 의창구 명서동",
+        lowestAdmCodeNm: "명서동",
+    },
+    {
+        admCode: "48121119",
+        admCodeNm: "경상남도 창원시 의창구 반계동",
+        lowestAdmCodeNm: "반계동",
+    },
+    {
+        admCode: "48121127",
+        admCodeNm: "경상남도 창원시 의창구 봉곡동",
+        lowestAdmCodeNm: "봉곡동",
+    },
+    {
+        admCode: "48121116",
+        admCodeNm: "경상남도 창원시 의창구 봉림동",
+        lowestAdmCodeNm: "봉림동",
+    },
+    {
+        admCode: "48121101",
+        admCodeNm: "경상남도 창원시 의창구 북동",
+        lowestAdmCodeNm: "북동",
+    },
+    {
+        admCode: "48121310",
+        admCodeNm: "경상남도 창원시 의창구 북면",
+        lowestAdmCodeNm: "북면",
+    },
+    {
+        admCode: "48121125",
+        admCodeNm: "경상남도 창원시 의창구 사림동",
+        lowestAdmCodeNm: "사림동",
+    },
+    {
+        admCode: "48121120",
+        admCodeNm: "경상남도 창원시 의창구 사화동",
+        lowestAdmCodeNm: "사화동",
+    },
+    {
+        admCode: "48121114",
+        admCodeNm: "경상남도 창원시 의창구 서곡동",
+        lowestAdmCodeNm: "서곡동",
+    },
+    {
+        admCode: "48121103",
+        admCodeNm: "경상남도 창원시 의창구 서상동",
+        lowestAdmCodeNm: "서상동",
+    },
+    {
+        admCode: "48121107",
+        admCodeNm: "경상남도 창원시 의창구 소계동",
+        lowestAdmCodeNm: "소계동",
+    },
+    {
+        admCode: "48121104",
+        admCodeNm: "경상남도 창원시 의창구 소답동",
+        lowestAdmCodeNm: "소답동",
+    },
+    {
+        admCode: "48121108",
+        admCodeNm: "경상남도 창원시 의창구 용동",
+        lowestAdmCodeNm: "용동",
+    },
+    {
+        admCode: "48121102",
+        admCodeNm: "경상남도 창원시 의창구 중동",
+        lowestAdmCodeNm: "중동",
+    },
+    {
+        admCode: "48121113",
+        admCodeNm: "경상남도 창원시 의창구 지귀동",
+        lowestAdmCodeNm: "지귀동",
+    },
+    {
+        admCode: "48121121",
+        admCodeNm: "경상남도 창원시 의창구 차용동",
+        lowestAdmCodeNm: "차용동",
+    },
+    {
+        admCode: "48121117",
+        admCodeNm: "경상남도 창원시 의창구 퇴촌동",
+        lowestAdmCodeNm: "퇴촌동",
+    },
+    {
+        admCode: "48121129",
+        admCodeNm: "경상남도 창원시 의창구 팔용동",
+        lowestAdmCodeNm: "팔용동",
+    },
+];
+
+export const Towns_48129 = [
+    {
+        admCode: "48129165",
+        admCodeNm: "경상남도 창원시 진해구 가주동",
+        lowestAdmCodeNm: "가주동",
+    },
+    {
+        admCode: "48129139",
+        admCodeNm: "경상남도 창원시 진해구 경화동",
+        lowestAdmCodeNm: "경화동",
+    },
+    {
+        admCode: "48129124",
+        admCodeNm: "경상남도 창원시 진해구 광화동",
+        lowestAdmCodeNm: "광화동",
+    },
+    {
+        admCode: "48129129",
+        admCodeNm: "경상남도 창원시 진해구 근화동",
+        lowestAdmCodeNm: "근화동",
+    },
+    {
+        admCode: "48129150",
+        admCodeNm: "경상남도 창원시 진해구 남문동",
+        lowestAdmCodeNm: "남문동",
+    },
+    {
+        admCode: "48129113",
+        admCodeNm: "경상남도 창원시 진해구 남빈동",
+        lowestAdmCodeNm: "남빈동",
+    },
+    {
+        admCode: "48129157",
+        admCodeNm: "경상남도 창원시 진해구 남양동",
+        lowestAdmCodeNm: "남양동",
+    },
+    {
+        admCode: "48129112",
+        admCodeNm: "경상남도 창원시 진해구 대영동",
+        lowestAdmCodeNm: "대영동",
+    },
+    {
+        admCode: "48129160",
+        admCodeNm: "경상남도 창원시 진해구 대장동",
+        lowestAdmCodeNm: "대장동",
+    },
+    {
+        admCode: "48129117",
+        admCodeNm: "경상남도 창원시 진해구 대죽동",
+        lowestAdmCodeNm: "대죽동",
+    },
+    {
+        admCode: "48129123",
+        admCodeNm: "경상남도 창원시 진해구 대천동",
+        lowestAdmCodeNm: "대천동",
+    },
+    {
+        admCode: "48129133",
+        admCodeNm: "경상남도 창원시 진해구 대흥동",
+        lowestAdmCodeNm: "대흥동",
+    },
+    {
+        admCode: "48129143",
+        admCodeNm: "경상남도 창원시 진해구 덕산동",
+        lowestAdmCodeNm: "덕산동",
+    },
+    {
+        admCode: "48129103",
+        admCodeNm: "경상남도 창원시 진해구 도만동",
+        lowestAdmCodeNm: "도만동",
+    },
+    {
+        admCode: "48129102",
+        admCodeNm: "경상남도 창원시 진해구 도천동",
+        lowestAdmCodeNm: "도천동",
+    },
+    {
+        admCode: "48129101",
+        admCodeNm: "경상남도 창원시 진해구 동상동",
+        lowestAdmCodeNm: "동상동",
+    },
+    {
+        admCode: "48129161",
+        admCodeNm: "경상남도 창원시 진해구 두동",
+        lowestAdmCodeNm: "두동",
+    },
+    {
+        admCode: "48129158",
+        admCodeNm: "경상남도 창원시 진해구 마천동",
+        lowestAdmCodeNm: "마천동",
+    },
+    {
+        admCode: "48129154",
+        admCodeNm: "경상남도 창원시 진해구 명동",
+        lowestAdmCodeNm: "명동",
+    },
+    {
+        admCode: "48129109",
+        admCodeNm: "경상남도 창원시 진해구 무송동",
+        lowestAdmCodeNm: "무송동",
+    },
+    {
+        admCode: "48129127",
+        admCodeNm: "경상남도 창원시 진해구 부흥동",
+        lowestAdmCodeNm: "부흥동",
+    },
+    {
+        admCode: "48129147",
+        admCodeNm: "경상남도 창원시 진해구 북부동",
+        lowestAdmCodeNm: "북부동",
+    },
+    {
+        admCode: "48129106",
+        admCodeNm: "경상남도 창원시 진해구 비봉동",
+        lowestAdmCodeNm: "비봉동",
+    },
+    {
+        admCode: "48129149",
+        admCodeNm: "경상남도 창원시 진해구 서중동",
+        lowestAdmCodeNm: "서중동",
+    },
+    {
+        admCode: "48129140",
+        admCodeNm: "경상남도 창원시 진해구 석동",
+        lowestAdmCodeNm: "석동",
+    },
+    {
+        admCode: "48129148",
+        admCodeNm: "경상남도 창원시 진해구 성내동",
+        lowestAdmCodeNm: "성내동",
+    },
+    {
+        admCode: "48129159",
+        admCodeNm: "경상남도 창원시 진해구 소사동",
+        lowestAdmCodeNm: "소사동",
+    },
+    {
+        admCode: "48129116",
+        admCodeNm: "경상남도 창원시 진해구 속천동",
+        lowestAdmCodeNm: "속천동",
+    },
+    {
+        admCode: "48129130",
+        admCodeNm: "경상남도 창원시 진해구 송죽동",
+        lowestAdmCodeNm: "송죽동",
+    },
+    {
+        admCode: "48129132",
+        admCodeNm: "경상남도 창원시 진해구 송학동",
+        lowestAdmCodeNm: "송학동",
+    },
+    {
+        admCode: "48129152",
+        admCodeNm: "경상남도 창원시 진해구 수도동",
+        lowestAdmCodeNm: "수도동",
+    },
+    {
+        admCode: "48129119",
+        admCodeNm: "경상남도 창원시 진해구 수송동",
+        lowestAdmCodeNm: "수송동",
+    },
+    {
+        admCode: "48129111",
+        admCodeNm: "경상남도 창원시 진해구 숭인동",
+        lowestAdmCodeNm: "숭인동",
+    },
+    {
+        admCode: "48129104",
+        admCodeNm: "경상남도 창원시 진해구 신흥동",
+        lowestAdmCodeNm: "신흥동",
+    },
+    {
+        admCode: "48129118",
+        admCodeNm: "경상남도 창원시 진해구 안곡동",
+        lowestAdmCodeNm: "안곡동",
+    },
+    {
+        admCode: "48129163",
+        admCodeNm: "경상남도 창원시 진해구 안골동",
+        lowestAdmCodeNm: "안골동",
+    },
+    {
+        admCode: "48129114",
+        admCodeNm: "경상남도 창원시 진해구 앵곡동",
+        lowestAdmCodeNm: "앵곡동",
+    },
+    {
+        admCode: "48129137",
+        admCodeNm: "경상남도 창원시 진해구 여좌동",
+        lowestAdmCodeNm: "여좌동",
+    },
+    {
+        admCode: "48129153",
+        admCodeNm: "경상남도 창원시 진해구 연도동",
+        lowestAdmCodeNm: "연도동",
+    },
+    {
+        admCode: "48129164",
+        admCodeNm: "경상남도 창원시 진해구 용원동",
+        lowestAdmCodeNm: "용원동",
+    },
+    {
+        admCode: "48129156",
+        admCodeNm: "경상남도 창원시 진해구 원포동",
+        lowestAdmCodeNm: "원포동",
+    },
+    {
+        admCode: "48129141",
+        admCodeNm: "경상남도 창원시 진해구 이동",
+        lowestAdmCodeNm: "이동",
+    },
+    {
+        admCode: "48129121",
+        admCodeNm: "경상남도 창원시 진해구 익선동",
+        lowestAdmCodeNm: "익선동",
+    },
+    {
+        admCode: "48129136",
+        admCodeNm: "경상남도 창원시 진해구 인사동",
+        lowestAdmCodeNm: "인사동",
+    },
+    {
+        admCode: "48129110",
+        admCodeNm: "경상남도 창원시 진해구 인의동",
+        lowestAdmCodeNm: "인의동",
+    },
+    {
+        admCode: "48129142",
+        admCodeNm: "경상남도 창원시 진해구 자은동",
+        lowestAdmCodeNm: "자은동",
+    },
+    {
+        admCode: "48129145",
+        admCodeNm: "경상남도 창원시 진해구 장천동",
+        lowestAdmCodeNm: "장천동",
+    },
+    {
+        admCode: "48129151",
+        admCodeNm: "경상남도 창원시 진해구 제덕동",
+        lowestAdmCodeNm: "제덕동",
+    },
+    {
+        admCode: "48129115",
+        admCodeNm: "경상남도 창원시 진해구 제황산동",
+        lowestAdmCodeNm: "제황산동",
+    },
+    {
+        admCode: "48129155",
+        admCodeNm: "경상남도 창원시 진해구 죽곡동",
+        lowestAdmCodeNm: "죽곡동",
+    },
+    {
+        admCode: "48129126",
+        admCodeNm: "경상남도 창원시 진해구 중앙동",
+        lowestAdmCodeNm: "중앙동",
+    },
+    {
+        admCode: "48129128",
+        admCodeNm: "경상남도 창원시 진해구 중평동",
+        lowestAdmCodeNm: "중평동",
+    },
+    {
+        admCode: "48129122",
+        admCodeNm: "경상남도 창원시 진해구 창선동",
+        lowestAdmCodeNm: "창선동",
+    },
+    {
+        admCode: "48129162",
+        admCodeNm: "경상남도 창원시 진해구 청안동",
+        lowestAdmCodeNm: "청안동",
+    },
+    {
+        admCode: "48129135",
+        admCodeNm: "경상남도 창원시 진해구 충무동",
+        lowestAdmCodeNm: "충무동",
+    },
+    {
+        admCode: "48129108",
+        admCodeNm: "경상남도 창원시 진해구 충의동",
+        lowestAdmCodeNm: "충의동",
+    },
+    {
+        admCode: "48129138",
+        admCodeNm: "경상남도 창원시 진해구 태백동",
+        lowestAdmCodeNm: "태백동",
+    },
+    {
+        admCode: "48129107",
+        admCodeNm: "경상남도 창원시 진해구 태평동",
+        lowestAdmCodeNm: "태평동",
+    },
+    {
+        admCode: "48129125",
+        admCodeNm: "경상남도 창원시 진해구 통신동",
+        lowestAdmCodeNm: "통신동",
+    },
+    {
+        admCode: "48129134",
+        admCodeNm: "경상남도 창원시 진해구 평안동",
+        lowestAdmCodeNm: "평안동",
+    },
+    {
+        admCode: "48129144",
+        admCodeNm: "경상남도 창원시 진해구 풍호동",
+        lowestAdmCodeNm: "풍호동",
+    },
+    {
+        admCode: "48129146",
+        admCodeNm: "경상남도 창원시 진해구 행암동",
+        lowestAdmCodeNm: "행암동",
+    },
+    {
+        admCode: "48129105",
+        admCodeNm: "경상남도 창원시 진해구 현동",
+        lowestAdmCodeNm: "현동",
+    },
+    {
+        admCode: "48129131",
+        admCodeNm: "경상남도 창원시 진해구 화천동",
+        lowestAdmCodeNm: "화천동",
+    },
+    {
+        admCode: "48129120",
+        admCodeNm: "경상남도 창원시 진해구 회현동",
+        lowestAdmCodeNm: "회현동",
+    },
+];
+
+export const Towns_48220 = [
+    {
+        admCode: "48220340",
+        admCodeNm: "경상남도 통영시 광도면",
+        lowestAdmCodeNm: "광도면",
+    },
+    {
+        admCode: "48220114",
+        admCodeNm: "경상남도 통영시 당동",
+        lowestAdmCodeNm: "당동",
+    },
+    {
+        admCode: "48220117",
+        admCodeNm: "경상남도 통영시 도남동",
+        lowestAdmCodeNm: "도남동",
+    },
+    {
+        admCode: "48220330",
+        admCodeNm: "경상남도 통영시 도산면",
+        lowestAdmCodeNm: "도산면",
+    },
+    {
+        admCode: "48220101",
+        admCodeNm: "경상남도 통영시 도천동",
+        lowestAdmCodeNm: "도천동",
+    },
+    {
+        admCode: "48220108",
+        admCodeNm: "경상남도 통영시 동호동",
+        lowestAdmCodeNm: "동호동",
+    },
+    {
+        admCode: "48220103",
+        admCodeNm: "경상남도 통영시 명정동",
+        lowestAdmCodeNm: "명정동",
+    },
+    {
+        admCode: "48220111",
+        admCodeNm: "경상남도 통영시 무전동",
+        lowestAdmCodeNm: "무전동",
+    },
+    {
+        admCode: "48220106",
+        admCodeNm: "경상남도 통영시 문화동",
+        lowestAdmCodeNm: "문화동",
+    },
+    {
+        admCode: "48220115",
+        admCodeNm: "경상남도 통영시 미수동",
+        lowestAdmCodeNm: "미수동",
+    },
+    {
+        admCode: "48220116",
+        admCodeNm: "경상남도 통영시 봉평동",
+        lowestAdmCodeNm: "봉평동",
+    },
+    {
+        admCode: "48220110",
+        admCodeNm: "경상남도 통영시 북신동",
+        lowestAdmCodeNm: "북신동",
+    },
+    {
+        admCode: "48220370",
+        admCodeNm: "경상남도 통영시 사량면",
+        lowestAdmCodeNm: "사량면",
+    },
+    {
+        admCode: "48220250",
+        admCodeNm: "경상남도 통영시 산양읍",
+        lowestAdmCodeNm: "산양읍",
+    },
+    {
+        admCode: "48220102",
+        admCodeNm: "경상남도 통영시 서호동",
+        lowestAdmCodeNm: "서호동",
+    },
+    {
+        admCode: "48220350",
+        admCodeNm: "경상남도 통영시 욕지면",
+        lowestAdmCodeNm: "욕지면",
+    },
+    {
+        admCode: "48220310",
+        admCodeNm: "경상남도 통영시 용남면",
+        lowestAdmCodeNm: "용남면",
+    },
+    {
+        admCode: "48220113",
+        admCodeNm: "경상남도 통영시 인평동",
+        lowestAdmCodeNm: "인평동",
+    },
+    {
+        admCode: "48220109",
+        admCodeNm: "경상남도 통영시 정량동",
+        lowestAdmCodeNm: "정량동",
+    },
+    {
+        admCode: "48220105",
+        admCodeNm: "경상남도 통영시 중앙동",
+        lowestAdmCodeNm: "중앙동",
+    },
+    {
+        admCode: "48220107",
+        admCodeNm: "경상남도 통영시 태평동",
+        lowestAdmCodeNm: "태평동",
+    },
+    {
+        admCode: "48220112",
+        admCodeNm: "경상남도 통영시 평림동",
+        lowestAdmCodeNm: "평림동",
+    },
+    {
+        admCode: "48220360",
+        admCodeNm: "경상남도 통영시 한산면",
+        lowestAdmCodeNm: "한산면",
+    },
+    {
+        admCode: "48220104",
+        admCodeNm: "경상남도 통영시 항남동",
+        lowestAdmCodeNm: "항남동",
+    },
+];
+
+export const Towns_48850 = [
+    {
+        admCode: "48850350",
+        admCodeNm: "경상남도 하동군 고전면",
+        lowestAdmCodeNm: "고전면",
+    },
+    {
+        admCode: "48850360",
+        admCodeNm: "경상남도 하동군 금남면",
+        lowestAdmCodeNm: "금남면",
+    },
+    {
+        admCode: "48850420",
+        admCodeNm: "경상남도 하동군 금성면",
+        lowestAdmCodeNm: "금성면",
+    },
+    {
+        admCode: "48850390",
+        admCodeNm: "경상남도 하동군 북천면",
+        lowestAdmCodeNm: "북천면",
+    },
+    {
+        admCode: "48850320",
+        admCodeNm: "경상남도 하동군 악양면",
+        lowestAdmCodeNm: "악양면",
+    },
+    {
+        admCode: "48850380",
+        admCodeNm: "경상남도 하동군 양보면",
+        lowestAdmCodeNm: "양보면",
+    },
+    {
+        admCode: "48850410",
+        admCodeNm: "경상남도 하동군 옥종면",
+        lowestAdmCodeNm: "옥종면",
+    },
+    {
+        admCode: "48850330",
+        admCodeNm: "경상남도 하동군 적량면",
+        lowestAdmCodeNm: "적량면",
+    },
+    {
+        admCode: "48850370",
+        admCodeNm: "경상남도 하동군 진교면",
+        lowestAdmCodeNm: "진교면",
+    },
+    {
+        admCode: "48850400",
+        admCodeNm: "경상남도 하동군 청암면",
+        lowestAdmCodeNm: "청암면",
+    },
+    {
+        admCode: "48850250",
+        admCodeNm: "경상남도 하동군 하동읍",
+        lowestAdmCodeNm: "하동읍",
+    },
+    {
+        admCode: "48850310",
+        admCodeNm: "경상남도 하동군 화개면",
+        lowestAdmCodeNm: "화개면",
+    },
+    {
+        admCode: "48850340",
+        admCodeNm: "경상남도 하동군 횡천면",
+        lowestAdmCodeNm: "횡천면",
+    },
+];
+
+export const Towns_48730 = [
+    {
+        admCode: "48730250",
+        admCodeNm: "경상남도 함안군 가야읍",
+        lowestAdmCodeNm: "가야읍",
+    },
+    {
+        admCode: "48730320",
+        admCodeNm: "경상남도 함안군 군북면",
+        lowestAdmCodeNm: "군북면",
+    },
+    {
+        admCode: "48730340",
+        admCodeNm: "경상남도 함안군 대산면",
+        lowestAdmCodeNm: "대산면",
+    },
+    {
+        admCode: "48730330",
+        admCodeNm: "경상남도 함안군 법수면",
+        lowestAdmCodeNm: "법수면",
+    },
+    {
+        admCode: "48730380",
+        admCodeNm: "경상남도 함안군 산인면",
+        lowestAdmCodeNm: "산인면",
+    },
+    {
+        admCode: "48730390",
+        admCodeNm: "경상남도 함안군 여항면",
+        lowestAdmCodeNm: "여항면",
+    },
+    {
+        admCode: "48730360",
+        admCodeNm: "경상남도 함안군 칠북면",
+        lowestAdmCodeNm: "칠북면",
+    },
+    {
+        admCode: "48730350",
+        admCodeNm: "경상남도 함안군 칠서면",
+        lowestAdmCodeNm: "칠서면",
+    },
+    {
+        admCode: "48730253",
+        admCodeNm: "경상남도 함안군 칠원읍",
+        lowestAdmCodeNm: "칠원읍",
+    },
+    {
+        admCode: "48730310",
+        admCodeNm: "경상남도 함안군 함안면",
+        lowestAdmCodeNm: "함안면",
+    },
+];
+
+export const Towns_48870 = [
+    {
+        admCode: "48870310",
+        admCodeNm: "경상남도 함양군 마천면",
+        lowestAdmCodeNm: "마천면",
+    },
+    {
+        admCode: "48870390",
+        admCodeNm: "경상남도 함양군 백전면",
+        lowestAdmCodeNm: "백전면",
+    },
+    {
+        admCode: "48870400",
+        admCodeNm: "경상남도 함양군 병곡면",
+        lowestAdmCodeNm: "병곡면",
+    },
+    {
+        admCode: "48870380",
+        admCodeNm: "경상남도 함양군 서상면",
+        lowestAdmCodeNm: "서상면",
+    },
+    {
+        admCode: "48870370",
+        admCodeNm: "경상남도 함양군 서하면",
+        lowestAdmCodeNm: "서하면",
+    },
+    {
+        admCode: "48870340",
+        admCodeNm: "경상남도 함양군 수동면",
+        lowestAdmCodeNm: "수동면",
+    },
+    {
+        admCode: "48870360",
+        admCodeNm: "경상남도 함양군 안의면",
+        lowestAdmCodeNm: "안의면",
+    },
+    {
+        admCode: "48870330",
+        admCodeNm: "경상남도 함양군 유림면",
+        lowestAdmCodeNm: "유림면",
+    },
+    {
+        admCode: "48870350",
+        admCodeNm: "경상남도 함양군 지곡면",
+        lowestAdmCodeNm: "지곡면",
+    },
+    {
+        admCode: "48870250",
+        admCodeNm: "경상남도 함양군 함양읍",
+        lowestAdmCodeNm: "함양읍",
+    },
+    {
+        admCode: "48870320",
+        admCodeNm: "경상남도 함양군 휴천면",
+        lowestAdmCodeNm: "휴천면",
+    },
+];
+
+export const Towns_48890 = [
+    {
+        admCode: "48890330",
+        admCodeNm: "경상남도 합천군 가야면",
+        lowestAdmCodeNm: "가야면",
+    },
+    {
+        admCode: "48890440",
+        admCodeNm: "경상남도 합천군 가회면",
+        lowestAdmCodeNm: "가회면",
+    },
+    {
+        admCode: "48890450",
+        admCodeNm: "경상남도 합천군 대병면",
+        lowestAdmCodeNm: "대병면",
+    },
+    {
+        admCode: "48890410",
+        admCodeNm: "경상남도 합천군 대양면",
+        lowestAdmCodeNm: "대양면",
+    },
+    {
+        admCode: "48890380",
+        admCodeNm: "경상남도 합천군 덕곡면",
+        lowestAdmCodeNm: "덕곡면",
+    },
+    {
+        admCode: "48890320",
+        admCodeNm: "경상남도 합천군 묘산면",
+        lowestAdmCodeNm: "묘산면",
+    },
+    {
+        admCode: "48890310",
+        admCodeNm: "경상남도 합천군 봉산면",
+        lowestAdmCodeNm: "봉산면",
+    },
+    {
+        admCode: "48890430",
+        admCodeNm: "경상남도 합천군 삼가면",
+        lowestAdmCodeNm: "삼가면",
+    },
+    {
+        admCode: "48890420",
+        admCodeNm: "경상남도 합천군 쌍백면",
+        lowestAdmCodeNm: "쌍백면",
+    },
+    {
+        admCode: "48890370",
+        admCodeNm: "경상남도 합천군 쌍책면",
+        lowestAdmCodeNm: "쌍책면",
+    },
+    {
+        admCode: "48890340",
+        admCodeNm: "경상남도 합천군 야로면",
+        lowestAdmCodeNm: "야로면",
+    },
+    {
+        admCode: "48890460",
+        admCodeNm: "경상남도 합천군 용주면",
+        lowestAdmCodeNm: "용주면",
+    },
+    {
+        admCode: "48890350",
+        admCodeNm: "경상남도 합천군 율곡면",
+        lowestAdmCodeNm: "율곡면",
+    },
+    {
+        admCode: "48890400",
+        admCodeNm: "경상남도 합천군 적중면",
+        lowestAdmCodeNm: "적중면",
+    },
+    {
+        admCode: "48890390",
+        admCodeNm: "경상남도 합천군 청덕면",
+        lowestAdmCodeNm: "청덕면",
+    },
+    {
+        admCode: "48890360",
+        admCodeNm: "경상남도 합천군 초계면",
+        lowestAdmCodeNm: "초계면",
+    },
+    {
+        admCode: "48890250",
+        admCodeNm: "경상남도 합천군 합천읍",
+        lowestAdmCodeNm: "합천읍",
+    },
+];
+
+export const Towns_50130 = [
+    {
+        admCode: "50130116",
+        admCodeNm: "제주특별자치도 서귀포시 강정동",
+        lowestAdmCodeNm: "강정동",
+    },
+    {
+        admCode: "50130253",
+        admCodeNm: "제주특별자치도 서귀포시 남원읍",
+        lowestAdmCodeNm: "남원읍",
+    },
+    {
+        admCode: "50130250",
+        admCodeNm: "제주특별자치도 서귀포시 대정읍",
+        lowestAdmCodeNm: "대정읍",
+    },
+    {
+        admCode: "50130114",
+        admCodeNm: "제주특별자치도 서귀포시 대포동",
+        lowestAdmCodeNm: "대포동",
+    },
+    {
+        admCode: "50130117",
+        admCodeNm: "제주특별자치도 서귀포시 도순동",
+        lowestAdmCodeNm: "도순동",
+    },
+    {
+        admCode: "50130105",
+        admCodeNm: "제주특별자치도 서귀포시 동홍동",
+        lowestAdmCodeNm: "동홍동",
+    },
+    {
+        admCode: "50130102",
+        admCodeNm: "제주특별자치도 서귀포시 법환동",
+        lowestAdmCodeNm: "법환동",
+    },
+    {
+        admCode: "50130110",
+        admCodeNm: "제주특별자치도 서귀포시 보목동",
+        lowestAdmCodeNm: "보목동",
+    },
+    {
+        admCode: "50130120",
+        admCodeNm: "제주특별자치도 서귀포시 상예동",
+        lowestAdmCodeNm: "상예동",
+    },
+    {
+        admCode: "50130107",
+        admCodeNm: "제주특별자치도 서귀포시 상효동",
+        lowestAdmCodeNm: "상효동",
+    },
+    {
+        admCode: "50130119",
+        admCodeNm: "제주특별자치도 서귀포시 색달동",
+        lowestAdmCodeNm: "색달동",
+    },
+    {
+        admCode: "50130101",
+        admCodeNm: "제주특별자치도 서귀포시 서귀동",
+        lowestAdmCodeNm: "서귀동",
+    },
+    {
+        admCode: "50130103",
+        admCodeNm: "제주특별자치도 서귀포시 서호동",
+        lowestAdmCodeNm: "서호동",
+    },
+    {
+        admCode: "50130106",
+        admCodeNm: "제주특별자치도 서귀포시 서홍동",
+        lowestAdmCodeNm: "서홍동",
+    },
+    {
+        admCode: "50130259",
+        admCodeNm: "제주특별자치도 서귀포시 성산읍",
+        lowestAdmCodeNm: "성산읍",
+    },
+    {
+        admCode: "50130109",
+        admCodeNm: "제주특별자치도 서귀포시 신효동",
+        lowestAdmCodeNm: "신효동",
+    },
+    {
+        admCode: "50130310",
+        admCodeNm: "제주특별자치도 서귀포시 안덕면",
+        lowestAdmCodeNm: "안덕면",
+    },
+    {
+        admCode: "50130122",
+        admCodeNm: "제주특별자치도 서귀포시 영남동",
+        lowestAdmCodeNm: "영남동",
+    },
+    {
+        admCode: "50130115",
+        admCodeNm: "제주특별자치도 서귀포시 월평동",
+        lowestAdmCodeNm: "월평동",
+    },
+    {
+        admCode: "50130112",
+        admCodeNm: "제주특별자치도 서귀포시 중문동",
+        lowestAdmCodeNm: "중문동",
+    },
+    {
+        admCode: "50130111",
+        admCodeNm: "제주특별자치도 서귀포시 토평동",
+        lowestAdmCodeNm: "토평동",
+    },
+    {
+        admCode: "50130320",
+        admCodeNm: "제주특별자치도 서귀포시 표선면",
+        lowestAdmCodeNm: "표선면",
+    },
+    {
+        admCode: "50130121",
+        admCodeNm: "제주특별자치도 서귀포시 하예동",
+        lowestAdmCodeNm: "하예동",
+    },
+    {
+        admCode: "50130118",
+        admCodeNm: "제주특별자치도 서귀포시 하원동",
+        lowestAdmCodeNm: "하원동",
+    },
+    {
+        admCode: "50130108",
+        admCodeNm: "제주특별자치도 서귀포시 하효동",
+        lowestAdmCodeNm: "하효동",
+    },
+    {
+        admCode: "50130104",
+        admCodeNm: "제주특별자치도 서귀포시 호근동",
+        lowestAdmCodeNm: "호근동",
+    },
+    {
+        admCode: "50130113",
+        admCodeNm: "제주특별자치도 서귀포시 회수동",
+        lowestAdmCodeNm: "회수동",
+    },
+];
+
+export const Towns_50110 = [
+    {
+        admCode: "50110107",
+        admCodeNm: "제주특별자치도 제주시 건입동",
+        lowestAdmCodeNm: "건입동",
+    },
+    {
+        admCode: "50110256",
+        admCodeNm: "제주특별자치도 제주시 구좌읍",
+        lowestAdmCodeNm: "구좌읍",
+    },
+    {
+        admCode: "50110140",
+        admCodeNm: "제주특별자치도 제주시 내도동",
+        lowestAdmCodeNm: "내도동",
+    },
+    {
+        admCode: "50110122",
+        admCodeNm: "제주특별자치도 제주시 노형동",
+        lowestAdmCodeNm: "노형동",
+    },
+    {
+        admCode: "50110129",
+        admCodeNm: "제주특별자치도 제주시 도남동",
+        lowestAdmCodeNm: "도남동",
+    },
+    {
+        admCode: "50110128",
+        admCodeNm: "제주특별자치도 제주시 도두이동",
+        lowestAdmCodeNm: "도두이동",
+    },
+    {
+        admCode: "50110127",
+        admCodeNm: "제주특별자치도 제주시 도두일동",
+        lowestAdmCodeNm: "도두일동",
+    },
+    {
+        admCode: "50110131",
+        admCodeNm: "제주특별자치도 제주시 도련이동",
+        lowestAdmCodeNm: "도련이동",
+    },
+    {
+        admCode: "50110130",
+        admCodeNm: "제주특별자치도 제주시 도련일동",
+        lowestAdmCodeNm: "도련일동",
+    },
+    {
+        admCode: "50110138",
+        admCodeNm: "제주특별자치도 제주시 도평동",
+        lowestAdmCodeNm: "도평동",
+    },
+    {
+        admCode: "50110116",
+        admCodeNm: "제주특별자치도 제주시 봉개동",
+        lowestAdmCodeNm: "봉개동",
+    },
+    {
+        admCode: "50110106",
+        admCodeNm: "제주특별자치도 제주시 삼도이동",
+        lowestAdmCodeNm: "삼도이동",
+    },
+    {
+        admCode: "50110105",
+        admCodeNm: "제주특별자치도 제주시 삼도일동",
+        lowestAdmCodeNm: "삼도일동",
+    },
+    {
+        admCode: "50110115",
+        admCodeNm: "제주특별자치도 제주시 삼양삼동",
+        lowestAdmCodeNm: "삼양삼동",
+    },
+    {
+        admCode: "50110114",
+        admCodeNm: "제주특별자치도 제주시 삼양이동",
+        lowestAdmCodeNm: "삼양이동",
+    },
+    {
+        admCode: "50110113",
+        admCodeNm: "제주특별자치도 제주시 삼양일동",
+        lowestAdmCodeNm: "삼양일동",
+    },
+    {
+        admCode: "50110118",
+        admCodeNm: "제주특별자치도 제주시 아라이동",
+        lowestAdmCodeNm: "아라이동",
+    },
+    {
+        admCode: "50110117",
+        admCodeNm: "제주특별자치도 제주시 아라일동",
+        lowestAdmCodeNm: "아라일동",
+    },
+    {
+        admCode: "50110253",
+        admCodeNm: "제주특별자치도 제주시 애월읍",
+        lowestAdmCodeNm: "애월읍",
+    },
+    {
+        admCode: "50110137",
+        admCodeNm: "제주특별자치도 제주시 연동",
+        lowestAdmCodeNm: "연동",
+    },
+    {
+        admCode: "50110136",
+        admCodeNm: "제주특별자치도 제주시 영평동",
+        lowestAdmCodeNm: "영평동",
+    },
+    {
+        admCode: "50110134",
+        admCodeNm: "제주특별자치도 제주시 오등동",
+        lowestAdmCodeNm: "오등동",
+    },
+    {
+        admCode: "50110121",
+        admCodeNm: "제주특별자치도 제주시 오라삼동",
+        lowestAdmCodeNm: "오라삼동",
+    },
+    {
+        admCode: "50110120",
+        admCodeNm: "제주특별자치도 제주시 오라이동",
+        lowestAdmCodeNm: "오라이동",
+    },
+    {
+        admCode: "50110119",
+        admCodeNm: "제주특별자치도 제주시 오라일동",
+        lowestAdmCodeNm: "오라일동",
+    },
+    {
+        admCode: "50110124",
+        admCodeNm: "제주특별자치도 제주시 외도이동",
+        lowestAdmCodeNm: "외도이동",
+    },
+    {
+        admCode: "50110123",
+        admCodeNm: "제주특별자치도 제주시 외도일동",
+        lowestAdmCodeNm: "외도일동",
+    },
+    {
+        admCode: "50110132",
+        admCodeNm: "제주특별자치도 제주시 용강동",
+        lowestAdmCodeNm: "용강동",
+    },
+    {
+        admCode: "50110110",
+        admCodeNm: "제주특별자치도 제주시 용담삼동",
+        lowestAdmCodeNm: "용담삼동",
+    },
+    {
+        admCode: "50110109",
+        admCodeNm: "제주특별자치도 제주시 용담이동",
+        lowestAdmCodeNm: "용담이동",
+    },
+    {
+        admCode: "50110108",
+        admCodeNm: "제주특별자치도 제주시 용담일동",
+        lowestAdmCodeNm: "용담일동",
+    },
+    {
+        admCode: "50110330",
+        admCodeNm: "제주특별자치도 제주시 우도면",
+        lowestAdmCodeNm: "우도면",
+    },
+    {
+        admCode: "50110135",
+        admCodeNm: "제주특별자치도 제주시 월평동",
+        lowestAdmCodeNm: "월평동",
+    },
+    {
+        admCode: "50110104",
+        admCodeNm: "제주특별자치도 제주시 이도이동",
+        lowestAdmCodeNm: "이도이동",
+    },
+    {
+        admCode: "50110103",
+        admCodeNm: "제주특별자치도 제주시 이도일동",
+        lowestAdmCodeNm: "이도일동",
+    },
+    {
+        admCode: "50110126",
+        admCodeNm: "제주특별자치도 제주시 이호이동",
+        lowestAdmCodeNm: "이호이동",
+    },
+    {
+        admCode: "50110125",
+        admCodeNm: "제주특별자치도 제주시 이호일동",
+        lowestAdmCodeNm: "이호일동",
+    },
+    {
+        admCode: "50110102",
+        admCodeNm: "제주특별자치도 제주시 일도이동",
+        lowestAdmCodeNm: "일도이동",
+    },
+    {
+        admCode: "50110101",
+        admCodeNm: "제주특별자치도 제주시 일도일동",
+        lowestAdmCodeNm: "일도일동",
+    },
+    {
+        admCode: "50110259",
+        admCodeNm: "제주특별자치도 제주시 조천읍",
+        lowestAdmCodeNm: "조천읍",
+    },
+    {
+        admCode: "50110320",
+        admCodeNm: "제주특별자치도 제주시 추자면",
+        lowestAdmCodeNm: "추자면",
+    },
+    {
+        admCode: "50110310",
+        admCodeNm: "제주특별자치도 제주시 한경면",
+        lowestAdmCodeNm: "한경면",
+    },
+    {
+        admCode: "50110250",
+        admCodeNm: "제주특별자치도 제주시 한림읍",
+        lowestAdmCodeNm: "한림읍",
+    },
+    {
+        admCode: "50110139",
+        admCodeNm: "제주특별자치도 제주시 해안동",
+        lowestAdmCodeNm: "해안동",
+    },
+    {
+        admCode: "50110112",
+        admCodeNm: "제주특별자치도 제주시 화북이동",
+        lowestAdmCodeNm: "화북이동",
+    },
+    {
+        admCode: "50110111",
+        admCodeNm: "제주특별자치도 제주시 화북일동",
+        lowestAdmCodeNm: "화북일동",
+    },
+    {
+        admCode: "50110133",
+        admCodeNm: "제주특별자치도 제주시 회천동",
+        lowestAdmCodeNm: "회천동",
+    },
+];
+
+export const Towns_51150 = [
+    {
+        admCode: "51150340",
+        admCodeNm: "강원특별자치도 강릉시 강동면",
+        lowestAdmCodeNm: "강동면",
+    },
+    {
+        admCode: "51150113",
+        admCodeNm: "강원특별자치도 강릉시 강문동",
+        lowestAdmCodeNm: "강문동",
+    },
+    {
+        admCode: "51150115",
+        admCodeNm: "강원특별자치도 강릉시 견소동",
+        lowestAdmCodeNm: "견소동",
+    },
+    {
+        admCode: "51150110",
+        admCodeNm: "강원특별자치도 강릉시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "51150330",
+        admCodeNm: "강원특별자치도 강릉시 구정면",
+        lowestAdmCodeNm: "구정면",
+    },
+    {
+        admCode: "51150106",
+        admCodeNm: "강원특별자치도 강릉시 금학동",
+        lowestAdmCodeNm: "금학동",
+    },
+    {
+        admCode: "51150136",
+        admCodeNm: "강원특별자치도 강릉시 난곡동",
+        lowestAdmCodeNm: "난곡동",
+    },
+    {
+        admCode: "51150102",
+        admCodeNm: "강원특별자치도 강릉시 남문동",
+        lowestAdmCodeNm: "남문동",
+    },
+    {
+        admCode: "51150130",
+        admCodeNm: "강원특별자치도 강릉시 남항진동",
+        lowestAdmCodeNm: "남항진동",
+    },
+    {
+        admCode: "51150116",
+        admCodeNm: "강원특별자치도 강릉시 내곡동",
+        lowestAdmCodeNm: "내곡동",
+    },
+    {
+        admCode: "51150121",
+        admCodeNm: "강원특별자치도 강릉시 노암동",
+        lowestAdmCodeNm: "노암동",
+    },
+    {
+        admCode: "51150120",
+        admCodeNm: "강원특별자치도 강릉시 담산동",
+        lowestAdmCodeNm: "담산동",
+    },
+    {
+        admCode: "51150134",
+        admCodeNm: "강원특별자치도 강릉시 대전동",
+        lowestAdmCodeNm: "대전동",
+    },
+    {
+        admCode: "51150127",
+        admCodeNm: "강원특별자치도 강릉시 두산동",
+        lowestAdmCodeNm: "두산동",
+    },
+    {
+        admCode: "51150103",
+        admCodeNm: "강원특별자치도 강릉시 명주동",
+        lowestAdmCodeNm: "명주동",
+    },
+    {
+        admCode: "51150119",
+        admCodeNm: "강원특별자치도 강릉시 박월동",
+        lowestAdmCodeNm: "박월동",
+    },
+    {
+        admCode: "51150129",
+        admCodeNm: "강원특별자치도 강릉시 병산동",
+        lowestAdmCodeNm: "병산동",
+    },
+    {
+        admCode: "51150360",
+        admCodeNm: "강원특별자치도 강릉시 사천면",
+        lowestAdmCodeNm: "사천면",
+    },
+    {
+        admCode: "51150108",
+        admCodeNm: "강원특별자치도 강릉시 성남동",
+        lowestAdmCodeNm: "성남동",
+    },
+    {
+        admCode: "51150104",
+        admCodeNm: "강원특별자치도 강릉시 성내동",
+        lowestAdmCodeNm: "성내동",
+    },
+    {
+        admCode: "51150310",
+        admCodeNm: "강원특별자치도 강릉시 성산면",
+        lowestAdmCodeNm: "성산면",
+    },
+    {
+        admCode: "51150114",
+        admCodeNm: "강원특별자치도 강릉시 송정동",
+        lowestAdmCodeNm: "송정동",
+    },
+    {
+        admCode: "51150124",
+        admCodeNm: "강원특별자치도 강릉시 신석동",
+        lowestAdmCodeNm: "신석동",
+    },
+    {
+        admCode: "51150138",
+        admCodeNm: "강원특별자치도 강릉시 안현동",
+        lowestAdmCodeNm: "안현동",
+    },
+    {
+        admCode: "51150370",
+        admCodeNm: "강원특별자치도 강릉시 연곡면",
+        lowestAdmCodeNm: "연곡면",
+    },
+    {
+        admCode: "51150350",
+        admCodeNm: "강원특별자치도 강릉시 옥계면",
+        lowestAdmCodeNm: "옥계면",
+    },
+    {
+        admCode: "51150109",
+        admCodeNm: "강원특별자치도 강릉시 옥천동",
+        lowestAdmCodeNm: "옥천동",
+    },
+    {
+        admCode: "51150320",
+        admCodeNm: "강원특별자치도 강릉시 왕산면",
+        lowestAdmCodeNm: "왕산면",
+    },
+    {
+        admCode: "51150107",
+        admCodeNm: "강원특별자치도 강릉시 용강동",
+        lowestAdmCodeNm: "용강동",
+    },
+    {
+        admCode: "51150139",
+        admCodeNm: "강원특별자치도 강릉시 운산동",
+        lowestAdmCodeNm: "운산동",
+    },
+    {
+        admCode: "51150135",
+        admCodeNm: "강원특별자치도 강릉시 운정동",
+        lowestAdmCodeNm: "운정동",
+    },
+    {
+        admCode: "51150123",
+        admCodeNm: "강원특별자치도 강릉시 월호평동",
+        lowestAdmCodeNm: "월호평동",
+    },
+    {
+        admCode: "51150122",
+        admCodeNm: "강원특별자치도 강릉시 유산동",
+        lowestAdmCodeNm: "유산동",
+    },
+    {
+        admCode: "51150131",
+        admCodeNm: "강원특별자치도 강릉시 유천동",
+        lowestAdmCodeNm: "유천동",
+    },
+    {
+        admCode: "51150105",
+        admCodeNm: "강원특별자치도 강릉시 임당동",
+        lowestAdmCodeNm: "임당동",
+    },
+    {
+        admCode: "51150125",
+        admCodeNm: "강원특별자치도 강릉시 입암동",
+        lowestAdmCodeNm: "입암동",
+    },
+    {
+        admCode: "51150118",
+        admCodeNm: "강원특별자치도 강릉시 장현동",
+        lowestAdmCodeNm: "장현동",
+    },
+    {
+        admCode: "51150137",
+        admCodeNm: "강원특별자치도 강릉시 저동",
+        lowestAdmCodeNm: "저동",
+    },
+    {
+        admCode: "51150250",
+        admCodeNm: "강원특별자치도 강릉시 주문진읍",
+        lowestAdmCodeNm: "주문진읍",
+    },
+    {
+        admCode: "51150133",
+        admCodeNm: "강원특별자치도 강릉시 죽헌동",
+        lowestAdmCodeNm: "죽헌동",
+    },
+    {
+        admCode: "51150132",
+        admCodeNm: "강원특별자치도 강릉시 지변동",
+        lowestAdmCodeNm: "지변동",
+    },
+    {
+        admCode: "51150126",
+        admCodeNm: "강원특별자치도 강릉시 청량동",
+        lowestAdmCodeNm: "청량동",
+    },
+    {
+        admCode: "51150112",
+        admCodeNm: "강원특별자치도 강릉시 초당동",
+        lowestAdmCodeNm: "초당동",
+    },
+    {
+        admCode: "51150111",
+        admCodeNm: "강원특별자치도 강릉시 포남동",
+        lowestAdmCodeNm: "포남동",
+    },
+    {
+        admCode: "51150128",
+        admCodeNm: "강원특별자치도 강릉시 학동",
+        lowestAdmCodeNm: "학동",
+    },
+    {
+        admCode: "51150101",
+        admCodeNm: "강원특별자치도 강릉시 홍제동",
+        lowestAdmCodeNm: "홍제동",
+    },
+    {
+        admCode: "51150117",
+        admCodeNm: "강원특별자치도 강릉시 회산동",
+        lowestAdmCodeNm: "회산동",
+    },
+];
+
+export const Towns_51820 = [
+    {
+        admCode: "51820250",
+        admCodeNm: "강원특별자치도 고성군 간성읍",
+        lowestAdmCodeNm: "간성읍",
+    },
+    {
+        admCode: "51820253",
+        admCodeNm: "강원특별자치도 고성군 거진읍",
+        lowestAdmCodeNm: "거진읍",
+    },
+    {
+        admCode: "51820340",
+        admCodeNm: "강원특별자치도 고성군 수동면",
+        lowestAdmCodeNm: "수동면",
+    },
+    {
+        admCode: "51820320",
+        admCodeNm: "강원특별자치도 고성군 죽왕면",
+        lowestAdmCodeNm: "죽왕면",
+    },
+    {
+        admCode: "51820330",
+        admCodeNm: "강원특별자치도 고성군 토성면",
+        lowestAdmCodeNm: "토성면",
+    },
+    {
+        admCode: "51820310",
+        admCodeNm: "강원특별자치도 고성군 현내면",
+        lowestAdmCodeNm: "현내면",
+    },
+];
+
+export const Towns_51170 = [
+    {
+        admCode: "51170132",
+        admCodeNm: "강원특별자치도 동해시 괴란동",
+        lowestAdmCodeNm: "괴란동",
+    },
+    {
+        admCode: "51170113",
+        admCodeNm: "강원특별자치도 동해시 구미동",
+        lowestAdmCodeNm: "구미동",
+    },
+    {
+        admCode: "51170115",
+        admCodeNm: "강원특별자치도 동해시 구호동",
+        lowestAdmCodeNm: "구호동",
+    },
+    {
+        admCode: "51170119",
+        admCodeNm: "강원특별자치도 동해시 귀운동",
+        lowestAdmCodeNm: "귀운동",
+    },
+    {
+        admCode: "51170108",
+        admCodeNm: "강원특별자치도 동해시 나안동",
+        lowestAdmCodeNm: "나안동",
+    },
+    {
+        admCode: "51170122",
+        admCodeNm: "강원특별자치도 동해시 내동",
+        lowestAdmCodeNm: "내동",
+    },
+    {
+        admCode: "51170116",
+        admCodeNm: "강원특별자치도 동해시 단봉동",
+        lowestAdmCodeNm: "단봉동",
+    },
+    {
+        admCode: "51170136",
+        admCodeNm: "강원특별자치도 동해시 달방동",
+        lowestAdmCodeNm: "달방동",
+    },
+    {
+        admCode: "51170120",
+        admCodeNm: "강원특별자치도 동해시 대구동",
+        lowestAdmCodeNm: "대구동",
+    },
+    {
+        admCode: "51170128",
+        admCodeNm: "강원특별자치도 동해시 대진동",
+        lowestAdmCodeNm: "대진동",
+    },
+    {
+        admCode: "51170107",
+        admCodeNm: "강원특별자치도 동해시 동회동",
+        lowestAdmCodeNm: "동회동",
+    },
+    {
+        admCode: "51170133",
+        admCodeNm: "강원특별자치도 동해시 만우동",
+        lowestAdmCodeNm: "만우동",
+    },
+    {
+        admCode: "51170129",
+        admCodeNm: "강원특별자치도 동해시 망상동",
+        lowestAdmCodeNm: "망상동",
+    },
+    {
+        admCode: "51170123",
+        admCodeNm: "강원특별자치도 동해시 묵호진동",
+        lowestAdmCodeNm: "묵호진동",
+    },
+    {
+        admCode: "51170111",
+        admCodeNm: "강원특별자치도 동해시 발한동",
+        lowestAdmCodeNm: "발한동",
+    },
+    {
+        admCode: "51170110",
+        admCodeNm: "강원특별자치도 동해시 부곡동",
+        lowestAdmCodeNm: "부곡동",
+    },
+    {
+        admCode: "51170112",
+        admCodeNm: "강원특별자치도 동해시 북평동",
+        lowestAdmCodeNm: "북평동",
+    },
+    {
+        admCode: "51170135",
+        admCodeNm: "강원특별자치도 동해시 비천동",
+        lowestAdmCodeNm: "비천동",
+    },
+    {
+        admCode: "51170124",
+        admCodeNm: "강원특별자치도 동해시 삼화동",
+        lowestAdmCodeNm: "삼화동",
+    },
+    {
+        admCode: "51170103",
+        admCodeNm: "강원특별자치도 동해시 송정동",
+        lowestAdmCodeNm: "송정동",
+    },
+    {
+        admCode: "51170109",
+        admCodeNm: "강원특별자치도 동해시 쇄운동",
+        lowestAdmCodeNm: "쇄운동",
+    },
+    {
+        admCode: "51170134",
+        admCodeNm: "강원특별자치도 동해시 신흥동",
+        lowestAdmCodeNm: "신흥동",
+    },
+    {
+        admCode: "51170130",
+        admCodeNm: "강원특별자치도 동해시 심곡동",
+        lowestAdmCodeNm: "심곡동",
+    },
+    {
+        admCode: "51170127",
+        admCodeNm: "강원특별자치도 동해시 어달동",
+        lowestAdmCodeNm: "어달동",
+    },
+    {
+        admCode: "51170104",
+        admCodeNm: "강원특별자치도 동해시 용정동",
+        lowestAdmCodeNm: "용정동",
+    },
+    {
+        admCode: "51170125",
+        admCodeNm: "강원특별자치도 동해시 이기동",
+        lowestAdmCodeNm: "이기동",
+    },
+    {
+        admCode: "51170118",
+        admCodeNm: "강원특별자치도 동해시 이도동",
+        lowestAdmCodeNm: "이도동",
+    },
+    {
+        admCode: "51170126",
+        admCodeNm: "강원특별자치도 동해시 이로동",
+        lowestAdmCodeNm: "이로동",
+    },
+    {
+        admCode: "51170117",
+        admCodeNm: "강원특별자치도 동해시 지가동",
+        lowestAdmCodeNm: "지가동",
+    },
+    {
+        admCode: "51170105",
+        admCodeNm: "강원특별자치도 동해시 지흥동",
+        lowestAdmCodeNm: "지흥동",
+    },
+    {
+        admCode: "51170101",
+        admCodeNm: "강원특별자치도 동해시 천곡동",
+        lowestAdmCodeNm: "천곡동",
+    },
+    {
+        admCode: "51170131",
+        admCodeNm: "강원특별자치도 동해시 초구동",
+        lowestAdmCodeNm: "초구동",
+    },
+    {
+        admCode: "51170114",
+        admCodeNm: "강원특별자치도 동해시 추암동",
+        lowestAdmCodeNm: "추암동",
+    },
+    {
+        admCode: "51170102",
+        admCodeNm: "강원특별자치도 동해시 평릉동",
+        lowestAdmCodeNm: "평릉동",
+    },
+    {
+        admCode: "51170121",
+        admCodeNm: "강원특별자치도 동해시 호현동",
+        lowestAdmCodeNm: "호현동",
+    },
+    {
+        admCode: "51170106",
+        admCodeNm: "강원특별자치도 동해시 효가동",
+        lowestAdmCodeNm: "효가동",
+    },
+];
+
+export const Towns_51230 = [
+    {
+        admCode: "51230350",
+        admCodeNm: "강원특별자치도 삼척시 가곡면",
+        lowestAdmCodeNm: "가곡면",
+    },
+    {
+        admCode: "51230107",
+        admCodeNm: "강원특별자치도 삼척시 갈천동",
+        lowestAdmCodeNm: "갈천동",
+    },
+    {
+        admCode: "51230117",
+        admCodeNm: "강원특별자치도 삼척시 건지동",
+        lowestAdmCodeNm: "건지동",
+    },
+    {
+        admCode: "51230106",
+        admCodeNm: "강원특별자치도 삼척시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "51230310",
+        admCodeNm: "강원특별자치도 삼척시 근덕면",
+        lowestAdmCodeNm: "근덕면",
+    },
+    {
+        admCode: "51230127",
+        admCodeNm: "강원특별자치도 삼척시 근산동",
+        lowestAdmCodeNm: "근산동",
+    },
+    {
+        admCode: "51230120",
+        admCodeNm: "강원특별자치도 삼척시 남양동",
+        lowestAdmCodeNm: "남양동",
+    },
+    {
+        admCode: "51230330",
+        admCodeNm: "강원특별자치도 삼척시 노곡면",
+        lowestAdmCodeNm: "노곡면",
+    },
+    {
+        admCode: "51230105",
+        admCodeNm: "강원특별자치도 삼척시 당저동",
+        lowestAdmCodeNm: "당저동",
+    },
+    {
+        admCode: "51230114",
+        admCodeNm: "강원특별자치도 삼척시 도경동",
+        lowestAdmCodeNm: "도경동",
+    },
+    {
+        admCode: "51230250",
+        admCodeNm: "강원특별자치도 삼척시 도계읍",
+        lowestAdmCodeNm: "도계읍",
+    },
+    {
+        admCode: "51230113",
+        admCodeNm: "강원특별자치도 삼척시 등봉동",
+        lowestAdmCodeNm: "등봉동",
+    },
+    {
+        admCode: "51230110",
+        admCodeNm: "강원특별자치도 삼척시 마달동",
+        lowestAdmCodeNm: "마달동",
+    },
+    {
+        admCode: "51230115",
+        admCodeNm: "강원특별자치도 삼척시 마평동",
+        lowestAdmCodeNm: "마평동",
+    },
+    {
+        admCode: "51230340",
+        admCodeNm: "강원특별자치도 삼척시 미로면",
+        lowestAdmCodeNm: "미로면",
+    },
+    {
+        admCode: "51230121",
+        admCodeNm: "강원특별자치도 삼척시 사직동",
+        lowestAdmCodeNm: "사직동",
+    },
+    {
+        admCode: "51230119",
+        admCodeNm: "강원특별자치도 삼척시 성남동",
+        lowestAdmCodeNm: "성남동",
+    },
+    {
+        admCode: "51230101",
+        admCodeNm: "강원특별자치도 삼척시 성내동",
+        lowestAdmCodeNm: "성내동",
+    },
+    {
+        admCode: "51230102",
+        admCodeNm: "강원특별자치도 삼척시 성북동",
+        lowestAdmCodeNm: "성북동",
+    },
+    {
+        admCode: "51230360",
+        admCodeNm: "강원특별자치도 삼척시 신기면",
+        lowestAdmCodeNm: "신기면",
+    },
+    {
+        admCode: "51230122",
+        admCodeNm: "강원특별자치도 삼척시 오분동",
+        lowestAdmCodeNm: "오분동",
+    },
+    {
+        admCode: "51230116",
+        admCodeNm: "강원특별자치도 삼척시 오사동",
+        lowestAdmCodeNm: "오사동",
+    },
+    {
+        admCode: "51230109",
+        admCodeNm: "강원특별자치도 삼척시 우지동",
+        lowestAdmCodeNm: "우지동",
+    },
+    {
+        admCode: "51230118",
+        admCodeNm: "강원특별자치도 삼척시 원당동",
+        lowestAdmCodeNm: "원당동",
+    },
+    {
+        admCode: "51230253",
+        admCodeNm: "강원특별자치도 삼척시 원덕읍",
+        lowestAdmCodeNm: "원덕읍",
+    },
+    {
+        admCode: "51230103",
+        admCodeNm: "강원특별자치도 삼척시 읍상동",
+        lowestAdmCodeNm: "읍상동",
+    },
+    {
+        admCode: "51230104",
+        admCodeNm: "강원특별자치도 삼척시 읍중동",
+        lowestAdmCodeNm: "읍중동",
+    },
+    {
+        admCode: "51230111",
+        admCodeNm: "강원특별자치도 삼척시 자원동",
+        lowestAdmCodeNm: "자원동",
+    },
+    {
+        admCode: "51230123",
+        admCodeNm: "강원특별자치도 삼척시 적노동",
+        lowestAdmCodeNm: "적노동",
+    },
+    {
+        admCode: "51230125",
+        admCodeNm: "강원특별자치도 삼척시 정상동",
+        lowestAdmCodeNm: "정상동",
+    },
+    {
+        admCode: "51230126",
+        admCodeNm: "강원특별자치도 삼척시 정하동",
+        lowestAdmCodeNm: "정하동",
+    },
+    {
+        admCode: "51230124",
+        admCodeNm: "강원특별자치도 삼척시 조비동",
+        lowestAdmCodeNm: "조비동",
+    },
+    {
+        admCode: "51230108",
+        admCodeNm: "강원특별자치도 삼척시 증산동",
+        lowestAdmCodeNm: "증산동",
+    },
+    {
+        admCode: "51230112",
+        admCodeNm: "강원특별자치도 삼척시 평전동",
+        lowestAdmCodeNm: "평전동",
+    },
+    {
+        admCode: "51230320",
+        admCodeNm: "강원특별자치도 삼척시 하장면",
+        lowestAdmCodeNm: "하장면",
+    },
+];
+
+export const Towns_51210 = [
+    {
+        admCode: "51210106",
+        admCodeNm: "강원특별자치도 속초시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "51210104",
+        admCodeNm: "강원특별자치도 속초시 금호동",
+        lowestAdmCodeNm: "금호동",
+    },
+    {
+        admCode: "51210107",
+        admCodeNm: "강원특별자치도 속초시 노학동",
+        lowestAdmCodeNm: "노학동",
+    },
+    {
+        admCode: "51210110",
+        admCodeNm: "강원특별자치도 속초시 대포동",
+        lowestAdmCodeNm: "대포동",
+    },
+    {
+        admCode: "51210111",
+        admCodeNm: "강원특별자치도 속초시 도문동",
+        lowestAdmCodeNm: "도문동",
+    },
+    {
+        admCode: "51210102",
+        admCodeNm: "강원특별자치도 속초시 동명동",
+        lowestAdmCodeNm: "동명동",
+    },
+    {
+        admCode: "51210112",
+        admCodeNm: "강원특별자치도 속초시 설악동",
+        lowestAdmCodeNm: "설악동",
+    },
+    {
+        admCode: "51210101",
+        admCodeNm: "강원특별자치도 속초시 영랑동",
+        lowestAdmCodeNm: "영랑동",
+    },
+    {
+        admCode: "51210113",
+        admCodeNm: "강원특별자치도 속초시 장사동",
+        lowestAdmCodeNm: "장사동",
+    },
+    {
+        admCode: "51210108",
+        admCodeNm: "강원특별자치도 속초시 조양동",
+        lowestAdmCodeNm: "조양동",
+    },
+    {
+        admCode: "51210103",
+        admCodeNm: "강원특별자치도 속초시 중앙동",
+        lowestAdmCodeNm: "중앙동",
+    },
+    {
+        admCode: "51210105",
+        admCodeNm: "강원특별자치도 속초시 청학동",
+        lowestAdmCodeNm: "청학동",
+    },
+    {
+        admCode: "51210109",
+        admCodeNm: "강원특별자치도 속초시 청호동",
+        lowestAdmCodeNm: "청호동",
+    },
+];
+
+export const Towns_51800 = [
+    {
+        admCode: "51800315",
+        admCodeNm: "강원특별자치도 양구군 국토정중앙면",
+        lowestAdmCodeNm: "국토정중앙면",
+    },
+    {
+        admCode: "51800320",
+        admCodeNm: "강원특별자치도 양구군 동면",
+        lowestAdmCodeNm: "동면",
+    },
+    {
+        admCode: "51800330",
+        admCodeNm: "강원특별자치도 양구군 방산면",
+        lowestAdmCodeNm: "방산면",
+    },
+    {
+        admCode: "51800250",
+        admCodeNm: "강원특별자치도 양구군 양구읍",
+        lowestAdmCodeNm: "양구읍",
+    },
+    {
+        admCode: "51800340",
+        admCodeNm: "강원특별자치도 양구군 해안면",
+        lowestAdmCodeNm: "해안면",
+    },
+];
+
+export const Towns_51830 = [
+    {
+        admCode: "51830350",
+        admCodeNm: "강원특별자치도 양양군 강현면",
+        lowestAdmCodeNm: "강현면",
+    },
+    {
+        admCode: "51830310",
+        admCodeNm: "강원특별자치도 양양군 서면",
+        lowestAdmCodeNm: "서면",
+    },
+    {
+        admCode: "51830320",
+        admCodeNm: "강원특별자치도 양양군 손양면",
+        lowestAdmCodeNm: "손양면",
+    },
+    {
+        admCode: "51830250",
+        admCodeNm: "강원특별자치도 양양군 양양읍",
+        lowestAdmCodeNm: "양양읍",
+    },
+    {
+        admCode: "51830340",
+        admCodeNm: "강원특별자치도 양양군 현남면",
+        lowestAdmCodeNm: "현남면",
+    },
+    {
+        admCode: "51830330",
+        admCodeNm: "강원특별자치도 양양군 현북면",
+        lowestAdmCodeNm: "현북면",
+    },
+];
+
+export const Towns_51750 = [
+    {
+        admCode: "51750325",
+        admCodeNm: "강원특별자치도 영월군 김삿갓면",
+        lowestAdmCodeNm: "김삿갓면",
+    },
+    {
+        admCode: "51750340",
+        admCodeNm: "강원특별자치도 영월군 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "51750380",
+        admCodeNm: "강원특별자치도 영월군 무릉도원면",
+        lowestAdmCodeNm: "무릉도원면",
+    },
+    {
+        admCode: "51750330",
+        admCodeNm: "강원특별자치도 영월군 북면",
+        lowestAdmCodeNm: "북면",
+    },
+    {
+        admCode: "51750312",
+        admCodeNm: "강원특별자치도 영월군 산솔면",
+        lowestAdmCodeNm: "산솔면",
+    },
+    {
+        admCode: "51750253",
+        admCodeNm: "강원특별자치도 영월군 상동읍",
+        lowestAdmCodeNm: "상동읍",
+    },
+    {
+        admCode: "51750250",
+        admCodeNm: "강원특별자치도 영월군 영월읍",
+        lowestAdmCodeNm: "영월읍",
+    },
+    {
+        admCode: "51750360",
+        admCodeNm: "강원특별자치도 영월군 주천면",
+        lowestAdmCodeNm: "주천면",
+    },
+    {
+        admCode: "51750355",
+        admCodeNm: "강원특별자치도 영월군 한반도면",
+        lowestAdmCodeNm: "한반도면",
+    },
+];
+
+export const Towns_51130 = [
+    {
+        admCode: "51130118",
+        admCodeNm: "강원특별자치도 원주시 가현동",
+        lowestAdmCodeNm: "가현동",
+    },
+    {
+        admCode: "51130105",
+        admCodeNm: "강원특별자치도 원주시 개운동",
+        lowestAdmCodeNm: "개운동",
+    },
+    {
+        admCode: "51130116",
+        admCodeNm: "강원특별자치도 원주시 관설동",
+        lowestAdmCodeNm: "관설동",
+    },
+    {
+        admCode: "51130360",
+        admCodeNm: "강원특별자치도 원주시 귀래면",
+        lowestAdmCodeNm: "귀래면",
+    },
+    {
+        admCode: "51130110",
+        admCodeNm: "강원특별자치도 원주시 단계동",
+        lowestAdmCodeNm: "단계동",
+    },
+    {
+        admCode: "51130107",
+        admCodeNm: "강원특별자치도 원주시 단구동",
+        lowestAdmCodeNm: "단구동",
+    },
+    {
+        admCode: "51130106",
+        admCodeNm: "강원특별자치도 원주시 명륜동",
+        lowestAdmCodeNm: "명륜동",
+    },
+    {
+        admCode: "51130115",
+        admCodeNm: "강원특별자치도 원주시 무실동",
+        lowestAdmCodeNm: "무실동",
+    },
+    {
+        admCode: "51130250",
+        admCodeNm: "강원특별자치도 원주시 문막읍",
+        lowestAdmCodeNm: "문막읍",
+    },
+    {
+        admCode: "51130117",
+        admCodeNm: "강원특별자치도 원주시 반곡동",
+        lowestAdmCodeNm: "반곡동",
+    },
+    {
+        admCode: "51130113",
+        admCodeNm: "강원특별자치도 원주시 봉산동",
+        lowestAdmCodeNm: "봉산동",
+    },
+    {
+        admCode: "51130350",
+        admCodeNm: "강원특별자치도 원주시 부론면",
+        lowestAdmCodeNm: "부론면",
+    },
+    {
+        admCode: "51130310",
+        admCodeNm: "강원특별자치도 원주시 소초면",
+        lowestAdmCodeNm: "소초면",
+    },
+    {
+        admCode: "51130390",
+        admCodeNm: "강원특별자치도 원주시 신림면",
+        lowestAdmCodeNm: "신림면",
+    },
+    {
+        admCode: "51130111",
+        admCodeNm: "강원특별자치도 원주시 우산동",
+        lowestAdmCodeNm: "우산동",
+    },
+    {
+        admCode: "51130103",
+        admCodeNm: "강원특별자치도 원주시 원동",
+        lowestAdmCodeNm: "원동",
+    },
+    {
+        admCode: "51130104",
+        admCodeNm: "강원특별자치도 원주시 인동",
+        lowestAdmCodeNm: "인동",
+    },
+    {
+        admCode: "51130108",
+        admCodeNm: "강원특별자치도 원주시 일산동",
+        lowestAdmCodeNm: "일산동",
+    },
+    {
+        admCode: "51130101",
+        admCodeNm: "강원특별자치도 원주시 중앙동",
+        lowestAdmCodeNm: "중앙동",
+    },
+    {
+        admCode: "51130330",
+        admCodeNm: "강원특별자치도 원주시 지정면",
+        lowestAdmCodeNm: "지정면",
+    },
+    {
+        admCode: "51130112",
+        admCodeNm: "강원특별자치도 원주시 태장동",
+        lowestAdmCodeNm: "태장동",
+    },
+    {
+        admCode: "51130380",
+        admCodeNm: "강원특별자치도 원주시 판부면",
+        lowestAdmCodeNm: "판부면",
+    },
+    {
+        admCode: "51130102",
+        admCodeNm: "강원특별자치도 원주시 평원동",
+        lowestAdmCodeNm: "평원동",
+    },
+    {
+        admCode: "51130109",
+        admCodeNm: "강원특별자치도 원주시 학성동",
+        lowestAdmCodeNm: "학성동",
+    },
+    {
+        admCode: "51130114",
+        admCodeNm: "강원특별자치도 원주시 행구동",
+        lowestAdmCodeNm: "행구동",
+    },
+    {
+        admCode: "51130320",
+        admCodeNm: "강원특별자치도 원주시 호저면",
+        lowestAdmCodeNm: "호저면",
+    },
+    {
+        admCode: "51130370",
+        admCodeNm: "강원특별자치도 원주시 흥업면",
+        lowestAdmCodeNm: "흥업면",
+    },
+];
+
+export const Towns_51810 = [
+    {
+        admCode: "51810330",
+        admCodeNm: "강원특별자치도 인제군 기린면",
+        lowestAdmCodeNm: "기린면",
+    },
+    {
+        admCode: "51810310",
+        admCodeNm: "강원특별자치도 인제군 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "51810320",
+        admCodeNm: "강원특별자치도 인제군 북면",
+        lowestAdmCodeNm: "북면",
+    },
+    {
+        admCode: "51810350",
+        admCodeNm: "강원특별자치도 인제군 상남면",
+        lowestAdmCodeNm: "상남면",
+    },
+    {
+        admCode: "51810340",
+        admCodeNm: "강원특별자치도 인제군 서화면",
+        lowestAdmCodeNm: "서화면",
+    },
+    {
+        admCode: "51810250",
+        admCodeNm: "강원특별자치도 인제군 인제읍",
+        lowestAdmCodeNm: "인제읍",
+    },
+];
+
+export const Towns_51770 = [
+    {
+        admCode: "51770253",
+        admCodeNm: "강원특별자치도 정선군 고한읍",
+        lowestAdmCodeNm: "고한읍",
+    },
+    {
+        admCode: "51770320",
+        admCodeNm: "강원특별자치도 정선군 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "51770340",
+        admCodeNm: "강원특별자치도 정선군 북평면",
+        lowestAdmCodeNm: "북평면",
+    },
+    {
+        admCode: "51770256",
+        admCodeNm: "강원특별자치도 정선군 사북읍",
+        lowestAdmCodeNm: "사북읍",
+    },
+    {
+        admCode: "51770259",
+        admCodeNm: "강원특별자치도 정선군 신동읍",
+        lowestAdmCodeNm: "신동읍",
+    },
+    {
+        admCode: "51770370",
+        admCodeNm: "강원특별자치도 정선군 여량면",
+        lowestAdmCodeNm: "여량면",
+    },
+    {
+        admCode: "51770350",
+        admCodeNm: "강원특별자치도 정선군 임계면",
+        lowestAdmCodeNm: "임계면",
+    },
+    {
+        admCode: "51770250",
+        admCodeNm: "강원특별자치도 정선군 정선읍",
+        lowestAdmCodeNm: "정선읍",
+    },
+    {
+        admCode: "51770360",
+        admCodeNm: "강원특별자치도 정선군 화암면",
+        lowestAdmCodeNm: "화암면",
+    },
+];
+
+export const Towns_51780 = [
+    {
+        admCode: "51780256",
+        admCodeNm: "강원특별자치도 철원군 갈말읍",
+        lowestAdmCodeNm: "갈말읍",
+    },
+    {
+        admCode: "51780320",
+        admCodeNm: "강원특별자치도 철원군 근남면",
+        lowestAdmCodeNm: "근남면",
+    },
+    {
+        admCode: "51780340",
+        admCodeNm: "강원특별자치도 철원군 근동면",
+        lowestAdmCodeNm: "근동면",
+    },
+    {
+        admCode: "51780330",
+        admCodeNm: "강원특별자치도 철원군 근북면",
+        lowestAdmCodeNm: "근북면",
+    },
+    {
+        admCode: "51780253",
+        admCodeNm: "강원특별자치도 철원군 김화읍",
+        lowestAdmCodeNm: "김화읍",
+    },
+    {
+        admCode: "51780259",
+        admCodeNm: "강원특별자치도 철원군 동송읍",
+        lowestAdmCodeNm: "동송읍",
+    },
+    {
+        admCode: "51780310",
+        admCodeNm: "강원특별자치도 철원군 서면",
+        lowestAdmCodeNm: "서면",
+    },
+    {
+        admCode: "51780360",
+        admCodeNm: "강원특별자치도 철원군 원남면",
+        lowestAdmCodeNm: "원남면",
+    },
+    {
+        admCode: "51780350",
+        admCodeNm: "강원특별자치도 철원군 원동면",
+        lowestAdmCodeNm: "원동면",
+    },
+    {
+        admCode: "51780370",
+        admCodeNm: "강원특별자치도 철원군 임남면",
+        lowestAdmCodeNm: "임남면",
+    },
+    {
+        admCode: "51780250",
+        admCodeNm: "강원특별자치도 철원군 철원읍",
+        lowestAdmCodeNm: "철원읍",
+    },
+];
+
+export const Towns_51110 = [
+    {
+        admCode: "51110122",
+        admCodeNm: "강원특별자치도 춘천시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "51110117",
+        admCodeNm: "강원특별자치도 춘천시 근화동",
+        lowestAdmCodeNm: "근화동",
+    },
+    {
+        admCode: "51110103",
+        admCodeNm: "강원특별자치도 춘천시 낙원동",
+        lowestAdmCodeNm: "낙원동",
+    },
+    {
+        admCode: "51110340",
+        admCodeNm: "강원특별자치도 춘천시 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "51110400",
+        admCodeNm: "강원특별자치도 춘천시 남산면",
+        lowestAdmCodeNm: "남산면",
+    },
+    {
+        admCode: "51110390",
+        admCodeNm: "강원특별자치도 춘천시 동내면",
+        lowestAdmCodeNm: "동내면",
+    },
+    {
+        admCode: "51110310",
+        admCodeNm: "강원특별자치도 춘천시 동면",
+        lowestAdmCodeNm: "동면",
+    },
+    {
+        admCode: "51110320",
+        admCodeNm: "강원특별자치도 춘천시 동산면",
+        lowestAdmCodeNm: "동산면",
+    },
+    {
+        admCode: "51110101",
+        admCodeNm: "강원특별자치도 춘천시 봉의동",
+        lowestAdmCodeNm: "봉의동",
+    },
+    {
+        admCode: "51110380",
+        admCodeNm: "강원특별자치도 춘천시 북산면",
+        lowestAdmCodeNm: "북산면",
+    },
+    {
+        admCode: "51110119",
+        admCodeNm: "강원특별자치도 춘천시 사농동",
+        lowestAdmCodeNm: "사농동",
+    },
+    {
+        admCode: "51110360",
+        admCodeNm: "강원특별자치도 춘천시 사북면",
+        lowestAdmCodeNm: "사북면",
+    },
+    {
+        admCode: "51110125",
+        admCodeNm: "강원특별자치도 춘천시 삼천동",
+        lowestAdmCodeNm: "삼천동",
+    },
+    {
+        admCode: "51110350",
+        admCodeNm: "강원특별자치도 춘천시 서면",
+        lowestAdmCodeNm: "서면",
+    },
+    {
+        admCode: "51110124",
+        admCodeNm: "강원특별자치도 춘천시 석사동",
+        lowestAdmCodeNm: "석사동",
+    },
+    {
+        admCode: "51110113",
+        admCodeNm: "강원특별자치도 춘천시 소양로1가",
+        lowestAdmCodeNm: "소양로1가",
+    },
+    {
+        admCode: "51110114",
+        admCodeNm: "강원특별자치도 춘천시 소양로2가",
+        lowestAdmCodeNm: "소양로2가",
+    },
+    {
+        admCode: "51110115",
+        admCodeNm: "강원특별자치도 춘천시 소양로3가",
+        lowestAdmCodeNm: "소양로3가",
+    },
+    {
+        admCode: "51110116",
+        admCodeNm: "강원특별자치도 춘천시 소양로4가",
+        lowestAdmCodeNm: "소양로4가",
+    },
+    {
+        admCode: "51110127",
+        admCodeNm: "강원특별자치도 춘천시 송암동",
+        lowestAdmCodeNm: "송암동",
+    },
+    {
+        admCode: "51110128",
+        admCodeNm: "강원특별자치도 춘천시 신동",
+        lowestAdmCodeNm: "신동",
+    },
+    {
+        admCode: "51110330",
+        admCodeNm: "강원특별자치도 춘천시 신동면",
+        lowestAdmCodeNm: "신동면",
+    },
+    {
+        admCode: "51110250",
+        admCodeNm: "강원특별자치도 춘천시 신북읍",
+        lowestAdmCodeNm: "신북읍",
+    },
+    {
+        admCode: "51110111",
+        admCodeNm: "강원특별자치도 춘천시 약사동",
+        lowestAdmCodeNm: "약사동",
+    },
+    {
+        admCode: "51110107",
+        admCodeNm: "강원특별자치도 춘천시 옥천동",
+        lowestAdmCodeNm: "옥천동",
+    },
+    {
+        admCode: "51110121",
+        admCodeNm: "강원특별자치도 춘천시 온의동",
+        lowestAdmCodeNm: "온의동",
+    },
+    {
+        admCode: "51110102",
+        admCodeNm: "강원특별자치도 춘천시 요선동",
+        lowestAdmCodeNm: "요선동",
+    },
+    {
+        admCode: "51110118",
+        admCodeNm: "강원특별자치도 춘천시 우두동",
+        lowestAdmCodeNm: "우두동",
+    },
+    {
+        admCode: "51110110",
+        admCodeNm: "강원특별자치도 춘천시 운교동",
+        lowestAdmCodeNm: "운교동",
+    },
+    {
+        admCode: "51110108",
+        admCodeNm: "강원특별자치도 춘천시 조양동",
+        lowestAdmCodeNm: "조양동",
+    },
+    {
+        admCode: "51110109",
+        admCodeNm: "강원특별자치도 춘천시 죽림동",
+        lowestAdmCodeNm: "죽림동",
+    },
+    {
+        admCode: "51110129",
+        admCodeNm: "강원특별자치도 춘천시 중도동",
+        lowestAdmCodeNm: "중도동",
+    },
+    {
+        admCode: "51110104",
+        admCodeNm: "강원특별자치도 춘천시 중앙로1가",
+        lowestAdmCodeNm: "중앙로1가",
+    },
+    {
+        admCode: "51110105",
+        admCodeNm: "강원특별자치도 춘천시 중앙로2가",
+        lowestAdmCodeNm: "중앙로2가",
+    },
+    {
+        admCode: "51110106",
+        admCodeNm: "강원특별자치도 춘천시 중앙로3가",
+        lowestAdmCodeNm: "중앙로3가",
+    },
+    {
+        admCode: "51110126",
+        admCodeNm: "강원특별자치도 춘천시 칠전동",
+        lowestAdmCodeNm: "칠전동",
+    },
+    {
+        admCode: "51110123",
+        admCodeNm: "강원특별자치도 춘천시 퇴계동",
+        lowestAdmCodeNm: "퇴계동",
+    },
+    {
+        admCode: "51110112",
+        admCodeNm: "강원특별자치도 춘천시 효자동",
+        lowestAdmCodeNm: "효자동",
+    },
+    {
+        admCode: "51110120",
+        admCodeNm: "강원특별자치도 춘천시 후평동",
+        lowestAdmCodeNm: "후평동",
+    },
+];
+
+export const Towns_51190 = [
+    {
+        admCode: "51190103",
+        admCodeNm: "강원특별자치도 태백시 금천동",
+        lowestAdmCodeNm: "금천동",
+    },
+    {
+        admCode: "51190106",
+        admCodeNm: "강원특별자치도 태백시 동점동",
+        lowestAdmCodeNm: "동점동",
+    },
+    {
+        admCode: "51190105",
+        admCodeNm: "강원특별자치도 태백시 문곡동",
+        lowestAdmCodeNm: "문곡동",
+    },
+    {
+        admCode: "51190113",
+        admCodeNm: "강원특별자치도 태백시 백산동",
+        lowestAdmCodeNm: "백산동",
+    },
+    {
+        admCode: "51190115",
+        admCodeNm: "강원특별자치도 태백시 상사미동",
+        lowestAdmCodeNm: "상사미동",
+    },
+    {
+        admCode: "51190107",
+        admCodeNm: "강원특별자치도 태백시 소도동",
+        lowestAdmCodeNm: "소도동",
+    },
+    {
+        admCode: "51190114",
+        admCodeNm: "강원특별자치도 태백시 원동",
+        lowestAdmCodeNm: "원동",
+    },
+    {
+        admCode: "51190102",
+        admCodeNm: "강원특별자치도 태백시 장성동",
+        lowestAdmCodeNm: "장성동",
+    },
+    {
+        admCode: "51190110",
+        admCodeNm: "강원특별자치도 태백시 적각동",
+        lowestAdmCodeNm: "적각동",
+    },
+    {
+        admCode: "51190117",
+        admCodeNm: "강원특별자치도 태백시 조탄동",
+        lowestAdmCodeNm: "조탄동",
+    },
+    {
+        admCode: "51190111",
+        admCodeNm: "강원특별자치도 태백시 창죽동",
+        lowestAdmCodeNm: "창죽동",
+    },
+    {
+        admCode: "51190104",
+        admCodeNm: "강원특별자치도 태백시 철암동",
+        lowestAdmCodeNm: "철암동",
+    },
+    {
+        admCode: "51190112",
+        admCodeNm: "강원특별자치도 태백시 통동",
+        lowestAdmCodeNm: "통동",
+    },
+    {
+        admCode: "51190116",
+        admCodeNm: "강원특별자치도 태백시 하사미동",
+        lowestAdmCodeNm: "하사미동",
+    },
+    {
+        admCode: "51190108",
+        admCodeNm: "강원특별자치도 태백시 혈동",
+        lowestAdmCodeNm: "혈동",
+    },
+    {
+        admCode: "51190109",
+        admCodeNm: "강원특별자치도 태백시 화전동",
+        lowestAdmCodeNm: "화전동",
+    },
+    {
+        admCode: "51190101",
+        admCodeNm: "강원특별자치도 태백시 황지동",
+        lowestAdmCodeNm: "황지동",
+    },
+];
+
+export const Towns_51760 = [
+    {
+        admCode: "51760380",
+        admCodeNm: "강원특별자치도 평창군 대관령면",
+        lowestAdmCodeNm: "대관령면",
+    },
+    {
+        admCode: "51760330",
+        admCodeNm: "강원특별자치도 평창군 대화면",
+        lowestAdmCodeNm: "대화면",
+    },
+    {
+        admCode: "51760310",
+        admCodeNm: "강원특별자치도 평창군 미탄면",
+        lowestAdmCodeNm: "미탄면",
+    },
+    {
+        admCode: "51760320",
+        admCodeNm: "강원특별자치도 평창군 방림면",
+        lowestAdmCodeNm: "방림면",
+    },
+    {
+        admCode: "51760340",
+        admCodeNm: "강원특별자치도 평창군 봉평면",
+        lowestAdmCodeNm: "봉평면",
+    },
+    {
+        admCode: "51760350",
+        admCodeNm: "강원특별자치도 평창군 용평면",
+        lowestAdmCodeNm: "용평면",
+    },
+    {
+        admCode: "51760360",
+        admCodeNm: "강원특별자치도 평창군 진부면",
+        lowestAdmCodeNm: "진부면",
+    },
+    {
+        admCode: "51760250",
+        admCodeNm: "강원특별자치도 평창군 평창읍",
+        lowestAdmCodeNm: "평창읍",
+    },
+];
+
+export const Towns_51720 = [
+    {
+        admCode: "51720360",
+        admCodeNm: "강원특별자치도 홍천군 남면",
+        lowestAdmCodeNm: "남면",
+    },
+    {
+        admCode: "51720390",
+        admCodeNm: "강원특별자치도 홍천군 내면",
+        lowestAdmCodeNm: "내면",
+    },
+    {
+        admCode: "51720330",
+        admCodeNm: "강원특별자치도 홍천군 내촌면",
+        lowestAdmCodeNm: "내촌면",
+    },
+    {
+        admCode: "51720320",
+        admCodeNm: "강원특별자치도 홍천군 두촌면",
+        lowestAdmCodeNm: "두촌면",
+    },
+    {
+        admCode: "51720380",
+        admCodeNm: "강원특별자치도 홍천군 북방면",
+        lowestAdmCodeNm: "북방면",
+    },
+    {
+        admCode: "51720370",
+        admCodeNm: "강원특별자치도 홍천군 서면",
+        lowestAdmCodeNm: "서면",
+    },
+    {
+        admCode: "51720340",
+        admCodeNm: "강원특별자치도 홍천군 서석면",
+        lowestAdmCodeNm: "서석면",
+    },
+    {
+        admCode: "51720352",
+        admCodeNm: "강원특별자치도 홍천군 영귀미면",
+        lowestAdmCodeNm: "영귀미면",
+    },
+    {
+        admCode: "51720250",
+        admCodeNm: "강원특별자치도 홍천군 홍천읍",
+        lowestAdmCodeNm: "홍천읍",
+    },
+    {
+        admCode: "51720310",
+        admCodeNm: "강원특별자치도 홍천군 화촌면",
+        lowestAdmCodeNm: "화촌면",
+    },
+];
+
+export const Towns_51790 = [
+    {
+        admCode: "51790310",
+        admCodeNm: "강원특별자치도 화천군 간동면",
+        lowestAdmCodeNm: "간동면",
+    },
+    {
+        admCode: "51790340",
+        admCodeNm: "강원특별자치도 화천군 사내면",
+        lowestAdmCodeNm: "사내면",
+    },
+    {
+        admCode: "51790330",
+        admCodeNm: "강원특별자치도 화천군 상서면",
+        lowestAdmCodeNm: "상서면",
+    },
+    {
+        admCode: "51790320",
+        admCodeNm: "강원특별자치도 화천군 하남면",
+        lowestAdmCodeNm: "하남면",
+    },
+    {
+        admCode: "51790250",
+        admCodeNm: "강원특별자치도 화천군 화천읍",
+        lowestAdmCodeNm: "화천읍",
+    },
+];
+
+export const Towns_51730 = [
+    {
+        admCode: "51730340",
+        admCodeNm: "강원특별자치도 횡성군 갑천면",
+        lowestAdmCodeNm: "갑천면",
+    },
+    {
+        admCode: "51730380",
+        admCodeNm: "강원특별자치도 횡성군 강림면",
+        lowestAdmCodeNm: "강림면",
+    },
+    {
+        admCode: "51730360",
+        admCodeNm: "강원특별자치도 횡성군 공근면",
+        lowestAdmCodeNm: "공근면",
+    },
+    {
+        admCode: "51730330",
+        admCodeNm: "강원특별자치도 횡성군 둔내면",
+        lowestAdmCodeNm: "둔내면",
+    },
+    {
+        admCode: "51730370",
+        admCodeNm: "강원특별자치도 횡성군 서원면",
+        lowestAdmCodeNm: "서원면",
+    },
+    {
+        admCode: "51730320",
+        admCodeNm: "강원특별자치도 횡성군 안흥면",
+        lowestAdmCodeNm: "안흥면",
+    },
+    {
+        admCode: "51730310",
+        admCodeNm: "강원특별자치도 횡성군 우천면",
+        lowestAdmCodeNm: "우천면",
+    },
+    {
+        admCode: "51730350",
+        admCodeNm: "강원특별자치도 횡성군 청일면",
+        lowestAdmCodeNm: "청일면",
+    },
+    {
+        admCode: "51730250",
+        admCodeNm: "강원특별자치도 횡성군 횡성읍",
+        lowestAdmCodeNm: "횡성읍",
+    },
+];
+
+export const Towns_52790 = [
+    {
+        admCode: "52790310",
+        admCodeNm: "전북특별자치도 고창군 고수면",
+        lowestAdmCodeNm: "고수면",
+    },
+    {
+        admCode: "52790250",
+        admCodeNm: "전북특별자치도 고창군 고창읍",
+        lowestAdmCodeNm: "고창읍",
+    },
+    {
+        admCode: "52790340",
+        admCodeNm: "전북특별자치도 고창군 공음면",
+        lowestAdmCodeNm: "공음면",
+    },
+    {
+        admCode: "52790380",
+        admCodeNm: "전북특별자치도 고창군 대산면",
+        lowestAdmCodeNm: "대산면",
+    },
+    {
+        admCode: "52790330",
+        admCodeNm: "전북특별자치도 고창군 무장면",
+        lowestAdmCodeNm: "무장면",
+    },
+    {
+        admCode: "52790430",
+        admCodeNm: "전북특별자치도 고창군 부안면",
+        lowestAdmCodeNm: "부안면",
+    },
+    {
+        admCode: "52790350",
+        admCodeNm: "전북특별자치도 고창군 상하면",
+        lowestAdmCodeNm: "상하면",
+    },
+    {
+        admCode: "52790410",
+        admCodeNm: "전북특별자치도 고창군 성내면",
+        lowestAdmCodeNm: "성내면",
+    },
+    {
+        admCode: "52790370",
+        admCodeNm: "전북특별자치도 고창군 성송면",
+        lowestAdmCodeNm: "성송면",
+    },
+    {
+        admCode: "52790420",
+        admCodeNm: "전북특별자치도 고창군 신림면",
+        lowestAdmCodeNm: "신림면",
+    },
+    {
+        admCode: "52790390",
+        admCodeNm: "전북특별자치도 고창군 심원면",
+        lowestAdmCodeNm: "심원면",
+    },
+    {
+        admCode: "52790320",
+        admCodeNm: "전북특별자치도 고창군 아산면",
+        lowestAdmCodeNm: "아산면",
+    },
+    {
+        admCode: "52790360",
+        admCodeNm: "전북특별자치도 고창군 해리면",
+        lowestAdmCodeNm: "해리면",
+    },
+    {
+        admCode: "52790400",
+        admCodeNm: "전북특별자치도 고창군 흥덕면",
+        lowestAdmCodeNm: "흥덕면",
+    },
+];
+
+export const Towns_52130 = [
+    {
+        admCode: "52130117",
+        admCodeNm: "전북특별자치도 군산시 개복동",
+        lowestAdmCodeNm: "개복동",
+    },
+    {
+        admCode: "52130150",
+        admCodeNm: "전북특별자치도 군산시 개사동",
+        lowestAdmCodeNm: "개사동",
+    },
+    {
+        admCode: "52130139",
+        admCodeNm: "전북특별자치도 군산시 개정동",
+        lowestAdmCodeNm: "개정동",
+    },
+    {
+        admCode: "52130360",
+        admCodeNm: "전북특별자치도 군산시 개정면",
+        lowestAdmCodeNm: "개정면",
+    },
+    {
+        admCode: "52130136",
+        admCodeNm: "전북특별자치도 군산시 경암동",
+        lowestAdmCodeNm: "경암동",
+    },
+    {
+        admCode: "52130135",
+        admCodeNm: "전북특별자치도 군산시 경장동",
+        lowestAdmCodeNm: "경장동",
+    },
+    {
+        admCode: "52130137",
+        admCodeNm: "전북특별자치도 군산시 구암동",
+        lowestAdmCodeNm: "구암동",
+    },
+    {
+        admCode: "52130107",
+        admCodeNm: "전북특별자치도 군산시 금광동",
+        lowestAdmCodeNm: "금광동",
+    },
+    {
+        admCode: "52130103",
+        admCodeNm: "전북특별자치도 군산시 금동",
+        lowestAdmCodeNm: "금동",
+    },
+    {
+        admCode: "52130131",
+        admCodeNm: "전북특별자치도 군산시 금암동",
+        lowestAdmCodeNm: "금암동",
+    },
+    {
+        admCode: "52130144",
+        admCodeNm: "전북특별자치도 군산시 나운동",
+        lowestAdmCodeNm: "나운동",
+    },
+    {
+        admCode: "52130380",
+        admCodeNm: "전북특별자치도 군산시 나포면",
+        lowestAdmCodeNm: "나포면",
+    },
+    {
+        admCode: "52130152",
+        admCodeNm: "전북특별자치도 군산시 내초동",
+        lowestAdmCodeNm: "내초동",
+    },
+    {
+        admCode: "52130138",
+        admCodeNm: "전북특별자치도 군산시 내흥동",
+        lowestAdmCodeNm: "내흥동",
+    },
+    {
+        admCode: "52130127",
+        admCodeNm: "전북특별자치도 군산시 대명동",
+        lowestAdmCodeNm: "대명동",
+    },
+    {
+        admCode: "52130350",
+        admCodeNm: "전북특별자치도 군산시 대야면",
+        lowestAdmCodeNm: "대야면",
+    },
+    {
+        admCode: "52130132",
+        admCodeNm: "전북특별자치도 군산시 동흥남동",
+        lowestAdmCodeNm: "동흥남동",
+    },
+    {
+        admCode: "52130113",
+        admCodeNm: "전북특별자치도 군산시 둔율동",
+        lowestAdmCodeNm: "둔율동",
+    },
+    {
+        admCode: "52130115",
+        admCodeNm: "전북특별자치도 군산시 명산동",
+        lowestAdmCodeNm: "명산동",
+    },
+    {
+        admCode: "52130110",
+        admCodeNm: "전북특별자치도 군산시 문화동",
+        lowestAdmCodeNm: "문화동",
+    },
+    {
+        admCode: "52130145",
+        admCodeNm: "전북특별자치도 군산시 미룡동",
+        lowestAdmCodeNm: "미룡동",
+    },
+    {
+        admCode: "52130129",
+        admCodeNm: "전북특별자치도 군산시 미원동",
+        lowestAdmCodeNm: "미원동",
+    },
+    {
+        admCode: "52130142",
+        admCodeNm: "전북특별자치도 군산시 미장동",
+        lowestAdmCodeNm: "미장동",
+    },
+    {
+        admCode: "52130148",
+        admCodeNm: "전북특별자치도 군산시 비응도동",
+        lowestAdmCodeNm: "비응도동",
+    },
+    {
+        admCode: "52130140",
+        admCodeNm: "전북특별자치도 군산시 사정동",
+        lowestAdmCodeNm: "사정동",
+    },
+    {
+        admCode: "52130151",
+        admCodeNm: "전북특별자치도 군산시 산북동",
+        lowestAdmCodeNm: "산북동",
+    },
+    {
+        admCode: "52130111",
+        admCodeNm: "전북특별자치도 군산시 삼학동",
+        lowestAdmCodeNm: "삼학동",
+    },
+    {
+        admCode: "52130340",
+        admCodeNm: "전북특별자치도 군산시 서수면",
+        lowestAdmCodeNm: "서수면",
+    },
+    {
+        admCode: "52130133",
+        admCodeNm: "전북특별자치도 군산시 서흥남동",
+        lowestAdmCodeNm: "서흥남동",
+    },
+    {
+        admCode: "52130112",
+        admCodeNm: "전북특별자치도 군산시 선양동",
+        lowestAdmCodeNm: "선양동",
+    },
+    {
+        admCode: "52130370",
+        admCodeNm: "전북특별자치도 군산시 성산면",
+        lowestAdmCodeNm: "성산면",
+    },
+    {
+        admCode: "52130146",
+        admCodeNm: "전북특별자치도 군산시 소룡동",
+        lowestAdmCodeNm: "소룡동",
+    },
+    {
+        admCode: "52130116",
+        admCodeNm: "전북특별자치도 군산시 송창동",
+        lowestAdmCodeNm: "송창동",
+    },
+    {
+        admCode: "52130109",
+        admCodeNm: "전북특별자치도 군산시 송풍동",
+        lowestAdmCodeNm: "송풍동",
+    },
+    {
+        admCode: "52130141",
+        admCodeNm: "전북특별자치도 군산시 수송동",
+        lowestAdmCodeNm: "수송동",
+    },
+    {
+        admCode: "52130149",
+        admCodeNm: "전북특별자치도 군산시 신관동",
+        lowestAdmCodeNm: "신관동",
+    },
+    {
+        admCode: "52130123",
+        admCodeNm: "전북특별자치도 군산시 신영동",
+        lowestAdmCodeNm: "신영동",
+    },
+    {
+        admCode: "52130105",
+        admCodeNm: "전북특별자치도 군산시 신창동",
+        lowestAdmCodeNm: "신창동",
+    },
+    {
+        admCode: "52130108",
+        admCodeNm: "전북특별자치도 군산시 신풍동",
+        lowestAdmCodeNm: "신풍동",
+    },
+    {
+        admCode: "52130102",
+        admCodeNm: "전북특별자치도 군산시 신흥동",
+        lowestAdmCodeNm: "신흥동",
+    },
+    {
+        admCode: "52130122",
+        admCodeNm: "전북특별자치도 군산시 영동",
+        lowestAdmCodeNm: "영동",
+    },
+    {
+        admCode: "52130119",
+        admCodeNm: "전북특별자치도 군산시 영화동",
+        lowestAdmCodeNm: "영화동",
+    },
+    {
+        admCode: "52130106",
+        admCodeNm: "전북특별자치도 군산시 오룡동",
+        lowestAdmCodeNm: "오룡동",
+    },
+    {
+        admCode: "52130147",
+        admCodeNm: "전북특별자치도 군산시 오식도동",
+        lowestAdmCodeNm: "오식도동",
+    },
+    {
+        admCode: "52130250",
+        admCodeNm: "전북특별자치도 군산시 옥구읍",
+        lowestAdmCodeNm: "옥구읍",
+    },
+    {
+        admCode: "52130390",
+        admCodeNm: "전북특별자치도 군산시 옥도면",
+        lowestAdmCodeNm: "옥도면",
+    },
+    {
+        admCode: "52130310",
+        admCodeNm: "전북특별자치도 군산시 옥산면",
+        lowestAdmCodeNm: "옥산면",
+    },
+    {
+        admCode: "52130400",
+        admCodeNm: "전북특별자치도 군산시 옥서면",
+        lowestAdmCodeNm: "옥서면",
+    },
+    {
+        admCode: "52130104",
+        admCodeNm: "전북특별자치도 군산시 월명동",
+        lowestAdmCodeNm: "월명동",
+    },
+    {
+        admCode: "52130330",
+        admCodeNm: "전북특별자치도 군산시 임피면",
+        lowestAdmCodeNm: "임피면",
+    },
+    {
+        admCode: "52130120",
+        admCodeNm: "전북특별자치도 군산시 장미동",
+        lowestAdmCodeNm: "장미동",
+    },
+    {
+        admCode: "52130128",
+        admCodeNm: "전북특별자치도 군산시 장재동",
+        lowestAdmCodeNm: "장재동",
+    },
+    {
+        admCode: "52130134",
+        admCodeNm: "전북특별자치도 군산시 조촌동",
+        lowestAdmCodeNm: "조촌동",
+    },
+    {
+        admCode: "52130124",
+        admCodeNm: "전북특별자치도 군산시 죽성동",
+        lowestAdmCodeNm: "죽성동",
+    },
+    {
+        admCode: "52130130",
+        admCodeNm: "전북특별자치도 군산시 중동",
+        lowestAdmCodeNm: "중동",
+    },
+    {
+        admCode: "52130118",
+        admCodeNm: "전북특별자치도 군산시 중앙로1가",
+        lowestAdmCodeNm: "중앙로1가",
+    },
+    {
+        admCode: "52130121",
+        admCodeNm: "전북특별자치도 군산시 중앙로2가",
+        lowestAdmCodeNm: "중앙로2가",
+    },
+    {
+        admCode: "52130126",
+        admCodeNm: "전북특별자치도 군산시 중앙로3가",
+        lowestAdmCodeNm: "중앙로3가",
+    },
+    {
+        admCode: "52130143",
+        admCodeNm: "전북특별자치도 군산시 지곡동",
+        lowestAdmCodeNm: "지곡동",
+    },
+    {
+        admCode: "52130114",
+        admCodeNm: "전북특별자치도 군산시 창성동",
+        lowestAdmCodeNm: "창성동",
+    },
+    {
+        admCode: "52130125",
+        admCodeNm: "전북특별자치도 군산시 평화동",
+        lowestAdmCodeNm: "평화동",
+    },
+    {
+        admCode: "52130101",
+        admCodeNm: "전북특별자치도 군산시 해망동",
+        lowestAdmCodeNm: "해망동",
+    },
+    {
+        admCode: "52130320",
+        admCodeNm: "전북특별자치도 군산시 회현면",
+        lowestAdmCodeNm: "회현면",
+    },
+];
+
+export const Towns_52210 = [
+    {
+        admCode: "52210111",
+        admCodeNm: "전북특별자치도 김제시 갈공동",
+        lowestAdmCodeNm: "갈공동",
+    },
+    {
+        admCode: "52210104",
+        admCodeNm: "전북특별자치도 김제시 검산동",
+        lowestAdmCodeNm: "검산동",
+    },
+    {
+        admCode: "52210380",
+        admCodeNm: "전북특별자치도 김제시 공덕면",
+        lowestAdmCodeNm: "공덕면",
+    },
+    {
+        admCode: "52210460",
+        admCodeNm: "전북특별자치도 김제시 광활면",
+        lowestAdmCodeNm: "광활면",
+    },
+    {
+        admCode: "52210109",
+        admCodeNm: "전북특별자치도 김제시 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "52210420",
+        admCodeNm: "전북특별자치도 김제시 금구면",
+        lowestAdmCodeNm: "금구면",
+    },
+    {
+        admCode: "52210450",
+        admCodeNm: "전북특별자치도 김제시 금산면",
+        lowestAdmCodeNm: "금산면",
+    },
+    {
+        admCode: "52210117",
+        admCodeNm: "전북특별자치도 김제시 난봉동",
+        lowestAdmCodeNm: "난봉동",
+    },
+    {
+        admCode: "52210128",
+        admCodeNm: "전북특별자치도 김제시 도장동",
+        lowestAdmCodeNm: "도장동",
+    },
+    {
+        admCode: "52210250",
+        admCodeNm: "전북특별자치도 김제시 만경읍",
+        lowestAdmCodeNm: "만경읍",
+    },
+    {
+        admCode: "52210126",
+        admCodeNm: "전북특별자치도 김제시 명덕동",
+        lowestAdmCodeNm: "명덕동",
+    },
+    {
+        admCode: "52210350",
+        admCodeNm: "전북특별자치도 김제시 백구면",
+        lowestAdmCodeNm: "백구면",
+    },
+    {
+        admCode: "52210330",
+        admCodeNm: "전북특별자치도 김제시 백산면",
+        lowestAdmCodeNm: "백산면",
+    },
+    {
+        admCode: "52210106",
+        admCodeNm: "전북특별자치도 김제시 백학동",
+        lowestAdmCodeNm: "백학동",
+    },
+    {
+        admCode: "52210119",
+        admCodeNm: "전북특별자치도 김제시 복죽동",
+        lowestAdmCodeNm: "복죽동",
+    },
+    {
+        admCode: "52210430",
+        admCodeNm: "전북특별자치도 김제시 봉남면",
+        lowestAdmCodeNm: "봉남면",
+    },
+    {
+        admCode: "52210360",
+        admCodeNm: "전북특별자치도 김제시 부량면",
+        lowestAdmCodeNm: "부량면",
+    },
+    {
+        admCode: "52210114",
+        admCodeNm: "전북특별자치도 김제시 상동동",
+        lowestAdmCodeNm: "상동동",
+    },
+    {
+        admCode: "52210107",
+        admCodeNm: "전북특별자치도 김제시 서암동",
+        lowestAdmCodeNm: "서암동",
+    },
+    {
+        admCode: "52210129",
+        admCodeNm: "전북특별자치도 김제시 서정동",
+        lowestAdmCodeNm: "서정동",
+    },
+    {
+        admCode: "52210400",
+        admCodeNm: "전북특별자치도 김제시 성덕면",
+        lowestAdmCodeNm: "성덕면",
+    },
+    {
+        admCode: "52210105",
+        admCodeNm: "전북특별자치도 김제시 순동",
+        lowestAdmCodeNm: "순동",
+    },
+    {
+        admCode: "52210108",
+        admCodeNm: "전북특별자치도 김제시 신곡동",
+        lowestAdmCodeNm: "신곡동",
+    },
+    {
+        admCode: "52210122",
+        admCodeNm: "전북특별자치도 김제시 신덕동",
+        lowestAdmCodeNm: "신덕동",
+    },
+    {
+        admCode: "52210124",
+        admCodeNm: "전북특별자치도 김제시 신월동",
+        lowestAdmCodeNm: "신월동",
+    },
+    {
+        admCode: "52210102",
+        admCodeNm: "전북특별자치도 김제시 신풍동",
+        lowestAdmCodeNm: "신풍동",
+    },
+    {
+        admCode: "52210130",
+        admCodeNm: "전북특별자치도 김제시 양전동",
+        lowestAdmCodeNm: "양전동",
+    },
+    {
+        admCode: "52210125",
+        admCodeNm: "전북특별자치도 김제시 연정동",
+        lowestAdmCodeNm: "연정동",
+    },
+    {
+        admCode: "52210118",
+        admCodeNm: "전북특별자치도 김제시 오정동",
+        lowestAdmCodeNm: "오정동",
+    },
+    {
+        admCode: "52210110",
+        admCodeNm: "전북특별자치도 김제시 옥산동",
+        lowestAdmCodeNm: "옥산동",
+    },
+    {
+        admCode: "52210101",
+        admCodeNm: "전북특별자치도 김제시 요촌동",
+        lowestAdmCodeNm: "요촌동",
+    },
+    {
+        admCode: "52210103",
+        admCodeNm: "전북특별자치도 김제시 용동",
+        lowestAdmCodeNm: "용동",
+    },
+    {
+        admCode: "52210340",
+        admCodeNm: "전북특별자치도 김제시 용지면",
+        lowestAdmCodeNm: "용지면",
+    },
+    {
+        admCode: "52210123",
+        admCodeNm: "전북특별자치도 김제시 월봉동",
+        lowestAdmCodeNm: "월봉동",
+    },
+    {
+        admCode: "52210115",
+        admCodeNm: "전북특별자치도 김제시 월성동",
+        lowestAdmCodeNm: "월성동",
+    },
+    {
+        admCode: "52210120",
+        admCodeNm: "전북특별자치도 김제시 입석동",
+        lowestAdmCodeNm: "입석동",
+    },
+    {
+        admCode: "52210121",
+        admCodeNm: "전북특별자치도 김제시 장화동",
+        lowestAdmCodeNm: "장화동",
+    },
+    {
+        admCode: "52210127",
+        admCodeNm: "전북특별자치도 김제시 제월동",
+        lowestAdmCodeNm: "제월동",
+    },
+    {
+        admCode: "52210320",
+        admCodeNm: "전북특별자치도 김제시 죽산면",
+        lowestAdmCodeNm: "죽산면",
+    },
+    {
+        admCode: "52210410",
+        admCodeNm: "전북특별자치도 김제시 진봉면",
+        lowestAdmCodeNm: "진봉면",
+    },
+    {
+        admCode: "52210390",
+        admCodeNm: "전북특별자치도 김제시 청하면",
+        lowestAdmCodeNm: "청하면",
+    },
+    {
+        admCode: "52210112",
+        admCodeNm: "전북특별자치도 김제시 하동",
+        lowestAdmCodeNm: "하동",
+    },
+    {
+        admCode: "52210116",
+        admCodeNm: "전북특별자치도 김제시 황산동",
+        lowestAdmCodeNm: "황산동",
+    },
+    {
+        admCode: "52210440",
+        admCodeNm: "전북특별자치도 김제시 황산면",
+        lowestAdmCodeNm: "황산면",
+    },
+    {
+        admCode: "52210113",
+        admCodeNm: "전북특별자치도 김제시 흥사동",
+        lowestAdmCodeNm: "흥사동",
+    },
+];
+
+export const Towns_52190 = [
+    {
+        admCode: "52190120",
+        admCodeNm: "전북특별자치도 남원시 갈치동",
+        lowestAdmCodeNm: "갈치동",
+    },
+    {
+        admCode: "52190118",
+        admCodeNm: "전북특별자치도 남원시 고죽동",
+        lowestAdmCodeNm: "고죽동",
+    },
+    {
+        admCode: "52190113",
+        admCodeNm: "전북특별자치도 남원시 광치동",
+        lowestAdmCodeNm: "광치동",
+    },
+    {
+        admCode: "52190106",
+        admCodeNm: "전북특별자치도 남원시 금동",
+        lowestAdmCodeNm: "금동",
+    },
+    {
+        admCode: "52190350",
+        admCodeNm: "전북특별자치도 남원시 금지면",
+        lowestAdmCodeNm: "금지면",
+    },
+    {
+        admCode: "52190114",
+        admCodeNm: "전북특별자치도 남원시 내척동",
+        lowestAdmCodeNm: "내척동",
+    },
+    {
+        admCode: "52190121",
+        admCodeNm: "전북특별자치도 남원시 노암동",
+        lowestAdmCodeNm: "노암동",
+    },
+    {
+        admCode: "52190360",
+        admCodeNm: "전북특별자치도 남원시 대강면",
+        lowestAdmCodeNm: "대강면",
+    },
+    {
+        admCode: "52190370",
+        admCodeNm: "전북특별자치도 남원시 대산면",
+        lowestAdmCodeNm: "대산면",
+    },
+    {
+        admCode: "52190390",
+        admCodeNm: "전북특별자치도 남원시 덕과면",
+        lowestAdmCodeNm: "덕과면",
+    },
+    {
+        admCode: "52190116",
+        admCodeNm: "전북특별자치도 남원시 도통동",
+        lowestAdmCodeNm: "도통동",
+    },
+    {
+        admCode: "52190101",
+        admCodeNm: "전북특별자치도 남원시 동충동",
+        lowestAdmCodeNm: "동충동",
+    },
+    {
+        admCode: "52190400",
+        admCodeNm: "전북특별자치도 남원시 보절면",
+        lowestAdmCodeNm: "보절면",
+    },
+    {
+        admCode: "52190380",
+        admCodeNm: "전북특별자치도 남원시 사매면",
+        lowestAdmCodeNm: "사매면",
+    },
+    {
+        admCode: "52190115",
+        admCodeNm: "전북특별자치도 남원시 산곡동",
+        lowestAdmCodeNm: "산곡동",
+    },
+    {
+        admCode: "52190460",
+        admCodeNm: "전북특별자치도 남원시 산내면",
+        lowestAdmCodeNm: "산내면",
+    },
+    {
+        admCode: "52190410",
+        admCodeNm: "전북특별자치도 남원시 산동면",
+        lowestAdmCodeNm: "산동면",
+    },
+    {
+        admCode: "52190330",
+        admCodeNm: "전북특별자치도 남원시 송동면",
+        lowestAdmCodeNm: "송동면",
+    },
+    {
+        admCode: "52190320",
+        admCodeNm: "전북특별자치도 남원시 수지면",
+        lowestAdmCodeNm: "수지면",
+    },
+    {
+        admCode: "52190119",
+        admCodeNm: "전북특별자치도 남원시 식정동",
+        lowestAdmCodeNm: "식정동",
+    },
+    {
+        admCode: "52190109",
+        admCodeNm: "전북특별자치도 남원시 신정동",
+        lowestAdmCodeNm: "신정동",
+    },
+    {
+        admCode: "52190123",
+        admCodeNm: "전북특별자치도 남원시 신촌동",
+        lowestAdmCodeNm: "신촌동",
+    },
+    {
+        admCode: "52190104",
+        admCodeNm: "전북특별자치도 남원시 쌍교동",
+        lowestAdmCodeNm: "쌍교동",
+    },
+    {
+        admCode: "52190450",
+        admCodeNm: "전북특별자치도 남원시 아영면",
+        lowestAdmCodeNm: "아영면",
+    },
+    {
+        admCode: "52190122",
+        admCodeNm: "전북특별자치도 남원시 어현동",
+        lowestAdmCodeNm: "어현동",
+    },
+    {
+        admCode: "52190108",
+        admCodeNm: "전북특별자치도 남원시 왕정동",
+        lowestAdmCodeNm: "왕정동",
+    },
+    {
+        admCode: "52190112",
+        admCodeNm: "전북특별자치도 남원시 용정동",
+        lowestAdmCodeNm: "용정동",
+    },
+    {
+        admCode: "52190250",
+        admCodeNm: "전북특별자치도 남원시 운봉읍",
+        lowestAdmCodeNm: "운봉읍",
+    },
+    {
+        admCode: "52190117",
+        admCodeNm: "전북특별자치도 남원시 월락동",
+        lowestAdmCodeNm: "월락동",
+    },
+    {
+        admCode: "52190420",
+        admCodeNm: "전북특별자치도 남원시 이백면",
+        lowestAdmCodeNm: "이백면",
+    },
+    {
+        admCode: "52190470",
+        admCodeNm: "전북특별자치도 남원시 인월면",
+        lowestAdmCodeNm: "인월면",
+    },
+    {
+        admCode: "52190107",
+        admCodeNm: "전북특별자치도 남원시 조산동",
+        lowestAdmCodeNm: "조산동",
+    },
+    {
+        admCode: "52190340",
+        admCodeNm: "전북특별자치도 남원시 주생면",
+        lowestAdmCodeNm: "주생면",
+    },
+    {
+        admCode: "52190310",
+        admCodeNm: "전북특별자치도 남원시 주천면",
+        lowestAdmCodeNm: "주천면",
+    },
+    {
+        admCode: "52190103",
+        admCodeNm: "전북특별자치도 남원시 죽항동",
+        lowestAdmCodeNm: "죽항동",
+    },
+    {
+        admCode: "52190105",
+        admCodeNm: "전북특별자치도 남원시 천거동",
+        lowestAdmCodeNm: "천거동",
+    },
+    {
+        admCode: "52190102",
+        admCodeNm: "전북특별자치도 남원시 하정동",
+        lowestAdmCodeNm: "하정동",
+    },
+    {
+        admCode: "52190111",
+        admCodeNm: "전북특별자치도 남원시 향교동",
+        lowestAdmCodeNm: "향교동",
+    },
+    {
+        admCode: "52190110",
+        admCodeNm: "전북특별자치도 남원시 화정동",
+        lowestAdmCodeNm: "화정동",
+    },
+];
+
+export const Towns_52730 = [
+    {
+        admCode: "52730250",
+        admCodeNm: "전북특별자치도 무주군 무주읍",
+        lowestAdmCodeNm: "무주읍",
+    },
+    {
+        admCode: "52730310",
+        admCodeNm: "전북특별자치도 무주군 무풍면",
+        lowestAdmCodeNm: "무풍면",
+    },
+    {
+        admCode: "52730350",
+        admCodeNm: "전북특별자치도 무주군 부남면",
+        lowestAdmCodeNm: "부남면",
+    },
+    {
+        admCode: "52730320",
+        admCodeNm: "전북특별자치도 무주군 설천면",
+        lowestAdmCodeNm: "설천면",
+    },
+    {
+        admCode: "52730340",
+        admCodeNm: "전북특별자치도 무주군 안성면",
+        lowestAdmCodeNm: "안성면",
+    },
+    {
+        admCode: "52730330",
+        admCodeNm: "전북특별자치도 무주군 적상면",
+        lowestAdmCodeNm: "적상면",
+    },
+];
+
+export const Towns_52800 = [
+    {
+        admCode: "52800340",
+        admCodeNm: "전북특별자치도 부안군 계화면",
+        lowestAdmCodeNm: "계화면",
+    },
+    {
+        admCode: "52800320",
+        admCodeNm: "전북특별자치도 부안군 동진면",
+        lowestAdmCodeNm: "동진면",
+    },
+    {
+        admCode: "52800380",
+        admCodeNm: "전북특별자치도 부안군 백산면",
+        lowestAdmCodeNm: "백산면",
+    },
+    {
+        admCode: "52800360",
+        admCodeNm: "전북특별자치도 부안군 변산면",
+        lowestAdmCodeNm: "변산면",
+    },
+    {
+        admCode: "52800350",
+        admCodeNm: "전북특별자치도 부안군 보안면",
+        lowestAdmCodeNm: "보안면",
+    },
+    {
+        admCode: "52800250",
+        admCodeNm: "전북특별자치도 부안군 부안읍",
+        lowestAdmCodeNm: "부안읍",
+    },
+    {
+        admCode: "52800390",
+        admCodeNm: "전북특별자치도 부안군 상서면",
+        lowestAdmCodeNm: "상서면",
+    },
+    {
+        admCode: "52800420",
+        admCodeNm: "전북특별자치도 부안군 위도면",
+        lowestAdmCodeNm: "위도면",
+    },
+    {
+        admCode: "52800310",
+        admCodeNm: "전북특별자치도 부안군 주산면",
+        lowestAdmCodeNm: "주산면",
+    },
+    {
+        admCode: "52800410",
+        admCodeNm: "전북특별자치도 부안군 줄포면",
+        lowestAdmCodeNm: "줄포면",
+    },
+    {
+        admCode: "52800370",
+        admCodeNm: "전북특별자치도 부안군 진서면",
+        lowestAdmCodeNm: "진서면",
+    },
+    {
+        admCode: "52800400",
+        admCodeNm: "전북특별자치도 부안군 하서면",
+        lowestAdmCodeNm: "하서면",
+    },
+    {
+        admCode: "52800330",
+        admCodeNm: "전북특별자치도 부안군 행안면",
+        lowestAdmCodeNm: "행안면",
+    },
+];
+
+export const Towns_52770 = [
+    {
+        admCode: "52770400",
+        admCodeNm: "전북특별자치도 순창군 구림면",
+        lowestAdmCodeNm: "구림면",
+    },
+    {
+        admCode: "52770340",
+        admCodeNm: "전북특별자치도 순창군 금과면",
+        lowestAdmCodeNm: "금과면",
+    },
+    {
+        admCode: "52770320",
+        admCodeNm: "전북특별자치도 순창군 동계면",
+        lowestAdmCodeNm: "동계면",
+    },
+    {
+        admCode: "52770370",
+        admCodeNm: "전북특별자치도 순창군 복흥면",
+        lowestAdmCodeNm: "복흥면",
+    },
+    {
+        admCode: "52770250",
+        admCodeNm: "전북특별자치도 순창군 순창읍",
+        lowestAdmCodeNm: "순창읍",
+    },
+    {
+        admCode: "52770360",
+        admCodeNm: "전북특별자치도 순창군 쌍치면",
+        lowestAdmCodeNm: "쌍치면",
+    },
+    {
+        admCode: "52770390",
+        admCodeNm: "전북특별자치도 순창군 유등면",
+        lowestAdmCodeNm: "유등면",
+    },
+    {
+        admCode: "52770310",
+        admCodeNm: "전북특별자치도 순창군 인계면",
+        lowestAdmCodeNm: "인계면",
+    },
+    {
+        admCode: "52770380",
+        admCodeNm: "전북특별자치도 순창군 적성면",
+        lowestAdmCodeNm: "적성면",
+    },
+    {
+        admCode: "52770350",
+        admCodeNm: "전북특별자치도 순창군 팔덕면",
+        lowestAdmCodeNm: "팔덕면",
+    },
+    {
+        admCode: "52770330",
+        admCodeNm: "전북특별자치도 순창군 풍산면",
+        lowestAdmCodeNm: "풍산면",
+    },
+];
+
+export const Towns_52710 = [
+    {
+        admCode: "52710410",
+        admCodeNm: "전북특별자치도 완주군 경천면",
+        lowestAdmCodeNm: "경천면",
+    },
+    {
+        admCode: "52710360",
+        admCodeNm: "전북특별자치도 완주군 고산면",
+        lowestAdmCodeNm: "고산면",
+    },
+    {
+        admCode: "52710350",
+        admCodeNm: "전북특별자치도 완주군 구이면",
+        lowestAdmCodeNm: "구이면",
+    },
+    {
+        admCode: "52710400",
+        admCodeNm: "전북특별자치도 완주군 동상면",
+        lowestAdmCodeNm: "동상면",
+    },
+    {
+        admCode: "52710253",
+        admCodeNm: "전북특별자치도 완주군 봉동읍",
+        lowestAdmCodeNm: "봉동읍",
+    },
+    {
+        admCode: "52710370",
+        admCodeNm: "전북특별자치도 완주군 비봉면",
+        lowestAdmCodeNm: "비봉면",
+    },
+    {
+        admCode: "52710250",
+        admCodeNm: "전북특별자치도 완주군 삼례읍",
+        lowestAdmCodeNm: "삼례읍",
+    },
+    {
+        admCode: "52710320",
+        admCodeNm: "전북특별자치도 완주군 상관면",
+        lowestAdmCodeNm: "상관면",
+    },
+    {
+        admCode: "52710340",
+        admCodeNm: "전북특별자치도 완주군 소양면",
+        lowestAdmCodeNm: "소양면",
+    },
+    {
+        admCode: "52710256",
+        admCodeNm: "전북특별자치도 완주군 용진읍",
+        lowestAdmCodeNm: "용진읍",
+    },
+    {
+        admCode: "52710380",
+        admCodeNm: "전북특별자치도 완주군 운주면",
+        lowestAdmCodeNm: "운주면",
+    },
+    {
+        admCode: "52710330",
+        admCodeNm: "전북특별자치도 완주군 이서면",
+        lowestAdmCodeNm: "이서면",
+    },
+    {
+        admCode: "52710390",
+        admCodeNm: "전북특별자치도 완주군 화산면",
+        lowestAdmCodeNm: "화산면",
+    },
+];
+
+export const Towns_52140 = [
+    {
+        admCode: "52140107",
+        admCodeNm: "전북특별자치도 익산시 갈산동",
+        lowestAdmCodeNm: "갈산동",
+    },
+    {
+        admCode: "52140125",
+        admCodeNm: "전북특별자치도 익산시 금강동",
+        lowestAdmCodeNm: "금강동",
+    },
+    {
+        admCode: "52140400",
+        admCodeNm: "전북특별자치도 익산시 금마면",
+        lowestAdmCodeNm: "금마면",
+    },
+    {
+        admCode: "52140113",
+        admCodeNm: "전북특별자치도 익산시 남중동",
+        lowestAdmCodeNm: "남중동",
+    },
+    {
+        admCode: "52140370",
+        admCodeNm: "전북특별자치도 익산시 낭산면",
+        lowestAdmCodeNm: "낭산면",
+    },
+    {
+        admCode: "52140128",
+        admCodeNm: "전북특별자치도 익산시 덕기동",
+        lowestAdmCodeNm: "덕기동",
+    },
+    {
+        admCode: "52140111",
+        admCodeNm: "전북특별자치도 익산시 동산동",
+        lowestAdmCodeNm: "동산동",
+    },
+    {
+        admCode: "52140112",
+        admCodeNm: "전북특별자치도 익산시 마동",
+        lowestAdmCodeNm: "마동",
+    },
+    {
+        admCode: "52140118",
+        admCodeNm: "전북특별자치도 익산시 만석동",
+        lowestAdmCodeNm: "만석동",
+    },
+    {
+        admCode: "52140380",
+        admCodeNm: "전북특별자치도 익산시 망성면",
+        lowestAdmCodeNm: "망성면",
+    },
+    {
+        admCode: "52140114",
+        admCodeNm: "전북특별자치도 익산시 모현동1가",
+        lowestAdmCodeNm: "모현동1가",
+    },
+    {
+        admCode: "52140115",
+        admCodeNm: "전북특별자치도 익산시 모현동2가",
+        lowestAdmCodeNm: "모현동2가",
+    },
+    {
+        admCode: "52140117",
+        admCodeNm: "전북특별자치도 익산시 목천동",
+        lowestAdmCodeNm: "목천동",
+    },
+    {
+        admCode: "52140134",
+        admCodeNm: "전북특별자치도 익산시 부송동",
+        lowestAdmCodeNm: "부송동",
+    },
+    {
+        admCode: "52140430",
+        admCodeNm: "전북특별자치도 익산시 삼기면",
+        lowestAdmCodeNm: "삼기면",
+    },
+    {
+        admCode: "52140136",
+        admCodeNm: "전북특별자치도 익산시 석암동",
+        lowestAdmCodeNm: "석암동",
+    },
+    {
+        admCode: "52140129",
+        admCodeNm: "전북특별자치도 익산시 석왕동",
+        lowestAdmCodeNm: "석왕동",
+    },
+    {
+        admCode: "52140126",
+        admCodeNm: "전북특별자치도 익산시 석탄동",
+        lowestAdmCodeNm: "석탄동",
+    },
+    {
+        admCode: "52140350",
+        admCodeNm: "전북특별자치도 익산시 성당면",
+        lowestAdmCodeNm: "성당면",
+    },
+    {
+        admCode: "52140116",
+        admCodeNm: "전북특별자치도 익산시 송학동",
+        lowestAdmCodeNm: "송학동",
+    },
+    {
+        admCode: "52140121",
+        admCodeNm: "전북특별자치도 익산시 신동",
+        lowestAdmCodeNm: "신동",
+    },
+    {
+        admCode: "52140120",
+        admCodeNm: "전북특별자치도 익산시 신용동",
+        lowestAdmCodeNm: "신용동",
+    },
+    {
+        admCode: "52140124",
+        admCodeNm: "전북특별자치도 익산시 신흥동",
+        lowestAdmCodeNm: "신흥동",
+    },
+    {
+        admCode: "52140123",
+        admCodeNm: "전북특별자치도 익산시 어양동",
+        lowestAdmCodeNm: "어양동",
+    },
+    {
+        admCode: "52140390",
+        admCodeNm: "전북특별자치도 익산시 여산면",
+        lowestAdmCodeNm: "여산면",
+    },
+    {
+        admCode: "52140122",
+        admCodeNm: "전북특별자치도 익산시 영등동",
+        lowestAdmCodeNm: "영등동",
+    },
+    {
+        admCode: "52140310",
+        admCodeNm: "전북특별자치도 익산시 오산면",
+        lowestAdmCodeNm: "오산면",
+    },
+    {
+        admCode: "52140410",
+        admCodeNm: "전북특별자치도 익산시 왕궁면",
+        lowestAdmCodeNm: "왕궁면",
+    },
+    {
+        admCode: "52140440",
+        admCodeNm: "전북특별자치도 익산시 용동면",
+        lowestAdmCodeNm: "용동면",
+    },
+    {
+        admCode: "52140360",
+        admCodeNm: "전북특별자치도 익산시 용안면",
+        lowestAdmCodeNm: "용안면",
+    },
+    {
+        admCode: "52140135",
+        admCodeNm: "전북특별자치도 익산시 용제동",
+        lowestAdmCodeNm: "용제동",
+    },
+    {
+        admCode: "52140340",
+        admCodeNm: "전북특별자치도 익산시 웅포면",
+        lowestAdmCodeNm: "웅포면",
+    },
+    {
+        admCode: "52140133",
+        admCodeNm: "전북특별자치도 익산시 월성동",
+        lowestAdmCodeNm: "월성동",
+    },
+    {
+        admCode: "52140130",
+        admCodeNm: "전북특별자치도 익산시 은기동",
+        lowestAdmCodeNm: "은기동",
+    },
+    {
+        admCode: "52140109",
+        admCodeNm: "전북특별자치도 익산시 인화동1가",
+        lowestAdmCodeNm: "인화동1가",
+    },
+    {
+        admCode: "52140110",
+        admCodeNm: "전북특별자치도 익산시 인화동2가",
+        lowestAdmCodeNm: "인화동2가",
+    },
+    {
+        admCode: "52140132",
+        admCodeNm: "전북특별자치도 익산시 임상동",
+        lowestAdmCodeNm: "임상동",
+    },
+    {
+        admCode: "52140131",
+        admCodeNm: "전북특별자치도 익산시 정족동",
+        lowestAdmCodeNm: "정족동",
+    },
+    {
+        admCode: "52140108",
+        admCodeNm: "전북특별자치도 익산시 주현동",
+        lowestAdmCodeNm: "주현동",
+    },
+    {
+        admCode: "52140103",
+        admCodeNm: "전북특별자치도 익산시 중앙동1가",
+        lowestAdmCodeNm: "중앙동1가",
+    },
+    {
+        admCode: "52140104",
+        admCodeNm: "전북특별자치도 익산시 중앙동2가",
+        lowestAdmCodeNm: "중앙동2가",
+    },
+    {
+        admCode: "52140105",
+        admCodeNm: "전북특별자치도 익산시 중앙동3가",
+        lowestAdmCodeNm: "중앙동3가",
+    },
+    {
+        admCode: "52140101",
+        admCodeNm: "전북특별자치도 익산시 창인동1가",
+        lowestAdmCodeNm: "창인동1가",
+    },
+    {
+        admCode: "52140102",
+        admCodeNm: "전북특별자치도 익산시 창인동2가",
+        lowestAdmCodeNm: "창인동2가",
+    },
+    {
+        admCode: "52140420",
+        admCodeNm: "전북특별자치도 익산시 춘포면",
+        lowestAdmCodeNm: "춘포면",
+    },
+    {
+        admCode: "52140127",
+        admCodeNm: "전북특별자치도 익산시 팔봉동",
+        lowestAdmCodeNm: "팔봉동",
+    },
+    {
+        admCode: "52140106",
+        admCodeNm: "전북특별자치도 익산시 평화동",
+        lowestAdmCodeNm: "평화동",
+    },
+    {
+        admCode: "52140330",
+        admCodeNm: "전북특별자치도 익산시 함라면",
+        lowestAdmCodeNm: "함라면",
+    },
+    {
+        admCode: "52140250",
+        admCodeNm: "전북특별자치도 익산시 함열읍",
+        lowestAdmCodeNm: "함열읍",
+    },
+    {
+        admCode: "52140119",
+        admCodeNm: "전북특별자치도 익산시 현영동",
+        lowestAdmCodeNm: "현영동",
+    },
+    {
+        admCode: "52140320",
+        admCodeNm: "전북특별자치도 익산시 황등면",
+        lowestAdmCodeNm: "황등면",
+    },
+];
+
+export const Towns_52750 = [
+    {
+        admCode: "52750390",
+        admCodeNm: "전북특별자치도 임실군 강진면",
+        lowestAdmCodeNm: "강진면",
+    },
+    {
+        admCode: "52750380",
+        admCodeNm: "전북특별자치도 임실군 관촌면",
+        lowestAdmCodeNm: "관촌면",
+    },
+    {
+        admCode: "52750400",
+        admCodeNm: "전북특별자치도 임실군 덕치면",
+        lowestAdmCodeNm: "덕치면",
+    },
+    {
+        admCode: "52750370",
+        admCodeNm: "전북특별자치도 임실군 삼계면",
+        lowestAdmCodeNm: "삼계면",
+    },
+    {
+        admCode: "52750340",
+        admCodeNm: "전북특별자치도 임실군 성수면",
+        lowestAdmCodeNm: "성수면",
+    },
+    {
+        admCode: "52750360",
+        admCodeNm: "전북특별자치도 임실군 신덕면",
+        lowestAdmCodeNm: "신덕면",
+    },
+    {
+        admCode: "52750330",
+        admCodeNm: "전북특별자치도 임실군 신평면",
+        lowestAdmCodeNm: "신평면",
+    },
+    {
+        admCode: "52750355",
+        admCodeNm: "전북특별자치도 임실군 오수면",
+        lowestAdmCodeNm: "오수면",
+    },
+    {
+        admCode: "52750320",
+        admCodeNm: "전북특별자치도 임실군 운암면",
+        lowestAdmCodeNm: "운암면",
+    },
+    {
+        admCode: "52750250",
+        admCodeNm: "전북특별자치도 임실군 임실읍",
+        lowestAdmCodeNm: "임실읍",
+    },
+    {
+        admCode: "52750410",
+        admCodeNm: "전북특별자치도 임실군 지사면",
+        lowestAdmCodeNm: "지사면",
+    },
+    {
+        admCode: "52750310",
+        admCodeNm: "전북특별자치도 임실군 청웅면",
+        lowestAdmCodeNm: "청웅면",
+    },
+];
+
+export const Towns_52740 = [
+    {
+        admCode: "52740350",
+        admCodeNm: "전북특별자치도 장수군 계남면",
+        lowestAdmCodeNm: "계남면",
+    },
+    {
+        admCode: "52740360",
+        admCodeNm: "전북특별자치도 장수군 계북면",
+        lowestAdmCodeNm: "계북면",
+    },
+    {
+        admCode: "52740320",
+        admCodeNm: "전북특별자치도 장수군 번암면",
+        lowestAdmCodeNm: "번암면",
+    },
+    {
+        admCode: "52740310",
+        admCodeNm: "전북특별자치도 장수군 산서면",
+        lowestAdmCodeNm: "산서면",
+    },
+    {
+        admCode: "52740335",
+        admCodeNm: "전북특별자치도 장수군 장계면",
+        lowestAdmCodeNm: "장계면",
+    },
+    {
+        admCode: "52740250",
+        admCodeNm: "전북특별자치도 장수군 장수읍",
+        lowestAdmCodeNm: "장수읍",
+    },
+    {
+        admCode: "52740340",
+        admCodeNm: "전북특별자치도 장수군 천천면",
+        lowestAdmCodeNm: "천천면",
+    },
+];
+
+export const Towns_52113 = [
+    {
+        admCode: "52113135",
+        admCodeNm: "전북특별자치도 전주시 덕진구 강흥동",
+        lowestAdmCodeNm: "강흥동",
+    },
+    {
+        admCode: "52113129",
+        admCodeNm: "전북특별자치도 전주시 덕진구 고랑동",
+        lowestAdmCodeNm: "고랑동",
+    },
+    {
+        admCode: "52113112",
+        admCodeNm: "전북특별자치도 전주시 덕진구 금상동",
+        lowestAdmCodeNm: "금상동",
+    },
+    {
+        admCode: "52113107",
+        admCodeNm: "전북특별자치도 전주시 덕진구 금암동",
+        lowestAdmCodeNm: "금암동",
+    },
+    {
+        admCode: "52113137",
+        admCodeNm: "전북특별자치도 전주시 덕진구 남정동",
+        lowestAdmCodeNm: "남정동",
+    },
+    {
+        admCode: "52113105",
+        admCodeNm: "전북특별자치도 전주시 덕진구 덕진동1가",
+        lowestAdmCodeNm: "덕진동1가",
+    },
+    {
+        admCode: "52113106",
+        admCodeNm: "전북특별자치도 전주시 덕진구 덕진동2가",
+        lowestAdmCodeNm: "덕진동2가",
+    },
+    {
+        admCode: "52113136",
+        admCodeNm: "전북특별자치도 전주시 덕진구 도덕동",
+        lowestAdmCodeNm: "도덕동",
+    },
+    {
+        admCode: "52113134",
+        admCodeNm: "전북특별자치도 전주시 덕진구 도도동",
+        lowestAdmCodeNm: "도도동",
+    },
+    {
+        admCode: "52113131",
+        admCodeNm: "전북특별자치도 전주시 덕진구 만성동",
+        lowestAdmCodeNm: "만성동",
+    },
+    {
+        admCode: "52113123",
+        admCodeNm: "전북특별자치도 전주시 덕진구 반월동",
+        lowestAdmCodeNm: "반월동",
+    },
+    {
+        admCode: "52113111",
+        admCodeNm: "전북특별자치도 전주시 덕진구 산정동",
+        lowestAdmCodeNm: "산정동",
+    },
+    {
+        admCode: "52113126",
+        admCodeNm: "전북특별자치도 전주시 덕진구 성덕동",
+        lowestAdmCodeNm: "성덕동",
+    },
+    {
+        admCode: "52113121",
+        admCodeNm: "전북특별자치도 전주시 덕진구 송천동1가",
+        lowestAdmCodeNm: "송천동1가",
+    },
+    {
+        admCode: "52113122",
+        admCodeNm: "전북특별자치도 전주시 덕진구 송천동2가",
+        lowestAdmCodeNm: "송천동2가",
+    },
+    {
+        admCode: "52113130",
+        admCodeNm: "전북특별자치도 전주시 덕진구 여의동",
+        lowestAdmCodeNm: "여의동",
+    },
+    {
+        admCode: "52113139",
+        admCodeNm: "전북특별자치도 전주시 덕진구 여의동2가",
+        lowestAdmCodeNm: "여의동2가",
+    },
+    {
+        admCode: "52113125",
+        admCodeNm: "전북특별자치도 전주시 덕진구 용정동",
+        lowestAdmCodeNm: "용정동",
+    },
+    {
+        admCode: "52113113",
+        admCodeNm: "전북특별자치도 전주시 덕진구 우아동1가",
+        lowestAdmCodeNm: "우아동1가",
+    },
+    {
+        admCode: "52113114",
+        admCodeNm: "전북특별자치도 전주시 덕진구 우아동2가",
+        lowestAdmCodeNm: "우아동2가",
+    },
+    {
+        admCode: "52113115",
+        admCodeNm: "전북특별자치도 전주시 덕진구 우아동3가",
+        lowestAdmCodeNm: "우아동3가",
+    },
+    {
+        admCode: "52113127",
+        admCodeNm: "전북특별자치도 전주시 덕진구 원동",
+        lowestAdmCodeNm: "원동",
+    },
+    {
+        admCode: "52113103",
+        admCodeNm: "전북특별자치도 전주시 덕진구 인후동1가",
+        lowestAdmCodeNm: "인후동1가",
+    },
+    {
+        admCode: "52113104",
+        admCodeNm: "전북특별자치도 전주시 덕진구 인후동2가",
+        lowestAdmCodeNm: "인후동2가",
+    },
+    {
+        admCode: "52113132",
+        admCodeNm: "전북특별자치도 전주시 덕진구 장동",
+        lowestAdmCodeNm: "장동",
+    },
+    {
+        admCode: "52113119",
+        admCodeNm: "전북특별자치도 전주시 덕진구 전미동1가",
+        lowestAdmCodeNm: "전미동1가",
+    },
+    {
+        admCode: "52113120",
+        admCodeNm: "전북특별자치도 전주시 덕진구 전미동2가",
+        lowestAdmCodeNm: "전미동2가",
+    },
+    {
+        admCode: "52113138",
+        admCodeNm: "전북특별자치도 전주시 덕진구 중동",
+        lowestAdmCodeNm: "중동",
+    },
+    {
+        admCode: "52113102",
+        admCodeNm: "전북특별자치도 전주시 덕진구 진북동",
+        lowestAdmCodeNm: "진북동",
+    },
+    {
+        admCode: "52113108",
+        admCodeNm: "전북특별자치도 전주시 덕진구 팔복동1가",
+        lowestAdmCodeNm: "팔복동1가",
+    },
+    {
+        admCode: "52113109",
+        admCodeNm: "전북특별자치도 전주시 덕진구 팔복동2가",
+        lowestAdmCodeNm: "팔복동2가",
+    },
+    {
+        admCode: "52113110",
+        admCodeNm: "전북특별자치도 전주시 덕진구 팔복동3가",
+        lowestAdmCodeNm: "팔복동3가",
+    },
+    {
+        admCode: "52113133",
+        admCodeNm: "전북특별자치도 전주시 덕진구 팔복동4가",
+        lowestAdmCodeNm: "팔복동4가",
+    },
+    {
+        admCode: "52113116",
+        admCodeNm: "전북특별자치도 전주시 덕진구 호성동1가",
+        lowestAdmCodeNm: "호성동1가",
+    },
+    {
+        admCode: "52113117",
+        admCodeNm: "전북특별자치도 전주시 덕진구 호성동2가",
+        lowestAdmCodeNm: "호성동2가",
+    },
+    {
+        admCode: "52113118",
+        admCodeNm: "전북특별자치도 전주시 덕진구 호성동3가",
+        lowestAdmCodeNm: "호성동3가",
+    },
+    {
+        admCode: "52113124",
+        admCodeNm: "전북특별자치도 전주시 덕진구 화전동",
+        lowestAdmCodeNm: "화전동",
+    },
+];
+
+export const Towns_52111 = [
+    {
+        admCode: "52111105",
+        admCodeNm: "전북특별자치도 전주시 완산구 경원동1가",
+        lowestAdmCodeNm: "경원동1가",
+    },
+    {
+        admCode: "52111106",
+        admCodeNm: "전북특별자치도 전주시 완산구 경원동2가",
+        lowestAdmCodeNm: "경원동2가",
+    },
+    {
+        admCode: "52111107",
+        admCodeNm: "전북특별자치도 전주시 완산구 경원동3가",
+        lowestAdmCodeNm: "경원동3가",
+    },
+    {
+        admCode: "52111117",
+        admCodeNm: "전북특별자치도 전주시 완산구 고사동",
+        lowestAdmCodeNm: "고사동",
+    },
+    {
+        admCode: "52111118",
+        admCodeNm: "전북특별자치도 전주시 완산구 교동",
+        lowestAdmCodeNm: "교동",
+    },
+    {
+        admCode: "52111121",
+        admCodeNm: "전북특별자치도 전주시 완산구 남노송동",
+        lowestAdmCodeNm: "남노송동",
+    },
+    {
+        admCode: "52111113",
+        admCodeNm: "전북특별자치도 전주시 완산구 다가동1가",
+        lowestAdmCodeNm: "다가동1가",
+    },
+    {
+        admCode: "52111114",
+        admCodeNm: "전북특별자치도 전주시 완산구 다가동2가",
+        lowestAdmCodeNm: "다가동2가",
+    },
+    {
+        admCode: "52111115",
+        admCodeNm: "전북특별자치도 전주시 완산구 다가동3가",
+        lowestAdmCodeNm: "다가동3가",
+    },
+    {
+        admCode: "52111116",
+        admCodeNm: "전북특별자치도 전주시 완산구 다가동4가",
+        lowestAdmCodeNm: "다가동4가",
+    },
+    {
+        admCode: "52111143",
+        admCodeNm: "전북특별자치도 전주시 완산구 대성동",
+        lowestAdmCodeNm: "대성동",
+    },
+    {
+        admCode: "52111125",
+        admCodeNm: "전북특별자치도 전주시 완산구 동서학동",
+        lowestAdmCodeNm: "동서학동",
+    },
+    {
+        admCode: "52111122",
+        admCodeNm: "전북특별자치도 전주시 완산구 동완산동",
+        lowestAdmCodeNm: "동완산동",
+    },
+    {
+        admCode: "52111137",
+        admCodeNm: "전북특별자치도 전주시 완산구 삼천동1가",
+        lowestAdmCodeNm: "삼천동1가",
+    },
+    {
+        admCode: "52111138",
+        admCodeNm: "전북특별자치도 전주시 완산구 삼천동2가",
+        lowestAdmCodeNm: "삼천동2가",
+    },
+    {
+        admCode: "52111139",
+        admCodeNm: "전북특별자치도 전주시 완산구 삼천동3가",
+        lowestAdmCodeNm: "삼천동3가",
+    },
+    {
+        admCode: "52111145",
+        admCodeNm: "전북특별자치도 전주시 완산구 상림동",
+        lowestAdmCodeNm: "상림동",
+    },
+    {
+        admCode: "52111144",
+        admCodeNm: "전북특별자치도 전주시 완산구 색장동",
+        lowestAdmCodeNm: "색장동",
+    },
+    {
+        admCode: "52111147",
+        admCodeNm: "전북특별자치도 전주시 완산구 서노송동",
+        lowestAdmCodeNm: "서노송동",
+    },
+    {
+        admCode: "52111126",
+        admCodeNm: "전북특별자치도 전주시 완산구 서서학동",
+        lowestAdmCodeNm: "서서학동",
+    },
+    {
+        admCode: "52111129",
+        admCodeNm: "전북특별자치도 전주시 완산구 서신동",
+        lowestAdmCodeNm: "서신동",
+    },
+    {
+        admCode: "52111123",
+        admCodeNm: "전북특별자치도 전주시 완산구 서완산동1가",
+        lowestAdmCodeNm: "서완산동1가",
+    },
+    {
+        admCode: "52111124",
+        admCodeNm: "전북특별자치도 전주시 완산구 서완산동2가",
+        lowestAdmCodeNm: "서완산동2가",
+    },
+    {
+        admCode: "52111130",
+        admCodeNm: "전북특별자치도 전주시 완산구 석구동",
+        lowestAdmCodeNm: "석구동",
+    },
+    {
+        admCode: "52111136",
+        admCodeNm: "전북특별자치도 전주시 완산구 용복동",
+        lowestAdmCodeNm: "용복동",
+    },
+    {
+        admCode: "52111131",
+        admCodeNm: "전북특별자치도 전주시 완산구 원당동",
+        lowestAdmCodeNm: "원당동",
+    },
+    {
+        admCode: "52111111",
+        admCodeNm: "전북특별자치도 전주시 완산구 전동",
+        lowestAdmCodeNm: "전동",
+    },
+    {
+        admCode: "52111112",
+        admCodeNm: "전북특별자치도 전주시 완산구 전동3가",
+        lowestAdmCodeNm: "전동3가",
+    },
+    {
+        admCode: "52111120",
+        admCodeNm: "전북특별자치도 전주시 완산구 중노송동",
+        lowestAdmCodeNm: "중노송동",
+    },
+    {
+        admCode: "52111101",
+        admCodeNm: "전북특별자치도 전주시 완산구 중앙동1가",
+        lowestAdmCodeNm: "중앙동1가",
+    },
+    {
+        admCode: "52111102",
+        admCodeNm: "전북특별자치도 전주시 완산구 중앙동2가",
+        lowestAdmCodeNm: "중앙동2가",
+    },
+    {
+        admCode: "52111103",
+        admCodeNm: "전북특별자치도 전주시 완산구 중앙동3가",
+        lowestAdmCodeNm: "중앙동3가",
+    },
+    {
+        admCode: "52111104",
+        admCodeNm: "전북특별자치도 전주시 완산구 중앙동4가",
+        lowestAdmCodeNm: "중앙동4가",
+    },
+    {
+        admCode: "52111135",
+        admCodeNm: "전북특별자치도 전주시 완산구 중인동",
+        lowestAdmCodeNm: "중인동",
+    },
+    {
+        admCode: "52111127",
+        admCodeNm: "전북특별자치도 전주시 완산구 중화산동1가",
+        lowestAdmCodeNm: "중화산동1가",
+    },
+    {
+        admCode: "52111128",
+        admCodeNm: "전북특별자치도 전주시 완산구 중화산동2가",
+        lowestAdmCodeNm: "중화산동2가",
+    },
+    {
+        admCode: "52111119",
+        admCodeNm: "전북특별자치도 전주시 완산구 태평동",
+        lowestAdmCodeNm: "태평동",
+    },
+    {
+        admCode: "52111132",
+        admCodeNm: "전북특별자치도 전주시 완산구 평화동1가",
+        lowestAdmCodeNm: "평화동1가",
+    },
+    {
+        admCode: "52111133",
+        admCodeNm: "전북특별자치도 전주시 완산구 평화동2가",
+        lowestAdmCodeNm: "평화동2가",
+    },
+    {
+        admCode: "52111134",
+        admCodeNm: "전북특별자치도 전주시 완산구 평화동3가",
+        lowestAdmCodeNm: "평화동3가",
+    },
+    {
+        admCode: "52111108",
+        admCodeNm: "전북특별자치도 전주시 완산구 풍남동1가",
+        lowestAdmCodeNm: "풍남동1가",
+    },
+    {
+        admCode: "52111109",
+        admCodeNm: "전북특별자치도 전주시 완산구 풍남동2가",
+        lowestAdmCodeNm: "풍남동2가",
+    },
+    {
+        admCode: "52111110",
+        admCodeNm: "전북특별자치도 전주시 완산구 풍남동3가",
+        lowestAdmCodeNm: "풍남동3가",
+    },
+    {
+        admCode: "52111140",
+        admCodeNm: "전북특별자치도 전주시 완산구 효자동1가",
+        lowestAdmCodeNm: "효자동1가",
+    },
+    {
+        admCode: "52111141",
+        admCodeNm: "전북특별자치도 전주시 완산구 효자동2가",
+        lowestAdmCodeNm: "효자동2가",
+    },
+    {
+        admCode: "52111142",
+        admCodeNm: "전북특별자치도 전주시 완산구 효자동3가",
+        lowestAdmCodeNm: "효자동3가",
+    },
+];
+
+export const Towns_52180 = [
+    {
+        admCode: "52180400",
+        admCodeNm: "전북특별자치도 정읍시 감곡면",
+        lowestAdmCodeNm: "감곡면",
+    },
+    {
+        admCode: "52180340",
+        admCodeNm: "전북특별자치도 정읍시 고부면",
+        lowestAdmCodeNm: "고부면",
+    },
+    {
+        admCode: "52180125",
+        admCodeNm: "전북특별자치도 정읍시 공평동",
+        lowestAdmCodeNm: "공평동",
+    },
+    {
+        admCode: "52180109",
+        admCodeNm: "전북특별자치도 정읍시 과교동",
+        lowestAdmCodeNm: "과교동",
+    },
+    {
+        admCode: "52180116",
+        admCodeNm: "전북특별자치도 정읍시 교암동",
+        lowestAdmCodeNm: "교암동",
+    },
+    {
+        admCode: "52180122",
+        admCodeNm: "전북특별자치도 정읍시 구룡동",
+        lowestAdmCodeNm: "구룡동",
+    },
+    {
+        admCode: "52180112",
+        admCodeNm: "전북특별자치도 정읍시 금붕동",
+        lowestAdmCodeNm: "금붕동",
+    },
+    {
+        admCode: "52180119",
+        admCodeNm: "전북특별자치도 정읍시 내장동",
+        lowestAdmCodeNm: "내장동",
+    },
+    {
+        admCode: "52180106",
+        admCodeNm: "전북특별자치도 정읍시 농소동",
+        lowestAdmCodeNm: "농소동",
+    },
+    {
+        admCode: "52180360",
+        admCodeNm: "전북특별자치도 정읍시 덕천면",
+        lowestAdmCodeNm: "덕천면",
+    },
+    {
+        admCode: "52180126",
+        admCodeNm: "전북특별자치도 정읍시 망제동",
+        lowestAdmCodeNm: "망제동",
+    },
+    {
+        admCode: "52180117",
+        admCodeNm: "전북특별자치도 정읍시 부전동",
+        lowestAdmCodeNm: "부전동",
+    },
+    {
+        admCode: "52180310",
+        admCodeNm: "전북특별자치도 정읍시 북면",
+        lowestAdmCodeNm: "북면",
+    },
+    {
+        admCode: "52180430",
+        admCodeNm: "전북특별자치도 정읍시 산내면",
+        lowestAdmCodeNm: "산내면",
+    },
+    {
+        admCode: "52180440",
+        admCodeNm: "전북특별자치도 정읍시 산외면",
+        lowestAdmCodeNm: "산외면",
+    },
+    {
+        admCode: "52180110",
+        admCodeNm: "전북특별자치도 정읍시 삼산동",
+        lowestAdmCodeNm: "삼산동",
+    },
+    {
+        admCode: "52180103",
+        admCodeNm: "전북특별자치도 정읍시 상동",
+        lowestAdmCodeNm: "상동",
+    },
+    {
+        admCode: "52180108",
+        admCodeNm: "전북특별자치도 정읍시 상평동",
+        lowestAdmCodeNm: "상평동",
+    },
+    {
+        admCode: "52180330",
+        admCodeNm: "전북특별자치도 정읍시 소성면",
+        lowestAdmCodeNm: "소성면",
+    },
+    {
+        admCode: "52180113",
+        admCodeNm: "전북특별자치도 정읍시 송산동",
+        lowestAdmCodeNm: "송산동",
+    },
+    {
+        admCode: "52180101",
+        admCodeNm: "전북특별자치도 정읍시 수성동",
+        lowestAdmCodeNm: "수성동",
+    },
+    {
+        admCode: "52180104",
+        admCodeNm: "전북특별자치도 정읍시 시기동",
+        lowestAdmCodeNm: "시기동",
+    },
+    {
+        admCode: "52180114",
+        admCodeNm: "전북특별자치도 정읍시 신월동",
+        lowestAdmCodeNm: "신월동",
+    },
+    {
+        admCode: "52180127",
+        admCodeNm: "전북특별자치도 정읍시 신정동",
+        lowestAdmCodeNm: "신정동",
+    },
+    {
+        admCode: "52180250",
+        admCodeNm: "전북특별자치도 정읍시 신태인읍",
+        lowestAdmCodeNm: "신태인읍",
+    },
+    {
+        admCode: "52180118",
+        admCodeNm: "전북특별자치도 정읍시 쌍암동",
+        lowestAdmCodeNm: "쌍암동",
+    },
+    {
+        admCode: "52180105",
+        admCodeNm: "전북특별자치도 정읍시 연지동",
+        lowestAdmCodeNm: "연지동",
+    },
+    {
+        admCode: "52180350",
+        admCodeNm: "전북특별자치도 정읍시 영원면",
+        lowestAdmCodeNm: "영원면",
+    },
+    {
+        admCode: "52180120",
+        admCodeNm: "전북특별자치도 정읍시 영파동",
+        lowestAdmCodeNm: "영파동",
+    },
+    {
+        admCode: "52180410",
+        admCodeNm: "전북특별자치도 정읍시 옹동면",
+        lowestAdmCodeNm: "옹동면",
+    },
+    {
+        admCode: "52180124",
+        admCodeNm: "전북특별자치도 정읍시 용계동",
+        lowestAdmCodeNm: "용계동",
+    },
+    {
+        admCode: "52180115",
+        admCodeNm: "전북특별자치도 정읍시 용산동",
+        lowestAdmCodeNm: "용산동",
+    },
+    {
+        admCode: "52180370",
+        admCodeNm: "전북특별자치도 정읍시 이평면",
+        lowestAdmCodeNm: "이평면",
+    },
+    {
+        admCode: "52180320",
+        admCodeNm: "전북특별자치도 정읍시 입암면",
+        lowestAdmCodeNm: "입암면",
+    },
+    {
+        admCode: "52180102",
+        admCodeNm: "전북특별자치도 정읍시 장명동",
+        lowestAdmCodeNm: "장명동",
+    },
+    {
+        admCode: "52180380",
+        admCodeNm: "전북특별자치도 정읍시 정우면",
+        lowestAdmCodeNm: "정우면",
+    },
+    {
+        admCode: "52180111",
+        admCodeNm: "전북특별자치도 정읍시 진산동",
+        lowestAdmCodeNm: "진산동",
+    },
+    {
+        admCode: "52180420",
+        admCodeNm: "전북특별자치도 정읍시 칠보면",
+        lowestAdmCodeNm: "칠보면",
+    },
+    {
+        admCode: "52180390",
+        admCodeNm: "전북특별자치도 정읍시 태인면",
+        lowestAdmCodeNm: "태인면",
+    },
+    {
+        admCode: "52180107",
+        admCodeNm: "전북특별자치도 정읍시 하모동",
+        lowestAdmCodeNm: "하모동",
+    },
+    {
+        admCode: "52180121",
+        admCodeNm: "전북특별자치도 정읍시 하북동",
+        lowestAdmCodeNm: "하북동",
+    },
+    {
+        admCode: "52180123",
+        admCodeNm: "전북특별자치도 정읍시 흑암동",
+        lowestAdmCodeNm: "흑암동",
+    },
+];
+
+export const Towns_52720 = [
+    {
+        admCode: "52720330",
+        admCodeNm: "전북특별자치도 진안군 동향면",
+        lowestAdmCodeNm: "동향면",
+    },
+    {
+        admCode: "52720370",
+        admCodeNm: "전북특별자치도 진안군 마령면",
+        lowestAdmCodeNm: "마령면",
+    },
+    {
+        admCode: "52720350",
+        admCodeNm: "전북특별자치도 진안군 백운면",
+        lowestAdmCodeNm: "백운면",
+    },
+    {
+        admCode: "52720380",
+        admCodeNm: "전북특별자치도 진안군 부귀면",
+        lowestAdmCodeNm: "부귀면",
+    },
+    {
+        admCode: "52720340",
+        admCodeNm: "전북특별자치도 진안군 상전면",
+        lowestAdmCodeNm: "상전면",
+    },
+    {
+        admCode: "52720360",
+        admCodeNm: "전북특별자치도 진안군 성수면",
+        lowestAdmCodeNm: "성수면",
+    },
+    {
+        admCode: "52720320",
+        admCodeNm: "전북특별자치도 진안군 안천면",
+        lowestAdmCodeNm: "안천면",
+    },
+    {
+        admCode: "52720310",
+        admCodeNm: "전북특별자치도 진안군 용담면",
+        lowestAdmCodeNm: "용담면",
+    },
+    {
+        admCode: "52720390",
+        admCodeNm: "전북특별자치도 진안군 정천면",
+        lowestAdmCodeNm: "정천면",
+    },
+    {
+        admCode: "52720400",
+        admCodeNm: "전북특별자치도 진안군 주천면",
+        lowestAdmCodeNm: "주천면",
+    },
+    {
+        admCode: "52720250",
+        admCodeNm: "전북특별자치도 진안군 진안읍",
+        lowestAdmCodeNm: "진안읍",
+    },
+];
