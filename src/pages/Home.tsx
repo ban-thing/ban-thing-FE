@@ -21,9 +21,9 @@ const Home = () => {
     useEffect(() => {
         const lastChecked = localStorage.getItem("lastChecked");
         const currentTime = new Date().getTime();
-        const oneWeekInMs = 7 * 24 * 60 * 60 * 1000;
+        const oneDayInMs = 24 * 60 * 60 * 1000;
 
-        if (!lastChecked || currentTime - Number(lastChecked) > oneWeekInMs) {
+        if (!lastChecked || currentTime - Number(lastChecked) > oneDayInMs) {
             const authCookie = getCookie("Authorization");
             if (!authCookie) navigate("/login");
             localStorage.setItem("lastChecked", String(currentTime));
