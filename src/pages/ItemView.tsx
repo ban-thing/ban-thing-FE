@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import { ItemImgSkt } from "@/components/atoms/Skeleton";
 import { useFetchItem } from "@/hooks/api/ItemsQuery";
 import { useLocation, useParams } from "react-router-dom";
+import { setImgUrl } from "@/utils/SetImageUrl";
 
 const StyledItemImg = styled.div`
     width: 100%;
@@ -16,6 +17,12 @@ const StyledItemImg = styled.div`
 
     & .mySwiper {
         height: 100%;
+    }
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 `;
 
@@ -37,11 +44,14 @@ const ItemViewPage = () => {
             {!isLoading ? (
                 <StyledItemImg>
                     <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                        {itemData?.itemImgs.map((value, index) => (
-                            <SwiperSlide key={index}>
-                                <img src={value} />
-                            </SwiperSlide>
-                        ))}
+                        {itemData?.itemImgs.map((value, index) => {
+                            const imgInfo = value.split(".");
+                            return (
+                                <SwiperSlide key={index}>
+                                    <img src={setImgUrl(Number(itemId), imgInfo[0], imgInfo[1])} />
+                                </SwiperSlide>
+                            );
+                        })}
                     </Swiper>
                 </StyledItemImg>
             ) : (

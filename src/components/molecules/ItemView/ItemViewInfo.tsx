@@ -37,6 +37,7 @@ const HashtagWrap = styled.div`
 
 const ContentWrap = styled.div`
     margin: 24px 0 40px;
+    white-space: pre-line;
 `;
 
 const CleanCheckListWrap = styled.div`
@@ -110,9 +111,11 @@ export default function ItemViewInfo({
     updateTime,
 }: ItemViewInfoProps) {
     const { pollution, timeUsed, purchasedDate, cleaned, expire } = cleaningDetail;
-    const pollList = ["없음", "1-3개", "3개 이상"];
+    const pollList = ["없음", "1~3개", "3개 이상"];
     const timeList = ["없음", "5회 미만", "5회 이상"];
     const cleanList = ["새 상품", "있음", "없음"];
+
+    console.log(content);
 
     return (
         // 스켈레톤
@@ -160,8 +163,12 @@ export default function ItemViewInfo({
                             </CleanCheckListOption>
                             <span>구매시기</span>
                             <CleanCheckListOption>
-                                <span className={purchasedDate !== "모름" ? "highlight" : ""}>
-                                    {purchasedDate}
+                                <span
+                                    className={
+                                        purchasedDate !== "모름" && purchasedDate ? "highlight" : ""
+                                    }
+                                >
+                                    {purchasedDate || "모름"}
                                 </span>
                             </CleanCheckListOption>
                             <span>세탁유무</span>
@@ -177,8 +184,8 @@ export default function ItemViewInfo({
                             </CleanCheckListOption>
                             <span>유통기한</span>
                             <CleanCheckListOption>
-                                <span className={expire !== "모름" ? "highlight" : ""}>
-                                    {expire}
+                                <span className={expire !== "모름" && expire ? "highlight" : ""}>
+                                    {expire || "모름"}
                                 </span>
                             </CleanCheckListOption>
                         </CleanCheckListContentWrap>
