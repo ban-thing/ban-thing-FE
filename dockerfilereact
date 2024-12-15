@@ -22,4 +22,5 @@ EXPOSE 3000
 ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["serve", "-s", "dist"]
+# CMD ["serve", "-s", "dist"]
+CMD ["node", "server.js"]
