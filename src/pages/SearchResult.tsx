@@ -1,7 +1,7 @@
 import { Input } from "@/components/atoms/Input";
 import styled from "styled-components";
 import SearchIcon from "@/assets/icons/search.svg?react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ItemFilterButton, ItemPlusButton } from "@/components/atoms/Button";
 import ItemList from "@/components/layout/ItemList";
 import { useFilterModalStore } from "@/store/ModalStore";
@@ -9,21 +9,22 @@ import FilterModal from "@/components/molecules/FilterModal";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useForm, UseFormSetValue, FieldValues } from "react-hook-form";
 import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
-import { useState } from "react";
-import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
-import { dummyItemList } from "@/store/ItemListDummyData";
+import { useEffect, useState } from "react";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 
 export default function SearchResult() {
     const navigate = useNavigate();
+    const location = useLocation();
     const { showFilterModal } = useFilterModalStore();
     const { isFilterModalVisible } = useFilterModalStore();
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
     const { setValue } = useForm();
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState(location.state?.searchKeyword || "");
+    const [searchKeyword, setSearchKeyword] = useState(location.state?.searchKeyword || "");
+
     const { data: { data } = {}, isLoading } = useFetchItemsList({
-        keyword: "",
-        hashtags: "",
+        keyword: searchKeyword,
+        hashtags: searchHashList.join(","),
         minPrice: 0,
         maxPrice: 5000000000,
         address: "",
@@ -43,11 +44,19 @@ export default function SearchResult() {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
     };
-    const handleSearchClick = () => {
+
+    const handleSearch = () => {
         if (searchValue.trim() !== "") {
-            setSearchValue("");
+            setSearchKeyword(searchValue.trim());
         }
     };
+
+    useEffect(() => {
+        if (location.state?.searchKeyword) {
+            setSearchKeyword(location.state.searchKeyword);
+        }
+    }, [location.state]);
+
     const isMaxTags = searchHashList.length >= 5;
 
     return (
@@ -55,13 +64,18 @@ export default function SearchResult() {
             <SearchHeader>
                 <SearchWrapper>
                     <SearchInputWrapper>
-                        <SearchIcon onClick={handleSearchClick} />
+                        <SearchIcon onClick={handleSearch} />
                         <Input
                             placeholder="검색어를 입력해요."
                             required
                             minLength={1}
                             value={searchValue}
                             onChange={handleInputChange}
+                            onKeyPress={(event) => {
+                                if (event.key === "Enter") {
+                                    handleSearch();
+                                }
+                            }}
                         />
                     </SearchInputWrapper>
                     <ItemFilterButton onClick={showFilterModal} />
@@ -83,11 +97,11 @@ export default function SearchResult() {
                 {isFilterModalVisible && <FilterModal />}
             </SearchHeader>
             <ScrollContent>
-                {dummyItemList.length ? (
-                    <ItemList data={data?.items} isLoading={isLoading} />
-                ) : (
-                    <NoItemInList text="앗! 검색된 결과가 없어요." />
-                )}
+                <ItemList
+                    data={data?.items}
+                    isLoading={isLoading}
+                    noItemText={searchKeyword ? "검색 결과가 없습니다." : "검색어를 입력해주세요."}
+                />
             </ScrollContent>
         </SearchContainer>
     );
@@ -113,14 +127,9 @@ const SearchHeader = styled.div`
 
 const ScrollContent = styled.div`
     width: 100%;
-    height: 100%;
-    margin-top: ${dummyItemList.length ? "68px" : "0"};
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top: 72px;
     flex: 1;
     overflow-y: auto;
-    position: relative;
 `;
 
 const SearchWrapper = styled.div`

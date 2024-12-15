@@ -21,11 +21,11 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
 
     const handleSearchClick = () => {
         if (searchValue.trim() !== "") {
-            navigate("/search-result", { state: searchValue });
+            navigate("/search-result", {
+                state: { searchKeyword: searchValue.trim() },
+            });
         }
     };
-
-    console.log(children);
 
     return (
         <SearchContainer>
