@@ -25,6 +25,7 @@ import ChattingList from "./pages/ChattingList";
 import Chatting from "./pages/Chatting";
 import SplashWrap from "./pages/SplashWrap";
 import LoginRedirect from "./pages/LoginRedirect";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 const queryClient = new QueryClient();
 
@@ -41,18 +42,57 @@ const router = createBrowserRouter([
             { path: "", element: <Home /> },
             { path: "login", element: <Login /> },
             { path: "login/kakao", element: <LoginRedirect /> },
-            { path: "location-select", element: <LocationSelect /> },
-            { path: "my-location-setting", element: <MyLocationSetting /> },
+            {
+                path: "location-select",
+                element: (
+                    <PrivateRoute>
+                        <LocationSelect />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "my-location-setting",
+                element: (
+                    <PrivateRoute>
+                        <MyLocationSetting />
+                    </PrivateRoute>
+                ),
+            },
             { path: "item-view/:id", element: <ItemView /> },
-            { path: "chatting-list", element: <ChattingList /> },
-            { path: "chatting/:id", element: <Chatting /> },
-            { path: "item-register", element: <ItemRegister /> },
+            {
+                path: "chatting-list",
+                element: (
+                    <PrivateRoute>
+                        <ChattingList />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "chats/:chatRoomId",
+                element: (
+                    <PrivateRoute>
+                        <Chatting />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "item-register",
+                element: (
+                    <PrivateRoute>
+                        <ItemRegister />
+                    </PrivateRoute>
+                ),
+            },
             { path: "search", element: <Search /> },
             { path: "search/hashtag", element: <SearchHashtag /> },
             { path: "search-result", element: <SearchResult /> },
             {
                 path: "my-page",
-                element: <MyPageLayout />,
+                element: (
+                    <PrivateRoute>
+                        <MyPageLayout />
+                    </PrivateRoute>
+                ),
                 errorElement: <NotFound />,
                 children: [
                     { path: "", element: <MyPage /> },
