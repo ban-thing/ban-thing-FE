@@ -6,7 +6,6 @@ import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import { ItemsList } from "@/types/User";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import { useItemListLocationStore } from "@/store/LocationStore";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
@@ -29,10 +28,8 @@ type ItemListProps = {
 };
 
 const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps) => {
-    const [addressList, setAddressList] = useState<string[]>();
     const [listData, setListData] = useState<ItemsList[] | null>();
     const { currentLocation } = useItemListLocationStore();
-    const { data: profileData, isSuccess } = useFetchMyProfile();
     const { data: { data } = {}, isLoading } = useFetchItemsList({
         keyword: "",
         hashtags: "",
@@ -40,23 +37,14 @@ const ItemList = ({ padding, viewEditButton = false, noItemText }: ItemListProps
         maxPrice: 5000000000,
         address: "",
     });
-    useEffect(() => {
-        if (isSuccess && profileData) {
-            setAddressList([
-                profileData.data.address1,
-                profileData.data.address2 || "",
-                profileData.data.address3 || "",
-            ]);
-        }
-    }, [profileData, isSuccess]);
 
     useEffect(() => {
-        if (data && addressList) {
+        if (data && currentLocation) {
             const filtered = data.items.filter((item) => item.address === currentLocation);
             if (!filtered) return setListData(null);
             return setListData(filtered);
         }
-    }, [data, isLoading, addressList, currentLocation]);
+    }, [data, isLoading, currentLocation]);
 
     return (
         <StyledItemList
