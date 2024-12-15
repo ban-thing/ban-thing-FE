@@ -15,9 +15,9 @@ const removeCommas = (str: string) => {
 };
 
 export default function FilterModal() {
-    const { hideFilterModal } = useFilterModalStore();
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(5000000);
+    const { hideFilterModal, setPriceRange, priceRange } = useFilterModalStore();
+    const [minPrice, setMinPrice] = useState(priceRange.minPrice);
+    const [maxPrice, setMaxPrice] = useState(priceRange.maxPrice);
 
     const handleSliderChange = (value: number | readonly number[]) => {
         if (Array.isArray(value)) {
@@ -27,6 +27,11 @@ export default function FilterModal() {
                 setMaxPrice(newMax);
             }
         }
+    };
+
+    const handleApply = () => {
+        setPriceRange(minPrice, maxPrice);
+        hideFilterModal();
     };
 
     return (
@@ -80,7 +85,7 @@ export default function FilterModal() {
                             setMaxPrice(5000000);
                         }}
                     />
-                    <Button variant="filled" size="small">
+                    <Button variant="filled" size="small" onClick={handleApply}>
                         적용하기
                     </Button>
                 </ButtonContainer>

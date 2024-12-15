@@ -30,12 +30,22 @@ interface FilterModalState {
     isFilterModalVisible: boolean;
     showFilterModal: () => void;
     hideFilterModal: () => void;
+    priceRange: {
+        minPrice: number;
+        maxPrice: number;
+    };
+    setPriceRange: (minPrice: number, maxPrice: number) => void;
 }
 
 export const useFilterModalStore = create<FilterModalState>((set) => ({
     isFilterModalVisible: false,
     showFilterModal: () => set({ isFilterModalVisible: true }),
     hideFilterModal: () => set({ isFilterModalVisible: false }),
+    priceRange: {
+        minPrice: 0,
+        maxPrice: 5000000,
+    },
+    setPriceRange: (minPrice, maxPrice) => set({ priceRange: { minPrice, maxPrice } }),
 }));
 
 interface EditModalState {
