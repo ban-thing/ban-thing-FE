@@ -15,7 +15,6 @@ export default function Chatting() {
     const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
     const [messagesList, setMessagesList] = useState<any[]>([]);
-    console.log(chatRoomId, "채팅방 아이디");
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
         Number(chatRoomId),

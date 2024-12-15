@@ -28,6 +28,7 @@ type ItemListProps = {
     data: ItemsList[] | undefined;
     isLoading: boolean;
     isHome?: boolean;
+    isMyPage?: boolean;
 };
 
 const ItemList = ({
@@ -37,6 +38,7 @@ const ItemList = ({
     data,
     isLoading,
     isHome = false,
+    isMyPage = false,
 }: ItemListProps) => {
     const { searchHashList } = useSearchHashListStore();
     const { currentLocation } = useItemListLocationStore();
@@ -56,7 +58,7 @@ const ItemList = ({
 
     useEffect(() => {
         if (!data) return setListData(null);
-
+        if (isMyPage) return setListData(data);
         let filtered = [...data];
 
         // 해시태그 필터링

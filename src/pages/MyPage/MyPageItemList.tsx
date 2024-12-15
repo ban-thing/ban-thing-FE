@@ -51,6 +51,7 @@ const MyPageItemList = () => {
                     padding="0 20px"
                     viewEditButton={true}
                     noItemText="앗! 아직 내역이 없어요."
+                    isMyPage={true}
                 />
             ) : (
                 <ItemList
@@ -59,6 +60,7 @@ const MyPageItemList = () => {
                     padding="0 20px"
                     viewEditButton={false}
                     noItemText="앗! 아직 내역이 없어요."
+                    isMyPage={true}
                 />
             )}
             <MyPageBottom>
