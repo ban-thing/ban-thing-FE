@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Button } from "@/components/atoms/Button";
 import Tag from "@/assets/icons/priceTagBlue.svg?react";
 import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
+import { getCookie } from "@/utils/Cookie";
+import { useNavigate } from "react-router-dom";
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -48,9 +50,12 @@ type ItemViewLayout = {
 };
 
 export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
+    const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
+        const authCookie = getCookie("Authorization");
+        if (!authCookie) return navigate("/login");
         mutate({ sellerId, itemId }); //채팅방 이동은 useCreateChatRoomMutation 내부 onSuccess에서 실행
     };
 

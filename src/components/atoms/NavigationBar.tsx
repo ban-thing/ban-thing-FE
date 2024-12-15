@@ -9,6 +9,7 @@ import ChatActiveIcon from "../../assets/icons/check0Active.svg?react";
 import PetsIcon from "../../assets/icons/footPrint.svg?react";
 import PetsActiveIcon from "../../assets/icons/footPrintActive.svg?react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getCookie } from "@/utils/Cookie";
 
 interface NavButtonProps {
     $activeTab: boolean;
@@ -24,6 +25,8 @@ export default function NavigationBar({ children }: NavigationBarProps) {
     const navigate = useNavigate();
 
     const handleNavigation = (tab: string) => {
+        const authCookie = getCookie("Authorization");
+        if (!authCookie && tab !== "home" && tab !== "search") return navigate("/login");
         set$activeTab(tab);
         navigate(`/${tab === "home" ? "" : tab}`);
     };

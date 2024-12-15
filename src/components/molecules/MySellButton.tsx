@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import Plus from "@/assets/icons/plusBold.svg?react";
 import Snack from "@/assets/icons/snackWhite.svg?react";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "@/utils/Cookie";
 
 const StyledMySellButton = styled.button<ButtonHTMLAttributes<HTMLButtonElement>>`
     width: 128px;
@@ -50,6 +51,8 @@ export const MySellButton = ({ ...props }: ButtonHTMLAttributes<HTMLButtonElemen
     }, []);
 
     const onClickSellButton = () => {
+        const authCookie = getCookie("Authorization");
+        if (!authCookie) return navigate("/login");
         navigate("/item-register");
     };
 
