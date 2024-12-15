@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
 import { CreateItem, ItemSearch, ItemView } from "@/types/Item";
 import { ItemsList } from "@/types/User";
@@ -139,6 +139,7 @@ export const useFetchItemUpdate = () => {
 
 // 판매완료
 export const useFetchItemSold = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (id: number | string) => {
             return await apiService.patch(`items/sell/${id}`, {});
@@ -147,23 +148,24 @@ export const useFetchItemSold = () => {
             console.log(error, variables, context);
         },
         onSuccess: () => {
-            console.log("판매완료됨");
+            queryClient.invalidateQueries({ queryKey: ["mySales"] });
         },
     });
 };
 
 // 삭제
 export const useFetchItemDelete = () => {
-    const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
     return useMutation({
-        mutationFn: async () => {
-            return await apiService.delete("items/", {});
+        mutationFn: async (id: string | number) => {
+            return await apiService.delete(`items/${id}`, {});
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);
         },
         onSuccess: () => {
-            navigate(`기획자료참고`);
+            queryClient.invalidateQueries({ queryKey: ["mySales"] });
         },
     });
 };

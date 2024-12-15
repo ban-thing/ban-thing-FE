@@ -8,6 +8,8 @@ import {
     ItemPrice,
     ItemBoxRight,
     ItemEditButton,
+    ItemPhotoWrap,
+    ItemSoldOut,
 } from "@/components/atoms/ItemInList";
 import timeAgo from "@/utils/TimeAgo";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,7 @@ import { setImgUrl } from "@/utils/SetImageUrl";
 
 type ItemInListProps = ItemSearchList & {
     viewEditButton?: boolean;
+    status?: string;
 };
 
 export default function ItemInList({
@@ -32,6 +35,7 @@ export default function ItemInList({
     price,
     images,
     viewEditButton = false,
+    status,
 }: ItemInListProps) {
     const [topPosition, setTopPosition] = useState<number | null>(null);
     const cutOffTitle = title.length > 24 ? title.slice(0, 24) + "..." : title;
@@ -56,18 +60,21 @@ export default function ItemInList({
     return (
         <>
             <ItemBox onClick={() => onClickBox(itemId || 0)}>
-                <ItemPhoto
-                    src={
-                        images
-                            ? setImgUrl(
-                                  Number(itemId),
-                                  images?.split(".")[0],
-                                  images?.split(".")[1],
-                              )
-                            : notFound
-                    }
-                />
-                <ItemBoxRight $maxWidth={viewEditButton ? "155px" : ""}>
+                <ItemPhotoWrap>
+                    <ItemPhoto
+                        src={
+                            images
+                                ? setImgUrl(
+                                      Number(itemId),
+                                      images?.split(".")[0],
+                                      images?.split(".")[1],
+                                  )
+                                : notFound
+                        }
+                    />
+                    {status === "판매완료" && <ItemSoldOut>거래완료</ItemSoldOut>}
+                </ItemPhotoWrap>
+                <ItemBoxRight $maxWidth={viewEditButton ? "170px" : ""}>
                     <ItemTitle>{cutOffTitle}</ItemTitle>
                     <ItemPropertiesBox>
                         <ItemProp>
@@ -75,11 +82,19 @@ export default function ItemInList({
                         </ItemProp>
                         <ItemPropDot />
                         <ItemProp>{timeAgo(updatedAt)}</ItemProp>
-                        <ItemPropDot />
-                        <ItemProp>{type}</ItemProp>
+                        {type && (
+                            <>
+                                <ItemPropDot />
+                                <ItemProp>{type}</ItemProp>
+                            </>
+                        )}
                     </ItemPropertiesBox>
                     <ItemPrice>
-                        {type === "판매" ? `${price.toLocaleString("en-US")}원` : "나눔"}
+                        {price === 0 || type === "나눔"
+                            ? "나눔"
+                            : type === "판매" || status === "판매중" || status === "판매완료"
+                              ? `${price.toLocaleString("en-US")}원`
+                              : "-"}
                     </ItemPrice>
                 </ItemBoxRight>
                 {viewEditButton && (
@@ -90,6 +105,7 @@ export default function ItemInList({
             </ItemBox>
             {topPosition && (
                 <EditModal
+                    isSold={status === "판매완료"}
                     setTopPosition={setTopPosition}
                     topPosition={topPosition}
                     itemId={itemId || 0}

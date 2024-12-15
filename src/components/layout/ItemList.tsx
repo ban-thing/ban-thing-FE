@@ -69,6 +69,7 @@ const ItemList = ({
                             address={item.address}
                             updatedAt={item.updatedAt}
                             type={item.type}
+                            status={item.status}
                             viewEditButton={viewEditButton}
                         />
                     ))

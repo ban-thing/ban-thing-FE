@@ -57,7 +57,7 @@ const MyPageItemList = () => {
                     data={purchasesData?.data}
                     isLoading={isLoading1}
                     padding="0 20px"
-                    viewEditButton={true}
+                    viewEditButton={false}
                     noItemText="앗! 아직 내역이 없어요."
                 />
             )}

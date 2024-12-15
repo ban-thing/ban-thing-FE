@@ -30,4 +30,5 @@ export type ItemsList = {
     updatedAt: Date;
     hashtags?: string[];
     type?: string;
+    status?: string;
 };

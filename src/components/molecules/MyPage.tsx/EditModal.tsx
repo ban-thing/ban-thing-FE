@@ -1,4 +1,5 @@
 import { ModalBase } from "@/components/atoms/ModalBackground";
+import { useFetchItemDelete, useFetchItemSold } from "@/hooks/api/ItemsQuery";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -12,16 +13,15 @@ const ModalBase2 = styled.div`
     bottom: 0;
 `;
 
-const StyledEditModal = styled.div<{ $inset: string }>`
-    width: 159px;
-    height: 152px;
-    padding: 20px;
+const StyledEditModal = styled.div<{ $inset: string; $height?: string }>`
+    width: 152px;
+    height: ${({ $height }) => ($height ? $height : "159px")};
+    padding: 10px;
     box-sizing: border-box;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
     background-color: #fff;
     z-index: 20;
     position: absolute;
@@ -31,17 +31,21 @@ const StyledEditModal = styled.div<{ $inset: string }>`
 const StyledEditButton = styled.button`
     font-size: 18px;
     color: var(--color-black-2);
-    padding: 5px 0;
+    padding: 10px;
+    text-align: left;
 `;
 
 type EditModalProps = {
     setTopPosition: (value: number | null) => void;
     topPosition: number;
     itemId: number;
+    isSold?: boolean;
 };
 
-const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
+const EditModal = ({ setTopPosition, topPosition, itemId, isSold = false }: EditModalProps) => {
     const navigate = useNavigate();
+    const { mutate: soldMutate } = useFetchItemSold();
+    const { mutate: deleteMutate } = useFetchItemDelete();
     const modalBaseRef = useRef<HTMLDivElement | null>(null);
     const modalBaseRef2 = useRef<HTMLDivElement | null>(null);
     const onClickBase = (e: any) => {
@@ -54,19 +58,26 @@ const EditModal = ({ setTopPosition, topPosition, itemId }: EditModalProps) => {
         navigate(`/item-register?edit=${itemId}`);
     };
     const onClickSoldOut = () => {
-        console.log("판매완료", itemId);
+        soldMutate(itemId);
+        setTopPosition(null);
     };
     const onClickDelete = () => {
-        console.log("삭제", itemId);
+        deleteMutate(itemId);
+        setTopPosition(null);
     };
 
     return (
         <>
             <ModalBase $inset="0" opacity={0.4} onClick={onClickBase} ref={modalBaseRef} />
             <ModalBase2 ref={modalBaseRef2} onClick={onClickBase}>
-                <StyledEditModal $inset={`${topPosition}px 40px auto auto`}>
+                <StyledEditModal
+                    $inset={`${topPosition}px 25px auto auto`}
+                    $height={isSold ? "108px" : ""}
+                >
                     <StyledEditButton onClick={onClickEdit}>게시글 수정</StyledEditButton>
-                    <StyledEditButton onClick={onClickSoldOut}>판매 완료</StyledEditButton>
+                    {!isSold && (
+                        <StyledEditButton onClick={onClickSoldOut}>거래 완료</StyledEditButton>
+                    )}
                     <StyledEditButton onClick={onClickDelete}>삭제</StyledEditButton>
                 </StyledEditModal>
             </ModalBase2>

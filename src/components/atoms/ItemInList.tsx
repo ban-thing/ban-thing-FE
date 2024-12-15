@@ -29,13 +29,38 @@ export const ItemBoxRight = styled.div<{ $maxWidth?: string }>`
     justify-content: center;
     gap: 8px;
     max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : null)};
+
+    & h3 {
+        max-width: 155px;
+    }
+`;
+
+export const ItemPhotoWrap = styled.div`
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
 `;
 
 export const ItemPhoto = styled.img`
     width: 120px;
     height: 120px;
     border-radius: 24px;
-    background-color: gray;
+`;
+
+export const ItemSoldOut = styled.div`
+    position: absolute;
+    top: 9px;
+    left: 7px;
+    width: 58px;
+    height: 26px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 24px;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const ItemPropertiesBox = styled.div`
