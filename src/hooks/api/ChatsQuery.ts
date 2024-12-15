@@ -9,8 +9,15 @@ export const useChatsListQuery = () => {
     return useQuery<ChatList[]>({
         queryKey: ["chats"],
         queryFn: async () => {
-            return await apiService.get<ChatList[]>(`chats`, {});
+            const response = await apiService.get<{
+                status: string;
+                data: ChatList[];
+                message: string | null;
+            }>("chats", {});
+
+            return response.data;
         },
+        retry: false,
     });
 };
 
@@ -18,11 +25,12 @@ export const useChatsListQuery = () => {
 export const useCreateChatRoomMutation = () => {
     return useMutation({
         mutationFn: async (chatRoomData: ChatRoomCreate) => {
-            return await apiService.post<number>("chats", chatRoomData);
+            return await apiService.post<{
+                status: string;
+                data: { chatRoomId: number };
+                message: string;
+            }>("chats", chatRoomData);
         },
-        // onSuccess: () => {
-        //     navigate("/chatting/")
-        // }
     });
 };
 
@@ -49,5 +57,25 @@ export const useSendMessageMutation = () => {
         mutationFn: async ({ roomId, message }: { roomId: number; message: string }) => {
             return await apiService.post<void>(`/api/chats/room/${roomId}/message`, { message });
         },
+    });
+};
+
+// 채팅 대화내용, 아이템 정보 조회
+export const useChatRoomDetailsQuery = (roomId: number) => {
+    return useInfiniteQuery<ChatRoomView>({
+        queryKey: ["chats", roomId],
+        queryFn: async ({ pageParam = 1 }) => {
+            const response = await apiService.get<{
+                status: string;
+                data: ChatRoomView;
+                message: string | null;
+            }>(`chats/${roomId}`, { page: pageParam, size: 3 });
+
+            return response.data;
+        },
+        getNextPageParam: (lastPage) => {
+            return lastPage.hasNext ? lastPage.messages.length : undefined;
+        },
+        initialPageParam: 0,
     });
 };

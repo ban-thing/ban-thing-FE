@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AlbumIcon from "../assets/icons/album.svg?react";
 import SendIcon from "../assets/icons/send.svg?react";
 import { useState } from "react";
-import { useChatRoomMessagesQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
+import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Chatting() {
@@ -12,7 +12,9 @@ export default function Chatting() {
     const { chatRoomId } = useParams<{ chatRoomId: string }>();
     const [inputText, setInputText] = useState("");
 
-    const { data, fetchNextPage, hasNextPage } = useChatRoomMessagesQuery(Number(chatRoomId));
+    const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
+        Number(chatRoomId),
+    );
 
     const sendMessageMutation = useSendMessageMutation();
 
@@ -36,7 +38,9 @@ export default function Chatting() {
 
     const messages = data.pages.flatMap((page) => page.messages);
 
-    return (
+    return isLoading ? (
+        <ClipLoader />
+    ) : (
         <Container>
             <Header>
                 <BackButtonIcon
