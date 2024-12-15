@@ -9,6 +9,7 @@ import { ItemImgSkt } from "@/components/atoms/Skeleton";
 import { useFetchItem } from "@/hooks/api/ItemsQuery";
 import { useLocation, useParams } from "react-router-dom";
 import { setImgUrl } from "@/utils/SetImageUrl";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const StyledItemImg = styled.div`
     width: 100%;
@@ -27,6 +28,7 @@ const StyledItemImg = styled.div`
 `;
 
 const ItemViewPage = () => {
+    const { data: myProfileData } = useFetchMyProfile();
     const location = useLocation();
     const { id: itemId } = useParams();
     const { data: { data: itemData } = {}, isLoading } = useFetchItem(
@@ -39,6 +41,7 @@ const ItemViewPage = () => {
             price={itemData?.price || 0}
             sellerId={Number(itemData?.sellerId)}
             itemId={Number(itemId)}
+            myId={myProfileData?.data.userId}
         >
             {/* 스켈레톤 */}
             {!isLoading ? (

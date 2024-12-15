@@ -7,13 +7,20 @@ type ItemViewLayout = {
     price: number;
     sellerId: number;
     itemId: number;
+    myId: number;
 };
 
-const ItemViewLayout = ({ children, type, price, sellerId, itemId }: ItemViewLayout) => {
+const ItemViewLayout = ({ children, type, price, sellerId, itemId, myId }: ItemViewLayout) => {
     return (
         <>
             {children}
-            <ItemViewBottomBar type={type} price={price} sellerId={sellerId} itemId={itemId} />
+            <ItemViewBottomBar
+                type={type}
+                price={price}
+                sellerId={sellerId}
+                itemId={itemId}
+                myId={myId}
+            />
         </>
     );
 };

@@ -47,9 +47,10 @@ type ItemViewLayout = {
     price: number;
     sellerId: number;
     itemId: number;
+    myId: number;
 };
 
-export default function ItemViewBottomBar({ type, price, sellerId, itemId }: ItemViewLayout) {
+export default function ItemViewBottomBar({ type, price, sellerId, itemId, myId }: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
 
@@ -78,9 +79,11 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId }: Ite
                     <PriceText>{type === "판매" ? "원" : ""}</PriceText>
                 </Price>
             </PriceWrap>
-            <Button size="small" onClick={handleChatButtonClick}>
-                채팅하기
-            </Button>
+            {myId !== sellerId && (
+                <Button size="small" onClick={handleChatButtonClick}>
+                    채팅하기
+                </Button>
+            )}
         </StyledItemViewBottomBar>
     );
 }

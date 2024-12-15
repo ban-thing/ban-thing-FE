@@ -65,13 +65,13 @@ export default function Chatting() {
                         Array.isArray(data.pages[0].itemImage)
                             ? setImgUrl(
                                   data.pages[0].itemId,
-                                  data.pages[0].itemImage[0].split(".")[0],
-                                  data.pages[0].itemImage[0].split(".")[1],
+                                  data.pages[0].itemImage[0]?.split(".")[0],
+                                  data.pages[0].itemImage[0]?.split(".")[1],
                               )
                             : setImgUrl(
                                   data.pages[0].itemId,
-                                  data.pages[0].itemImage.split(".")[0],
-                                  data.pages[0].itemImage.split(".")[1],
+                                  data.pages[0].itemImage?.split(".")[0],
+                                  data.pages[0].itemImage?.split(".")[1],
                               ) || ""
                     }
                     alt={data.pages[0].title}
