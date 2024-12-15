@@ -73,7 +73,7 @@ const CleanCheckList = ({
             <div>
                 <RegisterSubTitle3>오염</RegisterSubTitle3>
                 <CleanTypeButton
-                    text={["없음", "1~3개", "3개 초과"]}
+                    text={["없음", "1~3개", "3개 이상"]}
                     setValueName="clnPollution"
                     setValue={setValue}
                     watch={watch}
