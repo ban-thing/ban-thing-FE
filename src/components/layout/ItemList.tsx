@@ -64,7 +64,6 @@ const ItemList = ({
         // 해시태그 필터링
         if (searchHashList && searchHashList.length > 0) {
             filtered = filtered.filter((item) => {
-                // hashtags를 hashtag로 수정
                 return searchHashList.some((tag) => item.hashtags?.includes(tag));
             });
         }
