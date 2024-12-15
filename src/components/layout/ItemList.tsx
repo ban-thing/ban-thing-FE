@@ -58,7 +58,7 @@ const ItemList = ({
 
     useEffect(() => {
         if (!data) return setListData(null);
-        if (isMyPage) return setListData(data);
+        if (isMyPage || isHome) return setListData(data);
         let filtered = [...data];
 
         // 해시태그 필터링
