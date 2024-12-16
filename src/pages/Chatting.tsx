@@ -198,17 +198,26 @@ export default function Chatting() {
             <ChatContainer className="chat-container">
                 {Object.entries(groupMessagesByDate([...messages].reverse())).map(
                     ([date, messagesForDate]) => (
-                        <div key={date}>
+                        <div
+                            key={date}
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                            }}
+                        >
                             <div style={{ display: "flex", justifyContent: "center" }}>
                                 <DateDivider>{formatDateDivider(date)}</DateDivider>
                             </div>
                             {messagesForDate.map((message, index) => (
                                 <MessageBubble
                                     key={`${date}-${index}`}
-                                    $isMe={message.senderId === myProfileData?.userId}
+                                    $isMe={message.senderId === myProfileData?.data.userId}
                                 >
                                     {message.message}
-                                    <MessageTime $isMe={message.senderId === 1}>
+                                    <MessageTime
+                                        $isMe={message.senderId === myProfileData?.data.userId}
+                                    >
                                         {formatDate(message.time)}
                                     </MessageTime>
                                 </MessageBubble>
