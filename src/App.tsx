@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CookiesProvider } from "react-cookie";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
@@ -113,7 +113,7 @@ function App() {
     return (
         <CookiesProvider>
             <QueryClientProvider client={queryClient}>
-                <ReactQueryDevtools initialIsOpen={true} />
+                {/* <ReactQueryDevtools initialIsOpen={true} /> */}
                 <RouterProvider router={router} />
             </QueryClientProvider>
         </CookiesProvider>

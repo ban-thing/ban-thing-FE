@@ -38,6 +38,7 @@ export const useLocationSetting = () => {
             const existingTowns = currentAddress?.[2] || [];
             setCurrentTowns([...existingTowns, district.name]);
         } else {
+            // const currentSelectedTowns = selectedTowns;
             loadTowns(district.id, district.name);
         }
     };

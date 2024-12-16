@@ -21,6 +21,7 @@ export default function HashTagFilterModal() {
     }, [searchHashList]);
 
     const handleSetValue = (name: string, value: string[]) => {
+        name.trim();
         setHashList(value);
     };
 

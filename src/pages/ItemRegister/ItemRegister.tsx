@@ -104,15 +104,15 @@ const ItemRegister = () => {
         // 수정페이지일 경우
         if (edit && data) {
             const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
-            const files = data?.data.itemImgs.map(
-                async (img) => await getFileFromUrl(edit, img.split(".")[0], img.split(".")[1]),
-            );
+            const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
+            const hashs = data?.data.hashtags.map((tag) => tag.hashtag !== "[]");
+
             reset({
                 title: data?.data.title,
                 content: data?.data.content,
                 photos: files,
                 type: data?.data.type,
-                hashtags: data?.data.hashtags,
+                hashtags: hashs,
                 clnPollution: data?.data.cleaningDetail.pollution,
                 clnTimeUsed: data?.data.cleaningDetail.timeUsed,
                 clnCleaned: data?.data.cleaningDetail.cleaned,
@@ -163,7 +163,7 @@ const ItemRegister = () => {
 
     const type = watch("type");
 
-    console.log(watch("photos"), "사진목록");
+    // console.log(watch("photos"), "사진목록");
 
     return (
         <ItemRegisterWrap>

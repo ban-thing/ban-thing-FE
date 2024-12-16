@@ -34,10 +34,11 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
     };
 
     const handleSetValue = (name: string, value: string[]) => {
+        name.trim();
         setSearchHashList(value);
     };
 
-    console.log(children);
+    children && true;
 
     return (
         <SearchContainer>
