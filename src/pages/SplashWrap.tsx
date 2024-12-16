@@ -13,30 +13,23 @@ const SplashBox = styled.div`
 
 const SplashWrap = ({ children }: { children: React.ReactNode }) => {
     const [cookies, setCookie] = useCookies(["splashLastShown"]);
-    const [loading, setLoading] = useState(true);
     const [showSplash, setShowSplash] = useState(false);
 
     useEffect(() => {
+        // 일주일에 한번 스플래시 표시
         const lastShown = cookies.splashLastShown;
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
         if (!lastShown || new Date(lastShown) < oneWeekAgo) {
             setShowSplash(true);
-            setCookie("splashLastShown", new Date().toISOString(), { path: "/", maxAge: 604800 }); // 7일간 유지
+            setCookie("splashLastShown", new Date().toISOString(), { path: "/", maxAge: 604800 });
 
             setTimeout(() => {
                 setShowSplash(false);
-                setLoading(false);
             }, 2000);
-        } else {
-            setLoading(false);
         }
     }, []);
-
-    if (loading) {
-        return null;
-    }
 
     if (showSplash) {
         return (

@@ -19,6 +19,7 @@ const Home = () => {
     });
 
     useEffect(() => {
+        // 하루에 한번 로그인창으로 이동
         const lastChecked = localStorage.getItem("lastChecked");
         const currentTime = new Date().getTime();
         const oneDayInMs = 24 * 60 * 60 * 1000;
