@@ -63,7 +63,14 @@ const HashTagButtonWithCloseList = ({ margin, hashList, setValue }: HashTagButto
     return (
         <HashTagList margin={margin}>
             {hashList
-                ?.filter((value) => value?.hashtag?.trim() || value?.trim() !== "")
+                ?.filter((value) => {
+                    if (typeof value === "string" && value !== "[]") {
+                        return value?.trim() !== "";
+                    }
+                    if (value?.hashtag && value?.hashtag !== "[]") {
+                        return value?.hashtag?.trim();
+                    }
+                })
                 .map((value, index) => (
                     <HashTagWrap key={index}>
                         <HashtagButton variant="outlined" type="button">
