@@ -15,6 +15,7 @@ export default function Chatting() {
     const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
     const [messagesList, setMessagesList] = useState<any[]>([]);
+    const [socket, setSocket] = useState<WebSocket | null>(null);
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
         Number(chatRoomId),
@@ -37,41 +38,89 @@ export default function Chatting() {
     };
 
     useEffect(() => {
-        // 웹소켓 연결 (chatroomId에 맞는 채팅방 URL로 연결)
-        const socket = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
-        // 서버에서 오는 메시지 처리
-        socket.onmessage = (event) => {
-            if (event.data.includes("{")) {
-                const msg = JSON.parse(event.data);
-                console.log(msg, "메시지");
+        // 웹소켓 연결을 생성하고 관리하는 함수
+        const createWebSocket = () => {
+            // 채팅방 ID를 기반으로 웹소켓 연결 생성
+            const ws = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
 
-                // return setMessagesList((prevMessagesList) => [...prevMessagesList, event.data]);
-            }
-            setMessagesList((prevMessagesList) => [...prevMessagesList, event.data]);
-        };
-        // 웹소켓 연결 종료 시 클린업
-        return () => {
-            socket.close();
-        };
-    }, []);
-    // 메시지전송
-    const sendMessage = (inputText: string) => {
-        if (inputText.trim()) {
-            const socket = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
-            socket.onopen = () => {
-                const sendData = {
-                    chatRoomId: chatRoomId,
-                    senderId: myProfileData?.data.userId,
-                    message: inputText,
-                };
-                socket.send(JSON.stringify(sendData));
-                setInputText("");
+            // 웹소켓 연결이 성공했을 때 실행
+            ws.onopen = () => {
+                console.log("웹소켓 연결 성공");
             };
+
+            // 서버로부터 메시지를 받았을 때 실행
+            ws.onmessage = (event) => {
+                try {
+                    // JSON 형식의 메시지인 경우 파싱하여 처리
+                    if (event.data.includes("{")) {
+                        const msg = JSON.parse(event.data);
+                        setMessagesList((prev) => [...prev, msg]);
+                    } else {
+                        // 일반 텍스트 메시지인 경우 그대로 처리
+                        setMessagesList((prev) => [...prev, event.data]);
+                    }
+                } catch (error) {
+                    console.error("메시지 처리 중 에러:", error);
+                }
+            };
+
+            // 웹소켓 연결 에러 발생 시 실행
+            ws.onerror = (error) => {
+                console.error("웹소켓 에러:", error);
+            };
+
+            // 웹소켓 연결이 종료됐을 때 실행
+            ws.onclose = () => {
+                console.log("웹소켓 연결 종료");
+                // 3초 후 자동 재연결 시도
+                setTimeout(createWebSocket, 3000);
+            };
+
+            // 생성된 웹소켓 객체를 상태에 저장
+            setSocket(ws);
+        };
+
+        // 컴포넌트 마운트 시 웹소켓 연결 시작
+        createWebSocket();
+
+        // 컴포넌트 언마운트 시 웹소켓 연결 정리
+        return () => {
+            if (socket) {
+                socket.close();
+            }
+        };
+    }, [chatRoomId]); // chatRoomId가 변경될 때마다 새로운 연결 생성
+
+    // 메시지 전송 함수
+    const sendMessage = (inputText: string) => {
+        // 빈 메시지이거나 소켓이 없으면 전송하지 않음
+        if (!inputText.trim() || !socket) return;
+
+        try {
+            // 전송할 메시지 데이터 구성
+            const sendData = {
+                chatRoomId: chatRoomId,
+                senderId: myProfileData?.data.userId,
+                message: inputText,
+            };
+            // 웹소켓을 통해 메시지 전송
+            socket.send(JSON.stringify(sendData));
+            // 입력창 초기화
+            setInputText("");
+        } catch (error) {
+            console.error("메시지 전송 중 에러:", error);
         }
     };
 
     useEffect(() => {
         console.log("메시지리스트:", messagesList);
+    }, [messagesList]);
+
+    useEffect(() => {
+        const chatContainer = document.querySelector(".chat-container");
+        if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
     }, [messagesList]);
 
     if (!data) {
@@ -83,6 +132,29 @@ export default function Chatting() {
     }
 
     const messages = data.pages.flatMap((page) => page.messages);
+
+    // 날짜 포맷팅 함수
+    const formatDateDivider = (date: string) => {
+        const messageDate = new Date(date);
+        return `${messageDate.getFullYear()}년 ${messageDate.getMonth() + 1}월 ${messageDate.getDate()}일`;
+    };
+
+    // 메시지를 날짜별로 그룹화하는 함수
+    const groupMessagesByDate = (messages: any[]) => {
+        const groups: { [key: string]: any[] } = {};
+
+        messages.forEach((message) => {
+            const date = new Date(message.time);
+            const dateKey = date.toISOString().split("T")[0];
+
+            if (!groups[dateKey]) {
+                groups[dateKey] = [];
+            }
+            groups[dateKey].push(message);
+        });
+
+        return groups;
+    };
 
     return isLoading ? (
         <LoaderWrap>
@@ -123,18 +195,36 @@ export default function Chatting() {
                 </ProductDetails>
             </ProductInfo>
 
-            <ChatContainer>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <DateDivider>2024년 12월 28일</DateDivider>
-                </div>
-                {messages.map((message, index) => (
-                    <MessageBubble key={index} $isMe={message.senderId === myProfileData?.userId}>
-                        {message.message}
-                        <MessageTime $isMe={message.senderId === 1}>
-                            {formatDate(message.time)}
-                        </MessageTime>
-                    </MessageBubble>
-                ))}
+            <ChatContainer className="chat-container">
+                {Object.entries(groupMessagesByDate([...messages].reverse())).map(
+                    ([date, messagesForDate]) => (
+                        <div
+                            key={date}
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                            }}
+                        >
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                                <DateDivider>{formatDateDivider(date)}</DateDivider>
+                            </div>
+                            {messagesForDate.map((message, index) => (
+                                <MessageBubble
+                                    key={`${date}-${index}`}
+                                    $isMe={message.senderId === myProfileData?.data.userId}
+                                >
+                                    {message.message}
+                                    <MessageTime
+                                        $isMe={message.senderId === myProfileData?.data.userId}
+                                    >
+                                        {formatDate(message.time)}
+                                    </MessageTime>
+                                </MessageBubble>
+                            ))}
+                        </div>
+                    ),
+                )}
                 {hasNextPage && <button onClick={() => fetchNextPage()}>Load more</button>}
             </ChatContainer>
 
@@ -191,6 +281,21 @@ const ChatContainer = styled.div`
     padding-bottom: 55px;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 188px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 4px;
+    }
 `;
 
 const DateDivider = styled.div`
@@ -199,8 +304,7 @@ const DateDivider = styled.div`
     justify-content: center;
     text-align: center;
     font-size: 12px;
-    margin-top: 16px;
-    margin-bottom: 32px;
+    margin: 24px 0;
     width: fit-content;
     color: var(--color-main-1);
     background: rgba(198, 212, 255, 0.3);
