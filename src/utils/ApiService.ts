@@ -76,7 +76,7 @@ export default class ApiService {
         header?: string,
         withCredentials = false,
     ): Promise<T> {
-        const authCookie = getCookie("Authorization");
+        const authCookie = getCookie("Authorization_banthing");
         const { promise, resolve, reject } = Promise.withResolvers<T>();
         const config: AxiosRequestConfig = {
             headers: {

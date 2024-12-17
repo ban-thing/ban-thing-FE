@@ -55,7 +55,7 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId, myId 
     const { mutate } = useCreateChatRoomMutation();
 
     const handleChatButtonClick = async () => {
-        const authCookie = getCookie("Authorization");
+        const authCookie = getCookie("Authorization_banthing");
         if (!authCookie) return navigate("/login");
         mutate(
             { sellerId, itemId },

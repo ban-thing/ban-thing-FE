@@ -44,7 +44,7 @@ const MyPage = () => {
     }, [data, isLoading]);
 
     const onClickLogOut = () => {
-        removeCookie("Authorization");
+        removeCookie("Authorization_banthing");
         navigate("/login");
     };
 

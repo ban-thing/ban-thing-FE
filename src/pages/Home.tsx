@@ -25,7 +25,7 @@ const Home = () => {
         const oneDayInMs = 24 * 60 * 60 * 1000;
 
         if (!lastChecked || currentTime - Number(lastChecked) > oneDayInMs) {
-            const authCookie = getCookie("Authorization");
+            const authCookie = getCookie("Authorization_banthing");
             if (!authCookie) navigate("/login");
             localStorage.setItem("lastChecked", String(currentTime));
         }

@@ -6,7 +6,7 @@ interface PrivateRouteProps {
 }
 
 export default function PrivateRoute({ children }: PrivateRouteProps) {
-    const authCookie = getCookie("Authorization");
+    const authCookie = getCookie("Authorization_banthing");
     const location = useLocation();
 
     if (!authCookie) {

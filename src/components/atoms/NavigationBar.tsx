@@ -25,7 +25,7 @@ export default function NavigationBar({ children }: NavigationBarProps) {
     const navigate = useNavigate();
 
     const handleNavigation = (tab: string) => {
-        const authCookie = getCookie("Authorization");
+        const authCookie = getCookie("Authorization_banthing");
         if (!authCookie && tab !== "home" && tab !== "search") return navigate("/login");
         set$activeTab(tab);
         navigate(`/${tab === "home" ? "" : tab}`);

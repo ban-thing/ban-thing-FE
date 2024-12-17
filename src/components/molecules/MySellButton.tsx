@@ -51,7 +51,7 @@ export const MySellButton = ({ ...props }: ButtonHTMLAttributes<HTMLButtonElemen
     }, []);
 
     const onClickSellButton = () => {
-        const authCookie = getCookie("Authorization");
+        const authCookie = getCookie("Authorization_banthing");
         if (!authCookie) return navigate("/login");
         navigate("/item-register");
     };
