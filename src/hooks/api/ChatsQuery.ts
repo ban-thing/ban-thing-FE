@@ -69,7 +69,7 @@ export const useChatRoomDetailsQuery = (roomId: number) => {
                 status: string;
                 data: ChatRoomView;
                 message: string | null;
-            }>(`chats/${roomId}`, { page: pageParam, size: 3 });
+            }>(`chats/${roomId}`, { page: pageParam, size: 50 });
 
             return response.data;
         },

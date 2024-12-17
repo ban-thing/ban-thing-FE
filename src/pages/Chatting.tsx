@@ -15,6 +15,7 @@ export default function Chatting() {
     const [inputText, setInputText] = useState("");
     const [messagesList, setMessagesList] = useState<any[]>([]);
     const [socket, setSocket] = useState<WebSocket | null>(null);
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
         Number(chatRoomId),
@@ -69,6 +70,12 @@ export default function Chatting() {
                             if (isDuplicate) {
                                 return prev;
                             }
+                            setTimeout(() => {
+                                const chatContainer = document.querySelector(".chat-container");
+                                if (chatContainer) {
+                                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                                }
+                            }, 100);
                             return [...prev, msg];
                         });
                     }
@@ -104,10 +111,35 @@ export default function Chatting() {
 
     useEffect(() => {
         const chatContainer = document.querySelector(".chat-container");
-        if (chatContainer) {
+        if (!chatContainer) return;
+
+        if (isInitialLoad || messagesList.length > 0) {
             chatContainer.scrollTop = chatContainer.scrollHeight;
+            setIsInitialLoad(false);
         }
-    }, [messagesList]);
+    }, [messagesList, data, isInitialLoad]);
+
+    useEffect(() => {
+        const chatContainer = document.querySelector(".chat-container");
+        if (!chatContainer) return;
+
+        const handleScroll = () => {
+            const currentScrollHeight = chatContainer.scrollHeight;
+
+            if (chatContainer.scrollTop === 0 && hasNextPage) {
+                const currentScrollPosition = chatContainer.scrollHeight - chatContainer.scrollTop;
+                fetchNextPage().then(() => {
+                    setTimeout(() => {
+                        const newScrollHeight = chatContainer.scrollHeight;
+                        chatContainer.scrollTop = newScrollHeight - currentScrollPosition;
+                    }, 100);
+                });
+            }
+        };
+
+        chatContainer.addEventListener("scroll", handleScroll);
+        return () => chatContainer.removeEventListener("scroll", handleScroll);
+    }, [fetchNextPage, hasNextPage]);
 
     if (!data) {
         return (
@@ -209,36 +241,47 @@ export default function Chatting() {
             </ProductInfo>
 
             <ChatContainer className="chat-container">
-                {Object.entries(groupMessagesByDate([...messages, ...messagesList].reverse())).map(
-                    ([date, messagesForDate]) => (
-                        <div
-                            key={date}
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
-                            <div style={{ display: "flex", justifyContent: "center" }}>
-                                <DateDivider>{formatDateDivider(date)}</DateDivider>
-                            </div>
-                            {messagesForDate.map((message, index) => (
-                                <MessageBubble
-                                    key={`${date}-${index}`}
+                {hasNextPage && (
+                    <LoadingIndicator>스크롤하여 이전 메시지 불러오기</LoadingIndicator>
+                )}
+                {Object.entries(
+                    groupMessagesByDate(
+                        [...messages, ...messagesList].sort(
+                            (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime(),
+                        ),
+                    ),
+                ).map(([date, messagesForDate]) => (
+                    <div
+                        key={date}
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <DateDivider>{formatDateDivider(date)}</DateDivider>
+                        </div>
+                        {messagesForDate.map((message, index) => (
+                            <MessageBubble
+                                key={`${date}-${index}`}
+                                $isMe={message.senderId === myProfileData?.data.userId}
+                            >
+                                {message.message}
+                                <MessageTime
                                     $isMe={message.senderId === myProfileData?.data.userId}
                                 >
-                                    {message.message}
-                                    <MessageTime
-                                        $isMe={message.senderId === myProfileData?.data.userId}
-                                    >
-                                        {formatDate(message.time)}
-                                    </MessageTime>
-                                </MessageBubble>
-                            ))}
-                        </div>
-                    ),
+                                    {formatDate(message.time)}
+                                </MessageTime>
+                            </MessageBubble>
+                        ))}
+                    </div>
+                ))}
+                {hasNextPage && (
+                    <div style={{ textAlign: "center", padding: "10px" }}>
+                        <button onClick={() => fetchNextPage()}>이전 메시지 더보기</button>
+                    </div>
                 )}
-                {hasNextPage && <button onClick={() => fetchNextPage()}>Load more</button>}
             </ChatContainer>
 
             <Footer>
@@ -263,9 +306,10 @@ export default function Chatting() {
 
 const Container = styled.div`
     position: relative;
-    min-height: 100vh;
-    padding-top: calc(56px + 76px);
-    padding-bottom: 60px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -273,7 +317,7 @@ const Header = styled.div`
     height: 56px;
     display: flex;
     align-items: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     background: white;
     z-index: 10;
@@ -291,10 +335,9 @@ const Price = styled.span`
 
 const ChatContainer = styled.div`
     padding: 0 20px;
-    padding-bottom: 55px;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 188px);
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -351,13 +394,13 @@ const MessageTime = styled.span<{ $isMe: boolean }>`
 `;
 
 const Footer = styled.div`
-    width: 343px;
+    width: 375px;
     height: 60px;
     padding: 16px 16px 36px 16px;
     display: flex;
     align-items: center;
     gap: 4px;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     background: white;
     border-top: 1px solid #eee;
@@ -434,7 +477,7 @@ const ProductInfo = styled.div`
     border-bottom: 1px solid #eee;
     background: white;
     cursor: pointer;
-    position: fixed;
+    position: sticky;
     top: 56px;
     z-index: 10;
 `;
@@ -458,4 +501,11 @@ const LoaderWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+const LoadingIndicator = styled.div`
+    text-align: center;
+    padding: 10px;
+    color: var(--color-black-5);
+    font-size: 14px;
 `;
