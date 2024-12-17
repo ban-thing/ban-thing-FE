@@ -7,7 +7,6 @@ import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { setImgUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
-import { formatDate } from "@/utils/formatData";
 
 export default function Chatting() {
     const navigate = useNavigate();
@@ -24,93 +23,80 @@ export default function Chatting() {
     // const sendMessageMutation = useSendMessageMutation();
 
     const handleSendMessage = async () => {
-        if (inputText.trim() === "") return;
-        sendMessage(inputText);
-        // try {
-        //     await sendMessageMutation.mutateAsync({
-        //         roomId: Number(chatRoomId),
-        //         message: inputText,
-        //     });
-        //     setInputText("");
-        // } catch (error) {
-        //     console.error("Failed to send message:", error);
-        // }
+        if (inputText.trim() === "" || !socket) return;
+
+        const now = new Date();
+
+        const newMessage = {
+            chatRoomId: Number(chatRoomId),
+            senderId: myProfileData?.data.userId,
+            message: inputText.trim(),
+            time: now.toISOString(), // 현재 시간을 ISO 형식으로 전송
+        };
+
+        try {
+            socket.send(JSON.stringify(newMessage));
+            setInputText("");
+        } catch (error) {
+            console.error("메시지 전송 실패:", error);
+            alert("메시지 전송에 실패했습니다. 다시 시도해주세요.");
+        }
     };
 
     useEffect(() => {
-        // 웹소켓 연결을 생성하고 관리하는 함수
         const createWebSocket = () => {
-            // 채팅방 ID를 기반으로 웹소켓 연결 생성
             const ws = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
 
-            // 웹소켓 연결이 성공했을 때 실행
             ws.onopen = () => {
                 console.log("웹소켓 연결 성공");
             };
 
-            // 서버로부터 메시지를 받았을 때 실행
             ws.onmessage = (event) => {
                 try {
-                    // JSON 형식의 메시지인 경우 파싱하여 처리
-                    if (event.data.includes("{")) {
+                    if (event.data === "WebSocket 연결 완료") {
+                        return;
+                    }
+
+                    if (typeof event.data === "string" && event.data.includes("{")) {
                         const msg = JSON.parse(event.data);
-                        setMessagesList((prev) => [...prev, msg]);
-                    } else {
-                        // 일반 텍스트 메시지인 경우 그대로 처리
-                        setMessagesList((prev) => [...prev, event.data]);
+                        setMessagesList((prev) => {
+                            const isDuplicate = prev.some(
+                                (prevMsg) =>
+                                    prevMsg.time === msg.time &&
+                                    prevMsg.message === msg.message &&
+                                    prevMsg.senderId === msg.senderId,
+                            );
+                            if (isDuplicate) {
+                                return prev;
+                            }
+                            return [...prev, msg];
+                        });
                     }
                 } catch (error) {
                     console.error("메시지 처리 중 에러:", error);
                 }
             };
 
-            // 웹소켓 연결 에러 발생 시 실행
             ws.onerror = (error) => {
                 console.error("웹소켓 에러:", error);
             };
 
-            // 웹소켓 연결이 종료됐을 때 실행
             ws.onclose = () => {
                 console.log("웹소켓 연결 종료");
-                // 3초 후 자동 재연결 시도
                 setTimeout(createWebSocket, 3000);
             };
 
-            // 생성된 웹소켓 객체를 상태에 저장
             setSocket(ws);
         };
 
-        // 컴포넌트 마운트 시 웹소켓 연결 시작
         createWebSocket();
 
-        // 컴포넌트 언마운트 시 웹소켓 연결 정리
         return () => {
             if (socket) {
                 socket.close();
             }
         };
-    }, [chatRoomId]); // chatRoomId가 변경될 때마다 새로운 연결 생성
-
-    // 메시지 전송 함수
-    const sendMessage = (inputText: string) => {
-        // 빈 메시지이거나 소켓이 없으면 전송하지 않음
-        if (!inputText.trim() || !socket) return;
-
-        try {
-            // 전송할 메시지 데이터 구성
-            const sendData = {
-                chatRoomId: chatRoomId,
-                senderId: myProfileData?.data.userId,
-                message: inputText,
-            };
-            // 웹소켓을 통해 메시지 전송
-            socket.send(JSON.stringify(sendData));
-            // 입력창 초기화
-            setInputText("");
-        } catch (error) {
-            console.error("메시지 전송 중 에러:", error);
-        }
-    };
+    }, [chatRoomId]);
 
     useEffect(() => {
         console.log("메시지리스트:", messagesList);
@@ -133,19 +119,26 @@ export default function Chatting() {
 
     const messages = data.pages.flatMap((page) => page.messages);
 
-    // 날짜 포맷팅 함수
+    // 날짜 포맷팅 함수 수정
     const formatDateDivider = (date: string) => {
+        // UTC 시간을 KST로 변환
         const messageDate = new Date(date);
-        return `${messageDate.getFullYear()}년 ${messageDate.getMonth() + 1}월 ${messageDate.getDate()}일`;
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const koreanDate = new Date(messageDate.getTime() + KR_TIME_DIFF);
+
+        return `${koreanDate.getFullYear()}년 ${koreanDate.getMonth() + 1}월 ${koreanDate.getDate()}일`;
     };
 
-    // 메시지를 날짜별로 그룹화하는 함수
+    // 메시지를 날짜별로 그룹화하는 함수 수정
     const groupMessagesByDate = (messages: any[]) => {
         const groups: { [key: string]: any[] } = {};
 
         messages.forEach((message) => {
+            // UTC 시간을 KST로 변환
             const date = new Date(message.time);
-            const dateKey = date.toISOString().split("T")[0];
+            const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+            const koreanDate = new Date(date.getTime() + KR_TIME_DIFF);
+            const dateKey = koreanDate.toISOString().split("T")[0];
 
             if (!groups[dateKey]) {
                 groups[dateKey] = [];
@@ -154,6 +147,26 @@ export default function Chatting() {
         });
 
         return groups;
+    };
+
+    // formatDate 함수 수정
+    const formatDate = (dateString: string) => {
+        // 서버 시간을 Date 객체로 변환
+        const date = new Date(dateString);
+
+        // UTC+9 시간 추가 (9시간을 밀리초로 변환)
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const koreanDate = new Date(date.getTime() + KR_TIME_DIFF);
+
+        const hours = koreanDate.getHours();
+        const minutes = koreanDate.getMinutes();
+
+        // 12시간제로 변환
+        const ampm = hours >= 12 ? "오후" : "오전";
+        const formattedHours = hours % 12 || 12;
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        return `${ampm} ${formattedHours}:${formattedMinutes}`;
     };
 
     return isLoading ? (
@@ -196,7 +209,7 @@ export default function Chatting() {
             </ProductInfo>
 
             <ChatContainer className="chat-container">
-                {Object.entries(groupMessagesByDate([...messages].reverse())).map(
+                {Object.entries(groupMessagesByDate([...messages, ...messagesList].reverse())).map(
                     ([date, messagesForDate]) => (
                         <div
                             key={date}
@@ -236,7 +249,7 @@ export default function Chatting() {
                     <ChatInput
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
-                        onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                        onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                         placeholder="내용을 입력해주세요"
                     />
                     <SendButton onClick={handleSendMessage}>
