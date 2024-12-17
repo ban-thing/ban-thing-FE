@@ -61,15 +61,17 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
         if (e.keyCode === 13 || e.key === "Enter") {
             const targetInput = e.target as HTMLInputElement;
 
-            // TODO: 모바일에서 작동하는지 확인
             if (inputValue.trim() === "") {
                 targetInput.placeholder = "공백은 입력할 수 없습니다.";
                 targetInput.classList.add("blank");
-                // console.log("공백");
                 return;
             } else if (targetInput.classList.contains("blank")) {
-                targetInput.placeholder = "태그는 최대 5개까지 입력 가능합니다.";
                 targetInput.classList.remove("blank");
+            }
+
+            if (formDataHashList.length === 5) {
+                setInputValue("");
+                return (targetInput.placeholder = "태그는 5개까지 입력 가능합니다.");
             }
 
             if (formDataHashList) {
