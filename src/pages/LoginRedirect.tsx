@@ -1,5 +1,5 @@
 import { useFetchKakaoLogin, useFetchKakaoLogin_token } from "@/hooks/api/UsersQuery";
-import { setCookie } from "@/utils/Cookie";
+import { getCookie, removeCookie, setCookie } from "@/utils/Cookie";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,9 @@ const LoginRedirect = () => {
         if (!isLoading && data && !isTokenLoading && tokenData) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
+            if (getCookie("Authorization")) {
+                removeCookie("Authorization");
+            }
             setCookie("Authorization", tokenData.data, { path: "/", maxAge: 2592000 });
             if (tokenData.message.includes("로그인")) {
                 navigate("/");

@@ -105,14 +105,13 @@ const ItemRegister = () => {
         if (edit && data) {
             const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
             const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
-            const hashs = data?.data.hashtags.map((tag) => tag.hashtag !== "[]");
 
             reset({
                 title: data?.data.title,
                 content: data?.data.content,
                 photos: files,
                 type: data?.data.type,
-                hashtags: hashs,
+                hashtags: data?.data.hashtags,
                 clnPollution: data?.data.cleaningDetail.pollution,
                 clnTimeUsed: data?.data.cleaningDetail.timeUsed,
                 clnCleaned: data?.data.cleaningDetail.cleaned,
