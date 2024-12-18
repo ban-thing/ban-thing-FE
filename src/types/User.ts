@@ -28,7 +28,7 @@ export type ItemsList = {
     price: number;
     address: string;
     updatedAt: Date;
-    hashtags?: string[];
+    hashtag?: string[];
     type?: string;
     status?: string;
 };

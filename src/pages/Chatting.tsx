@@ -13,7 +13,7 @@ export default function Chatting() {
     const { data: myProfileData } = useFetchMyProfile();
     const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
-    const [messagesList, setMessagesList] = useState<string[]>([]);
+    const [messagesList, setMessagesList] = useState<any[]>([]);
     const [socket, setSocket] = useState<WebSocket | null>(null);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
 

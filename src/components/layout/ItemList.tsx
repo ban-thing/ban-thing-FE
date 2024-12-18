@@ -54,8 +54,8 @@ const ItemList = ({
         if (currentLocation && isHome) {
             filtered = filtered.filter((item) => {
                 // 주소 비교 로직 개선
-                const itemAddress = item.address?.replace(/\s+/g, ""); // 공백 제거
-                const currentLoc = currentLocation?.replace(/\s+/g, ""); // 공백 제거
+                const itemAddress = item.address?.replace(/\s+/g, "");
+                const currentLoc = currentLocation?.replace(/\s+/g, "");
                 return itemAddress?.includes(currentLoc);
             });
         }
@@ -63,12 +63,24 @@ const ItemList = ({
         // 해시태그 필터링
         if (searchHashList && searchHashList.length > 0) {
             filtered = filtered.filter((item) => {
-                return searchHashList.some((tag) => item.hashtags?.includes(tag));
+                if (!item.hashtag || !Array.isArray(item.hashtag) || item.hashtag.length === 0) {
+                    return false;
+                }
+
+                return searchHashList.some((searchTag) => {
+                    if (!searchTag.trim()) return true;
+
+                    return item.hashtag?.some((itemTag) => {
+                        // 임시로 객체를 문자열로 변환
+                        const tagText =
+                            typeof itemTag === "string" ? itemTag : JSON.stringify(itemTag);
+
+                        const match = tagText.toLowerCase().includes(searchTag.toLowerCase());
+                        return match;
+                    });
+                });
             });
         }
-
-        console.log("Filtered items:", filtered); // 디버깅용
-        console.log("Current location:", currentLocation); // 디버깅용
         setListData(filtered);
     }, [data, isLoading, currentLocation, searchHashList, isHome, isMyPage]);
 
