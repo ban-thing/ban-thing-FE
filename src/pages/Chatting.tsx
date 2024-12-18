@@ -212,7 +212,7 @@ export default function Chatting() {
                     style={{ cursor: "pointer", marginLeft: 20 }}
                     onClick={() => navigate("/chatting-list")}
                 />
-                <HeaderTitle>{data.pages[0].title}</HeaderTitle>
+                <HeaderTitle>{data.pages[0].seller}</HeaderTitle>
             </Header>
 
             <ProductInfo onClick={() => navigate(`/item-view/${data.pages[0].itemId}`)}>
