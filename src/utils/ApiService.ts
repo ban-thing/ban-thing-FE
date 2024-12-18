@@ -11,7 +11,7 @@ export default class ApiService {
 
     constructor() {
         const config: AxiosRequestConfig = {
-            baseURL: `http://211.188.62.82:8080`,
+            baseURL: `https://211.188.62.82:8080`,
         };
 
         this.axiosInstance = axios.create(config);
