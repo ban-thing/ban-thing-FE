@@ -124,7 +124,7 @@ export default function Chatting() {
         if (!chatContainer) return;
 
         const handleScroll = () => {
-            const currentScrollHeight = chatContainer.scrollHeight;
+            // const currentScrollHeight = chatContainer.scrollHeight;
 
             if (chatContainer.scrollTop === 0 && hasNextPage) {
                 const currentScrollPosition = chatContainer.scrollHeight - chatContainer.scrollTop;
