@@ -45,21 +45,20 @@ const ItemList = ({
     const [listData, setListData] = useState<ItemsList[] | null>();
 
     useEffect(() => {
-        // 홈 메뉴일 때만 지역 필터링
-        if (data && currentLocation && isHome) {
-            const filtered = data?.filter((item) => item.address === currentLocation);
-            if (!filtered) return setListData(null);
-            return setListData(filtered);
-        }
-        if (data) {
-            return setListData(data);
-        }
-    }, [data, isLoading, currentLocation]);
-
-    useEffect(() => {
         if (!data) return setListData(null);
-        if (isMyPage || isHome) return setListData(data);
+        if (isMyPage) return setListData(data);
+
         let filtered = [...data];
+
+        // 홈 메뉴일 때 지역 필터링
+        if (currentLocation && isHome) {
+            filtered = filtered.filter((item) => {
+                // 주소 비교 로직 개선
+                const itemAddress = item.address?.replace(/\s+/g, ""); // 공백 제거
+                const currentLoc = currentLocation?.replace(/\s+/g, ""); // 공백 제거
+                return itemAddress?.includes(currentLoc);
+            });
+        }
 
         // 해시태그 필터링
         if (searchHashList && searchHashList.length > 0) {
@@ -68,9 +67,10 @@ const ItemList = ({
             });
         }
 
+        console.log("Filtered items:", filtered); // 디버깅용
+        console.log("Current location:", currentLocation); // 디버깅용
         setListData(filtered);
-        console.log("filtered", filtered); // 디버깅용
-    }, [data, isLoading, currentLocation, searchHashList]);
+    }, [data, isLoading, currentLocation, searchHashList, isHome, isMyPage]);
 
     return (
         <StyledItemList
