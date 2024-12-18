@@ -69,6 +69,11 @@ export const useLocationSetting = () => {
     };
 
     const onClickCurrent = (navigate?: (path: string) => void) => {
+        if (window.location.protocol !== "https:" && window.location.hostname !== "localhost") {
+            alert("위치 정보는 보안 연결(HTTPS)에서만 사용할 수 있습니다.");
+            return;
+        }
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -81,7 +86,19 @@ export const useLocationSetting = () => {
                 },
                 (error) => {
                     console.error("Error getting location:", error);
-                    alert("위치 정보를 가져오는데 실패했습니다.");
+                    let errorMessage = "위치 정보를 가져오는데 실패했습니다.";
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = "위치 정보 접근 권한이 거부되었습니다.";
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = "위치 정보를 사용할 수 없습니다.";
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = "위치 정보 요청이 시간 초과되었습니다.";
+                            break;
+                    }
+                    alert(errorMessage);
                 },
             );
         } else {
