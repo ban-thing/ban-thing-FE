@@ -81,6 +81,10 @@ const ItemList = ({
                 });
             });
         }
+
+        filtered.sort((a, b) => {
+            return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+        });
         setListData(filtered);
     }, [data, isLoading, currentLocation, searchHashList, isHome, isMyPage]);
 
