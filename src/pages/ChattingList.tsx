@@ -59,13 +59,15 @@ const ChattingListContainer = styled.div`
     padding-top: 62px;
     padding-bottom: 57px;
     min-height: 100vh;
+    width: 100%;
 `;
 
 const FixedTabBar = styled.div`
     position: fixed;
+    width: 375px;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     background: white;
 `;
