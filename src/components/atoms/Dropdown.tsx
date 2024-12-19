@@ -63,6 +63,9 @@ const Option = styled.li<ShowProps>`
         color: black;
         font-weight: 700;
     }
+    &:first-child {
+        color: var(--color-black-2);
+    }
 `;
 
 type DropdownProps = {
