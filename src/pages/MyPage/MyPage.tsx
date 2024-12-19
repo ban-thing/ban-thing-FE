@@ -39,7 +39,13 @@ const MyPage = () => {
 
     useEffect(() => {
         if (data) {
-            setProfileData(data.data);
+            const processedData = {
+                ...data.data,
+                nickname: data.data.nickname.match(/^반띵#\d{10}$/)
+                    ? data.data.nickname.replace(/^(반띵#\d{4})\d+$/, "$1******")
+                    : data.data.nickname,
+            };
+            setProfileData(processedData);
         }
     }, [data, isLoading]);
 
