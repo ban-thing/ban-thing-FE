@@ -93,7 +93,7 @@ export default class ApiService {
         (path.startsWith("http") ? axios : this.axiosInstance)
             [method](path, method === "get" || method === "delete" ? config : parameters, config)
             .then((response: AxiosResponse) => {
-                console.log(`🟢 ${method} `, path, parameters, response);
+                console.log(`🟢 ${method} `, path, parameters, response, header);
                 resolve(response.data);
             })
             .catch((error: AxiosError) => {
