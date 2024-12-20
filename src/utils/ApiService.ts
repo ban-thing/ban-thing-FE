@@ -35,7 +35,7 @@ export default class ApiService {
         header?: string,
         withCredentials?: boolean,
     ): Promise<T> {
-        // console.log("🟣 post ", path, parameters);
+        //console.log("🟣 post ", path, parameters);
         return this.makeRequest<T>("post", path, parameters, header, withCredentials);
     }
 
@@ -93,7 +93,7 @@ export default class ApiService {
         (path.startsWith("http") ? axios : this.axiosInstance)
             [method](path, method === "get" || method === "delete" ? config : parameters, config)
             .then((response: AxiosResponse) => {
-                console.log(`🟢 ${method} `, path, parameters, response, header);
+                console.log(`🟢 ${method} `, path, parameters, response);
                 resolve(response.data);
             })
             .catch((error: AxiosError) => {
