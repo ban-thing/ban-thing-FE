@@ -196,7 +196,7 @@ export default function LocationSelect() {
                         }}
                         onClick={onClickCancel}
                     >
-                        취소
+                        초기화
                     </Button>
                     <Button
                         variant={selectedTowns.length > 0 ? "filled" : "gray"}
