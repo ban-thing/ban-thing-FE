@@ -151,7 +151,7 @@ const ItemRegister = () => {
                 typeof item === "object" ? item.hashtag : item,
             );
         }
-        if (data.isDirect) {
+        if (!data.isDirect) {
             data.address = profileData?.data.address1;
         }
 
