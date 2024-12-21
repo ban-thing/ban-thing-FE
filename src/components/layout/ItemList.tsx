@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useItemListLocationStore } from "@/store/LocationStore";
 import { useSearchHashListStore } from "@/store/SearchHashList";
+import { TownListData } from "@/lib/TownListData";
 
 const StyledItemList = styled.div<{ height: string; padding?: string }>`
     height: ${({ height }) => (height ? height : null)};
@@ -30,6 +31,13 @@ type ItemListProps = {
     isHome?: boolean;
     isMyPage?: boolean;
 };
+
+// 타입 정의 추가
+interface TownData {
+    admCode: string;
+    admCodeNm: string;
+    lowestAdmCodeNm: string;
+}
 
 const ItemList = ({
     padding,
@@ -56,10 +64,21 @@ const ItemList = ({
                 const itemAddress = item.address?.replace(/\s+/g, "");
                 const currentLoc = currentLocation?.replace(/\s+/g, "");
 
-                // 전체 지역이 선택된 경우의 처리
+                // 전체 지역이 선택된 경우
                 if (currentLoc.endsWith("전체")) {
-                    const baseLocation = currentLoc.replace("전체", "");
-                    return itemAddress?.includes(baseLocation);
+                    const district = currentLoc.replace("전체", ""); // 예: "강남구"
+                    const addressParts = itemAddress?.split(" ") || [];
+
+                    // 주소에서 구/군 부분 찾기
+                    return addressParts.some(
+                        (part) =>
+                            part.includes(district) ||
+                            // 해당 구의 모든 동 목록과 비교
+                            Object.values(TownListData)
+                                .flat()
+                                .filter((town: TownData) => town.admCodeNm.includes(district))
+                                .some((town: TownData) => part.includes(town.lowestAdmCodeNm)),
+                    );
                 }
 
                 return itemAddress?.includes(currentLoc);
