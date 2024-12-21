@@ -53,9 +53,15 @@ const ItemList = ({
         // 홈 메뉴일 때 지역 필터링
         if (currentLocation && isHome) {
             filtered = filtered.filter((item) => {
-                // 주소 비교 로직 개선
                 const itemAddress = item.address?.replace(/\s+/g, "");
                 const currentLoc = currentLocation?.replace(/\s+/g, "");
+
+                // 전체 지역이 선택된 경우의 처리
+                if (currentLoc.endsWith("전체")) {
+                    const baseLocation = currentLoc.replace("전체", "");
+                    return itemAddress?.includes(baseLocation);
+                }
+
                 return itemAddress?.includes(currentLoc);
             });
         }

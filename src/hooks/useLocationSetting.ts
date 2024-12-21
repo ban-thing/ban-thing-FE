@@ -35,10 +35,16 @@ export const useLocationSetting = () => {
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
         if (district.id.endsWith("_all")) {
+            const allDistrictTowns = districts
+                .filter((d) => !d.id.endsWith("_all"))
+                .map((d) => d.name);
+
             const existingTowns = currentAddress?.[2] || [];
-            setCurrentTowns([...existingTowns, district.name]);
+            const uniqueTowns = [...new Set([...existingTowns, ...allDistrictTowns])];
+
+            setCurrentTowns(uniqueTowns);
+            setSelectedTowns(districts.map((d) => ({ id: d.id, name: d.name })));
         } else {
-            // const currentSelectedTowns = selectedTowns;
             loadTowns(district.id, district.name);
         }
     };

@@ -98,16 +98,33 @@ export default function LocationSelect() {
                 </RegionSection>
 
                 <RegionSection>
-                    {districts.map((district) => (
-                        <RegionButton
-                            key={district.id}
-                            onClick={() => handleDistrictSelect(district)}
-                            selected={selectedDistrict?.id === district.id}
-                            variant="district"
-                        >
-                            {district.name}
-                        </RegionButton>
-                    ))}
+                    {districts.map((district) => {
+                        const isSelected = selectedDistrict?.id === district.id;
+                        const shouldHighlight =
+                            isSelected ||
+                            (selectedDistrict?.id.endsWith("_all") &&
+                                !district.id.endsWith("_all"));
+
+                        return (
+                            <RegionButton
+                                key={district.id}
+                                onClick={() => handleDistrictSelect(district)}
+                                selected={shouldHighlight}
+                                variant="district"
+                            >
+                                {district.name}
+                                {shouldHighlight && (
+                                    <CheckIcon
+                                        style={{
+                                            width: 22,
+                                            height: 22,
+                                            textAlign: "end",
+                                        }}
+                                    />
+                                )}
+                            </RegionButton>
+                        );
+                    })}
                 </RegionSection>
 
                 <RegionSection>
