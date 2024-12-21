@@ -40,7 +40,7 @@ export const useLocationSetting = () => {
             setSelectedTowns([
                 {
                     id: district.id,
-                    name: `${selectedCity?.name} ${district.name}`,
+                    name: `${selectedCity?.name} 전체`,
                 },
             ]);
         } else {

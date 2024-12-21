@@ -57,17 +57,12 @@ const ItemList = ({
                 const currentLoc = currentLocation?.replace(/\s+/g, "");
 
                 // 전체 지역이 선택된 경우의 처리
-                if (currentLoc.includes("전체")) {
-                    // 시/도 이름 추출 (예: "서울")
-                    const cityName = currentLoc.split(" ")[0];
-                    // 아이템 주소가 해당 시/도로 시작하는지 확인
-                    return itemAddress?.startsWith(cityName);
+                if (currentLoc.endsWith("전체")) {
+                    const baseLocation = currentLoc.replace("전체", "");
+                    return itemAddress?.includes(baseLocation);
                 }
 
-                // 동/읍/면 단위로 비교
-                const itemLastWord = itemAddress?.split(/[시구군]/).pop() || "";
-                const currentLastWord = currentLoc.split(/[시구군]/).pop() || "";
-                return itemLastWord === currentLastWord;
+                return itemAddress?.includes(currentLoc);
             });
         }
 
