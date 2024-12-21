@@ -28,9 +28,15 @@ export default function LocationSelect() {
         resetData,
     } = useLocationSetting();
     const { mutate } = useFetchAddress({
-        address1: selectedTowns[0]?.name,
-        address2: selectedTowns[1]?.name || "",
-        address3: selectedTowns[2]?.name || "",
+        address1: selectedTowns[0]
+            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[0].name}`
+            : "",
+        address2: selectedTowns[1]
+            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[1].name}`
+            : "",
+        address3: selectedTowns[2]
+            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[2].name}`
+            : "",
     });
 
     const onClickCancel = () => {
