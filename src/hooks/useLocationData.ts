@@ -10,7 +10,7 @@ const BASE_URL = isLocal ? "/api" : "http://api.vworld.kr/ned/data";
 const API_KEY = isLocal
     ? "DF267C57-FC4C-337B-BADF-F0A952C4F4B3" // Local API key
     : "15EB6A87-98E6-333C-BF19-30B0EEA78330"; // Server API key
-const DOMAIN = isLocal ? "http://localhost:3000" : "http://211.188.62.82:3000";
+const DOMAIN = isLocal ? "http://localhost:3000" : "https://211.188.62.82:3000";
 
 // interface LocationData {
 //     admCode: string;
