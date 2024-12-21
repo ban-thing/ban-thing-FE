@@ -3,14 +3,16 @@ import { AdmVO, ApiResponse, Region } from "@/types/location";
 // import * as DistrictListData from "@/lib/DistrictListData";
 // import * as TownListData from "@/lib/TownListData";
 // import { CityList } from "@/lib/CityListData";
-const isLocal = window.location.href.includes("localhost");
+// const isLocal = window.location.href.includes("localhost");
 
-const BASE_URL = isLocal ? "/api" : "http://api.vworld.kr/ned/data";
-// const API_KEY = "15EB6A87-98E6-333C-BF19-30B0EEA78330";
-const API_KEY = isLocal
-    ? "DF267C57-FC4C-337B-BADF-F0A952C4F4B3" // Local API key
-    : "15EB6A87-98E6-333C-BF19-30B0EEA78330"; // Server API key
-const DOMAIN = isLocal ? "http://localhost:3000" : "https://211.188.62.82:3000";
+// const BASE_URL = isLocal ? "/api" : "https://api.vworld.kr/ned/data";
+// const API_KEY = isLocal
+//     ? "DF267C57-FC4C-337B-BADF-F0A952C4F4B3" // Local API key
+//     : "15EB6A87-98E6-333C-BF19-30B0EEA78330"; // Server API key
+// const DOMAIN = isLocal ? "http://localhost:3000" : "https://211.188.62.82:3000";
+const API_KEY = "15EB6A87-98E6-333C-BF19-30B0EEA78330";
+const BASE_URL = "https://api.vworld.kr/ned/data";
+const DOMAIN = "https://banthing.net";
 
 // interface LocationData {
 //     admCode: string;
