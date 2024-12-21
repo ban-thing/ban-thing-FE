@@ -24,6 +24,7 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
 import { getFileFromUrl } from "@/utils/SetImageUrl";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const ItemRegisterWrap = styled.div`
     position: relative;
@@ -67,6 +68,7 @@ const StyledToastContainer = styled(ToastContainer)`
 const ItemRegister = () => {
     const [searchParams] = useSearchParams();
     const edit = searchParams.get("edit");
+    const { data: profileData } = useFetchMyProfile();
     const [showHashModal, setShowHashModal] = useState(false);
     const [showDirectModal, setShowDirectModal] = useState(false);
     const {
@@ -89,7 +91,7 @@ const ItemRegister = () => {
             title: "",
             content: "",
             type: "판매",
-            // price: "500",
+            price: "0",
             clnPollution: "없음",
             clnTimeUsed: "없음",
             clnCleaned: "새 상품",
@@ -148,6 +150,9 @@ const ItemRegister = () => {
             data.hashtags = data.hashtags.map((item: any) =>
                 typeof item === "object" ? item.hashtag : item,
             );
+        }
+        if (data.isDirect) {
+            data.address = profileData?.data.address1;
         }
 
         if (edit) return updateMutate(data);
