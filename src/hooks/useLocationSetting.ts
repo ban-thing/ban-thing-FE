@@ -34,18 +34,19 @@ export const useLocationSetting = () => {
 
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
+
         if (district.id.endsWith("_all")) {
-            const allDistrictTowns = districts
-                .filter((d) => !d.id.endsWith("_all"))
-                .map((d) => d.name);
-
-            const existingTowns = currentAddress?.[2] || [];
-            const uniqueTowns = [...new Set([...existingTowns, ...allDistrictTowns])];
-
-            setCurrentTowns(uniqueTowns);
-            setSelectedTowns(districts.map((d) => ({ id: d.id, name: d.name })));
+            // 전체가 선택된 경우
+            setSelectedTowns([
+                {
+                    id: district.id,
+                    name: `${selectedCity?.name} 전체`,
+                },
+            ]);
         } else {
+            // 특정 구가 선택된 경우
             loadTowns(district.id, district.name);
+            setSelectedTowns([]);
         }
     };
 
