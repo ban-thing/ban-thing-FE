@@ -30,10 +30,16 @@ export default function HomeHeader() {
     const navigate = useNavigate();
     useEffect(() => {
         if (isSuccess && data) {
+            const extractLastWord = (address: string) => {
+                if (!address) return "";
+                const words = address.split(" ");
+                return words[words.length - 1];
+            };
+
             setAddressList([
-                data.data.address1,
-                data.data.address2 || "",
-                data.data.address3 || "",
+                extractLastWord(data.data.address1),
+                data.data.address2 ? extractLastWord(data.data.address2) : "",
+                data.data.address3 ? extractLastWord(data.data.address3) : "",
                 "동네 바꾸기",
             ]);
         }
