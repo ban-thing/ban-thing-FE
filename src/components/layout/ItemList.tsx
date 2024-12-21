@@ -55,13 +55,15 @@ const ItemList = ({
             filtered = filtered.filter((item) => {
                 const itemAddress = item.address?.replace(/\s+/g, "");
                 const currentLoc = currentLocation?.replace(/\s+/g, "");
-                console.log(itemAddress, currentLoc);
+                console.log("itemAddress", itemAddress);
+                console.log("currentLoc", currentLoc);
 
                 // 전체 지역이 선택된 경우의 처리
                 if (currentLoc.endsWith("전체")) {
                     const baseLocation = currentLoc.replace("전체", "");
                     const addressParts = itemAddress?.split(" ") || [];
-                    console.log(baseLocation, addressParts);
+                    console.log("baseLocation", baseLocation);
+                    console.log("addressParts", addressParts);
                     return itemAddress?.includes(baseLocation);
                 }
 
