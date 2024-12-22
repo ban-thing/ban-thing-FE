@@ -46,7 +46,7 @@ export default function Chatting() {
 
     useEffect(() => {
         const createWebSocket = () => {
-            const ws = new WebSocket(`ws://211.188.62.82:8080/ws/chat/${chatRoomId}`);
+            const ws = new WebSocket(`wss://211.188.62.82:8080/ws/chat/${chatRoomId}`);
 
             ws.onopen = () => {
                 console.log("웹소켓 연결 성공");
