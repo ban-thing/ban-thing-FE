@@ -9,6 +9,21 @@ import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
 import { useFetchAddress } from "@/hooks/api/UsersQuery";
 
+const formatAddress = (
+    city?: { name: string },
+    district?: { name: string },
+    town?: { name: string },
+) => {
+    if (!city) return "";
+    if (town?.name.includes("전체")) {
+        if (district?.name.includes("전체")) {
+            return city.name;
+        }
+        return `${city.name} ${district?.name}`;
+    }
+    return `${city.name} ${district?.name} ${town?.name}`;
+};
+
 export default function LocationSelect() {
     const navigate = useNavigate();
     const {
@@ -29,13 +44,13 @@ export default function LocationSelect() {
     } = useLocationSetting();
     const { mutate } = useFetchAddress({
         address1: selectedTowns[0]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[0].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[0])
             : "",
         address2: selectedTowns[1]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[1].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[1])
             : "",
         address3: selectedTowns[2]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[2].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[2])
             : "",
     });
 

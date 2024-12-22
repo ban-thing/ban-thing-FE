@@ -37,23 +37,12 @@ export const useLocationSetting = () => {
 
         if (district.id.endsWith("_all")) {
             // 전체가 선택된 경우
-            if (district.name === `${selectedCity?.name} 전체`) {
-                // 시/도 전체 선택의 경우 (예: "서울 전체")
-                setSelectedTowns([
-                    {
-                        id: district.id,
-                        name: selectedCity?.name || "", // "서울"만 저장
-                    },
-                ]);
-            } else {
-                // 구/군 전체 선택의 경우 (예: "강남구 전체")
-                setSelectedTowns([
-                    {
-                        id: district.id,
-                        name: `${selectedCity?.name} ${district.name.replace(" 전체", "")}`, // "서울 강남구"로 저장
-                    },
-                ]);
-            }
+            setSelectedTowns([
+                {
+                    id: district.id,
+                    name: `${selectedCity?.name} 전체`,
+                },
+            ]);
         } else {
             // 특정 구가 선택된 경우
             loadTowns(district.id, district.name);
