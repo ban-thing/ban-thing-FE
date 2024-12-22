@@ -15,7 +15,7 @@ const Home = () => {
         hashtags: "",
         minPrice: 0,
         maxPrice: 5000000000,
-        address: "",
+        address: "서울시 강남구",
     });
 
     useEffect(() => {
