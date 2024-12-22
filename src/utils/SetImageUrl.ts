@@ -1,7 +1,6 @@
 export const imageUrl = "https://kr.object.ncloudstorage.com/banthing-images/itemImage";
 
 export const setImgUrl = (id: string | number, data: string, type: string) => {
-    type = 'jpeg';
     return `${imageUrl}/${id}/${data}.${type}`;
 };
 
