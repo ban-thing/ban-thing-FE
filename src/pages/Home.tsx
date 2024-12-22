@@ -15,7 +15,7 @@ const Home = () => {
         hashtags: "",
         minPrice: 0,
         maxPrice: 5000000000,
-        address: "서울시",
+        address: "논현동",
     });
 
     useEffect(() => {
