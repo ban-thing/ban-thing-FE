@@ -8,17 +8,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import { useSelectedAddressStore } from "@/store/SelectedAddressStore";
-import { ClipLoader } from "react-spinners";
 
 const Home = () => {
     const navigate = useNavigate();
     const { isDropdownOpen } = useDropdownModalStore();
-    const { data: profileData, isLoading: isProfileLoading } = useFetchMyProfile();
+    const { data: profileData } = useFetchMyProfile();
     const { selectedAddress } = useSelectedAddressStore();
 
     const {
         data: { data } = {},
-        isLoading: isItemsLoading,
+        isLoading,
         refetch,
     } = useFetchItemsList({
         keyword: "",
@@ -27,8 +26,6 @@ const Home = () => {
         maxPrice: 5000000000,
         address: selectedAddress || profileData?.data?.address1 || "",
     });
-
-    const isLoading = isProfileLoading || isItemsLoading || !selectedAddress;
 
     useEffect(() => {
         // 하루에 한번 로그인창으로 이동
@@ -51,30 +48,17 @@ const Home = () => {
 
     return (
         <>
-            {!isLoading ? (
-                <HomeLayout>
-                    {isDropdownOpen && (
-                        <ModalBase
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.4 }}
-                            transition={{ duration: 0.15 }}
-                            $maxWidth="375px"
-                        />
-                    )}
-                    <ItemList isHome={true} data={data?.items} isLoading={isLoading} />
-                </HomeLayout>
-            ) : (
-                <div
-                    style={{
-                        height: "100vh",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <ClipLoader size={48} color="#d7d7d7" />
-                </div>
-            )}
+            <HomeLayout>
+                {isDropdownOpen && (
+                    <ModalBase
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.4 }}
+                        transition={{ duration: 0.15 }}
+                        $maxWidth="375px"
+                    />
+                )}
+                <ItemList isHome={true} data={data?.items} isLoading={isLoading} />
+            </HomeLayout>
         </>
     );
 };
