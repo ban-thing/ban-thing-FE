@@ -7,18 +7,20 @@ import { getCookie } from "@/utils/Cookie";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useSelectedAddressStore } from "@/store/SelectedAddressStore";
 
 const Home = () => {
     const navigate = useNavigate();
     const { isDropdownOpen } = useDropdownModalStore();
     const { data: profileData } = useFetchMyProfile();
+    const { selectedAddress } = useSelectedAddressStore();
 
     const { data: { data } = {}, isLoading } = useFetchItemsList({
         keyword: "",
         hashtags: "",
         minPrice: 0,
         maxPrice: 5000000000,
-        address: profileData?.data?.address1 || "",
+        address: selectedAddress || profileData?.data?.address1 || "",
     });
 
     useEffect(() => {

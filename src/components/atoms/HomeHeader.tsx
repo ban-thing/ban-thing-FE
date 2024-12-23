@@ -4,6 +4,7 @@ import { Dropdown } from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import { useEffect, useState } from "react";
+import { useSelectedAddressStore } from "@/store/SelectedAddressStore";
 
 const HeaderBox = styled.header`
     height: 50px;
@@ -27,7 +28,9 @@ const SearchButton = styled.button`
 export default function HomeHeader() {
     const [addressList, setAddressList] = useState<string[]>();
     const { data, isSuccess } = useFetchMyProfile();
+    const { setSelectedAddress } = useSelectedAddressStore();
     const navigate = useNavigate();
+
     useEffect(() => {
         if (isSuccess && data) {
             const extractLastWord = (address: string) => {
@@ -36,20 +39,35 @@ export default function HomeHeader() {
                 return words[words.length - 1];
             };
 
+            setSelectedAddress(data.data.address1 || "");
+
             setAddressList([
                 extractLastWord(data.data.address1),
-                data.data.address2 ? extractLastWord(data.data.address1) : "",
-                data.data.address3 ? extractLastWord(data.data.address1) : "",
+                data.data.address2 ? extractLastWord(data.data.address2) : "",
+                data.data.address3 ? extractLastWord(data.data.address3) : "",
                 "동네 바꾸기",
             ]);
         }
     }, [data, isSuccess]);
+
     const onClickSearch = () => {
         navigate("/search");
     };
+
     const onChange = (value: string) => {
-        if (value === "동네 바꾸기") navigate("/location-select");
-        if (value === "지역 설정하기") navigate("/login");
+        if (value === "동네 바꾸기") {
+            navigate("/location-select");
+            return;
+        }
+        if (value === "지역 설정하기") {
+            navigate("/login");
+            return;
+        }
+
+        const selectedIndex = addressList?.findIndex((addr) => addr === value) ?? -1;
+        if (selectedIndex === 0) setSelectedAddress(data?.data.address1 || "");
+        if (selectedIndex === 1) setSelectedAddress(data?.data.address2 || "");
+        if (selectedIndex === 2) setSelectedAddress(data?.data.address3 || "");
     };
 
     return (
