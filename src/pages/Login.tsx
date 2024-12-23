@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, KakaoLoginButton, UnderlineTextButton } from "@/components/atoms/Button";
+import { KakaoLoginButton, UnderlineTextButton } from "@/components/atoms/Button";
 import { Link } from "react-router-dom";
 import MainLogo from "@/components/atoms/MainLogo";
 
