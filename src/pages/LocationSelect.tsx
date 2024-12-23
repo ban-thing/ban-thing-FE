@@ -135,15 +135,6 @@ export default function LocationSelect() {
                                 variant="district"
                             >
                                 {district.name}
-                                {shouldHighlight && (
-                                    <CheckIcon
-                                        style={{
-                                            width: 22,
-                                            height: 22,
-                                            textAlign: "end",
-                                        }}
-                                    />
-                                )}
                             </RegionButton>
                         );
                     })}
@@ -350,6 +341,8 @@ const RegionButton = styled.button<{
                     `
                     background: var(--color-main-3);
                     color: #6290ec;
+                    display: flex;
+                    justify-content: space-between;
                     &:hover {
                         background: var(--color-main-2);
                     }
