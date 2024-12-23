@@ -73,6 +73,7 @@ export default function HomeHeader() {
         const fullAddress = addresses.find((addr) => addr?.includes(value));
         if (fullAddress) {
             setSelectedAddress(fullAddress);
+            console.log("fullAddress", fullAddress);
         }
     };
 
