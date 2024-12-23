@@ -33,7 +33,12 @@ export const base64ToFile = (base64: string, filename = "imgFile"): File => {
 export const getFileFromUrl = async (id: string | number, name: string) => {
     const [data, type] = name.split(".");
     const url = setImgUrl(id, data, type);
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow_origin": "https://kr.object.ncloudstorage.com"  
+        },
+    });
     const blob = await response.blob();
     return new File([blob], `${data}.${type}`, { type: blob.type });
 };
