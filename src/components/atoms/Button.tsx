@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import Plus from "@/assets/icons/plusBold.svg?react";
 import FilterIcon from "@/assets/icons/filter.svg?react";
 import ResetIcon from "@/assets/icons/reset.svg?react";
+import KakaoIcon from "@/assets/icons/kakao.svg?react";
 // TODO: $variant로 수정
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "filled" | "outlined" | "gray" | "yellow";
@@ -309,5 +310,40 @@ export const FilterResetButton = (props: ButtonHTMLAttributes<HTMLButtonElement>
             <ResetIcon />
             초기화
         </ResetButton>
+    );
+};
+
+export const KakaoButton = styled.button`
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: none;
+    width: 335px;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: var(--color-yellow);
+    color: black;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+    svg {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+    }
+`;
+
+export const KakaoLoginButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+    return (
+        <KakaoLoginButton {...props}>
+            <KakaoIcon />
+            카카오로 3초만에 로그인
+        </KakaoLoginButton>
     );
 };
