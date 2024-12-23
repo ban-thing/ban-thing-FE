@@ -16,7 +16,7 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
             <ChatInfo>
                 <UserDetails>
                     <UserName>{chat.nickname}</UserName>
-                    <UserLocation>{chat.address}</UserLocation>
+                    <UserLocation>{chat.address.slice(-3)}</UserLocation>
                     <PointIcon />
                     {chat.latestMessageDateTime && (
                         <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>

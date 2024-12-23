@@ -8,6 +8,22 @@ import { PageTitle } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
 import { useFetchAddress } from "@/hooks/api/UsersQuery";
+import { Region } from "@/types/location";
+
+const formatAddress = (
+    city: Region | null | undefined,
+    district: Region | null | undefined,
+    town: Region | null | undefined,
+) => {
+    if (!city?.name) return "";
+    if (town?.name?.includes("전체")) {
+        if (district?.name?.includes("전체")) {
+            return city.name;
+        }
+        return `${city.name} ${district?.name}`;
+    }
+    return `${city.name} ${district?.name} ${town?.name}`;
+};
 
 export default function LocationSelect() {
     const navigate = useNavigate();
@@ -29,13 +45,13 @@ export default function LocationSelect() {
     } = useLocationSetting();
     const { mutate } = useFetchAddress({
         address1: selectedTowns[0]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[0].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[0])
             : "",
         address2: selectedTowns[1]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[1].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[1])
             : "",
         address3: selectedTowns[2]
-            ? `${selectedCity?.name} ${selectedDistrict?.name} ${selectedTowns[2].name}`
+            ? formatAddress(selectedCity, selectedDistrict, selectedTowns[2])
             : "",
     });
 
@@ -119,15 +135,6 @@ export default function LocationSelect() {
                                 variant="district"
                             >
                                 {district.name}
-                                {shouldHighlight && (
-                                    <CheckIcon
-                                        style={{
-                                            width: 22,
-                                            height: 22,
-                                            textAlign: "end",
-                                        }}
-                                    />
-                                )}
                             </RegionButton>
                         );
                     })}
@@ -334,6 +341,8 @@ const RegionButton = styled.button<{
                     `
                     background: var(--color-main-3);
                     color: #6290ec;
+                    display: flex;
+                    justify-content: space-between;
                     &:hover {
                         background: var(--color-main-2);
                     }

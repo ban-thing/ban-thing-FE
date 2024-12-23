@@ -4,7 +4,7 @@ import { TermsSubTitle, TermsDesc, TermDescList } from "@/components/atoms/MyPag
 const VersionInfo = () => {
     return (
         <>
-            <PageTitle $margin="16px 0 40px">오픈소스 라이센스</PageTitle>
+            <PageTitle $margin="16px 0 40px">오픈소스 라이선스</PageTitle>
             <TermsSubTitle>Front-end</TermsSubTitle>
             <TermDescList>
                 <li>

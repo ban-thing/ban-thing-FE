@@ -6,16 +6,25 @@ import { useDropdownModalStore } from "@/store/ModalStore";
 import { getCookie } from "@/utils/Cookie";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useSelectedAddressStore } from "@/store/SelectedAddressStore";
 
 const Home = () => {
     const navigate = useNavigate();
     const { isDropdownOpen } = useDropdownModalStore();
-    const { data: { data } = {}, isLoading } = useFetchItemsList({
+    const { data: profileData } = useFetchMyProfile();
+    const { selectedAddress } = useSelectedAddressStore();
+
+    const {
+        data: { data } = {},
+        isLoading,
+        refetch,
+    } = useFetchItemsList({
         keyword: "",
         hashtags: "",
         minPrice: 0,
-        maxPrice: 5000000000,
-        address: "",
+        maxPrice: 1000000,
+        address: selectedAddress || profileData?.data?.address1 || "",
     });
 
     useEffect(() => {
@@ -30,6 +39,12 @@ const Home = () => {
             localStorage.setItem("lastChecked", String(currentTime));
         }
     }, []);
+
+    useEffect(() => {
+        if (selectedAddress) {
+            refetch();
+        }
+    }, [selectedAddress, refetch]);
 
     return (
         <>

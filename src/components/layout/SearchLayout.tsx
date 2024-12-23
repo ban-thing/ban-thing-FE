@@ -11,7 +11,7 @@ import HashtagFilterModal from "@/components/molecules/HashtagFilterModal";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import HashTagButtonWithCloseList from "../molecules/ItemRegister/HashTagButtonWithCloseList";
 
-export default function SearchLayout({ children }: { children: React.ReactNode }) {
+export default function SearchLayout() {
     const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState("");
     const { showHashtagFilterModal, isHashtagFilterModalVisible } = useHashtagFilterModalStore();
@@ -37,8 +37,6 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         name.trim();
         setSearchHashList(value);
     };
-
-    children && true;
 
     return (
         <SearchContainer>

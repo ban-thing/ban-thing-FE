@@ -55,7 +55,7 @@ export const useFilterModalStore = create<FilterModalState>((set) => ({
     hideFilterModal: () => set({ isFilterModalVisible: false }),
     priceRange: {
         minPrice: 0,
-        maxPrice: 5000000,
+        maxPrice: 1000000,
     },
     setPriceRange: (minPrice, maxPrice) => set({ priceRange: { minPrice, maxPrice } }),
 }));

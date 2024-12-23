@@ -59,7 +59,7 @@ export default function FilterModal() {
                     <StyledSlider
                         value={[minPrice, maxPrice]}
                         min={0}
-                        max={5000000}
+                        max={1000000}
                         step={5000}
                         minDistance={5000}
                         onChange={handleSliderChange}
@@ -82,7 +82,7 @@ export default function FilterModal() {
                     <FilterResetButton
                         onClick={() => {
                             setMinPrice(0);
-                            setMaxPrice(5000000);
+                            setMaxPrice(1000000);
                         }}
                     />
                     <Button variant="filled" size="small" onClick={handleApply}>
