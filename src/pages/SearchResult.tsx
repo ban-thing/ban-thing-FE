@@ -12,6 +12,8 @@ import HashTagButtonWithCloseList from "@/components/molecules/ItemRegister/Hash
 import { useEffect, useState } from "react";
 import { useFetchItemsList } from "@/hooks/api/ItemsQuery";
 import HashtagFilterModal from "@/components/molecules/HashtagFilterModal";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useSelectedAddressStore } from "@/store/SelectedAddressStore";
 
 export default function SearchResult() {
     const location = useLocation();
@@ -23,13 +25,15 @@ export default function SearchResult() {
     const { setValue } = useForm();
     const [searchValue, setSearchValue] = useState(location.state?.searchKeyword || "");
     const [searchKeyword, setSearchKeyword] = useState(location.state?.searchKeyword || "");
+    const { data: profileData } = useFetchMyProfile();
+    const { selectedAddress } = useSelectedAddressStore();
 
     const searchParams = {
         keyword: searchKeyword,
         hashtags: searchHashList.join(","),
         minPrice: priceRange.minPrice,
         maxPrice: priceRange.maxPrice,
-        address: "",
+        address: selectedAddress || profileData?.data?.address1 || "",
     };
 
     const { data: { data } = {}, isLoading, refetch } = useFetchItemsList(searchParams);
