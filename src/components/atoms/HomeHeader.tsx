@@ -39,20 +39,22 @@ export default function HomeHeader() {
                 return words[words.length - 1];
             };
 
-            setSelectedAddress(data.data.address1 || "");
+            const addresses = [data.data.address1, data.data.address2, data.data.address3].filter(
+                Boolean,
+            );
 
-            setAddressList([
-                extractLastWord(data.data.address1),
-                data.data.address2 ? extractLastWord(data.data.address2) : "",
-                data.data.address3 ? extractLastWord(data.data.address3) : "",
-                "동네 바꾸기",
-            ]);
+            setSelectedAddress(addresses[0] || "");
+
+            setAddressList(
+                [
+                    addresses[0] ? extractLastWord(addresses[0]) : "",
+                    addresses[1] ? extractLastWord(addresses[1]) : "",
+                    addresses[2] ? extractLastWord(addresses[2]) : "",
+                    "동네 바꾸기",
+                ].filter((addr) => addr !== ""),
+            );
         }
     }, [data, isSuccess]);
-
-    const onClickSearch = () => {
-        navigate("/search");
-    };
 
     const onChange = (value: string) => {
         if (value === "동네 바꾸기") {
@@ -64,10 +66,18 @@ export default function HomeHeader() {
             return;
         }
 
-        const selectedIndex = addressList?.findIndex((addr) => addr === value) ?? -1;
-        if (selectedIndex === 0) setSelectedAddress(data?.data.address1 || "");
-        if (selectedIndex === 1) setSelectedAddress(data?.data.address2 || "");
-        if (selectedIndex === 2) setSelectedAddress(data?.data.address3 || "");
+        const addresses = [data?.data.address1, data?.data.address2, data?.data.address3].filter(
+            Boolean,
+        );
+
+        const fullAddress = addresses.find((addr) => addr?.includes(value));
+        if (fullAddress) {
+            setSelectedAddress(fullAddress);
+        }
+    };
+
+    const onClickSearch = () => {
+        navigate("/search");
     };
 
     return (

@@ -15,7 +15,11 @@ const Home = () => {
     const { data: profileData } = useFetchMyProfile();
     const { selectedAddress } = useSelectedAddressStore();
 
-    const { data: { data } = {}, isLoading } = useFetchItemsList({
+    const {
+        data: { data } = {},
+        isLoading,
+        refetch,
+    } = useFetchItemsList({
         keyword: "",
         hashtags: "",
         minPrice: 0,
@@ -35,6 +39,12 @@ const Home = () => {
             localStorage.setItem("lastChecked", String(currentTime));
         }
     }, []);
+
+    useEffect(() => {
+        if (selectedAddress) {
+            refetch();
+        }
+    }, [selectedAddress, refetch]);
 
     return (
         <>
