@@ -34,19 +34,22 @@ export const useLocationSetting = () => {
 
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
+        setCurrentDistrict(district.name);
 
         if (district.id.endsWith("_all")) {
-            // 전체가 선택된 경우
+            // 전체가 선택된 경우, 기존의 동/읍/면 선택을 모두 제거하고 구 전체로 대체
             setSelectedTowns([
                 {
                     id: district.id,
-                    name: `${selectedCity?.name} 전체`,
+                    name: `${selectedCity?.name} ${district.name}`,
                 },
             ]);
+            setCurrentTowns([`${selectedCity?.name} ${district.name}`]);
         } else {
             // 특정 구가 선택된 경우
             loadTowns(district.id, district.name);
             setSelectedTowns([]);
+            setCurrentTowns([]);
         }
     };
 
