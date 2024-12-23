@@ -34,7 +34,10 @@ export const getFileFromUrl = async (id: string | number, name: string) => {
     const [data, type] = name.split(".");
     const url = setImgUrl(id, data, type);
     const response = await fetch(url, {
-        method: "GET",
+        method: "OPTIONS", 
+        headers: {
+            "Access-Control-Allow-Origin": "https://kr.object.ncloudstorage.com"
+        }
     });
 
     if (!response.ok) {
