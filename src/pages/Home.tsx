@@ -23,7 +23,7 @@ const Home = () => {
         keyword: "",
         hashtags: "",
         minPrice: 0,
-        maxPrice: 5000000000,
+        maxPrice: 1000000,
         address: selectedAddress || profileData?.data?.address1 || "",
     });
 
