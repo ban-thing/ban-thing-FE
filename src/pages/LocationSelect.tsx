@@ -8,15 +8,16 @@ import { PageTitle } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
 import { useFetchAddress } from "@/hooks/api/UsersQuery";
+import { Region } from "@/types/location";
 
 const formatAddress = (
-    city?: { name: string },
-    district?: { name: string },
-    town?: { name: string },
+    city: Region | null | undefined,
+    district: Region | null | undefined,
+    town: Region | null | undefined,
 ) => {
-    if (!city) return "";
-    if (town?.name.includes("전체")) {
-        if (district?.name.includes("전체")) {
+    if (!city?.name) return "";
+    if (town?.name?.includes("전체")) {
+        if (district?.name?.includes("전체")) {
             return city.name;
         }
         return `${city.name} ${district?.name}`;

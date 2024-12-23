@@ -6,16 +6,19 @@ import { useDropdownModalStore } from "@/store/ModalStore";
 import { getCookie } from "@/utils/Cookie";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const Home = () => {
     const navigate = useNavigate();
     const { isDropdownOpen } = useDropdownModalStore();
+    const { data: profileData } = useFetchMyProfile();
+
     const { data: { data } = {}, isLoading } = useFetchItemsList({
         keyword: "",
         hashtags: "",
         minPrice: 0,
         maxPrice: 5000000000,
-        address: "",
+        address: profileData?.data?.address1 || "",
     });
 
     useEffect(() => {
