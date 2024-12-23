@@ -39,6 +39,11 @@ export const getFileFromUrl = async (id: string | number, name: string) => {
           "Access-Control-Allow_origin": "https://kr.object.ncloudstorage.com"  
         },
     });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch file: ${response.statusText}`);
+    }
+    
     const blob = await response.blob();
     return new File([blob], `${data}.${type}`, { type: blob.type });
 };
