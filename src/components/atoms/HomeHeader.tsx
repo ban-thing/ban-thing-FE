@@ -38,8 +38,8 @@ export default function HomeHeader() {
 
             setAddressList([
                 extractLastWord(data.data.address1),
-                data.data.address2 ? extractLastWord(data.data.address2) : "",
-                data.data.address3 ? extractLastWord(data.data.address3) : "",
+                data.data.address2 ? extractLastWord(data.data.address1) : "",
+                data.data.address3 ? extractLastWord(data.data.address1) : "",
                 "동네 바꾸기",
             ]);
         }
