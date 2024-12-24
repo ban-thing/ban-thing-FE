@@ -26,32 +26,25 @@ export default function Chatting() {
     const handleSendMessage = async () => {
         if (inputText.trim() === "" || !socket) return;
 
-        // 현재 시간을 가져옴
+        // now를 원하는 형식으로 포맷팅
         const now = new Date();
-        console.log(now);
-        // UTC 시간으로 변환 (getUTC* 메서드 사용)
-        const utcTime = new Date(
-            Date.UTC(
-                now.getFullYear(),
-                now.getMonth(),
-                now.getDate(),
-                now.getHours() - 9,
-                now.getMinutes(),
-                now.getSeconds(),
-                now.getMilliseconds(),
-            ),
-        );
+        const pad = (num: number, size: number) => num.toString().padStart(size, "0");
+
+        const formattedDate =
+            `${now.getFullYear()}-${pad(now.getMonth() + 1, 2)}-${pad(now.getDate(), 2)}` +
+            `T${pad(now.getHours(), 2)}:${pad(now.getMinutes(), 2)}:${pad(now.getSeconds(), 2)}.` +
+            `${pad(now.getMilliseconds(), 3)}000000`;
 
         const newMessage = {
             chatRoomId: Number(chatRoomId),
             senderId: myProfileData?.data.userId,
             message: inputText.trim(),
-            time: utcTime.toISOString(), // UTC 시간을 ISO 형식으로 전송
+            time: formattedDate, // 포맷된 시간 사용
         };
+        console.log(formattedDate);
 
         try {
             socket.send(JSON.stringify(newMessage));
-            console.log(now);
             setInputText("");
         } catch (error) {
             console.error("메시지 전송 실패:", error);
