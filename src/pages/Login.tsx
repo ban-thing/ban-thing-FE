@@ -49,14 +49,6 @@ const Login = () => {
                 </div>
                 <MainLogo />
                 <KakaoLoginButton onClick={onClickLogin} />
-                {/* <Button
-                    variant="yellow"
-                    style={{ marginBottom: "20px" }}
-                    $hoverAction={false}
-                    onClick={onClickLogin}
-                >
-                    카카오로 3초만에 로그인
-                </Button> */}
                 <UnderlineTextButton width="150px">
                     <Link to={"/"} style={{ padding: "8px" }}>
                         로그인 없이 둘러보기

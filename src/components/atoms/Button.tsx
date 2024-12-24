@@ -314,12 +314,13 @@ export const FilterResetButton = (props: ButtonHTMLAttributes<HTMLButtonElement>
 };
 
 export const StyledKakaoButton = styled.button`
+    position: relative;
     border-radius: 12px;
     margin-bottom: 20px;
     border: none;
     width: 335px;
     height: 45px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     background-color: var(--color-yellow);
     color: black;
