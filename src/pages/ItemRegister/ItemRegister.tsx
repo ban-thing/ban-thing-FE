@@ -23,7 +23,7 @@ import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
-import { base64ToFile, getFileFromUrl } from "@/utils/SetImageUrl";
+import { base64ToFile } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const ItemRegisterWrap = styled.div`
