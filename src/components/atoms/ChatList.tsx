@@ -4,6 +4,7 @@ import type { ChatList as ChatListType } from "@/types/Chat";
 import timeAgo from "@/utils/TimeAgo";
 import notFound from "@/assets/noPhotoImage.svg";
 import { setImgUrl } from "@/utils/SetImageUrl";
+import { useEffect } from "react";
 
 interface ChatListItemProps {
     chat: ChatListType;
@@ -11,6 +12,9 @@ interface ChatListItemProps {
 }
 
 export default function ChatList({ chat, onClick }: ChatListItemProps) {
+    useEffect(() => {
+        console.log(chat.itemImg);
+    }, [chat.itemImg]);
     return (
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
             <ProfileImage
