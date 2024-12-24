@@ -15,11 +15,11 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
             <ProfileImage
                 src={
-                    chat.itemImg
+                    Array.isArray(chat.itemImg)
                         ? setImgUrl(
-                              Number(chat.chatRoomId),
-                              chat.itemImg?.split(".")[0],
-                              chat.itemImg?.split(".")[1],
+                              chat.chatRoomId,
+                              chat.itemImg[0]?.split(".")[0],
+                              chat.itemImg[0]?.split(".")[1],
                           )
                         : notFound
                 }
