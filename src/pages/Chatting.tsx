@@ -35,6 +35,7 @@ export default function Chatting() {
             time: now, // Date 객체 직접 사용
         };
 
+        console.log(newMessage);
         try {
             socket.send(JSON.stringify(newMessage));
             setInputText("");
