@@ -34,6 +34,7 @@ export const getFileFromUrl = async (id: string | number, name: string) => {
     const [data, type] = name.split(".");
     const url = setImgUrl(id, data, type);
     const response = await fetch(url);
+
     const blob = await response.blob();
     return new File([blob], `${data}.${type}`, { type: blob.type });
 };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { KakaoLoginButton, UnderlineTextButton } from "@/components/atoms/Button";
+import { Button, UnderlineTextButton } from "@/components/atoms/Button";
 import { Link } from "react-router-dom";
 import MainLogo from "@/components/atoms/MainLogo";
 
@@ -31,9 +31,10 @@ const WelcomeSubTitle = styled.h2`
 `;
 
 const Login = () => {
-    const uri = window.location.href.includes("localhost")
-        ? import.meta.env.VITE_REDIRECT_URI_LOCAL
-        : import.meta.env.VITE_REDIRECT_URI;
+    // const uri = window.location.href.includes("localhost")
+    //     ? import.meta.env.VITE_REDIRECT_URI_LOCAL
+    //     : import.meta.env.VITE_REDIRECT_URI;
+    const uri = import.meta.env.VITE_REDIRECT_URI;
 
     const onClickLogin = () => {
         // 인가코드 요청
@@ -47,15 +48,14 @@ const Login = () => {
                     <WelcomeTitle>중고거래는?</WelcomeTitle>
                 </div>
                 <MainLogo />
-                <KakaoLoginButton onClick={onClickLogin} />
-                {/* <Button
+                <Button
                     variant="yellow"
                     style={{ marginBottom: "20px" }}
                     $hoverAction={false}
                     onClick={onClickLogin}
                 >
                     카카오로 3초만에 로그인
-                </Button> */}
+                </Button>
                 <UnderlineTextButton width="150px">
                     <Link to={"/"} style={{ padding: "8px" }}>
                         로그인 없이 둘러보기
