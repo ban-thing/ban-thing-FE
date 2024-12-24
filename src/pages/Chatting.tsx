@@ -26,9 +26,20 @@ export default function Chatting() {
     const handleSendMessage = async () => {
         if (inputText.trim() === "" || !socket) return;
 
-        // 현재 시간을 UTC로 변환
+        // 현재 시간을 가져옴
         const now = new Date();
-        const utcTime = new Date(now.getTime() - 9 * 60 * 60 * 1000); // 한국시간에서 9시간을 빼서 UTC로 변환
+        // UTC 시간으로 변환 (getUTC* 메서드 사용)
+        const utcTime = new Date(
+            Date.UTC(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                now.getHours(),
+                now.getMinutes(),
+                now.getSeconds(),
+                now.getMilliseconds(),
+            ),
+        );
 
         const newMessage = {
             chatRoomId: Number(chatRoomId),
