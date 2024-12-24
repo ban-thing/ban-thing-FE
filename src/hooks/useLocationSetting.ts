@@ -35,7 +35,7 @@ export const useLocationSetting = () => {
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
 
-        if (district.id.endsWith("_all")) {
+        if (district?.id?.endsWith?.("_all")) {
             // 전체가 선택된 경우
             const allSelection = {
                 id: district.id,

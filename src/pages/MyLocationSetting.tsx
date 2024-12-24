@@ -6,12 +6,20 @@ import { useEffect } from "react";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
+import { useFetchAddress } from "@/hooks/api/UsersQuery";
 
 const MyLocationSetting = () => {
     const navigate = useNavigate();
     const { getAddress, onClickCurrent } = useLocationSetting();
     const { currentAddress, setCurrentAddress } = useAddressStore();
     const { currentCoor } = useCoorStore();
+    const { mutate } = useFetchAddress({
+        address1: currentAddress?.[2]?.[0]
+            ? `${currentAddress[0]} ${currentAddress[1]} ${currentAddress[2][0]}`
+            : "",
+        address2: "",
+        address3: "",
+    });
 
     async function handleAddressLookup(lat: number, lng: number) {
         try {
@@ -41,7 +49,11 @@ const MyLocationSetting = () => {
     }, [currentCoor]);
 
     const onClickSubmit = async () => {
-        navigate("/");
+        if (currentAddress?.[2]?.[0]) {
+            mutate();
+        } else {
+            navigate("/");
+        }
     };
 
     return (
