@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const usePhotoUpload = (initialFiles: File[] = []) => {
     const [photosPreview, setPhotosPreview] = useState<string[]>([]);
     const [photoFiles, setPhotoFiles] = useState<File[]>(initialFiles);
+
+    useEffect(() => {
+        if (initialFiles.length > 0) {
+            const previews = initialFiles.map((file) => URL.createObjectURL(file));
+            setPhotosPreview(previews);
+            setPhotoFiles(initialFiles);
+        }
+    }, [initialFiles]);
 
     const onChangeFile = (files: FileList | null) => {
         if (!files || photoFiles.length === 5) return;
