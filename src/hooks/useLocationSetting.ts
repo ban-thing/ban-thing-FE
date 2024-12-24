@@ -54,14 +54,20 @@ export const useLocationSetting = () => {
     };
 
     const handleTownToggle = (town: Region) => {
+        if (!town?.id) return;
+
         if (Array.isArray(currentAddress?.[2])) {
             if (currentAddress[2].includes(town.name)) {
                 return;
             }
-            if (town.id.endsWith("_all")) {
+
+            const isAllSelection = town.id?.endsWith?.("_all");
+
+            if (isAllSelection) {
                 const existingTowns = currentAddress[2].filter((t) => !t.includes("전체"));
                 return setCurrentTowns([...existingTowns, town.name]);
             }
+
             if (currentAddress[2].length < 3) {
                 const filtered = currentAddress[2].filter((t) => !t.includes("전체"));
                 setCurrentTowns([...filtered, town.name]);
@@ -140,13 +146,22 @@ export const useLocationSetting = () => {
     }, [currentAddress?.[1], districts]);
 
     useEffect(() => {
-        if (currentAddress?.[2]) {
-            const townsArray = currentAddress?.[2];
-            const resultArray = townsArray.map((name) => {
-                const id = towns.find((item) => item.name === name)?.id as string;
-                return { id, name };
-            });
+        if (
+            currentAddress?.[2] &&
+            Array.isArray(currentAddress[2]) &&
+            currentAddress[2].length > 0
+        ) {
+            const townsArray = currentAddress[2];
+            const resultArray = townsArray
+                .map((name) => {
+                    const town = towns.find((item) => item.name === name);
+                    const id = town?.id || `temp_${name}`;
+                    return { id, name };
+                })
+                .filter((item) => item.name);
             setSelectedTowns(resultArray);
+        } else {
+            setSelectedTowns([]);
         }
     }, [currentAddress?.[2], towns]);
 
