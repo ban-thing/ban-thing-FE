@@ -32,8 +32,16 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
     };
 
     useEffect(() => {
+        const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
+        if (watch("address")) {
+            const selectedAddressIdx = addressArray.findIndex(
+                (value) => value === watch("address"),
+            );
+            const splicedArray = addressArray.splice(selectedAddressIdx, 1);
+            setAddressList([addressArray[selectedAddressIdx], ...splicedArray]);
+        }
         if (data) {
-            setAddressList([data?.data.address1, data?.data.address2, data?.data.address3]);
+            setAddressList(addressArray);
         }
     }, [data]);
 
