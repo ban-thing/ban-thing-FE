@@ -21,6 +21,7 @@ export type ChatRoomView = {
     title: string;
     price: number;
     seller: string;
+    buyer: string;
     itemImage: string[] | string;
     messages: {
         senderId: number;

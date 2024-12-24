@@ -213,7 +213,11 @@ export default function Chatting() {
                     style={{ cursor: "pointer", marginLeft: 20 }}
                     onClick={() => navigate("/chatting-list")}
                 />
-                <HeaderTitle>{data.pages[0].seller}</HeaderTitle>
+                <HeaderTitle>
+                    {myProfileData?.data.userid === data.pages[0].seller
+                        ? data.pages[0].buyer
+                        : data.pages[0].seller}
+                </HeaderTitle>
             </Header>
 
             <ProductInfo onClick={() => navigate(`/item-view/${data.pages[0].itemId}`)}>
