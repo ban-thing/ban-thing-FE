@@ -27,16 +27,21 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
     const [address, setAddress] = useState(watch("address") || addressList[0]);
 
     const onClickComplete = () => {
-        console.log(address, "선택주소");
-
         setValue("address", address);
         setShowModal(false);
     };
 
     useEffect(() => {
-        const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
         if (data) {
+            const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
             setAddressList(addressArray);
+
+            if (watch("address")) {
+                const sortedArray = [...addressArray].sort((a, b) =>
+                    b === watch("address") ? 1 : a === watch("address") ? -1 : 0,
+                );
+                setAddressList(sortedArray);
+            }
         }
     }, [data, watch("address")]);
 

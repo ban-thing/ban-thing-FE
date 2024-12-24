@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const AddressDropdownWrap = styled.div`
@@ -82,10 +82,13 @@ export const AddressDropdown = ({
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const onClickAddress = (index: number) => {
-        setAddress(addresses[selectedIndex]);
         setSelectedIndex(index);
         setShowDropdown(false);
     };
+
+    useEffect(() => {
+        setAddress(addresses[selectedIndex]);
+    }, [selectedIndex]);
 
     return (
         <AddressDropdownWrap>
