@@ -105,7 +105,9 @@ const ItemRegister = () => {
     useEffect(() => {
         // 수정페이지일 경우
         if (edit && data) {
-            const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
+            const resExpire = data?.data.cleaningDetail.expire;
+            const expire =
+                resExpire === "모름" ? resExpire : resExpire?.slice(2).replace(/-/g, ".");
             const files = data?.data.itemImgs.map((value) => base64ToFile(value));
             if (files) setValue("photos", files);
 
