@@ -1,6 +1,7 @@
 // 채팅 목록 조회
 export type ChatList = {
     chatRoomId: number;
+    itemId: string;
     address: string;
     itemImg: string;
     nickname: string;

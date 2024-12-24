@@ -21,7 +21,7 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
                 src={
                     chat.itemImg
                         ? setImgUrl(
-                              chat.chatRoomId,
+                              chat.itemId,
                               chat.itemImg?.split(".")[0],
                               chat.itemImg?.split(".")[1],
                           )
@@ -62,6 +62,7 @@ const ProfileImage = styled.img`
     height: 50px;
     border-radius: 8px;
     margin-right: 12px;
+    object-fit: cover;
 `;
 
 const ChatInfo = styled.div`
