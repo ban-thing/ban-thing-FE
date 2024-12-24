@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import BackIcon from "@/assets/icons/back.svg?react";
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     $active: boolean;
@@ -13,6 +15,7 @@ interface TabBarProps {
 
 export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProps) {
     const [activeTab, setActiveTab] = useState<string>(initTab);
+    const navigate = useNavigate();
 
     const handleButtonClick = (tab: string): void => {
         setActiveTab(tab);
@@ -20,7 +23,10 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <TabBarWrapper>
+            <BackButton onClick={() => navigate("/my-page")}>
+                <BackIcon />
+            </BackButton>
             <ButtonGroup>
                 {tabsList.map((tab) => (
                     <Button
@@ -32,14 +38,30 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
                     </Button>
                 ))}
             </ButtonGroup>
-        </div>
+        </TabBarWrapper>
     );
 }
 
+const TabBarWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 375px;
+    background: white;
+`;
+
+const BackButton = styled.div`
+    cursor: pointer;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 const ButtonGroup = styled.div`
     display: flex;
+    flex: 1;
     height: auto;
-    width: 375px;
     background: white;
     justify-content: space-between;
     align-items: center;
