@@ -33,7 +33,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
 
     useEffect(() => {
         const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
-        if (data) {
+        if (data && !watch("address")) {
             setAddressList(addressArray);
         }
         if (watch("address")) {
@@ -41,7 +41,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
             console.log(watch("address"), addressArray, "재정렬 주소 목록");
             return setAddressList(addressArray);
         }
-    }, [data, watch("address")]);
+    }, [data, watch("address"), addressList, address]);
 
     return (
         <ItemRegisterModalLayout
