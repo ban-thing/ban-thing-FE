@@ -51,6 +51,7 @@ export default function Chatting() {
 
         try {
             socket.send(JSON.stringify(newMessage));
+            console.log(now);
             setInputText("");
         } catch (error) {
             console.error("메시지 전송 실패:", error);
@@ -408,7 +409,7 @@ const MessageTime = styled.span<{ $isMe: boolean }>`
 `;
 
 const Footer = styled.div`
-    width: 375px;
+    width: 343px;
     height: 60px;
     padding: 16px 16px 36px 16px;
     display: flex;
