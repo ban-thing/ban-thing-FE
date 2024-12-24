@@ -23,7 +23,7 @@ import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
-import { getFileFromUrl } from "@/utils/SetImageUrl";
+import { base64ToFile, getFileFromUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const ItemRegisterWrap = styled.div`
@@ -106,7 +106,8 @@ const ItemRegister = () => {
         // 수정페이지일 경우
         if (edit && data) {
             const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
-            const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
+            // const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
+            const files = data?.data.itemImgs.map((value) => base64ToFile(value));
 
             reset({
                 title: data?.data.title,

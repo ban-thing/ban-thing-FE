@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { ItemImgSkt } from "@/components/atoms/Skeleton";
 import { useFetchItem } from "@/hooks/api/ItemsQuery";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { setImgUrl } from "@/utils/SetImageUrl";
+import { base64ToFile } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
@@ -91,10 +91,9 @@ const ItemViewPage = () => {
                 <StyledItemImg>
                     <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
                         {itemData?.itemImgs.map((value, index) => {
-                            const imgInfo = value.split(".");
                             return (
                                 <SwiperSlide key={index}>
-                                    <img src={setImgUrl(Number(itemId), imgInfo[0], imgInfo[1])} />
+                                    <img src={URL.createObjectURL(base64ToFile(value))} />
                                 </SwiperSlide>
                             );
                         })}
