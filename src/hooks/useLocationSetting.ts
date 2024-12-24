@@ -37,12 +37,19 @@ export const useLocationSetting = () => {
 
         if (district.id.endsWith("_all")) {
             // 전체가 선택된 경우
-            setSelectedTowns([
-                {
-                    id: district.id,
-                    name: `${selectedCity?.name} 전체`,
-                },
-            ]);
+            const allSelection = {
+                id: district.id,
+                name: `${selectedCity?.name} 전체`,
+            };
+            setSelectedTowns([allSelection]);
+            setCurrentTowns([allSelection.name]);
+            // districts 배열의 모든 항목에 대해 시각적 선택 표시
+            setDistricts(
+                districts.map((d) => ({
+                    ...d,
+                    selected: true,
+                })),
+            );
         } else {
             // 특정 구가 선택된 경우
             loadTowns(district.id, district.name);
@@ -80,8 +87,23 @@ export const useLocationSetting = () => {
     };
 
     const handleRemoveTown = (town: string) => {
+        // 전체 선택이 제거되는 경우
+        if (town.includes("전체")) {
+            // 선택된 시/군/구 해제
+            setSelectedDistrict(null);
+            // 동/읍/면 목록 초기화
+            setTowns([]);
+            // 선택된 동/읍/면 모두 해제
+            setSelectedTowns([]);
+            // currentAddress에서 해당 지역 관련 모든 선택 제거
+            setCurrentTowns([]);
+            return;
+        }
+
+        // 일반 동/읍/면 제거의 경우
         const filtered = currentAddress?.[2]?.filter((prevTown) => prevTown !== town);
         setCurrentTowns(filtered?.length === 0 ? [] : filtered || []);
+        setSelectedTowns(selectedTowns.filter((t) => t.name !== town));
     };
 
     const onClickCurrent = (navigate?: (path: string) => void) => {
