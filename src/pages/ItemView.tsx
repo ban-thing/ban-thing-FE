@@ -7,11 +7,15 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import { ItemImgSkt } from "@/components/atoms/Skeleton";
 import { useFetchItem } from "@/hooks/api/ItemsQuery";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { setImgUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import BackIcon from "@/assets/icons/back.svg?react";
+import HomeIcon from "@/assets/icons/home.svg?react";
+import SearchIcon from "@/assets/icons/search.svg?react";
 
 const StyledItemImg = styled.div`
+    position: relative;
     width: 100%;
     height: 315px;
     margin-bottom: 24px;
@@ -25,6 +29,44 @@ const StyledItemImg = styled.div`
         height: 100%;
         object-fit: cover;
     }
+
+    svg path {
+        stroke: white;
+    }
+`;
+
+const TitleWrapper = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 44px;
+    z-index: 1;
+`;
+
+const BackButton = styled.div`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    &:first-child {
+        margin-left: 10px;
+    }
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    &:last-child {
+        margin-right: 10px;
+    }
 `;
 
 const ItemViewPage = () => {
@@ -34,6 +76,7 @@ const ItemViewPage = () => {
     const { data: { data: itemData } = {}, isLoading } = useFetchItem(
         Number(location.pathname.split("/")[2]),
     );
+    const navigate = useNavigate();
 
     return (
         <ItemViewLayout
@@ -56,6 +99,19 @@ const ItemViewPage = () => {
                             );
                         })}
                     </Swiper>
+                    <TitleWrapper>
+                        <BackButton onClick={() => navigate(-1)}>
+                            <BackIcon />
+                        </BackButton>
+                        <ButtonGroup>
+                            <BackButton onClick={() => navigate("/")}>
+                                <HomeIcon />
+                            </BackButton>
+                            <BackButton onClick={() => navigate("/search")}>
+                                <SearchIcon />
+                            </BackButton>
+                        </ButtonGroup>
+                    </TitleWrapper>
                 </StyledItemImg>
             ) : (
                 <ItemImgSkt />
