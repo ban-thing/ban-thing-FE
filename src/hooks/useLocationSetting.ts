@@ -51,18 +51,27 @@ export const useLocationSetting = () => {
     };
 
     const handleTownToggle = (town: Region) => {
+        if (!town?.id) return;
+
         if (Array.isArray(currentAddress?.[2])) {
+            // 이미 선택된 지역인 경우 제거
             if (currentAddress[2].includes(town.name)) {
+                handleRemoveTown(town.name);
                 return;
             }
-            if (town.id.endsWith("_all")) {
+
+            const isAllSelection = town.id?.endsWith?.("_all");
+
+            if (isAllSelection) {
+                // 이미 다른 "전체" 선택이 있다면 그것을 제거
                 const existingTowns = currentAddress[2].filter((t) => !t.includes("전체"));
-                return setCurrentTowns([...existingTowns, town.name]);
-            }
-            if (currentAddress[2].length < 3) {
+                setCurrentTowns([...existingTowns, town.name]);
+                setSelectedTowns([...selectedTowns.filter((t) => !t.id.endsWith("_all")), town]);
+            } else if (currentAddress[2].length < 3) {
+                // "전체" 선택을 제외한 나머지 선택 처리
                 const filtered = currentAddress[2].filter((t) => !t.includes("전체"));
                 setCurrentTowns([...filtered, town.name]);
-                setSelectedTowns([...selectedTowns, town]);
+                setSelectedTowns([...selectedTowns.filter((t) => !t.id.endsWith("_all")), town]);
             }
         } else {
             setCurrentTowns([town.name]);
