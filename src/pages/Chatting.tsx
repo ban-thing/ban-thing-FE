@@ -41,7 +41,8 @@ export default function Chatting() {
             message: inputText.trim(),
             time: formattedDate, // 포맷된 시간 사용
         };
-        console.log(formattedDate);
+        console.log("now", now);
+        console.log("formattedDate", formattedDate);
 
         try {
             socket.send(JSON.stringify(newMessage));
