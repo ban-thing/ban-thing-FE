@@ -108,13 +108,13 @@ const ItemRegister = () => {
             const resExpire = data?.data.cleaningDetail.expire;
             const expire =
                 resExpire === "모름" ? resExpire : resExpire?.slice(2).replace(/-/g, ".");
-            const files = data?.data.itemImgs.map((value) => base64ToFile(value));
-            if (files) setValue("photos", files);
+            // const files = data?.data.itemImgs.map((value) => base64ToFile(value));
+            // if (files) setValue("photos", files);
 
             reset({
                 title: data?.data.title,
                 content: data?.data.content,
-                photos: files,
+                photos: data?.data.itemImgs,
                 type: data?.data.type,
                 price: data?.data.price,
                 hashtags: data?.data.hashtags,
