@@ -2,7 +2,7 @@
 export type ChatList = {
     chatRoomId: number;
     address: string;
-    profileImg: string;
+    itemImg: string;
     nickname: string;
     latestMessage: string;
     latestMessageDateTime: Date;
