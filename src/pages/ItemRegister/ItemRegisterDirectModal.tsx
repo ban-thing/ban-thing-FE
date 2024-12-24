@@ -35,8 +35,8 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
         const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
         if (watch("address")) {
             addressArray.unshift(addressArray.splice(addressArray.indexOf(watch("address")), 1)[0]);
-            console.log(addressArray, "재정렬 주소 목록");
-            setAddressList(addressArray);
+            console.log(watch("address"), addressArray, "재정렬 주소 목록");
+            return setAddressList(addressArray);
         }
         if (data) {
             setAddressList(addressArray);
