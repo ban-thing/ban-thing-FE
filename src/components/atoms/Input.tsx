@@ -56,8 +56,9 @@ export function NumberInput<T extends FieldValues>({
     sellType = "판매",
     ...props
 }: NumberInputProps<T>) {
-    const formatNumber = (value: string) => {
-        const numberOnly = value.replace(/[^\d]/g, "");
+    const formatNumber = (value: string | number) => {
+        const valueAsString = typeof value === "number" ? `${value}` : value;
+        const numberOnly = valueAsString.replace(/[^\d]/g, "");
         return numberOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
