@@ -12,7 +12,7 @@ interface ChatListItemProps {
 export default function ChatList({ chat, onClick }: ChatListItemProps) {
     return (
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
-            <ProfileImage src={URL.createObjectURL(base64ToFile(chat.itemImg))} />
+            <ProfileImage src={chat.itemImg} />
             <ChatInfo>
                 <UserDetails>
                     <UserName>{chat.nickname}</UserName>
