@@ -37,11 +37,11 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
             setAddressList(addressArray);
         }
         if (watch("address")) {
-            addressArray.sort((_, b) => (b === watch("address") ? -1 : 0));
-            console.log(watch("address"), addressArray, "재정렬 주소 목록");
-            return setAddressList(addressArray);
+            const newList = addressList.sort((_, b) => (b === watch("address") ? -1 : 0));
+            console.log(watch("address"), newList, "재정렬 주소 목록");
+            return setAddressList(newList);
         }
-    }, [data, watch("address"), addressList, address]);
+    }, [data, watch("address")]);
 
     return (
         <ItemRegisterModalLayout
