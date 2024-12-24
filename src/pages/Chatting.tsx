@@ -28,13 +28,14 @@ export default function Chatting() {
 
         // 현재 시간을 가져옴
         const now = new Date();
+        console.log(now);
         // UTC 시간으로 변환 (getUTC* 메서드 사용)
         const utcTime = new Date(
             Date.UTC(
                 now.getFullYear(),
                 now.getMonth(),
                 now.getDate(),
-                now.getHours(),
+                now.getHours() - 9,
                 now.getMinutes(),
                 now.getSeconds(),
                 now.getMilliseconds(),
