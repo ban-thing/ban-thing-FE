@@ -21,7 +21,11 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
                               chat.itemImg[0]?.split(".")[0],
                               chat.itemImg[0]?.split(".")[1],
                           )
-                        : notFound
+                        : setImgUrl(
+                              chat.chatRoomId,
+                              chat.itemImg[0]?.split(".")[0],
+                              chat.itemImg[0]?.split(".")[1],
+                          )
                 }
             />
             <ChatInfo>
