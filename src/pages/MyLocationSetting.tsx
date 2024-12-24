@@ -29,15 +29,19 @@ const MyLocationSetting = () => {
 
     useEffect(() => {
         if (currentCoor.lat === 35 && currentCoor.lng === 27) {
-            return onClickCurrent();
+            onClickCurrent();
+            return;
         }
-        const lat = currentCoor.lat;
-        const lng = currentCoor.lng;
-        handleAddressLookup(lat, lng);
+
+        (async () => {
+            const lat = currentCoor.lat;
+            const lng = currentCoor.lng;
+            await handleAddressLookup(lat, lng);
+        })();
     }, [currentCoor]);
 
     const onClickSubmit = async () => {
-        navigate("/location-select?my");
+        navigate("/");
     };
 
     return (
