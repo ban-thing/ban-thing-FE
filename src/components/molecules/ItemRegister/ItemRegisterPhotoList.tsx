@@ -30,7 +30,6 @@ const ItemRegisterPhotoList = ({ setValue, Controller, control, initialFiles }: 
     };
 
     useEffect(() => {
-        console.log(photoFiles, "포토파일");
         setValue("photos", photoFiles);
     }, [photoFiles, setValue]);
 

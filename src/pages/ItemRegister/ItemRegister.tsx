@@ -116,6 +116,7 @@ const ItemRegister = () => {
                 content: data?.data.content,
                 photos: files,
                 type: data?.data.type,
+                price: data?.data.price,
                 hashtags: data?.data.hashtags,
                 clnPollution: data?.data.cleaningDetail.pollution,
                 clnTimeUsed: data?.data.cleaningDetail.timeUsed,
