@@ -52,17 +52,14 @@ const TabBarWrapper = styled.div`
 `;
 
 const BackButton = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-187.5px);
+    left: 10px;
     cursor: pointer;
-    padding: 0 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
-    background: white;
+    height: 62.5px;
     z-index: 100;
 `;
 
