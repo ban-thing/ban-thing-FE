@@ -214,7 +214,7 @@ export default function Chatting() {
                     onClick={() => navigate("/chatting-list")}
                 />
                 <HeaderTitle>
-                    {myProfileData?.data.userid === data.pages[0].seller
+                    {myProfileData?.data.nickname === data.pages[0].seller
                         ? data.pages[0].buyer
                         : data.pages[0].seller}
                 </HeaderTitle>
