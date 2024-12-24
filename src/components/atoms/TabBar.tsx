@@ -11,9 +11,15 @@ interface TabBarProps {
     tabsList: string[];
     initTab: string;
     handleTabClick: (tab: string) => void;
+    showBackButton?: boolean;
 }
 
-export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProps) {
+export default function TabBar({
+    tabsList,
+    initTab,
+    handleTabClick,
+    showBackButton = true,
+}: TabBarProps) {
     const [activeTab, setActiveTab] = useState<string>(initTab);
     const navigate = useNavigate();
 
@@ -24,9 +30,11 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
 
     return (
         <TabBarWrapper>
-            <BackButton onClick={() => navigate("/my-page")}>
-                <BackIcon />
-            </BackButton>
+            {showBackButton && (
+                <BackButton onClick={() => navigate("/my-page")}>
+                    <BackIcon />
+                </BackButton>
+            )}
             <ButtonGroup>
                 {tabsList.map((tab) => (
                     <Button
