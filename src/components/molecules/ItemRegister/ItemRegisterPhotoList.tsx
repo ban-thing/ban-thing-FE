@@ -17,16 +17,20 @@ type PhotoListProps = {
     setValue: UseFormSetValue<FieldValues>;
     Controller: typeof Controller;
     control: Control<FieldValues>;
+    initialFiles: any;
 };
 
-const ItemRegisterPhotoList = ({ setValue, Controller, control }: PhotoListProps) => {
-    const { photosPreview, photoFiles, onChangeFile, removePhoto } = usePhotoUpload();
+const ItemRegisterPhotoList = ({ setValue, Controller, control, initialFiles }: PhotoListProps) => {
+    const { photosPreview, photoFiles, onChangeFile, removePhoto } = usePhotoUpload(
+        initialFiles || [],
+    );
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChangeFile(event.target.files);
     };
 
     useEffect(() => {
+        console.log(photoFiles, "포토파일");
         setValue("photos", photoFiles);
     }, [photoFiles, setValue]);
 

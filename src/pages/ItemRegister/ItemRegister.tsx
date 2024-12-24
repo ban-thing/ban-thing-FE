@@ -106,8 +106,8 @@ const ItemRegister = () => {
         // 수정페이지일 경우
         if (edit && data) {
             const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
-            // const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
             const files = data?.data.itemImgs.map((value) => base64ToFile(value));
+            if (files) setValue("photos", files);
 
             reset({
                 title: data?.data.title,
@@ -180,6 +180,7 @@ const ItemRegister = () => {
                         setValue={setValue}
                         Controller={Controller}
                         control={control}
+                        initialFiles={data?.data.itemImgs.map((value) => base64ToFile(value))}
                     />
                     <StyledToastContainer
                         position="bottom-center"
