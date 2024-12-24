@@ -34,22 +34,26 @@ export const useLocationSetting = () => {
 
     const handleDistrictSelect = (district: Region) => {
         setSelectedDistrict(district);
-        setCurrentDistrict(district.name);
 
         if (district.id.endsWith("_all")) {
-            // 전체가 선택된 경우, 기존의 동/읍/면 선택을 모두 제거하고 구 전체로 대체
-            setSelectedTowns([
-                {
-                    id: district.id,
-                    name: `${selectedCity?.name} ${district.name}`,
-                },
-            ]);
-            setCurrentTowns([`${selectedCity?.name} ${district.name}`]);
+            // 전체가 선택된 경우
+            const allSelection = {
+                id: district.id,
+                name: `${selectedCity?.name} 전체`,
+            };
+            setSelectedTowns([allSelection]);
+            setCurrentTowns([allSelection.name]);
+            // districts 배열의 모든 항목에 대해 시각적 선택 표시
+            setDistricts(
+                districts.map((d) => ({
+                    ...d,
+                    selected: true,
+                })),
+            );
         } else {
             // 특정 구가 선택된 경우
             loadTowns(district.id, district.name);
             setSelectedTowns([]);
-            setCurrentTowns([]);
         }
     };
 
@@ -57,21 +61,24 @@ export const useLocationSetting = () => {
         if (!town?.id) return;
 
         if (Array.isArray(currentAddress?.[2])) {
+            // 이미 선택된 지역인 경우 제거
             if (currentAddress[2].includes(town.name)) {
+                handleRemoveTown(town.name);
                 return;
             }
 
             const isAllSelection = town.id?.endsWith?.("_all");
 
             if (isAllSelection) {
+                // 이미 다른 "전체" 선택이 있다면 그것을 제거
                 const existingTowns = currentAddress[2].filter((t) => !t.includes("전체"));
-                return setCurrentTowns([...existingTowns, town.name]);
-            }
-
-            if (currentAddress[2].length < 3) {
+                setCurrentTowns([...existingTowns, town.name]);
+                setSelectedTowns([...selectedTowns.filter((t) => !t.id.endsWith("_all")), town]);
+            } else if (currentAddress[2].length < 3) {
+                // "전체" 선택을 제외한 나머지 선택 처리
                 const filtered = currentAddress[2].filter((t) => !t.includes("전체"));
                 setCurrentTowns([...filtered, town.name]);
-                setSelectedTowns([...selectedTowns, town]);
+                setSelectedTowns([...selectedTowns.filter((t) => !t.id.endsWith("_all")), town]);
             }
         } else {
             setCurrentTowns([town.name]);
@@ -80,8 +87,23 @@ export const useLocationSetting = () => {
     };
 
     const handleRemoveTown = (town: string) => {
+        // 전체 선택이 제거되는 경우
+        if (town.includes("전체")) {
+            // 선택된 시/군/구 해제
+            setSelectedDistrict(null);
+            // 동/읍/면 목록 초기화
+            setTowns([]);
+            // 선택된 동/읍/면 모두 해제
+            setSelectedTowns([]);
+            // currentAddress에서 해당 지역 관련 모든 선택 제거
+            setCurrentTowns([]);
+            return;
+        }
+
+        // 일반 동/읍/면 제거의 경우
         const filtered = currentAddress?.[2]?.filter((prevTown) => prevTown !== town);
         setCurrentTowns(filtered?.length === 0 ? [] : filtered || []);
+        setSelectedTowns(selectedTowns.filter((t) => t.name !== town));
     };
 
     const onClickCurrent = (navigate?: (path: string) => void) => {
@@ -146,22 +168,13 @@ export const useLocationSetting = () => {
     }, [currentAddress?.[1], districts]);
 
     useEffect(() => {
-        if (
-            currentAddress?.[2] &&
-            Array.isArray(currentAddress[2]) &&
-            currentAddress[2].length > 0
-        ) {
-            const townsArray = currentAddress[2];
-            const resultArray = townsArray
-                .map((name) => {
-                    const town = towns.find((item) => item.name === name);
-                    const id = town?.id || `temp_${name}`;
-                    return { id, name };
-                })
-                .filter((item) => item.name);
+        if (currentAddress?.[2]) {
+            const townsArray = currentAddress?.[2];
+            const resultArray = townsArray.map((name) => {
+                const id = towns.find((item) => item.name === name)?.id as string;
+                return { id, name };
+            });
             setSelectedTowns(resultArray);
-        } else {
-            setSelectedTowns([]);
         }
     }, [currentAddress?.[2], towns]);
 
