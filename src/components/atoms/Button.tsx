@@ -313,7 +313,7 @@ export const FilterResetButton = (props: ButtonHTMLAttributes<HTMLButtonElement>
     );
 };
 
-export const KakaoButton = styled.button`
+export const StyledKakaoButton = styled.button`
     border-radius: 12px;
     margin-bottom: 20px;
     border: none;
@@ -341,9 +341,9 @@ export const KakaoButton = styled.button`
 
 export const KakaoLoginButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <KakaoLoginButton {...props}>
+        <StyledKakaoButton {...props}>
             <KakaoIcon />
             카카오로 3초만에 로그인
-        </KakaoLoginButton>
+        </StyledKakaoButton>
     );
 };
