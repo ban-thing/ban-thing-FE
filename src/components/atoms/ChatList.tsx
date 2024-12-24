@@ -15,6 +15,22 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
     useEffect(() => {
         console.log(chat.itemImg);
     }, [chat.itemImg]);
+
+    const formatDate = (dateString: Date) => {
+        // UTC+9 시간 추가 (9시간을 밀리초로 변환)
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const koreanDate = new Date(dateString.getTime() + KR_TIME_DIFF);
+
+        const hours = koreanDate.getHours();
+        const minutes = koreanDate.getMinutes();
+
+        // 12시간제로 변환
+        const ampm = hours >= 12 ? "오후" : "오전";
+        const formattedHours = hours % 12 || 12;
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        return `${ampm} ${formattedHours}:${formattedMinutes}`;
+    };
     return (
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
             <ProfileImage
@@ -38,7 +54,7 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
                     <UserLocation>{chat.address.slice(-3)}</UserLocation>
                     <PointIcon />
                     {chat.latestMessageDateTime && (
-                        <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>
+                        <TimeAgo>{formatDate(chat.latestMessageDateTime)}</TimeAgo>
                     )}
                 </UserDetails>
                 <Message>{chat.latestMessage}</Message>
