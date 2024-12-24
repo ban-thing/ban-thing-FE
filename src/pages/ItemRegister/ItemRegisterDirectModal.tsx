@@ -24,22 +24,19 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
     const { data } = useFetchMyProfile();
     const [showDropdown, setShowDropdown] = useState(false);
     const [addressList, setAddressList] = useState<any[]>(["동 데이터 불러오는 중"]);
-    const [address, setAddress] = useState(addressList[0]);
+    const [address, setAddress] = useState(watch("address") || addressList[0]);
 
     const onClickComplete = () => {
+        console.log(address, "선택주소");
+
         setValue("address", address);
         setShowModal(false);
     };
 
     useEffect(() => {
         const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
-        if (data && !watch("address")) {
+        if (data) {
             setAddressList(addressArray);
-        }
-        if (watch("address")) {
-            const newList = addressList.sort((_, b) => (b === watch("address") ? -1 : 0));
-            console.log(watch("address"), newList, "재정렬 주소 목록");
-            return setAddressList(newList);
         }
     }, [data, watch("address")]);
 
