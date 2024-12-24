@@ -490,9 +490,9 @@ const LoaderWrap = styled.div`
     align-items: center;
 `;
 
-const LoadingIndicator = styled.div`
-    text-align: center;
-    padding: 10px;
-    color: var(--color-black-5);
-    font-size: 14px;
-`;
+// const LoadingIndicator = styled.div`
+//     text-align: center;
+//     padding: 10px;
+//     color: var(--color-black-5);
+//     font-size: 14px;
+// `;
