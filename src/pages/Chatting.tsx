@@ -26,13 +26,15 @@ export default function Chatting() {
     const handleSendMessage = async () => {
         if (inputText.trim() === "" || !socket) return;
 
+        // 현재 시간을 UTC로 변환
         const now = new Date();
+        const utcTime = new Date(now.getTime() - 9 * 60 * 60 * 1000); // 한국시간에서 9시간을 빼서 UTC로 변환
 
         const newMessage = {
             chatRoomId: Number(chatRoomId),
             senderId: myProfileData?.data.userId,
             message: inputText.trim(),
-            time: now.toISOString(), // 현재 시간을 ISO 형식으로 전송
+            time: utcTime.toISOString(), // UTC 시간을 ISO 형식으로 전송
         };
 
         try {
