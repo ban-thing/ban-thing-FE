@@ -38,12 +38,12 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
                 (value) => value === watch("address"),
             );
             const splicedArray = addressArray.splice(selectedAddressIdx, 1);
-            setAddressList([addressArray[selectedAddressIdx], ...splicedArray]);
+            return setAddressList([addressArray[selectedAddressIdx], ...splicedArray]);
         }
         if (data) {
             setAddressList(addressArray);
         }
-    }, [data]);
+    }, [data, watch("address")]);
 
     return (
         <ItemRegisterModalLayout
