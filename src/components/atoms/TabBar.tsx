@@ -43,6 +43,7 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
 }
 
 const TabBarWrapper = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -51,11 +52,18 @@ const TabBarWrapper = styled.div`
 `;
 
 const BackButton = styled.div`
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-187.5px);
     cursor: pointer;
     padding: 0 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 52px;
+    background: white;
+    z-index: 100;
 `;
 
 const ButtonGroup = styled.div`
