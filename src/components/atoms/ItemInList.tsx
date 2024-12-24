@@ -46,6 +46,7 @@ export const ItemPhoto = styled.img`
     width: 120px;
     height: 120px;
     border-radius: 24px;
+    object-fit: cover;
 `;
 
 export const ItemSoldOut = styled.div`
