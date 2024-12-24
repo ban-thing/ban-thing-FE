@@ -106,7 +106,7 @@ export const useLocationSetting = () => {
         setSelectedTowns(selectedTowns.filter((t) => t.name !== town));
     };
 
-    const onClickCurrent = (navigate?: (path: string) => void) => {
+    const onClickCurrent = async (navigate?: (path: string) => void) => {
         if (window.location.protocol !== "https:" && window.location.hostname !== "localhost") {
             alert("위치 정보는 보안 연결(HTTPS)에서만 사용할 수 있습니다.");
             return;
@@ -114,13 +114,43 @@ export const useLocationSetting = () => {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                (position) => {
+                async (position) => {
                     const location = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
                     setCurrentCoor(location);
-                    if (navigate) navigate("/my-location-setting");
+
+                    try {
+                        // 위도/경도로 주소 정보 가져오기
+                        const addressData = await getAddress(location.lat, location.lng);
+
+                        // 시/도 선택
+                        const city = {
+                            id: `city_${addressData.region_1depth_name}`,
+                            name: addressData.region_1depth_name,
+                        };
+                        handleCitySelect(city);
+
+                        // 구/군 선택
+                        const district = {
+                            id: `district_${addressData.region_2depth_name}`,
+                            name: addressData.region_2depth_name,
+                        };
+                        handleDistrictSelect(district);
+
+                        // 동/읍/면 선택
+                        const town = {
+                            id: `town_${addressData.region_3depth_name}`,
+                            name: addressData.region_3depth_name,
+                        };
+                        handleTownToggle(town);
+
+                        if (navigate) navigate("/my-location-setting");
+                    } catch (error) {
+                        console.error("주소 변환 실패:", error);
+                        alert("현재 위치의 주소를 가져오는데 실패했습니다.");
+                    }
                 },
                 (error) => {
                     console.error("Error getting location:", error);
@@ -161,20 +191,49 @@ export const useLocationSetting = () => {
             const districtsId = districts.find((item) => item.name === currentAddress[1])
                 ?.id as string;
             setSelectedDistrict({ id: districtsId, name: currentAddress[1] });
-            if (!currentAddress[1].includes("전체")) {
+
+            // 전체 선택인 경우
+            if (currentAddress[1].includes("전체")) {
+                setDistricts(
+                    districts.map((d) => ({
+                        ...d,
+                        selected: true,
+                    })),
+                );
+            } else {
                 loadTowns(districtsId, currentAddress[1] as string);
             }
         }
     }, [currentAddress?.[1], districts]);
 
     useEffect(() => {
-        if (currentAddress?.[2]) {
-            const townsArray = currentAddress?.[2];
-            const resultArray = townsArray.map((name) => {
-                const id = towns.find((item) => item.name === name)?.id as string;
-                return { id, name };
-            });
+        if (
+            currentAddress?.[2] &&
+            Array.isArray(currentAddress[2]) &&
+            currentAddress[2].length > 0
+        ) {
+            const townsArray = currentAddress[2];
+            const resultArray = townsArray
+                .map((name) => {
+                    const town = towns.find((item) => item.name === name);
+                    const id = town?.id || `temp_${name}`;
+                    return { id, name };
+                })
+                .filter((item) => item.name);
+
             setSelectedTowns(resultArray);
+
+            // 전체 선택인 경우 모든 town에 체크 표시
+            if (townsArray.some((name) => name.includes("전체"))) {
+                setTowns(
+                    towns.map((t) => ({
+                        ...t,
+                        selected: true,
+                    })),
+                );
+            }
+        } else {
+            setSelectedTowns([]);
         }
     }, [currentAddress?.[2], towns]);
 
