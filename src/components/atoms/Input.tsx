@@ -66,7 +66,13 @@ export function NumberInput<T extends FieldValues>({
         <Controller
             name={name}
             control={control}
-            rules={{ required: sellType === "판매" ? "가격을 입력하세요." : false }}
+            rules={{
+                required: sellType === "판매" ? "가격을 입력하세요." : false,
+                validate: (value) =>
+                    sellType === "판매" && (value === "0" || value === 0)
+                        ? "가격은 0이 될 수 없습니다."
+                        : true,
+            }}
             render={({ field: { onChange, value, ref } }) => (
                 <Input
                     type="tel"
