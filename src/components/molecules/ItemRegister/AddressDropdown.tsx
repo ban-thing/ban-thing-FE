@@ -88,7 +88,7 @@ export const AddressDropdown = ({
 
     useEffect(() => {
         setAddress(addresses[selectedIndex]);
-    }, [selectedIndex]);
+    }, [selectedIndex, addresses]);
 
     return (
         <AddressDropdownWrap>
@@ -99,15 +99,19 @@ export const AddressDropdown = ({
             />
             {showDropdown && (
                 <AddressFakeInputWrap>
-                    {addresses.map((value, index) => (
-                        <AddressFakeInput
-                            key={index}
-                            className={selectedIndex === index ? "highlight" : ""}
-                            onClick={() => onClickAddress(index)}
-                        >
-                            {value}
-                        </AddressFakeInput>
-                    ))}
+                    {addresses.map((value, index) =>
+                        value ? (
+                            <AddressFakeInput
+                                key={index}
+                                className={selectedIndex === index ? "highlight" : ""}
+                                onClick={() => onClickAddress(index)}
+                            >
+                                {value}
+                            </AddressFakeInput>
+                        ) : (
+                            <></>
+                        ),
+                    )}
                 </AddressFakeInputWrap>
             )}
         </AddressDropdownWrap>
