@@ -84,7 +84,7 @@ const ItemRegister = () => {
     } = useForm();
     const { data } = useFetchItem(Number(edit));
     const { mutate: createMutate } = useFetchItemCreate();
-    const { mutate: updateMutate } = useFetchItemUpdate();
+    const { mutate: updateMutate } = useFetchItemUpdate(Number(edit));
 
     useEffect(() => {
         // 등록페이지일 경우

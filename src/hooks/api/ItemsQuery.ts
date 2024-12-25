@@ -104,7 +104,7 @@ export const useFetchItemCreate = () => {
 };
 
 // 수정
-export const useFetchItemUpdate = () => {
+export const useFetchItemUpdate = (itemId: number) => {
     const navigate = useNavigate();
     return useMutation({
         mutationFn: async (data: any) => {
@@ -123,7 +123,7 @@ export const useFetchItemUpdate = () => {
                 });
             }
             return await apiService.patch<Record<string, any>>(
-                "items/",
+                `/items/${itemId}`,
                 formData,
                 "multipart/form-data",
             );
