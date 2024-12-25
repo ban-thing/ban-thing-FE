@@ -99,19 +99,15 @@ export const AddressDropdown = ({
             />
             {showDropdown && (
                 <AddressFakeInputWrap>
-                    {addresses.map((value, index) =>
-                        value ? (
-                            <AddressFakeInput
-                                key={index}
-                                className={selectedIndex === index ? "highlight" : ""}
-                                onClick={() => onClickAddress(index)}
-                            >
-                                {value}
-                            </AddressFakeInput>
-                        ) : (
-                            <></>
-                        ),
-                    )}
+                    {addresses.map((value, index) => (
+                        <AddressFakeInput
+                            key={index}
+                            className={selectedIndex === index ? "highlight" : ""}
+                            onClick={() => onClickAddress(index)}
+                        >
+                            {value ? value : "등록된 주소가 없어요."}
+                        </AddressFakeInput>
+                    ))}
                 </AddressFakeInputWrap>
             )}
         </AddressDropdownWrap>
