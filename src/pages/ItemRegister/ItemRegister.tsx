@@ -71,6 +71,7 @@ const ItemRegister = () => {
     const { data: profileData } = useFetchMyProfile();
     const [showHashModal, setShowHashModal] = useState(false);
     const [showDirectModal, setShowDirectModal] = useState(false);
+    const [initialImageList, setInitialImageList] = useState<File[]>([]);
     const {
         register,
         handleSubmit,
@@ -108,8 +109,12 @@ const ItemRegister = () => {
             const resExpire = data?.data.cleaningDetail.expire;
             const expire =
                 resExpire === "모름" ? resExpire : resExpire?.slice(2).replace(/-/g, ".");
-            // const files = data?.data.itemImgs.map((value) => base64ToFile(value));
-            // if (files) setValue("photos", files);
+            if (data?.data.itemImgNames) {
+                const files = data.data.itemImgs.map((value, index) => {
+                    return base64ToFile(value, data?.data.itemImgNames[index]);
+                });
+                setInitialImageList(files);
+            }
 
             reset({
                 title: data?.data.title,
@@ -183,7 +188,7 @@ const ItemRegister = () => {
                         setValue={setValue}
                         Controller={Controller}
                         control={control}
-                        initialFiles={data?.data.itemImgs.map((value) => base64ToFile(value))}
+                        initialFiles={initialImageList}
                     />
                     <StyledToastContainer
                         position="bottom-center"

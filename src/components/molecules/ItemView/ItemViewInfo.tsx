@@ -101,6 +101,7 @@ type ItemViewInfoProps = Omit<
     | "price"
     | "address"
     | "direct"
+    | "itemImgNames"
 >;
 
 export default function ItemViewInfo({
