@@ -174,12 +174,15 @@ const InputWrapper = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    max-width: 375px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px 0;
+    height: 76px;
+    padding: 8px 20px 16px;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
     box-sizing: border-box;
 `;
