@@ -59,15 +59,7 @@ export default function SearchLayout() {
                     </SearchInputWrapper>
                 </SearchWrapper>
                 <HashTagArea>
-                    <HashTagListWrapper>
-                        {searchHashList && searchHashList.length > 0 && (
-                            <HashTagButtonWithCloseList
-                                hashList={searchHashList}
-                                setValue={handleSetValue}
-                                margin="0"
-                            />
-                        )}
-                    </HashTagListWrapper>
+                    <HashTagListWrapper></HashTagListWrapper>
                     <HashTagButton onClick={onClickHashTagButton}>
                         <HashTagIcon />
                         태그 검색
@@ -81,6 +73,13 @@ export default function SearchLayout() {
                     <FootprintIcon />
                 </CenterIcon>
             </ScrollContent>
+            {searchHashList && searchHashList.length > 0 && (
+                <HashTagButtonWithCloseList
+                    hashList={searchHashList}
+                    setValue={handleSetValue}
+                    margin="0"
+                />
+            )}
 
             <NavigationBar />
         </SearchContainer>
