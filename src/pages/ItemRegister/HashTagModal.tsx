@@ -102,7 +102,7 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
                         : "태그 입력"
                 }
                 onChange={onInputChange}
-                onKeyDown={onEnterDown}
+                onKeyPress={onEnterDown}
                 value={inputValue}
                 disabled={formDataHashList?.length > 5}
             />
