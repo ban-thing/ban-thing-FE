@@ -93,6 +93,13 @@ export default function HashTagFilterModal() {
     );
 }
 
+const CharacterWrap = styled.div`
+    position: absolute;
+    top: 128px;
+    right: 25px;
+    z-index: 1;
+`;
+
 const HashTagPageWrap = styled.div`
     display: flex;
     position: fixed;
@@ -105,13 +112,8 @@ const HashTagPageWrap = styled.div`
     min-height: 100vh;
     width: 100%;
     max-width: 375px;
+    background-color: #c6d8ff;
     box-sizing: border-box;
-`;
-const CharacterWrap = styled.div`
-    position: absolute;
-    top: 128px;
-    right: 25px;
-    z-index: 1;
 `;
 
 const DescriptionWrap = styled.div`
