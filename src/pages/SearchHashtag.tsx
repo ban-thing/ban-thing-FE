@@ -70,8 +70,6 @@ export default function SearchHashtag() {
                     }
                     onChange={onInputChange}
                     onKeyPress={onEnterDown}
-                    // onKeyUp={onEnterDown}
-                    // onKeyDown={onEnterDown}
                     value={inputValue}
                 />
             </InputWrapper>
@@ -79,8 +77,8 @@ export default function SearchHashtag() {
             <HashTagButtonList hashList={hashList} setValue={handleSetValue} margin="10px 0 0 0" />
 
             <DescriptionWrap>
-                <div>내 상품을 다양한 태그로 표현해요 (최대 5개)</div>
-                <div>태그를 등록해두면 많은 사람들이 내 상품을 볼 수 있어요!</div>
+                <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
+                <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
             </DescriptionWrap>
             <TagExample>#강아지 #멍멍이 #댕댕이 #장난감 #바잇미</TagExample>
             <div

@@ -72,19 +72,11 @@ export default function HashTagFilterModal() {
             <HashTagButtonList hashList={hashList} setValue={handleSetValue} margin="10px 0 0 0" />
 
             <DescriptionWrap>
-                <div>내 상품을 다양한 태그로 표현해요 (최대 5개)</div>
-                <div>태그를 등록해두면 많은 사람들이 내 상품을 볼 수 있어요!</div>
+                <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
+                <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
             </DescriptionWrap>
             <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "100%",
-                    marginBottom: "16px",
-                }}
-            >
+            <ButtonContainer>
                 <Button
                     onClick={onClickComplete}
                     disabled={hashList.length === 0}
@@ -96,7 +88,7 @@ export default function HashTagFilterModal() {
                 >
                     완료
                 </Button>
-            </div>
+            </ButtonContainer>
         </HashTagPageWrap>
     );
 }
@@ -119,7 +111,6 @@ const HashTagPageWrap = styled.div`
     padding: 0 20px;
     min-height: 100vh;
     width: 100%;
-    max-width: 375px;
     background-color: #c6d8ff;
     box-sizing: border-box;
 `;
@@ -180,4 +171,15 @@ const InputWrapper = styled.div`
     input {
         padding-left: 30px;
     }
+`;
+
+const ButtonContainer = styled.div`
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
