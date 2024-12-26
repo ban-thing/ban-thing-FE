@@ -94,9 +94,8 @@ export default function HashTagFilterModal() {
                     variant="outlined"
                     size="small"
                     style={{
-                        gap: "8px",
                         border: "1px solid var(--color-black-6)",
-                        backgroundColor: "var(--color-white)",
+                        backgroundColor: "white",
                         color: "var(--color-black-6)",
                     }}
                 >
@@ -214,4 +213,5 @@ const ButtonContainer = styled.div`
     position: fixed;
     bottom: 0;
     box-sizing: border-box;
+    gap: 8px;
 `;
