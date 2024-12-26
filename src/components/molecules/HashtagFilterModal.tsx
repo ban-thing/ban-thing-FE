@@ -94,8 +94,9 @@ export default function HashTagFilterModal() {
                     variant="outlined"
                     size="small"
                     style={{
-                        backgroundColor: "var(--color-black-6)",
-                        marginRight: "8px",
+                        gap: "8px",
+                        border: "var(--color-black-6)",
+                        color: "var(--color-black-6)",
                     }}
                 >
                     취소
