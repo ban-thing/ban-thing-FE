@@ -53,52 +53,62 @@ export default function HashTagFilterModal() {
         hideHashtagFilterModal();
     };
     return (
-        <HashTagPageWrap>
-            <CharacterWrap>
-                <Character />
-            </CharacterWrap>
-            <InputWrapper>
-                <HashTagIcon />
-                <Input
-                    placeholder={
-                        hashList.length === 5 ? "태그는 최대 5개까지 입력 가능합니다." : "태그 입력"
-                    }
-                    onChange={onInputChange}
-                    onKeyPress={onEnterDown}
-                    value={inputValue}
+        <div
+            style={{
+                position: "relative",
+                backgroundColor: "#c6d8ff",
+                minHeight: "100vh",
+                width: "100vw",
+            }}
+        >
+            <HashTagPageWrap>
+                <CharacterWrap>
+                    <Character />
+                </CharacterWrap>
+                <InputWrapper>
+                    <HashTagIcon />
+                    <Input
+                        placeholder={
+                            hashList.length === 5
+                                ? "태그는 최대 5개까지 입력 가능합니다."
+                                : "태그 입력"
+                        }
+                        onChange={onInputChange}
+                        onKeyPress={onEnterDown}
+                        value={inputValue}
+                    />
+                </InputWrapper>
+
+                <HashTagButtonList
+                    hashList={hashList}
+                    setValue={handleSetValue}
+                    margin="10px 0 0 0"
                 />
-            </InputWrapper>
 
-            <HashTagButtonList hashList={hashList} setValue={handleSetValue} margin="10px 0 0 0" />
-
-            <DescriptionWrap>
-                <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
-                <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
-            </DescriptionWrap>
-            <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
-            <ButtonContainer>
-                <Button
-                    onClick={onClickComplete}
-                    disabled={hashList.length === 0}
-                    style={{
-                        backgroundColor:
-                            hashList.length === 0 ? "var(--color-black-6)" : "var(--color-main-1)",
-                        cursor: hashList.length === 0 ? "default" : "pointer",
-                    }}
-                >
-                    완료
-                </Button>
-            </ButtonContainer>
-        </HashTagPageWrap>
+                <DescriptionWrap>
+                    <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
+                    <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
+                </DescriptionWrap>
+                <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
+                <ButtonContainer>
+                    <Button
+                        onClick={onClickComplete}
+                        disabled={hashList.length === 0}
+                        style={{
+                            backgroundColor:
+                                hashList.length === 0
+                                    ? "var(--color-black-6)"
+                                    : "var(--color-main-1)",
+                            cursor: hashList.length === 0 ? "default" : "pointer",
+                        }}
+                    >
+                        완료
+                    </Button>
+                </ButtonContainer>
+            </HashTagPageWrap>
+        </div>
     );
 }
-
-const CharacterWrap = styled.div`
-    position: absolute;
-    top: 128px;
-    right: 25px;
-    z-index: 1;
-`;
 
 const HashTagPageWrap = styled.div`
     display: flex;
@@ -111,8 +121,14 @@ const HashTagPageWrap = styled.div`
     padding: 0 20px;
     min-height: 100vh;
     width: 100%;
-    background-color: #c6d8ff;
+    max-width: 375px;
     box-sizing: border-box;
+`;
+const CharacterWrap = styled.div`
+    position: absolute;
+    top: 128px;
+    right: 25px;
+    z-index: 1;
 `;
 
 const DescriptionWrap = styled.div`
@@ -183,6 +199,5 @@ const ButtonContainer = styled.div`
     margin: 0 auto;
     position: fixed;
     bottom: 0;
-    background-color: white;
     box-sizing: border-box;
 `;
