@@ -95,7 +95,8 @@ export default function HashTagFilterModal() {
                     size="small"
                     style={{
                         gap: "8px",
-                        border: "var(--color-black-6)",
+                        border: "1px solid var(--color-black-6)",
+                        backgroundColor: "var(--color-white)",
                         color: "var(--color-black-6)",
                     }}
                 >
