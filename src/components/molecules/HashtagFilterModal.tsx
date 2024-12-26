@@ -14,12 +14,6 @@ export default function HashTagFilterModal() {
     const [inputValue, setInputValue] = useState("");
     const [hashList, setHashList] = useState<string[]>([]);
 
-    useEffect(() => {
-        if (searchHashList) {
-            setHashList(searchHashList.filter((tag) => tag.trim() !== ""));
-        }
-    }, [searchHashList]);
-
     const handleSetValue = (name: string, value: string[]) => {
         name.trim();
         setHashList(value);
@@ -52,6 +46,18 @@ export default function HashTagFilterModal() {
         setSearchHashList(hashList);
         hideHashtagFilterModal();
     };
+
+    const onClickCancel = () => {
+        setSearchHashList([]);
+        hideHashtagFilterModal();
+    };
+
+    useEffect(() => {
+        if (searchHashList) {
+            setHashList(searchHashList.filter((tag) => tag.trim() !== ""));
+        }
+    }, [searchHashList]);
+
     return (
         <HashTagPageWrap>
             <CharacterWrap>
@@ -78,7 +84,18 @@ export default function HashTagFilterModal() {
             <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
             <ButtonContainer>
                 <Button
+                    onClick={onClickCancel}
+                    size="small"
+                    style={{
+                        backgroundColor: "var(--color-black-6)",
+                        marginRight: "8px",
+                    }}
+                >
+                    취소
+                </Button>
+                <Button
                     onClick={onClickComplete}
+                    size="small"
                     disabled={hashList.length === 0}
                     style={{
                         backgroundColor:
@@ -178,6 +195,7 @@ const ButtonContainer = styled.div`
     width: 100%;
     max-width: 375px;
     display: flex;
+    align-items: center;
     justify-content: center;
     height: 76px;
     padding: 8px 20px 16px;
