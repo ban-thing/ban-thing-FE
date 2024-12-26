@@ -12,11 +12,11 @@ export default function HashTagFilterModal() {
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
     const { hideHashtagFilterModal } = useHashtagFilterModalStore();
     const [inputValue, setInputValue] = useState("");
-    const [hashList, setHashList] = useState<string[]>([]);
+    const [tempHashList, setTempHashList] = useState<string[]>([]);
 
     const handleSetValue = (name: string, value: string[]) => {
         name.trim();
-        setHashList(value);
+        setTempHashList(value);
     };
 
     const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -31,30 +31,30 @@ export default function HashTagFilterModal() {
             if (trimmedValue === "") {
                 return alert("태그를 입력해주세요.");
             }
-            if (hashList.length >= 5) {
+            if (tempHashList.length >= 5) {
                 return;
             }
-            if (hashList.includes(trimmedValue)) {
+            if (tempHashList.includes(trimmedValue)) {
                 return alert("이미 입력된 태그입니다."), setInputValue("");
             }
-            setHashList((prev) => [...prev, trimmedValue]);
+            setTempHashList((prev) => [...prev, trimmedValue]);
             setInputValue("");
         }
     };
 
     const onClickComplete = () => {
-        setSearchHashList(hashList);
+        setSearchHashList(tempHashList);
         hideHashtagFilterModal();
     };
 
     const onClickCancel = () => {
-        setSearchHashList([]);
+        setTempHashList(searchHashList);
         hideHashtagFilterModal();
     };
 
     useEffect(() => {
         if (searchHashList) {
-            setHashList(searchHashList.filter((tag) => tag.trim() !== ""));
+            setTempHashList(searchHashList.filter((tag) => tag.trim() !== ""));
         }
     }, [searchHashList]);
 
@@ -67,7 +67,9 @@ export default function HashTagFilterModal() {
                 <HashTagIcon />
                 <Input
                     placeholder={
-                        hashList.length === 5 ? "태그는 최대 5개까지 입력 가능합니다." : "태그 입력"
+                        tempHashList.length === 5
+                            ? "태그는 최대 5개까지 입력 가능합니다."
+                            : "태그 입력"
                     }
                     onChange={onInputChange}
                     onKeyPress={onEnterDown}
@@ -75,7 +77,11 @@ export default function HashTagFilterModal() {
                 />
             </InputWrapper>
 
-            <HashTagButtonList hashList={hashList} setValue={handleSetValue} margin="10px 0 0 0" />
+            <HashTagButtonList
+                hashList={tempHashList}
+                setValue={handleSetValue}
+                margin="10px 0 0 0"
+            />
 
             <DescriptionWrap>
                 <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
@@ -85,6 +91,7 @@ export default function HashTagFilterModal() {
             <ButtonContainer>
                 <Button
                     onClick={onClickCancel}
+                    variant="outlined"
                     size="small"
                     style={{
                         backgroundColor: "var(--color-black-6)",
@@ -96,11 +103,13 @@ export default function HashTagFilterModal() {
                 <Button
                     onClick={onClickComplete}
                     size="small"
-                    disabled={hashList.length === 0}
+                    disabled={tempHashList.length === 0}
                     style={{
                         backgroundColor:
-                            hashList.length === 0 ? "var(--color-black-6)" : "var(--color-main-1)",
-                        cursor: hashList.length === 0 ? "default" : "pointer",
+                            tempHashList.length === 0
+                                ? "var(--color-black-6)"
+                                : "var(--color-main-1)",
+                        cursor: tempHashList.length === 0 ? "default" : "pointer",
                     }}
                 >
                     완료
