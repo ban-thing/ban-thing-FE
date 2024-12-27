@@ -60,62 +60,64 @@ export default function HashTagFilterModal() {
 
     return (
         <HashTagPageWrap>
-            <CharacterWrap>
-                <Character />
-            </CharacterWrap>
-            <InputWrapper>
-                <HashTagIcon />
-                <Input
-                    placeholder={
-                        tempHashList.length === 5
-                            ? "태그는 최대 5개까지 입력 가능합니다."
-                            : "태그 입력"
-                    }
-                    onChange={onInputChange}
-                    onKeyPress={onEnterDown}
-                    value={inputValue}
+            <HashTagPageLayout>
+                <CharacterWrap>
+                    <Character />
+                </CharacterWrap>
+                <InputWrapper>
+                    <HashTagIcon />
+                    <Input
+                        placeholder={
+                            tempHashList.length === 5
+                                ? "태그는 최대 5개까지 입력 가능합니다."
+                                : "태그 입력"
+                        }
+                        onChange={onInputChange}
+                        onKeyPress={onEnterDown}
+                        value={inputValue}
+                    />
+                </InputWrapper>
+
+                <HashTagButtonList
+                    hashList={tempHashList}
+                    setValue={handleSetValue}
+                    margin="10px 0 0 0"
                 />
-            </InputWrapper>
 
-            <HashTagButtonList
-                hashList={tempHashList}
-                setValue={handleSetValue}
-                margin="10px 0 0 0"
-            />
-
-            <DescriptionWrap>
-                <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
-                <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
-            </DescriptionWrap>
-            <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
-            <ButtonContainer>
-                <Button
-                    onClick={onClickCancel}
-                    variant="outlined"
-                    size="small"
-                    style={{
-                        border: "1px solid var(--color-black-6)",
-                        backgroundColor: "white",
-                        color: "var(--color-black-6)",
-                    }}
-                >
-                    취소
-                </Button>
-                <Button
-                    onClick={onClickComplete}
-                    size="small"
-                    disabled={tempHashList.length === 0}
-                    style={{
-                        backgroundColor:
-                            tempHashList.length === 0
-                                ? "var(--color-black-6)"
-                                : "var(--color-main-1)",
-                        cursor: tempHashList.length === 0 ? "default" : "pointer",
-                    }}
-                >
-                    완료
-                </Button>
-            </ButtonContainer>
+                <DescriptionWrap>
+                    <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
+                    <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
+                </DescriptionWrap>
+                <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
+                <ButtonContainer>
+                    <Button
+                        onClick={onClickCancel}
+                        variant="outlined"
+                        size="small"
+                        style={{
+                            border: "1px solid var(--color-black-6)",
+                            backgroundColor: "white",
+                            color: "var(--color-black-6)",
+                        }}
+                    >
+                        취소
+                    </Button>
+                    <Button
+                        onClick={onClickComplete}
+                        size="small"
+                        disabled={tempHashList.length === 0}
+                        style={{
+                            backgroundColor:
+                                tempHashList.length === 0
+                                    ? "var(--color-black-6)"
+                                    : "var(--color-main-1)",
+                            cursor: tempHashList.length === 0 ? "default" : "pointer",
+                        }}
+                    >
+                        완료
+                    </Button>
+                </ButtonContainer>
+            </HashTagPageLayout>
         </HashTagPageWrap>
     );
 }
@@ -135,12 +137,19 @@ const HashTagPageWrap = styled.div`
     transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
     min-height: 100vh;
     width: 100%;
-    max-width: 375px;
     background-color: #c6d8ff;
+`;
+
+const HashTagPageLayout = styled.div`
+    width: 375px;
+    padding: 0 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 `;
 
 const DescriptionWrap = styled.div`
@@ -202,16 +211,16 @@ const InputWrapper = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-    width: 100%;
-    max-width: 375px;
+    width: 375px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 76px;
-    padding: 8px 20px 16px;
-    margin: 0 auto;
-    position: fixed;
-    bottom: 0;
     box-sizing: border-box;
     gap: 8px;
+    background: #c6d8ff;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
 `;
