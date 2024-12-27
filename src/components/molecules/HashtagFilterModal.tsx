@@ -137,7 +137,7 @@ const HashTagPageWrap = styled.div`
     transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100%;
     width: 100%;
     background-color: #c6d8ff;
 `;
@@ -215,7 +215,7 @@ const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 76px;
+    height: auto;
     box-sizing: border-box;
     gap: 8px;
     background: #c6d8ff;
