@@ -26,6 +26,10 @@ jobs:
     deploy:
         runs-on: ubuntu-24.04
         needs: build
+        permissions:
+            contents: read
+            packages: write
+        
         steps:
             - name: Deploy to prod
               uses: appleboy/ssh-action@master
