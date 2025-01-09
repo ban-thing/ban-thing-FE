@@ -50,7 +50,9 @@ const ProfilePlace2 = styled.div`
 type ItemViewProfileProps = Pick<
     ItemView,
     "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "direct"
->;
+> & {
+    isLoading?: boolean;
+};
 
 export default function ItemViewProfile({
     sellerNickname,
@@ -58,11 +60,12 @@ export default function ItemViewProfile({
     address,
     directLocation,
     direct,
+    isLoading = true,
 }: ItemViewProfileProps) {
     return (
         // 스켈레톤
         <ProfileWrap>
-            {true ? (
+            {isLoading ? (
                 <ProfileImgWrap>
                     <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
                 </ProfileImgWrap>
@@ -70,7 +73,7 @@ export default function ItemViewProfile({
                 <ProfileImgSkt circle />
             )}
             <ProfileTextWrap>
-                {true ? (
+                {isLoading ? (
                     <>
                         <ProfileName>{sellerNickname}</ProfileName>
                         <ProfilePlace>{address}</ProfilePlace>

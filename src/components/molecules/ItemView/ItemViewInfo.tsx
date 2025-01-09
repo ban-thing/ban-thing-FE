@@ -102,7 +102,9 @@ type ItemViewInfoProps = Omit<
     | "address"
     | "direct"
     | "itemImgNames"
->;
+> & {
+    isLoading?: boolean;
+};
 
 export default function ItemViewInfo({
     title = "상품 제목",
@@ -110,6 +112,7 @@ export default function ItemViewInfo({
     hashtags = [{ id: 0, hashtag: "" }],
     cleaningDetail,
     updateTime,
+    isLoading = true,
 }: ItemViewInfoProps) {
     const { pollution, timeUsed, purchasedDate, cleaned, expire } = cleaningDetail;
     const pollList = ["없음", "1~3개", "3개 이상"];
@@ -119,7 +122,7 @@ export default function ItemViewInfo({
     return (
         // 스켈레톤
         <ItemViewInfoBox>
-            {true ? (
+            {isLoading ? (
                 <>
                     <TitleWrap>
                         <ItemViewTitle>{title}</ItemViewTitle>

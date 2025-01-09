@@ -117,6 +117,7 @@ const ItemViewPage = () => {
             )}
 
             <ItemViewProfile
+                isLoading={isLoading}
                 sellerNickname={itemData?.sellerNickname ?? ""}
                 sellerImgUrl={itemData?.sellerImgUrl ?? { id: 0, data: "", type: "" }}
                 address={itemData?.address ?? ""}
@@ -124,6 +125,7 @@ const ItemViewPage = () => {
                 direct={itemData?.direct ?? false}
             />
             <ItemViewInfo
+                isLoading={isLoading}
                 title={itemData?.title ?? ""}
                 content={itemData?.content ?? ""}
                 hashtags={itemData?.hashtags ?? [{ id: 0, hashtag: "" }]}
