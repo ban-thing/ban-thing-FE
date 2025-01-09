@@ -122,7 +122,7 @@ export default function ItemViewInfo({
     return (
         // 스켈레톤
         <ItemViewInfoBox>
-            {isLoading ? (
+            {!isLoading ? (
                 <>
                     <TitleWrap>
                         <ItemViewTitle>{title}</ItemViewTitle>

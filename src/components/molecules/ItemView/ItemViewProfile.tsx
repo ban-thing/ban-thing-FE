@@ -65,7 +65,7 @@ export default function ItemViewProfile({
     return (
         // 스켈레톤
         <ProfileWrap>
-            {isLoading ? (
+            {!isLoading ? (
                 <ProfileImgWrap>
                     <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
                 </ProfileImgWrap>
@@ -73,7 +73,7 @@ export default function ItemViewProfile({
                 <ProfileImgSkt circle />
             )}
             <ProfileTextWrap>
-                {isLoading ? (
+                {!isLoading ? (
                     <>
                         <ProfileName>{sellerNickname}</ProfileName>
                         <ProfilePlace>{address}</ProfilePlace>
