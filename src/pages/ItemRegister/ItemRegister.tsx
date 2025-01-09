@@ -255,7 +255,7 @@ const ItemRegister = () => {
             <BottomButtonBar
                 variant={isValid ? "filled" : "gray"}
                 className={isValid ? "" : "disabled"}
-                disabled={isValid ? false : true}
+                // disabled={isValid ? false : true}
                 buttonText="작성 완료"
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
