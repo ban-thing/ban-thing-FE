@@ -48,7 +48,7 @@ type ItemViewLayout = {
     sellerId: number;
     itemId: number;
     myId: number;
-    status: string;
+    status?: string;
 };
 
 export default function ItemViewBottomBar({
@@ -57,7 +57,7 @@ export default function ItemViewBottomBar({
     sellerId,
     itemId,
     myId,
-    status,
+    // status,
 }: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
@@ -77,6 +77,8 @@ export default function ItemViewBottomBar({
         );
     };
 
+    const status = "판매완료";
+
     return (
         <StyledItemViewBottomBar>
             <PriceWrap>
@@ -92,7 +94,7 @@ export default function ItemViewBottomBar({
                 <Button
                     size="small"
                     onClick={() => handleChatButtonClick(status)}
-                    disabled={status === "판매완료"}
+                    className={status === "판매완료" ? "disabled" : ""}
                 >
                     채팅하기
                 </Button>
