@@ -8,9 +8,18 @@ type ItemViewLayout = {
     sellerId: number;
     itemId: number;
     myId: number;
+    status: string;
 };
 
-const ItemViewLayout = ({ children, type, price, sellerId, itemId, myId }: ItemViewLayout) => {
+const ItemViewLayout = ({
+    children,
+    type,
+    price,
+    sellerId,
+    itemId,
+    myId,
+    status,
+}: ItemViewLayout) => {
     return (
         <>
             {children}
@@ -20,6 +29,7 @@ const ItemViewLayout = ({ children, type, price, sellerId, itemId, myId }: ItemV
                 sellerId={sellerId}
                 itemId={itemId}
                 myId={myId}
+                status={status}
             />
         </>
     );

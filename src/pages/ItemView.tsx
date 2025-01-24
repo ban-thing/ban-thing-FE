@@ -85,6 +85,7 @@ const ItemViewPage = () => {
             sellerId={Number(itemData?.sellerId)}
             itemId={Number(itemId)}
             myId={myProfileData?.data.userId}
+            status={itemData?.status || ""}
         >
             {/* 스켈레톤 */}
             {!isLoading ? (

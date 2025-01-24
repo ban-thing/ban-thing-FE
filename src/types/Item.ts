@@ -46,6 +46,7 @@ export interface ItemView {
     direct: boolean;
     sellerId?: number;
     itemImgNames: string[];
+    status?: string;
 }
 
 interface CleaningDetail {

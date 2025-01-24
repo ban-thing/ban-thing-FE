@@ -48,13 +48,22 @@ type ItemViewLayout = {
     sellerId: number;
     itemId: number;
     myId: number;
+    status: string;
 };
 
-export default function ItemViewBottomBar({ type, price, sellerId, itemId, myId }: ItemViewLayout) {
+export default function ItemViewBottomBar({
+    type,
+    price,
+    sellerId,
+    itemId,
+    myId,
+    status,
+}: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
 
-    const handleChatButtonClick = async () => {
+    const handleChatButtonClick = async (status: string) => {
+        if (status === "판매완료") return;
         const authCookie = getCookie("Authorization_banthing");
         if (!authCookie) return navigate("/login");
         mutate(
@@ -80,7 +89,11 @@ export default function ItemViewBottomBar({ type, price, sellerId, itemId, myId 
                 </Price>
             </PriceWrap>
             {myId !== sellerId && (
-                <Button size="small" onClick={handleChatButtonClick}>
+                <Button
+                    size="small"
+                    onClick={() => handleChatButtonClick(status)}
+                    disabled={status === "판매완료"}
+                >
                     채팅하기
                 </Button>
             )}
