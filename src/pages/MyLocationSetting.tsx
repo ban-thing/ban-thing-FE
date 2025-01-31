@@ -50,9 +50,13 @@ const MyLocationSetting = () => {
 
     const onClickSubmit = async () => {
         if (currentAddress?.[2]?.[0]) {
-            mutate();
+            mutate(undefined, {
+                onSuccess: () => {
+                    navigate("/location-select");
+                },
+            });
         } else {
-            navigate("/");
+            navigate("/location-select");
         }
     };
 
