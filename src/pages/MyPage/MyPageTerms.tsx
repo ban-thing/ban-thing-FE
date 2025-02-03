@@ -3,8 +3,15 @@ import PersonalInfo from "@/components/molecules/MyPage.tsx/TermsText/PersonalIn
 import TermsOfUse from "@/components/molecules/MyPage.tsx/TermsText/TermsOfUse";
 import OpenSource from "@/components/molecules/MyPage.tsx/TermsText/OpenSource";
 import { useLocation } from "react-router-dom";
+import AccountSetting from "@/components/molecules/MyPage.tsx/TermsText/AccountSetting";
 
-const termsUrls = ["terms-of-use", "personal-info", "location-based", "open-source"];
+const termsUrls = [
+    "terms-of-use",
+    "personal-info",
+    "location-based",
+    "open-source",
+    "account-setting",
+];
 
 const MyPageTerms = () => {
     const { pathname } = useLocation();
@@ -18,8 +25,11 @@ const MyPageTerms = () => {
         case "location-based":
             content = <LocationBased />;
             break;
-        case "open-source":
+        case "version-info":
             content = <OpenSource />;
+            break;
+        case "account-setting":
+            content = <AccountSetting />;
             break;
         default:
             <TermsOfUse />;
