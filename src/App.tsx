@@ -26,6 +26,7 @@ import Chatting from "./pages/Chatting";
 import SplashWrap from "./pages/SplashWrap";
 import LoginRedirect from "./pages/LoginRedirect";
 import PrivateRoute from "./components/auth/PrivateRoute";
+import MyPageFavoriteList from "./pages/MyPage/MyPageFavoriteList ";
 
 const queryClient = new QueryClient();
 
@@ -102,7 +103,9 @@ const router = createBrowserRouter([
                     { path: "terms-of-use", element: <MyPageTerms /> },
                     { path: "personal-info", element: <MyPageTerms /> },
                     { path: "location-based", element: <MyPageTerms /> },
-                    { path: "open-source", element: <MyPageTerms /> },
+                    { path: "version-info", element: <MyPageTerms /> },
+                    { path: "account-setting", element: <MyPageTerms /> },
+                    { path: "favorite-list", element: <MyPageFavoriteList /> },
                 ],
             },
         ],
