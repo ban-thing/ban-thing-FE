@@ -40,7 +40,7 @@ const MyPageItemList = () => {
 
     return (
         <MyPageItemListWrap>
-            <PageTitleWithBackButton text="나의 내역" $margin="0 0 16px" backTo="/my-page" />
+            <PageTitleWithBackButton text="나의 내역" $margin="10px 0" backTo="/my-page" />
             <TabBar
                 tabsList={tabsList}
                 initTab={isSalePage ? tabsList[1] : tabsList[0]}

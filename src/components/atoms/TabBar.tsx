@@ -43,6 +43,7 @@ const TabBarWrapper = styled.div`
     align-items: center;
     width: 100%;
     max-width: 375px;
+    height: 56px;
     background: white;
 `;
 
