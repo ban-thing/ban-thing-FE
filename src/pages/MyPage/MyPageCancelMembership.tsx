@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
+import BackIcon from "@/assets/icons/back.svg?react";
 
 const MyPageCancelMembership = () => {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ const MyPageCancelMembership = () => {
                 {settings.map((value, index) => (
                     <SettingItem key={index} onClick={() => navigate("/my-page/cancel-notice")}>
                         {value}
+                        <RotatedBackIcon />
                     </SettingItem>
                 ))}
             </SettingList>
@@ -49,10 +51,15 @@ const SettingList = styled.div`
 const SettingItem = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 8px 20px;
     width: 100%;
     height: 50px;
     color: var(--color-black-4);
     box-sizing: border-box;
     cursor: pointer;
+`;
+
+const RotatedBackIcon = styled(BackIcon)`
+    transform: rotate(180deg);
 `;
