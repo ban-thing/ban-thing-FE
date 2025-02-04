@@ -29,6 +29,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import MyPageFavoriteList from "./pages/MyPage/MyPageFavoriteList ";
 import MyPageCancelMembership from "./pages/MyPage/MyPageCancelMembership";
 import MyPageCancelNotice from "./pages/MyPage/MyPageCancelNotice";
+import MyPageCancelOther from "./pages/MyPage/MyPageCancelOther";
 
 const queryClient = new QueryClient();
 
@@ -110,6 +111,7 @@ const router = createBrowserRouter([
                     { path: "favorite-list", element: <MyPageFavoriteList /> },
                     { path: "cancel-membership", element: <MyPageCancelMembership /> },
                     { path: "cancel-notice", element: <MyPageCancelNotice /> },
+                    { path: "cancel-other", element: <MyPageCancelOther /> },
                 ],
             },
         ],
