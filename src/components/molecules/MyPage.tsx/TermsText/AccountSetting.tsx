@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-import { Button } from "@/components/atoms/Button";
 import { useNavigate } from "react-router-dom";
 import { removeCookie } from "@/utils/Cookie";
 import { useState } from "react";
@@ -20,7 +19,9 @@ const AccountSetting = () => {
             <PageTitleWithBackButton text="계정설정" $margin="10px 0" backTo="/my-page" />
             <SettingList>
                 <SettingItem onClick={() => setShowLogoutModal(true)}>로그아웃</SettingItem>
-                <SettingItem onClick={() => navigate("/cancel-membership")}>회원탈퇴</SettingItem>
+                <SettingItem onClick={() => navigate("/my-page/cancel-membership")}>
+                    회원탈퇴
+                </SettingItem>
             </SettingList>
 
             <CenterIcon>
@@ -28,27 +29,22 @@ const AccountSetting = () => {
             </CenterIcon>
 
             {showLogoutModal && (
-                <ModalOverlay>
-                    <ModalContent>
-                        <ModalText>로그아웃 하시겠습니까?</ModalText>
-                        <ButtonGroup>
-                            <Button
-                                variant="outlined"
-                                size="small"
-                                onClick={() => setShowLogoutModal(false)}
-                                style={{
-                                    color: "var(--color-black-5)",
-                                    borderColor: "var(--color-black-6)",
-                                }}
-                            >
-                                취소
-                            </Button>
-                            <Button variant="filled" size="small" onClick={handleLogout}>
-                                확인
-                            </Button>
-                        </ButtonGroup>
-                    </ModalContent>
-                </ModalOverlay>
+                <>
+                    <ModalBase />
+                    <ModalContainer>
+                        <ModalTextContainer>
+                            <ModalTextBox>로그아웃 하시겠습니까?</ModalTextBox>
+                            <Line />
+                            <ButtonContainer>
+                                <ActionButton onClick={() => setShowLogoutModal(false)}>
+                                    취소
+                                </ActionButton>
+                                <ButtonDivider />
+                                <ActionButton onClick={handleLogout}>확인</ActionButton>
+                            </ButtonContainer>
+                        </ModalTextContainer>
+                    </ModalContainer>
+                </>
             )}
         </MyPageAccountWrap>
     );
@@ -79,44 +75,81 @@ const SettingItem = styled.div`
     box-sizing: border-box;
 `;
 
-const ModalOverlay = styled.div`
+const ModalBase = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
 `;
 
-const ModalContent = styled.div`
+const ModalContainer = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 264px;
+    height: 120px;
+    border-radius: 24px;
+    z-index: 20;
+    box-sizing: border-box;
+    overflow: hidden;
+`;
+
+const ModalTextContainer = styled.div`
+    width: 100%;
+    height: 100%;
     background-color: white;
-    padding: 24px;
-    border-radius: 8px;
-    width: 280px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
 `;
 
-const ModalText = styled.div`
+const ModalTextBox = styled.div`
+    width: 100%;
+    text-align: center;
     font-size: 16px;
     font-weight: 700;
-    color: var(--color-black-1);
+    line-height: 1.4;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `;
 
-const ButtonGroup = styled.div`
-    display: flex;
-    gap: 8px;
+const Line = styled.div`
     width: 100%;
+    height: 1px;
+    background-color: var(--color-black-7);
+`;
 
-    button {
-        flex: 1;
-    }
+const ButtonContainer = styled.div`
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    position: relative;
+`;
+
+const ButtonDivider = styled.div`
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--color-black-7);
+    transform: translateX(-50%);
+`;
+
+const ActionButton = styled.button`
+    width: 50%;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 2px;
+    color: #1a5ee4;
+    cursor: pointer;
 `;
 
 const CenterIcon = styled.div`
