@@ -21,7 +21,7 @@ const MyPageCancelMembership = () => {
             />
             <SettingList>
                 {settings.map((value, index) => (
-                    <SettingItem key={index} onClick={() => navigate("/cancel-notice")}>
+                    <SettingItem key={index} onClick={() => navigate("/my-page/cancel-notice")}>
                         {value}
                     </SettingItem>
                 ))}
@@ -49,7 +49,7 @@ const SettingList = styled.div`
 const SettingItem = styled.div`
     display: flex;
     align-items: center;
-    padding: 20px 28px;
+    padding: 8px 20px;
     width: 100%;
     height: 50px;
     color: var(--color-black-4);
