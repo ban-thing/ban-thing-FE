@@ -27,6 +27,8 @@ import SplashWrap from "./pages/SplashWrap";
 import LoginRedirect from "./pages/LoginRedirect";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import MyPageFavoriteList from "./pages/MyPage/MyPageFavoriteList ";
+import MyPageCancelMembership from "./pages/MyPage/MyPageCancelMembership";
+import MyPageCancelNotice from "./pages/MyPage/MyPageCancelNotice";
 
 const queryClient = new QueryClient();
 
@@ -106,6 +108,8 @@ const router = createBrowserRouter([
                     { path: "version-info", element: <MyPageTerms /> },
                     { path: "account-setting", element: <MyPageTerms /> },
                     { path: "favorite-list", element: <MyPageFavoriteList /> },
+                    { path: "cancel-membership", element: <MyPageCancelMembership /> },
+                    { path: "cancel-notice", element: <MyPageCancelNotice /> },
                 ],
             },
         ],
