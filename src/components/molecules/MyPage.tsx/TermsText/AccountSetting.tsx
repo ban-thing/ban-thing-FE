@@ -1,9 +1,10 @@
+import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { Button } from "@/components/atoms/Button";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { removeCookie } from "@/utils/Cookie";
 import { useState } from "react";
+import FootprintIcon from "@/assets/icons/footPrintBackground.svg?react";
 
 const AccountSetting = () => {
     const navigate = useNavigate();
@@ -19,8 +20,12 @@ const AccountSetting = () => {
             <PageTitleWithBackButton text="계정설정" $margin="10px 0" backTo="/my-page" />
             <SettingList>
                 <SettingItem onClick={() => setShowLogoutModal(true)}>로그아웃</SettingItem>
-                <SettingItem>회원탈퇴</SettingItem>
+                <SettingItem onClick={() => navigate("/cancel-membership")}>회원탈퇴</SettingItem>
             </SettingList>
+
+            <CenterIcon>
+                <FootprintIcon />
+            </CenterIcon>
 
             {showLogoutModal && (
                 <ModalOverlay>
@@ -61,12 +66,12 @@ const MyPageAccountWrap = styled.div`
 const SettingList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
+    margin-top: 30px;
 `;
 
 const SettingItem = styled.div`
-    padding: 20px 28px;
+    padding: 8px 20px;
     width: 100%;
     height: 50px;
     cursor: pointer;
@@ -95,7 +100,7 @@ const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 `;
 
 const ModalText = styled.div`
@@ -111,5 +116,17 @@ const ButtonGroup = styled.div`
 
     button {
         flex: 1;
+    }
+`;
+
+const CenterIcon = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    svg {
+        width: 118px;
+        height: 118px;
     }
 `;
