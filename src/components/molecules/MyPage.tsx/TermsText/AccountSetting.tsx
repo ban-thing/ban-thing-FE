@@ -117,15 +117,17 @@ const ModalTextBox = styled.div`
     font-size: 16px;
     font-weight: 700;
     line-height: 1.4;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Line = styled.div`
     width: 100%;
     height: 1px;
     background-color: var(--color-black-8);
-    margin-bottom: auto;
+    margin-top: auto;
 `;
 
 const ButtonContainer = styled.div`
