@@ -125,20 +125,21 @@ const Line = styled.div`
     width: 100%;
     height: 1px;
     background-color: var(--color-black-8);
+    margin-bottom: auto;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     align-items: stretch;
     width: 100%;
-    height: 100%;
+    height: 47px;
     position: relative;
 `;
 
 const ButtonDivider = styled.div`
     width: 1px;
+    height: 47px;
     position: absolute;
-    top: 0;
     bottom: 0;
     left: 50%;
     background-color: var(--color-black-8);
@@ -155,7 +156,6 @@ const ActionButton = styled.button<{ $isConfirm?: boolean }>`
     padding: 15px 2px;
     color: ${({ $isConfirm }) => ($isConfirm ? "var(--color-main-1)" : "var(--color-black-5)")};
     cursor: pointer;
-    margin-top: auto;
 `;
 
 const CenterIcon = styled.div`
