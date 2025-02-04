@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import Heart from "@/assets/icons/heart.svg?react";
+import HeartActive from "@/assets/icons/heartActive.svg?react";
 import { Button } from "@/components/atoms/Button";
-import Tag from "@/assets/icons/priceTagBlue.svg?react";
 import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
 import { getCookie } from "@/utils/Cookie";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -42,6 +44,16 @@ const PriceNumber = styled.div`
 
 const PriceText = styled.div``;
 
+const HeartButton = styled.button`
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 type ItemViewLayout = {
     type: string;
     price: number;
@@ -61,6 +73,7 @@ export default function ItemViewBottomBar({
 }: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
+    const [isLiked, setIsLiked] = useState(false);
 
     const handleChatButtonClick = async (status: string) => {
         if (status === "판매완료") return;
@@ -77,12 +90,19 @@ export default function ItemViewBottomBar({
         );
     };
 
+    const handleLikeClick = () => {
+        // TODO: API 연동 시 여기에 좋아요 API 호출 추가
+        setIsLiked(!isLiked);
+    };
+
     const status = "판매완료";
 
     return (
         <StyledItemViewBottomBar>
             <PriceWrap>
-                <Tag />
+                <HeartButton onClick={handleLikeClick}>
+                    {isLiked ? <HeartActive /> : <Heart />}
+                </HeartButton>
                 <Price>
                     <PriceNumber>
                         {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
