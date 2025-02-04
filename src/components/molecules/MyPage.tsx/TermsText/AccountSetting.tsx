@@ -124,7 +124,7 @@ const ModalTextBox = styled.div`
 const Line = styled.div`
     width: 100%;
     height: 1px;
-    background-color: var(--color-black-7);
+    background-color: var(--color-black-8);
 `;
 
 const ButtonContainer = styled.div`
@@ -141,12 +141,13 @@ const ButtonDivider = styled.div`
     top: 0;
     bottom: 0;
     left: 50%;
-    background-color: var(--color-black-7);
+    background-color: var(--color-black-8);
     transform: translateX(-50%);
 `;
 
 const ActionButton = styled.button<{ $isConfirm?: boolean }>`
     width: 50%;
+    height: 47px;
     border: none;
     background: none;
     font-size: 14px;
@@ -154,6 +155,7 @@ const ActionButton = styled.button<{ $isConfirm?: boolean }>`
     padding: 15px 2px;
     color: ${({ $isConfirm }) => ($isConfirm ? "var(--color-main-1)" : "var(--color-black-5)")};
     cursor: pointer;
+    margin-top: auto;
 `;
 
 const CenterIcon = styled.div`
