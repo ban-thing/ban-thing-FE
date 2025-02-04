@@ -14,7 +14,11 @@ const MyPageCancelMembership = () => {
     ];
     return (
         <MyPageAccountWrap>
-            <PageTitleWithBackButton text="회원탈퇴" $margin="10px 0" backTo="/my-page" />
+            <PageTitleWithBackButton
+                text="회원탈퇴"
+                $margin="10px 0"
+                backTo="/my-page/account-setting"
+            />
             <SettingList>
                 {settings.map((value, index) => (
                     <SettingItem key={index} onClick={() => navigate("/cancel-notice")}>
@@ -38,15 +42,17 @@ const MyPageAccountWrap = styled.div`
 const SettingList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
+    margin-top: 30px;
 `;
 
 const SettingItem = styled.div`
+    display: flex;
+    align-items: center;
     padding: 20px 28px;
     width: 100%;
     height: 50px;
-    cursor: pointer;
     color: var(--color-black-4);
     box-sizing: border-box;
+    cursor: pointer;
 `;
