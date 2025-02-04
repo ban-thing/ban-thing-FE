@@ -13,6 +13,15 @@ const MyPageCancelMembership = () => {
         "개인정보를 삭제하고 싶어요",
         "기타",
     ];
+
+    const handleItemClick = (value: string) => {
+        if (value === "기타") {
+            navigate("/my-page/cancel-other");
+        } else {
+            navigate("/my-page/cancel-notice");
+        }
+    };
+
     return (
         <MyPageAccountWrap>
             <PageTitleWithBackButton
@@ -22,7 +31,7 @@ const MyPageCancelMembership = () => {
             />
             <SettingList>
                 {settings.map((value, index) => (
-                    <SettingItem key={index} onClick={() => navigate("/my-page/cancel-notice")}>
+                    <SettingItem key={index} onClick={() => handleItemClick(value)}>
                         {value}
                         <RotatedBackIcon />
                     </SettingItem>
