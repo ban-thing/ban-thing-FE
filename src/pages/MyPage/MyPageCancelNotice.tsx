@@ -2,14 +2,23 @@ import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atoms/Button";
+import { ConfirmModal } from "@/components/molecules/ConfirmModal";
+import { useState } from "react";
 
 const MyPageCancelNotice = () => {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
     const settings = [
         "• 탈퇴 후 7일간 재가입이 불가능합니다.",
         "• 탈퇴 시, 계정의 모든 정보는 삭제되며 재가입 시에도 복구되지않습니다.",
     ];
+
+    const handleWithdrawal = () => {
+        // 실제 탈퇴 로직 구현
+        // API 호출 등의 처리 후 로그인 페이지로 이동
+        navigate("/login");
+    };
 
     return (
         <MyPageCancelNoticeWrap>
@@ -36,20 +45,26 @@ const MyPageCancelNotice = () => {
                     취소
                 </Button>
                 <Button
-                    onClick={() => {
-                        /* 탈퇴 로직 추가 */
-                    }}
+                    onClick={() => setShowModal(true)}
                     variant="outlined"
                     size="small"
                     style={{
                         border: "1px solid var(--color-black-5)",
-                        backgroundColor: "var(--color-black-5)",
+                        color: "var(--color-black-5)",
+                        backgroundColor: "white",
                         cursor: "pointer",
                     }}
                 >
                     탈퇴하기
                 </Button>
             </ButtonContainer>
+
+            <ConfirmModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleWithdrawal}
+                message="정말 탈퇴하시겠습니까?"
+            />
         </MyPageCancelNoticeWrap>
     );
 };
@@ -73,7 +88,7 @@ const SettingItem = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 20px;
+    padding: 8px 8px 8px 20px;
     width: 100%;
     height: 50px;
     font-size: 16px;
