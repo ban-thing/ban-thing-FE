@@ -40,7 +40,9 @@ const AccountSetting = () => {
                                     취소
                                 </ActionButton>
                                 <ButtonDivider />
-                                <ActionButton onClick={handleLogout}>확인</ActionButton>
+                                <ActionButton $isConfirm onClick={handleLogout}>
+                                    확인
+                                </ActionButton>
                             </ButtonContainer>
                         </ModalTextContainer>
                     </ModalContainer>
@@ -67,6 +69,8 @@ const SettingList = styled.div`
 `;
 
 const SettingItem = styled.div`
+    display: flex;
+    align-items: center;
     padding: 8px 20px;
     width: 100%;
     height: 50px;
@@ -90,8 +94,8 @@ const ModalContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 264px;
-    height: 120px;
+    width: 246px;
+    height: 173px;
     border-radius: 24px;
     z-index: 20;
     box-sizing: border-box;
@@ -141,14 +145,14 @@ const ButtonDivider = styled.div`
     transform: translateX(-50%);
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled.button<{ $isConfirm?: boolean }>`
     width: 50%;
     border: none;
     background: none;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     padding: 15px 2px;
-    color: #1a5ee4;
+    color: ${({ $isConfirm }) => ($isConfirm ? "var(--color-main-1)" : "var(--color-black-5)")};
     cursor: pointer;
 `;
 
