@@ -9,7 +9,7 @@ const termsUrls = [
     "terms-of-use",
     "personal-info",
     "location-based",
-    "open-source",
+    "version-info",
     "account-setting",
 ];
 
