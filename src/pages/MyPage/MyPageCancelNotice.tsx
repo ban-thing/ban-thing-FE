@@ -64,6 +64,7 @@ const MyPageCancelNotice = () => {
                 onClose={() => setShowModal(false)}
                 onConfirm={handleWithdrawal}
                 message="정말 탈퇴하시겠습니까?"
+                subMessage="계정의 모든 정보는 삭제되며 복구되지않습니다."
             />
         </MyPageCancelNoticeWrap>
     );

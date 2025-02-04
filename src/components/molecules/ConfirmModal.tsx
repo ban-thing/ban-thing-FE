@@ -5,6 +5,7 @@ interface ConfirmModalProps {
     onClose: () => void;
     onConfirm: () => void;
     message: string;
+    subMessage?: string;
     confirmText?: string;
     cancelText?: string;
 }
@@ -14,6 +15,7 @@ export const ConfirmModal = ({
     onClose,
     onConfirm,
     message,
+    subMessage,
     confirmText = "확인",
     cancelText = "취소",
 }: ConfirmModalProps) => {
@@ -24,7 +26,10 @@ export const ConfirmModal = ({
             <ModalBase />
             <ModalContainer>
                 <ModalTextContainer>
-                    <ModalTextBox>{message}</ModalTextBox>
+                    <ModalTextBox>
+                        <MainMessage>{message}</MainMessage>
+                        {subMessage && <SubMessage>{subMessage}</SubMessage>}
+                    </ModalTextBox>
                     <Line />
                     <ButtonContainer>
                         <ActionButton onClick={onClose}>{cancelText}</ActionButton>
@@ -74,13 +79,14 @@ const ModalTextContainer = styled.div`
 const ModalTextBox = styled.div`
     width: 100%;
     text-align: center;
-    font-size: 16px;
-    font-weight: 700;
     line-height: 1.4;
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 `;
 
 const Line = styled.div`
@@ -118,4 +124,16 @@ const ActionButton = styled.button<{ $isConfirm?: boolean }>`
     padding: 15px 2px;
     color: ${({ $isConfirm }) => ($isConfirm ? "var(--color-main-1)" : "var(--color-black-5)")};
     cursor: pointer;
+`;
+
+const MainMessage = styled.div`
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: ${(props) => (props.children ? "8px" : "0")};
+`;
+
+const SubMessage = styled.div`
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-black-4);
 `;
