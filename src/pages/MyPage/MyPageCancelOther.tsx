@@ -71,33 +71,34 @@ const SettingList = styled.div`
 `;
 
 const GuideText = styled.div`
-    font-size: 14px;
+    font-size: 20px;
     color: var(--color-black-2);
     margin-bottom: 16px;
+    text-align: center;
 `;
 
 const TextAreaContainer = styled.div`
-    position: relative;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 `;
 
-const SkipButton = styled.button`
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
+const SkipButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
     background: none;
     border: none;
     color: var(--color-black-5);
     font-size: 12px;
-    cursor: pointer;
     padding: 0;
+    cursor: pointer;
 `;
 
 const TextArea = styled.textarea`
     width: 100%;
-    height: 120px;
+    height: 194px;
     padding: 16px;
-    border: 1px solid var(--color-black-8);
+    border: 1px solid var(--color-black-6);
     border-radius: 8px;
     resize: none;
     font-size: 14px;
