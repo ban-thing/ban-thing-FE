@@ -56,16 +56,16 @@ const BackButton = styled.div`
     justify-content: center;
     flex-direction: row;
     &:first-child {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 `;
 
 const ButtonGroup = styled.div`
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 16px;
     &:last-child {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 `;
 
