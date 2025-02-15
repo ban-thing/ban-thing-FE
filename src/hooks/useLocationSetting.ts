@@ -269,51 +269,41 @@ export const useLocationSetting = () => {
     const initializeWithAddresses = (addresses: string[]) => {
         if (!addresses || addresses.length === 0) return;
 
-        // 시/도 설정
+        // 각 주소를 파싱하여 마지막 부분(동/읍/면)만 추출
+        const selectedTownsList = addresses.map((address) => {
+            const parts = address.split(" ");
+            const townName = parts[parts.length - 1];
+            return {
+                id: `temp_${townName}`,
+                name: townName,
+            };
+        });
+
+        // 첫 번째 주소로 시/도, 구/군 설정
         if (addresses[0]) {
-            const city = cities.find((city) => city.name === addresses[0]);
+            const parts = addresses[0].split(" ");
+            const cityName = parts[0];
+            const city = cities.find((c) => c.name === cityName);
             if (city) {
                 setCurrentCity(city.name);
                 setSelectedCity(city);
                 loadDistricts(city.id, city.name);
-            }
-        }
 
-        // 구/군 설정
-        if (addresses[1]) {
-            const district = districts.find((district) => district.name === addresses[1]);
-            if (district) {
-                setCurrentDistrict(district.name);
-                setSelectedDistrict(district);
-
-                if (district.name.includes("전체")) {
-                    // 전체가 선택된 경우의 처리
-                    const allSelection = {
-                        id: district.id,
-                        name: `${addresses[0]} 전체`,
-                    };
-                    setSelectedTowns([allSelection]);
-                    setCurrentTowns([allSelection.name]);
-                    setDistricts(districts.map((d) => ({ ...d, selected: true })));
-                } else {
-                    // 특정 구가 선택된 경우
-                    loadTowns(district.id, district.name);
+                // 구/군이 있는 경우
+                if (parts[1]) {
+                    const districtName = parts[1];
+                    const district = districts.find((d) => d.name === districtName);
+                    if (district) {
+                        setCurrentDistrict(district.name);
+                        setSelectedDistrict(district);
+                        loadTowns(district.id, district.name);
+                    }
                 }
             }
         }
 
-        // 동/읍/면 설정
-        if (addresses[2]) {
-            const townNames = Array.isArray(addresses[2]) ? addresses[2] : [addresses[2]];
-            setCurrentTowns(townNames);
-
-            // towns 배열이 로드된 후에 선택된 동네들을 설정
-            const selectedTownsList = townNames.map((name) => {
-                const town = towns.find((t) => t.name === name);
-                return town || { id: `temp_${name}`, name };
-            });
-            setSelectedTowns(selectedTownsList);
-        }
+        // 선택된 동네들 설정
+        setSelectedTowns(selectedTownsList);
     };
 
     return {
