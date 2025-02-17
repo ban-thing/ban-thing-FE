@@ -7,9 +7,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { useLocationSetting } from "@/hooks/useLocationSetting";
 import { useNavigate } from "react-router-dom";
-import { useFetchAddress, useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useFetchAddress } from "@/hooks/api/UsersQuery";
 import { Region } from "@/types/location";
-import { useEffect } from "react";
 
 const formatAddress = (
     city: Region | null | undefined,
@@ -27,7 +26,6 @@ const formatAddress = (
 };
 
 export default function LocationSelect() {
-    const { data: profileData } = useFetchMyProfile();
     const navigate = useNavigate();
     const {
         cities,
@@ -44,7 +42,6 @@ export default function LocationSelect() {
         handleRemoveTown,
         onClickCurrent,
         resetData,
-        initializeWithAddresses,
     } = useLocationSetting();
     const { mutate } = useFetchAddress({
         address1: selectedTowns[0]
@@ -57,17 +54,6 @@ export default function LocationSelect() {
             ? formatAddress(selectedCity, selectedDistrict, selectedTowns[2])
             : "",
     });
-
-    useEffect(() => {
-        if (profileData) {
-            const addresses = [
-                profileData.address1,
-                profileData.address2,
-                profileData.address3,
-            ].filter(Boolean);
-            initializeWithAddresses(addresses);
-        }
-    }, [profileData]);
 
     const onClickCancel = () => {
         resetData();

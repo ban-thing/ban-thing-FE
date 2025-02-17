@@ -4,20 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/atoms/Button";
 import { ConfirmModal } from "@/components/molecules/ConfirmModal";
 import { useState } from "react";
+import { useFetchDeleteUser } from "@/hooks/api/UsersQuery";
 
 const MyPageCancelNotice = () => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+    const deleteUserMutation = useFetchDeleteUser();
 
     const settings = [
         "• 탈퇴 후 7일간 재가입이 불가능합니다.",
         "• 탈퇴 시, 계정의 모든 정보는 삭제되며 재가입 시에도 복구되지않습니다.",
+        "• 법령에서 일정기간 정보 보관을 규정하거나 서비스 운영상 반드시 필요한 경우, 개인정보처리방침에 공개한 내용과 같이 일정한 기간 동안 개인정보를 보관 후 파기합니다.",
     ];
 
     const handleWithdrawal = () => {
-        // 실제 탈퇴 로직 구현
-        // API 호출 등의 처리 후 로그인 페이지로 이동
-        navigate("/login");
+        deleteUserMutation.mutate();
+        setShowModal(false);
     };
 
     return (
