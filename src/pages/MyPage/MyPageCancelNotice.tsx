@@ -91,9 +91,9 @@ const SettingItem = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 8px 8px 20px;
+    padding: 8px 20px;
     width: 100%;
-    height: 50px;
+    height: 100%;
     font-size: 16px;
     color: var(--color-black-4);
     box-sizing: border-box;
@@ -106,7 +106,7 @@ const ButtonContainer = styled.div`
     justify-content: center;
     height: auto;
     box-sizing: border-box;
-    gap: 8px;
+    gap: 15px;
     position: fixed;
     bottom: 16px;
     left: 50%;
