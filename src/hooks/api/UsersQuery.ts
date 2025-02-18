@@ -100,7 +100,7 @@ export const useFetchDeleteUser = () => {
     const navigate = useNavigate();
     return useMutation({
         mutationFn: async (reason: string) => {
-            return await apiService.delete<string>(`my/delete`, { reason }, "", true);
+            return await apiService.post<string>(`my/delete`, { reason }, "", true);
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);
