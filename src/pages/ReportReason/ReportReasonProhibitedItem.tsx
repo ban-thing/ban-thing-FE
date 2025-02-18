@@ -3,7 +3,7 @@ import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
 import CheckIcon from "../assets/icons/check1.svg?react";
 
-const ReportReasonAdvertisement = () => {
+const ReportReasonProhibitedItem = () => {
     const navigate = useNavigate();
     const settings = ["상점 및 타 사이트 홍보", "상품 도배", "기타 영리적 목적이 확인되는 콘텐츠"];
 
@@ -30,7 +30,8 @@ const ReportReasonAdvertisement = () => {
     );
 };
 
-export default ReportReasonAdvertisement;
+export default ReportReasonProhibitedItem;
+
 const ReportReasonWrap = styled.div`
     display: flex;
     flex-direction: column;

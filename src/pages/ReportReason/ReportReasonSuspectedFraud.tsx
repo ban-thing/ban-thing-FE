@@ -1,19 +1,11 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
-import BackIcon from "@/assets/icons/back.svg?react";
+import CheckIcon from "../assets/icons/check1.svg?react";
 
-const ReportReason = () => {
+const ReportReasonSuspectedFraud = () => {
     const navigate = useNavigate();
-    const settings = [
-        "광고성 컨텐츠예요",
-        "상품 정보가 부정확해요",
-        "거래 금지 품목으로 판단돼요",
-        "안전한 거래를 거부해요",
-        "사기가 의심돼요",
-        "전문 판매업자 같아요",
-        "콘텐츠 내용이 불쾌해요",
-    ];
+    const settings = ["상점 및 타 사이트 홍보", "상품 도배", "기타 영리적 목적이 확인되는 콘텐츠"];
 
     const handleItemClick = (value: string) => {
         if (value === "기타") {
@@ -38,7 +30,7 @@ const ReportReason = () => {
     );
 };
 
-export default ReportReason;
+export default ReportReasonSuspectedFraud;
 
 const ReportReasonWrap = styled.div`
     display: flex;
@@ -66,6 +58,6 @@ const SettingItem = styled.div`
     cursor: pointer;
 `;
 
-const RotatedBackIcon = styled(BackIcon)`
+const RotatedBackIcon = styled(CheckIcon)`
     transform: rotate(180deg);
 `;
