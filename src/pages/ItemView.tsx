@@ -14,61 +14,6 @@ import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
 
-const StyledItemImg = styled.div`
-    position: relative;
-    width: 100%;
-    height: 315px;
-    margin-bottom: 24px;
-
-    & .mySwiper {
-        height: 100%;
-    }
-
-    & img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    svg path {
-        stroke: white;
-    }
-`;
-
-const TitleWrapper = styled.div`
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 44px;
-    z-index: 1;
-`;
-
-const BackButton = styled.div`
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    &:first-child {
-        margin-left: 20px;
-    }
-`;
-
-const ButtonGroup = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    &:last-child {
-        margin-right: 20px;
-    }
-`;
-
 const ItemViewPage = () => {
     const { data: myProfileData } = useFetchMyProfile();
     const location = useLocation();
@@ -141,8 +86,74 @@ const ItemViewPage = () => {
                 }
                 updateTime={itemData?.updateTime ?? ""}
             />
+            <SkipButton onClick={() => navigate("/report-reason")}>이 게시글 신고하기</SkipButton>
         </ItemViewLayout>
     );
 };
 
 export default ItemViewPage;
+
+const StyledItemImg = styled.div`
+    position: relative;
+    width: 100%;
+    height: 315px;
+    margin-bottom: 24px;
+
+    & .mySwiper {
+        height: 100%;
+    }
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    svg path {
+        stroke: white;
+    }
+`;
+
+const TitleWrapper = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 44px;
+    z-index: 1;
+`;
+
+const BackButton = styled.div`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    &:first-child {
+        margin-left: 20px;
+    }
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    &:last-child {
+        margin-right: 20px;
+    }
+`;
+const SkipButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+    color: var(--color-black-5);
+    font-size: 12px;
+    padding: 0;
+    cursor: pointer;
+`;
