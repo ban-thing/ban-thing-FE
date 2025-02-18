@@ -45,7 +45,7 @@ const ReportReason = () => {
 
     return (
         <ReportReasonWrap>
-            <PageTitleWithBackButton text="신고 사유" $margin="10px 0" backTo="" />
+            <PageTitleWithBackButton text="신고 사유" $margin="10px 0" />
             <SettingList>
                 {settings.map((value, index) => (
                     <SettingItem key={index} onClick={() => handleItemClick(value)}>
