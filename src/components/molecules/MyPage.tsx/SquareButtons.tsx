@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bag from "@/assets/icons/coloredShoppingBag.svg?react";
 import shop from "@/assets/icons/coloredShop.svg?react";
-import pen from "@/assets/icons/coloredPen.svg?react";
+import favorite from "@/assets/icons/Favorite.svg?react";
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export const SquareButtonList = () => {
         <StyledSquareButtonList>
             <SquareButton text="구매 내역" />
             <SquareButton text="판매 내역" />
-            <SquareButton text="내 물건 팔기" />
+            <SquareButton text="나의 찜" />
         </StyledSquareButtonList>
     );
 };
@@ -58,9 +58,9 @@ const SquareButton = ({ text }: { text: string }) => {
             IconImage = shop;
             url = "sale-list";
             break;
-        case "내 물건 팔기":
-            IconImage = pen;
-            url = "/item-register";
+        case "나의 찜":
+            IconImage = favorite;
+            url = "favorite-list";
             break;
         default:
             IconImage = bag;

@@ -94,3 +94,19 @@ export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
         },
     });
 };
+
+// 회원 탈퇴
+export const useFetchDeleteUser = () => {
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: async () => {
+            return await apiService.delete<any>("my/delete", {});
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        },
+        onSuccess: () => {
+            navigate("/login");
+        },
+    });
+};

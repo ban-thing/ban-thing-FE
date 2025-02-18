@@ -4,6 +4,7 @@ import { MySellButton } from "@/components/molecules/MySellButton";
 import { useFetchMyPurchases, useFetchMySales } from "@/hooks/api/ItemsQuery";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 
 const MyPageItemListWrap = styled.div`
     display: flex;
@@ -23,7 +24,7 @@ const MyPageBottom = styled.div`
     }
 `;
 
-const tabsList = ["구매 내역", "판매 내역"];
+const tabsList = ["구매", "판매"];
 
 const MyPageItemList = () => {
     const { pathname } = useLocation();
@@ -33,12 +34,13 @@ const MyPageItemList = () => {
     const { data: saleData, isLoading: isLoading2 } = useFetchMySales();
 
     const handleTabClick = (tab: string) => {
-        if (tab === "구매 내역") navigate("/my-page/purchase-list");
-        else if (tab === "판매 내역") navigate("/my-page/sale-list");
+        if (tab === "구매") navigate("/my-page/purchase-list");
+        else if (tab === "판매") navigate("/my-page/sale-list");
     };
 
     return (
         <MyPageItemListWrap>
+            <PageTitleWithBackButton text="나의 내역" $margin="10px 0" backTo="/my-page" />
             <TabBar
                 tabsList={tabsList}
                 initTab={isSalePage ? tabsList[1] : tabsList[0]}

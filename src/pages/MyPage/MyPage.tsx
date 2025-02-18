@@ -8,19 +8,9 @@ import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect, useState } from "react";
 import { UserProfile } from "@/types/User";
-import { removeCookie } from "@/utils/Cookie";
-import { useNavigate } from "react-router-dom";
 
 const MyPageWrap = styled.div`
     padding: 0 20px;
-`;
-
-const LogoutButton = styled.div`
-    font-size: 12px;
-    color: var(--color-black-6);
-    padding: 8px 0;
-    text-align: center;
-    cursor: pointer;
 `;
 
 const ProfileLoadingWrap = styled.div`
@@ -35,7 +25,6 @@ const ProfileLoadingWrap = styled.div`
 const MyPage = () => {
     const [profileData, setProfileData] = useState<UserProfile>();
     const { data, isLoading } = useFetchMyProfile();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (data) {
@@ -49,14 +38,9 @@ const MyPage = () => {
         }
     }, [data, isLoading]);
 
-    const onClickLogOut = () => {
-        removeCookie("Authorization_banthing");
-        navigate("/login");
-    };
-
     return (
         <MyPageWrap>
-            <PageTitle>마이페이지</PageTitle>
+            <PageTitle $margin="10px 0">마이페이지</PageTitle>
             {isLoading ? (
                 <ProfileLoadingWrap>
                     <ClipLoader size={28} color="#d7d7d7" />
@@ -71,7 +55,6 @@ const MyPage = () => {
             <SquareButtonList />
             <MyPageSettingList />
             <NavigationBar />
-            <LogoutButton onClick={onClickLogOut}>로그아웃</LogoutButton>
         </MyPageWrap>
     );
 };

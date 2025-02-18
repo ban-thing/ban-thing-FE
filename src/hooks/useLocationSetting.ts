@@ -240,8 +240,8 @@ export const useLocationSetting = () => {
     // 좌표값으로 주소 얻기
     const getAddress = (lat: number, lng: number): Promise<any> => {
         return new Promise((resolve, reject) => {
-            let geocoder = new kakao.maps.services.Geocoder();
-            let coord = new kakao.maps.LatLng(lat, lng);
+            const geocoder = new kakao.maps.services.Geocoder();
+            const coord = new kakao.maps.LatLng(lat, lng);
 
             geocoder.coord2Address(coord.getLng(), coord.getLat(), (result, status) => {
                 if (status === kakao.maps.services.Status.OK) {
@@ -266,6 +266,56 @@ export const useLocationSetting = () => {
         resetCurrentAddress();
     };
 
+    const initializeWithAddresses = (addresses: string[]) => {
+        if (!addresses || addresses.length === 0) return;
+
+        // 시/도 설정
+        if (addresses[0]) {
+            const city = cities.find((city) => city.name === addresses[0]);
+            if (city) {
+                setCurrentCity(city.name);
+                setSelectedCity(city);
+                loadDistricts(city.id, city.name);
+            }
+        }
+
+        // 구/군 설정
+        if (addresses[1]) {
+            const district = districts.find((district) => district.name === addresses[1]);
+            if (district) {
+                setCurrentDistrict(district.name);
+                setSelectedDistrict(district);
+
+                if (district.name.includes("전체")) {
+                    // 전체가 선택된 경우의 처리
+                    const allSelection = {
+                        id: district.id,
+                        name: `${addresses[0]} 전체`,
+                    };
+                    setSelectedTowns([allSelection]);
+                    setCurrentTowns([allSelection.name]);
+                    setDistricts(districts.map((d) => ({ ...d, selected: true })));
+                } else {
+                    // 특정 구가 선택된 경우
+                    loadTowns(district.id, district.name);
+                }
+            }
+        }
+
+        // 동/읍/면 설정
+        if (addresses[2]) {
+            const townNames = Array.isArray(addresses[2]) ? addresses[2] : [addresses[2]];
+            setCurrentTowns(townNames);
+
+            // towns 배열이 로드된 후에 선택된 동네들을 설정
+            const selectedTownsList = townNames.map((name) => {
+                const town = towns.find((t) => t.name === name);
+                return town || { id: `temp_${name}`, name };
+            });
+            setSelectedTowns(selectedTownsList);
+        }
+    };
+
     return {
         cities,
         districts,
@@ -285,5 +335,6 @@ export const useLocationSetting = () => {
         onClickCurrent,
         getAddress,
         resetData,
+        initializeWithAddresses,
     };
 };

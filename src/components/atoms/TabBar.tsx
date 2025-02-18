@@ -1,7 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import BackIcon from "@/assets/icons/back.svg?react";
-import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     $active: boolean;
@@ -14,14 +12,8 @@ interface TabBarProps {
     showBackButton?: boolean;
 }
 
-export default function TabBar({
-    tabsList,
-    initTab,
-    handleTabClick,
-    showBackButton = true,
-}: TabBarProps) {
+export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProps) {
     const [activeTab, setActiveTab] = useState<string>(initTab);
-    const navigate = useNavigate();
 
     const handleButtonClick = (tab: string): void => {
         setActiveTab(tab);
@@ -30,11 +22,6 @@ export default function TabBar({
 
     return (
         <TabBarWrapper>
-            {showBackButton && (
-                <BackButton onClick={() => navigate("/my-page")}>
-                    <BackIcon />
-                </BackButton>
-            )}
             <ButtonGroup>
                 {tabsList.map((tab) => (
                     <Button
@@ -56,19 +43,8 @@ const TabBarWrapper = styled.div`
     align-items: center;
     width: 100%;
     max-width: 375px;
+    height: 56px;
     background: white;
-`;
-
-const BackButton = styled.div`
-    position: absolute;
-    top: 0;
-    left: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 62.5px;
-    z-index: 100;
 `;
 
 const ButtonGroup = styled.div`
