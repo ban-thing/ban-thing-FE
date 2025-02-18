@@ -78,7 +78,7 @@ export default function ItemInList({
                     <ItemTitle>{cutOffTitle}</ItemTitle>
                     <ItemPropertiesBox>
                         <ItemProp>
-                            <Gps /> {address.slice(-3)}
+                            <Gps /> {address ? address.slice(-3) : ""}
                         </ItemProp>
                         <ItemPropDot />
                         <ItemProp>{timeAgo(updatedAt)}</ItemProp>

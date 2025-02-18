@@ -23,7 +23,7 @@ import { TextArea } from "@/components/molecules/TextAreaWithCount";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useFetchItem, useFetchItemCreate, useFetchItemUpdate } from "@/hooks/api/ItemsQuery";
-import { getFileFromUrl } from "@/utils/SetImageUrl";
+import { base64ToFile } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 const ItemRegisterWrap = styled.div`
@@ -71,6 +71,7 @@ const ItemRegister = () => {
     const { data: profileData } = useFetchMyProfile();
     const [showHashModal, setShowHashModal] = useState(false);
     const [showDirectModal, setShowDirectModal] = useState(false);
+    const [initialImageList, setInitialImageList] = useState<File[]>([]);
     const {
         register,
         handleSubmit,
@@ -83,7 +84,7 @@ const ItemRegister = () => {
     } = useForm();
     const { data } = useFetchItem(Number(edit));
     const { mutate: createMutate } = useFetchItemCreate();
-    const { mutate: updateMutate } = useFetchItemUpdate();
+    const { mutate: updateMutate } = useFetchItemUpdate(Number(edit));
 
     useEffect(() => {
         // 등록페이지일 경우
@@ -105,14 +106,22 @@ const ItemRegister = () => {
     useEffect(() => {
         // 수정페이지일 경우
         if (edit && data) {
-            const expire = data?.data.cleaningDetail.expire?.slice(2).replace(/-/g, ".");
-            const files = data?.data.itemImgs.map(async (img) => await getFileFromUrl(edit, img));
+            const resExpire = data?.data.cleaningDetail.expire;
+            const expire =
+                resExpire === "모름" ? resExpire : resExpire?.slice(2).replace(/-/g, ".");
+            if (data?.data.itemImgNames) {
+                const files = data.data.itemImgs.map((value, index) => {
+                    return base64ToFile(value, data?.data.itemImgNames[index]);
+                });
+                setInitialImageList(files);
+            }
 
             reset({
                 title: data?.data.title,
                 content: data?.data.content,
-                photos: files,
+                photos: data?.data.itemImgs,
                 type: data?.data.type,
+                price: data?.data.price,
                 hashtags: data?.data.hashtags,
                 clnPollution: data?.data.cleaningDetail.pollution,
                 clnTimeUsed: data?.data.cleaningDetail.timeUsed,
@@ -179,6 +188,7 @@ const ItemRegister = () => {
                         setValue={setValue}
                         Controller={Controller}
                         control={control}
+                        initialFiles={initialImageList}
                     />
                     <StyledToastContainer
                         position="bottom-center"
@@ -245,6 +255,7 @@ const ItemRegister = () => {
             <BottomButtonBar
                 variant={isValid ? "filled" : "gray"}
                 className={isValid ? "" : "disabled"}
+                // disabled={isValid ? false : true}
                 buttonText="작성 완료"
                 type="submit"
                 onClick={handleSubmit(onSubmit)}

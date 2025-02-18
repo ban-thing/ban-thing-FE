@@ -124,8 +124,8 @@ export default function LocationSelect() {
                         const isSelected = selectedDistrict?.id === district.id;
                         const shouldHighlight =
                             isSelected ||
-                            (selectedDistrict?.id.endsWith("_all") &&
-                                !district.id.endsWith("_all"));
+                            (selectedDistrict?.id?.endsWith?.("_all") &&
+                                district.id?.endsWith?.("_all") === false);
 
                         return (
                             <RegionButton

@@ -10,12 +10,14 @@ const LoginRedirect = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const code = new URL(document.location.toString()).searchParams.get("code");
+    const errorDesc = new URL(document.location.toString()).searchParams.get("error_description");
     const { data, isLoading } = useFetchKakaoLogin(code || "");
     const { data: tokenData, isLoading: isTokenLoading } = useFetchKakaoLogin_token(
         data?.access_token || "",
         code || "",
     );
 
+    // 유저가 로그인 동의했을 때
     useEffect(() => {
         if (!isLoading && data) {
             queryClient.invalidateQueries({
@@ -34,6 +36,13 @@ const LoginRedirect = () => {
             } else navigate("/location-select");
         }
     }, [data, isLoading, tokenData, isTokenLoading, code]);
+
+    // 유저가 로그인 취소했을 때
+    useEffect(() => {
+        if (errorDesc && errorDesc == "User denied access") {
+            navigate("/login");
+        }
+    }, [errorDesc]);
 
     return (
         <LoginFailed>

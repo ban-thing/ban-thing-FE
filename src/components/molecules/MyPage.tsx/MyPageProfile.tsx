@@ -21,6 +21,7 @@ const StyledMyPageProfile = styled.div`
     & img {
         width: 56px;
         height: 56px;
+        border-radius: 50%;
     }
 
     & .MyPageProfilePhoto {

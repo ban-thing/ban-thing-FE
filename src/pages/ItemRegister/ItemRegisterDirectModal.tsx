@@ -24,7 +24,7 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
     const { data } = useFetchMyProfile();
     const [showDropdown, setShowDropdown] = useState(false);
     const [addressList, setAddressList] = useState<any[]>(["동 데이터 불러오는 중"]);
-    const [address, setAddress] = useState(addressList[0]);
+    const [address, setAddress] = useState(watch("address") || addressList[0]);
 
     const onClickComplete = () => {
         setValue("address", address);
@@ -33,9 +33,17 @@ const ItemRegisterDirectModal = ({ setShowModal, register, setValue, watch }: Di
 
     useEffect(() => {
         if (data) {
-            setAddressList([data?.data.address1, data?.data.address2, data?.data.address3]);
+            const addressArray = [data?.data.address1, data?.data.address2, data?.data.address3];
+            setAddressList(addressArray);
+
+            if (watch("address")) {
+                const sortedArray = [...addressArray].sort((a, b) =>
+                    b === watch("address") ? 1 : a === watch("address") ? -1 : 0,
+                );
+                setAddressList(sortedArray);
+            }
         }
-    }, [data]);
+    }, [data, watch("address")]);
 
     return (
         <ItemRegisterModalLayout

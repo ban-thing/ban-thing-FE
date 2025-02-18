@@ -26,13 +26,11 @@ export default function Chatting() {
     const handleSendMessage = async () => {
         if (inputText.trim() === "" || !socket) return;
 
-        const now = new Date();
-
         const newMessage = {
             chatRoomId: Number(chatRoomId),
             senderId: myProfileData?.data.userId,
             message: inputText.trim(),
-            time: now.toISOString(), // 현재 시간을 ISO 형식으로 전송
+            time: new Date().toISOString(),
         };
 
         try {
@@ -124,8 +122,6 @@ export default function Chatting() {
         if (!chatContainer) return;
 
         const handleScroll = () => {
-            // const currentScrollHeight = chatContainer.scrollHeight;
-
             if (chatContainer.scrollTop === 0 && hasNextPage) {
                 const currentScrollPosition = chatContainer.scrollHeight - chatContainer.scrollTop;
                 fetchNextPage().then(() => {
@@ -153,12 +149,8 @@ export default function Chatting() {
 
     // 날짜 포맷팅 함수 수정
     const formatDateDivider = (date: string) => {
-        // UTC 시간을 KST로 변환
         const messageDate = new Date(date);
-        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-        const koreanDate = new Date(messageDate.getTime() + KR_TIME_DIFF);
-
-        return `${koreanDate.getFullYear()}년 ${koreanDate.getMonth() + 1}월 ${koreanDate.getDate()}일`;
+        return `${messageDate.getFullYear()}년 ${messageDate.getMonth() + 1}월 ${messageDate.getDate()}일`;
     };
 
     // 메시지를 날짜별로 그룹화하는 함수 수정
@@ -166,11 +158,8 @@ export default function Chatting() {
         const groups: { [key: string]: any[] } = {};
 
         messages.forEach((message) => {
-            // UTC 시간을 KST로 변환
             const date = new Date(message.time);
-            const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-            const koreanDate = new Date(date.getTime() + KR_TIME_DIFF);
-            const dateKey = koreanDate.toISOString().split("T")[0];
+            const dateKey = date.toISOString().split("T")[0];
 
             if (!groups[dateKey]) {
                 groups[dateKey] = [];
@@ -183,15 +172,9 @@ export default function Chatting() {
 
     // formatDate 함수 수정
     const formatDate = (dateString: string) => {
-        // 서버 시간을 Date 객체로 변환
         const date = new Date(dateString);
-
-        // UTC+9 시간 추가 (9시간을 밀리초로 변환)
-        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-        const koreanDate = new Date(date.getTime() + KR_TIME_DIFF);
-
-        const hours = koreanDate.getHours();
-        const minutes = koreanDate.getMinutes();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
 
         // 12시간제로 변환
         const ampm = hours >= 12 ? "오후" : "오전";
@@ -212,7 +195,11 @@ export default function Chatting() {
                     style={{ cursor: "pointer", marginLeft: 20 }}
                     onClick={() => navigate("/chatting-list")}
                 />
-                <HeaderTitle>{data.pages[0].seller}</HeaderTitle>
+                <HeaderTitle>
+                    {myProfileData?.data.nickname === data.pages[0].seller
+                        ? data.pages[0].buyer
+                        : data.pages[0].seller}
+                </HeaderTitle>
             </Header>
 
             <ProductInfo onClick={() => navigate(`/item-view/${data.pages[0].itemId}`)}>
@@ -241,9 +228,9 @@ export default function Chatting() {
             </ProductInfo>
 
             <ChatContainer className="chat-container">
-                {hasNextPage && (
+                {/* {hasNextPage && (
                     <LoadingIndicator>스크롤하여 이전 메시지 불러오기</LoadingIndicator>
-                )}
+                )} */}
                 {Object.entries(
                     groupMessagesByDate(
                         [...messages, ...messagesList].sort(
@@ -277,11 +264,11 @@ export default function Chatting() {
                         ))}
                     </div>
                 ))}
-                {hasNextPage && (
+                {/* {hasNextPage && (
                     <div style={{ textAlign: "center", padding: "10px" }}>
                         <button onClick={() => fetchNextPage()}>이전 메시지 더보기</button>
                     </div>
-                )}
+                )} */}
             </ChatContainer>
 
             <Footer>
@@ -394,7 +381,7 @@ const MessageTime = styled.span<{ $isMe: boolean }>`
 `;
 
 const Footer = styled.div`
-    width: 375px;
+    width: 343px;
     height: 60px;
     padding: 16px 16px 36px 16px;
     display: flex;
@@ -503,9 +490,9 @@ const LoaderWrap = styled.div`
     align-items: center;
 `;
 
-const LoadingIndicator = styled.div`
-    text-align: center;
-    padding: 10px;
-    color: var(--color-black-5);
-    font-size: 14px;
-`;
+// const LoadingIndicator = styled.div`
+//     text-align: center;
+//     padding: 10px;
+//     color: var(--color-black-5);
+//     font-size: 14px;
+// `;

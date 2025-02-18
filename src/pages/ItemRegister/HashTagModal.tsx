@@ -102,14 +102,14 @@ const ItemRegisterHashTagModal = ({ setShowModal, setValue, watch }: HashTagModa
                         : "태그 입력"
                 }
                 onChange={onInputChange}
-                onKeyDown={onEnterDown}
+                onKeyPress={onEnterDown}
                 value={inputValue}
                 disabled={formDataHashList?.length > 5}
             />
             <HashTagButtonList hashList={formDataHashList || [""]} setValue={setValue} />
             <DescriptionWrap>
-                <div>내 상품을 다양한 태그로 표현해요 (최대 5개)</div>
-                <div>태그를 등록해두면 많은 사람들이 내 상품을 볼 수 있어요!</div>
+                <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
+                <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
                 <div>상품에 관련없는 태그를 입력할 경우, 판매에 제재를 받을 수 있어요</div>
             </DescriptionWrap>
             <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>

@@ -2,7 +2,8 @@ import styled from "styled-components";
 import PointIcon from "@/assets/icons/point.svg?react";
 import type { ChatList as ChatListType } from "@/types/Chat";
 import timeAgo from "@/utils/TimeAgo";
-import { base64ToFile } from "@/utils/SetImageUrl";
+import notFound from "@/assets/noPhotoImage.svg";
+import { setImgUrl } from "@/utils/SetImageUrl";
 
 interface ChatListItemProps {
     chat: ChatListType;
@@ -12,14 +13,24 @@ interface ChatListItemProps {
 export default function ChatList({ chat, onClick }: ChatListItemProps) {
     return (
         <ChatItemContainer onClick={() => onClick(chat.chatRoomId)}>
-            <ProfileImage src={URL.createObjectURL(base64ToFile(chat.profileImg))} />
+            <ProfileImage
+                src={
+                    chat.itemImg
+                        ? setImgUrl(
+                              chat.itemId,
+                              chat.itemImg?.split(".")[0],
+                              chat.itemImg?.split(".")[1],
+                          )
+                        : notFound
+                }
+            />
             <ChatInfo>
                 <UserDetails>
                     <UserName>{chat.nickname}</UserName>
                     <UserLocation>{chat.address.slice(-3)}</UserLocation>
                     <PointIcon />
                     {chat.latestMessageDateTime && (
-                        <TimeAgo>{timeAgo(chat.latestMessageDateTime)}</TimeAgo>
+                        <TimeAgo>{timeAgo(new Date(chat.latestMessageDateTime))}</TimeAgo>
                     )}
                 </UserDetails>
                 <Message>{chat.latestMessage}</Message>
@@ -47,6 +58,7 @@ const ProfileImage = styled.img`
     height: 50px;
     border-radius: 8px;
     margin-right: 12px;
+    object-fit: cover;
 `;
 
 const ChatInfo = styled.div`

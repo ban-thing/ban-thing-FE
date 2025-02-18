@@ -1,8 +1,9 @@
 // 채팅 목록 조회
 export type ChatList = {
     chatRoomId: number;
+    itemId: string;
     address: string;
-    profileImg: string;
+    itemImg: string;
     nickname: string;
     latestMessage: string;
     latestMessageDateTime: Date;
@@ -20,6 +21,7 @@ export type ChatRoomView = {
     title: string;
     price: number;
     seller: string;
+    buyer: string;
     itemImage: string[] | string;
     messages: {
         senderId: number;

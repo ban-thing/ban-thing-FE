@@ -56,8 +56,9 @@ export function NumberInput<T extends FieldValues>({
     sellType = "판매",
     ...props
 }: NumberInputProps<T>) {
-    const formatNumber = (value: string) => {
-        const numberOnly = value.replace(/[^\d]/g, "");
+    const formatNumber = (value: string | number) => {
+        const valueAsString = typeof value === "number" ? `${value}` : value;
+        const numberOnly = valueAsString.replace(/[^\d]/g, "");
         return numberOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
@@ -65,7 +66,13 @@ export function NumberInput<T extends FieldValues>({
         <Controller
             name={name}
             control={control}
-            rules={{ required: sellType === "판매" ? "가격을 입력하세요." : false }}
+            rules={{
+                required: sellType === "판매" ? "가격을 입력하세요." : false,
+                validate: (value) =>
+                    sellType === "판매" && (value === "0" || value === 0)
+                        ? "가격은 0이 될 수 없습니다."
+                        : true,
+            }}
             render={({ field: { onChange, value, ref } }) => (
                 <Input
                     type="tel"

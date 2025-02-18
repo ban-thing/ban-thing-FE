@@ -64,7 +64,7 @@ const MyPage = () => {
             ) : (
                 <MyPageProfile
                     profileImg={profileData?.profileImg as string}
-                    address1={profileData?.address1.slice(-3) as string}
+                    address1={profileData?.address1 ? profileData?.address1.slice(-3) : ""}
                     nickname={profileData?.nickname as string}
                 />
             )}

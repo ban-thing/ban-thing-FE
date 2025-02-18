@@ -81,7 +81,6 @@ export default function SearchLayout() {
                     <FootprintIcon />
                 </CenterIcon>
             </ScrollContent>
-
             <NavigationBar />
         </SearchContainer>
     );

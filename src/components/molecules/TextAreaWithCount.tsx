@@ -16,7 +16,7 @@ const TypingCount = styled.span`
 `;
 
 type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-    register?: UseFormRegister<FieldValues>;
+    register: UseFormRegister<FieldValues>;
 };
 
 export function TextArea({ register, ...props }: TextAreaProps) {
@@ -37,9 +37,8 @@ export function TextArea({ register, ...props }: TextAreaProps) {
     return (
         <TextAreaWrap>
             <StyledTextArea
-                {...(register && register("content", { required: "내용을 작성해주세요." }))}
+                {...register("content", { required: "내용을 작성해주세요.", onChange: onChange })}
                 {...props}
-                onChange={onChange}
                 rows={1}
             />
             <TypingCount>{typingCount}/2000</TypingCount>

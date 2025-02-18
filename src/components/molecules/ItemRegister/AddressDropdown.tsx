@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const AddressDropdownWrap = styled.div`
@@ -82,10 +82,13 @@ export const AddressDropdown = ({
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const onClickAddress = (index: number) => {
-        setAddress(addresses[selectedIndex]);
         setSelectedIndex(index);
         setShowDropdown(false);
     };
+
+    useEffect(() => {
+        setAddress(addresses[selectedIndex]);
+    }, [selectedIndex, addresses]);
 
     return (
         <AddressDropdownWrap>
@@ -102,7 +105,7 @@ export const AddressDropdown = ({
                             className={selectedIndex === index ? "highlight" : ""}
                             onClick={() => onClickAddress(index)}
                         >
-                            {value}
+                            {value ? value : "등록된 주소가 없어요."}
                         </AddressFakeInput>
                     ))}
                 </AddressFakeInputWrap>

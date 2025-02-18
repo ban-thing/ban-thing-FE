@@ -33,7 +33,12 @@ export default function ChattingList() {
     return (
         <ChattingListContainer>
             <FixedTabBar>
-                <TabBar tabsList={tabsList} initTab={selectedTab} handleTabClick={handleTabClick} />
+                <TabBar
+                    tabsList={tabsList}
+                    initTab={selectedTab}
+                    handleTabClick={handleTabClick}
+                    showBackButton={false}
+                />
             </FixedTabBar>
             <ChatListContainer $isLoading={isLoading} $isEmpty={filteredChatList.length === 0}>
                 {!isLoading ? (

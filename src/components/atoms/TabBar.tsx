@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import BackIcon from "@/assets/icons/back.svg?react";
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     $active: boolean;
@@ -9,10 +11,17 @@ interface TabBarProps {
     tabsList: string[];
     initTab: string;
     handleTabClick: (tab: string) => void;
+    showBackButton?: boolean;
 }
 
-export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProps) {
+export default function TabBar({
+    tabsList,
+    initTab,
+    handleTabClick,
+    showBackButton = true,
+}: TabBarProps) {
     const [activeTab, setActiveTab] = useState<string>(initTab);
+    const navigate = useNavigate();
 
     const handleButtonClick = (tab: string): void => {
         setActiveTab(tab);
@@ -20,7 +29,12 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <TabBarWrapper>
+            {showBackButton && (
+                <BackButton onClick={() => navigate("/my-page")}>
+                    <BackIcon />
+                </BackButton>
+            )}
             <ButtonGroup>
                 {tabsList.map((tab) => (
                     <Button
@@ -32,14 +46,35 @@ export default function TabBar({ tabsList, initTab, handleTabClick }: TabBarProp
                     </Button>
                 ))}
             </ButtonGroup>
-        </div>
+        </TabBarWrapper>
     );
 }
 
+const TabBarWrapper = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 375px;
+    background: white;
+`;
+
+const BackButton = styled.div`
+    position: absolute;
+    top: 0;
+    left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 62.5px;
+    z-index: 100;
+`;
+
 const ButtonGroup = styled.div`
     display: flex;
+    flex: 1;
     height: auto;
-    width: 375px;
     background: white;
     justify-content: space-between;
     align-items: center;

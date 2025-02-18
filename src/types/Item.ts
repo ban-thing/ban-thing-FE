@@ -45,6 +45,7 @@ export interface ItemView {
     updateTime: string;
     direct: boolean;
     sellerId?: number;
+    itemImgNames: string[];
 }
 
 interface CleaningDetail {
