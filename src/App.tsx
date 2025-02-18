@@ -30,6 +30,8 @@ import MyPageFavoriteList from "./pages/MyPage/MyPageFavoriteList ";
 import MyPageCancelMembership from "./pages/MyPage/MyPageCancelMembership";
 import MyPageCancelNotice from "./pages/MyPage/MyPageCancelNotice";
 import MyPageCancelOther from "./pages/MyPage/MyPageCancelOther";
+import ReportReason from "./pages/ReportReason";
+import ReportReasonAdvertisement from "./pages/ReportReasonAdvertisement";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +116,8 @@ const router = createBrowserRouter([
                     { path: "cancel-other", element: <MyPageCancelOther /> },
                 ],
             },
+            { path: "report-reason", element: <ReportReason /> },
+            { path: "report-reason-advertisement", element: <ReportReasonAdvertisement /> },
         ],
     },
 ]);
