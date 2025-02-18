@@ -18,7 +18,7 @@ const MyPageCancelMembership = () => {
         if (value === "기타") {
             navigate("/my-page/cancel-other");
         } else {
-            navigate("/my-page/cancel-notice");
+            navigate("/my-page/cancel-notice", { state: { reason: value } });
         }
     };
 

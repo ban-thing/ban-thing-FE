@@ -34,7 +34,11 @@ const MyPageCancelOther = () => {
             </SettingList>
             <ButtonContainer>
                 <Button
-                    onClick={() => navigate("/my-page/cancel-notice")}
+                    onClick={() =>
+                        navigate("/my-page/cancel-notice", {
+                            state: { reason: reason.trim() },
+                        })
+                    }
                     size="large"
                     disabled={!reason.trim()}
                     style={{
