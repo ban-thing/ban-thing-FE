@@ -99,8 +99,15 @@ export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
 export const useFetchDeleteUser = () => {
     const navigate = useNavigate();
     return useMutation({
-        mutationFn: async () => {
-            return await apiService.delete<any>("my/delete", {});
+        mutationFn: async (reason: string) => {
+            return await apiService.delete<any>(
+                "my/delete",
+                {
+                    reason: reason,
+                },
+                "",
+                true,
+            );
         },
         onError: (error, variables, context) => {
             console.log(error, variables, context);

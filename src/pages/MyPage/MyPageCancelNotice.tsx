@@ -18,7 +18,7 @@ const MyPageCancelNotice = () => {
     ];
 
     const handleWithdrawal = () => {
-        deleteUserMutation.mutate();
+        deleteUserMutation.mutate("회원 탈퇴 TEST");
         setShowModal(false);
     };
 
