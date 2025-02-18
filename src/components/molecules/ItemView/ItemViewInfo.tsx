@@ -5,8 +5,8 @@ import CleanCheckTitle from "../CleanCheckTitle";
 import check from "@/assets/checkBackground.png";
 import { ItemView } from "@/types/Item";
 import { ItemDescSkt, ItemDescSktBox, ItemTagSkt, ItemTitleSkt } from "@/components/atoms/Skeleton";
-import DotIcon from "@/assets/icons/dot.svg";
-import HeartCountIcon from "@/assets/icons/heartCount.svg";
+import DotIcon from "@/assets/icons/dot.svg?react";
+import HeartCountIcon from "@/assets/icons/heartCount.svg?react";
 
 type ItemViewInfoProps = Omit<
     ItemView,
