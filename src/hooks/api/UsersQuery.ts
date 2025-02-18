@@ -101,10 +101,8 @@ export const useFetchDeleteUser = () => {
     return useMutation({
         mutationFn: async (reason: string) => {
             return await apiService.delete<any>(
-                "my/delete",
-                {
-                    reason: reason,
-                },
+                `my/delete?reason=${encodeURIComponent(reason)}`,
+                {}, // empty body
                 "",
                 true,
             );
