@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
-import BackIcon from "@/assets/icons/back.svg?react";
+import BackIcon from "@/assets/icons/back.svg";
 
 const ReportReason = () => {
     const navigate = useNavigate();
