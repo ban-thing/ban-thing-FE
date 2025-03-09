@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
-import CheckIcon from "../assets/icons/check1.svg";
+import CheckIcon from "../../assets/icons/check1.svg?react";
 
 const ReportReasonProhibitedItem = () => {
     const navigate = useNavigate();
