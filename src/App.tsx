@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CookiesProvider } from "react-cookie";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
@@ -30,6 +29,14 @@ import MyPageFavoriteList from "./pages/MyPage/MyPageFavoriteList ";
 import MyPageCancelMembership from "./pages/MyPage/MyPageCancelMembership";
 import MyPageCancelNotice from "./pages/MyPage/MyPageCancelNotice";
 import MyPageCancelOther from "./pages/MyPage/MyPageCancelOther";
+import ReportReason from "./pages/ReportReason/ReportReason";
+import ReportReasonAdvertisement from "./pages/ReportReason/ReportReasonAdvertisement";
+import ReportReasonInaccurateInfo from "./pages/ReportReason/ReportReasonInaccurateInfo";
+import ReportReasonProhibitedItem from "./pages/ReportReason/ReportReasonProhibitedItem";
+import ReportReasonRefuseSafeTransaction from "./pages/ReportReason/ReportReasonRefuseSafeTransaction";
+import ReportReasonSuspectedFraud from "./pages/ReportReason/ReportReasonSuspectedFraud";
+import ReportReasonProfessionalSeller from "./pages/ReportReason/ReportReasonProfessionalSeller ";
+import ReportReasonOffensiveContent from "./pages/ReportReason/ReportReasonOffensiveContent";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +121,20 @@ const router = createBrowserRouter([
                     { path: "cancel-other", element: <MyPageCancelOther /> },
                 ],
             },
+            { path: "report-reason", element: <ReportReason /> },
+            { path: "report-reason/advertisement", element: <ReportReasonAdvertisement /> },
+            { path: "report-reason/inaccurate-info", element: <ReportReasonInaccurateInfo /> },
+            { path: "report-reason/prohibited-item", element: <ReportReasonProhibitedItem /> },
+            {
+                path: "report-reason/refuse-safe-transaction",
+                element: <ReportReasonRefuseSafeTransaction />,
+            },
+            { path: "report-reason/suspected-fraud", element: <ReportReasonSuspectedFraud /> },
+            {
+                path: "report-reason/professional-seller",
+                element: <ReportReasonProfessionalSeller />,
+            },
+            { path: "report-reason/offensive-content", element: <ReportReasonOffensiveContent /> },
         ],
     },
 ]);

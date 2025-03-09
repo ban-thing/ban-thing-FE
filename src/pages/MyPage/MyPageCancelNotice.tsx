@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/atoms/Button";
 import { ConfirmModal } from "@/components/molecules/ConfirmModal";
 import { useState } from "react";
@@ -8,8 +8,10 @@ import { useFetchDeleteUser } from "@/hooks/api/UsersQuery";
 
 const MyPageCancelNotice = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [showModal, setShowModal] = useState(false);
     const deleteUserMutation = useFetchDeleteUser();
+    const reason = location.state?.reason || "회원 탈퇴";
 
     const settings = [
         "• 탈퇴 후 7일간 재가입이 불가능합니다.",
@@ -18,7 +20,7 @@ const MyPageCancelNotice = () => {
     ];
 
     const handleWithdrawal = () => {
-        deleteUserMutation.mutate();
+        deleteUserMutation.mutate(reason);
         setShowModal(false);
     };
 

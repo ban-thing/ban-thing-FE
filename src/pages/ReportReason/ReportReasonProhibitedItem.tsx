@@ -1,18 +1,11 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate } from "react-router-dom";
-import BackIcon from "@/assets/icons/back.svg?react";
+import CheckIcon from "../assets/icons/check1.svg";
 
-const MyPageCancelMembership = () => {
+const ReportReasonProhibitedItem = () => {
     const navigate = useNavigate();
-    const settings = [
-        "찾는 물품이 없어요",
-        "물품이 안 팔려요",
-        "비매너 사용자를 만났어요",
-        "상품을 찾기 불편해요",
-        "개인정보를 삭제하고 싶어요",
-        "기타",
-    ];
+    const settings = ["상점 및 타 사이트 홍보", "상품 도배", "기타 영리적 목적이 확인되는 콘텐츠"];
 
     const handleItemClick = (value: string) => {
         if (value === "기타") {
@@ -23,12 +16,8 @@ const MyPageCancelMembership = () => {
     };
 
     return (
-        <MyPageAccountWrap>
-            <PageTitleWithBackButton
-                text="회원탈퇴"
-                $margin="10px 0"
-                backTo="/my-page/account-setting"
-            />
+        <ReportReasonWrap>
+            <PageTitleWithBackButton text="신고 사유" $margin="10px 0" backTo="" />
             <SettingList>
                 {settings.map((value, index) => (
                     <SettingItem key={index} onClick={() => handleItemClick(value)}>
@@ -37,13 +26,13 @@ const MyPageCancelMembership = () => {
                     </SettingItem>
                 ))}
             </SettingList>
-        </MyPageAccountWrap>
+        </ReportReasonWrap>
     );
 };
 
-export default MyPageCancelMembership;
+export default ReportReasonProhibitedItem;
 
-const MyPageAccountWrap = styled.div`
+const ReportReasonWrap = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,6 +58,6 @@ const SettingItem = styled.div`
     cursor: pointer;
 `;
 
-const RotatedBackIcon = styled(BackIcon)`
+const RotatedBackIcon = styled(CheckIcon)`
     transform: rotate(180deg);
 `;
