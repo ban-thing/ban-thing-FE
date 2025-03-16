@@ -13,7 +13,7 @@ import {
 } from "@/components/atoms/ItemInList";
 import timeAgo from "@/utils/TimeAgo";
 import { useNavigate } from "react-router-dom";
-import notFound from "@/assets/noPhotoImage.svg?react";
+import notFound from "@/assets/noPhotoImage.svg?url";
 import { ItemSearchList } from "@/types/Item";
 import EditBtn from "@/assets/icons/meatballIcon.svg?react";
 import { MouseEvent, useState } from "react";

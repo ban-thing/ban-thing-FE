@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PointIcon from "@/assets/icons/point.svg?react";
 import type { ChatList as ChatListType } from "@/types/Chat";
 import timeAgo from "@/utils/TimeAgo";
-import notFound from "@/assets/noPhotoImage.svg?react";
+import notFound from "@/assets/noPhotoImage.svg?url";
 import { setImgUrl } from "@/utils/SetImageUrl";
 
 interface ChatListItemProps {
