@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CheckIcon from "../../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useState } from "react";
 
 const ReportReasonAdvertisement = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const selectedCategory = location.state?.category || "광고성 컨텐츠예요";
     const settings = ["상점 및 타 사이트 홍보", "상품 도배", "기타 영리적 목적이 확인되는 콘텐츠"];
     const [selectedReason, setSelectedReason] = useState<string>("");
 
@@ -17,6 +19,7 @@ const ReportReasonAdvertisement = () => {
     return (
         <ReportReasonWrap>
             <PageTitleWithBackButton text="신고 사유" $margin="10px 0" backTo="" />
+            <SelectedCategory>{selectedCategory}</SelectedCategory>
             <SettingList>
                 {settings.map((value, index) => (
                     <SettingItem
@@ -61,6 +64,15 @@ const ReportReasonWrap = styled.div`
     width: 100%;
 `;
 
+const SelectedCategory = styled.div`
+    width: 100%;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: var(--color-black-3);
+    background-color: var(--color-black-7);
+    margin-top: 10px;
+`;
+
 const SettingList = styled.div`
     display: flex;
     flex-direction: column;
@@ -78,7 +90,7 @@ const SettingItem = styled.div<{ $isSelected?: boolean }>`
     color: var(--color-black-4);
     box-sizing: border-box;
     cursor: pointer;
-    background-color: ${(props) => (props.$isSelected ? "var(--color-black-8)" : "transparent")};
+    background-color: ${(props) => (props.$isSelected ? "var(--color-main-1)" : "transparent")};
 `;
 
 const ButtonContainer = styled.div`

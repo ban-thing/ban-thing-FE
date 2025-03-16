@@ -18,25 +18,25 @@ const ReportReason = () => {
     const handleItemClick = (value: string) => {
         switch (value) {
             case "광고성 컨텐츠예요":
-                navigate("/report-reason/advertisement");
+                navigate("/report-reason/advertisement", { state: { category: value } });
                 break;
             case "상품 정보가 부정확해요":
-                navigate("/report-reason/inaccurate-info");
+                navigate("/report-reason/inaccurate-info", { state: { category: value } });
                 break;
             case "거래 금지 품목으로 판단돼요":
-                navigate("/report-reason/prohibited-item");
+                navigate("/report-reason/prohibited-item", { state: { category: value } });
                 break;
             case "안전한 거래를 거부해요":
-                navigate("/report-reason/refuse-safe-transaction");
+                navigate("/report-reason/refuse-safe-transaction", { state: { category: value } });
                 break;
             case "사기가 의심돼요":
-                navigate("/report-reason/suspected-fraud");
+                navigate("/report-reason/suspected-fraud", { state: { category: value } });
                 break;
             case "전문 판매업자 같아요":
-                navigate("/report-reason/professional-seller");
+                navigate("/report-reason/professional-seller", { state: { category: value } });
                 break;
             case "콘텐츠 내용이 불쾌해요":
-                navigate("/report-reason/offensive-content");
+                navigate("/report-reason/offensive-content", { state: { category: value } });
                 break;
             default:
                 break;
