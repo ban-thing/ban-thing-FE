@@ -22,7 +22,7 @@ const ReportReasonInaccurateInfo = () => {
                 {settings.map((value, index) => (
                     <SettingItem key={index} onClick={() => handleItemClick(value)}>
                         {value}
-                        <RotatedBackIcon />
+                        <CheckIcon />
                     </SettingItem>
                 ))}
             </SettingList>
@@ -56,8 +56,4 @@ const SettingItem = styled.div`
     color: var(--color-black-4);
     box-sizing: border-box;
     cursor: pointer;
-`;
-
-const RotatedBackIcon = styled(CheckIcon)`
-    transform: rotate(180deg);
 `;
