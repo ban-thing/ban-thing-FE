@@ -54,6 +54,9 @@ const ReportReason = () => {
                     </SettingItem>
                 ))}
             </SettingList>
+            <ReportAuthorButton onClick={() => navigate("/report-author")}>
+                작성자 신고하기
+            </ReportAuthorButton>
         </ReportReasonWrap>
     );
 };
@@ -88,4 +91,15 @@ const SettingItem = styled.div`
 
 const RotatedBackIcon = styled(BackIcon)`
     transform: rotate(180deg);
+`;
+
+const ReportAuthorButton = styled.button`
+    background: none;
+    border: none;
+    color: var(--color-main-1);
+    text-decoration: underline;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 24px;
+    padding: 8px 20px;
 `;
