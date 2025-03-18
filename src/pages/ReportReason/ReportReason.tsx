@@ -54,7 +54,7 @@ const ReportReason = () => {
                     </SettingItem>
                 ))}
             </SettingList>
-            <ReportAuthorButton onClick={() => navigate("/report-author")}>
+            <ReportAuthorButton onClick={() => navigate("/report-reason/report-author")}>
                 작성자 신고하기
             </ReportAuthorButton>
         </ReportReasonWrap>
