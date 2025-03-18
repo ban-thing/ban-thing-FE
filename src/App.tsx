@@ -136,7 +136,7 @@ const router = createBrowserRouter([
                 element: <ReportReasonProfessionalSeller />,
             },
             { path: "report-reason/offensive-content", element: <ReportReasonOffensiveContent /> },
-            { path: "/report-reason/report-author", element: <ReportAuthor /> },
+            { path: "report-reason/report-author", element: <ReportAuthor /> },
         ],
     },
 ]);
