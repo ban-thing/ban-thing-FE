@@ -37,6 +37,7 @@ import ReportReasonRefuseSafeTransaction from "./pages/ReportReason/ReportReason
 import ReportReasonSuspectedFraud from "./pages/ReportReason/ReportReasonSuspectedFraud";
 import ReportReasonProfessionalSeller from "./pages/ReportReason/ReportReasonProfessionalSeller ";
 import ReportReasonOffensiveContent from "./pages/ReportReason/ReportReasonOffensiveContent";
+import ReportAuthor from "./pages/ReportReason/ReportReasonReportAuthor";
 
 const queryClient = new QueryClient();
 
@@ -135,6 +136,7 @@ const router = createBrowserRouter([
                 element: <ReportReasonProfessionalSeller />,
             },
             { path: "report-reason/offensive-content", element: <ReportReasonOffensiveContent /> },
+            { path: "/report-reason/report-author", element: <ReportAuthor /> },
         ],
     },
 ]);
