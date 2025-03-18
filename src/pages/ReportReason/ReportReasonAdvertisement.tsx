@@ -35,7 +35,7 @@ const ReportReasonAdvertisement = () => {
             <ButtonContainer>
                 <Button
                     onClick={() =>
-                        navigate("/my-page/cancel-notice", {
+                        navigate("/report-reason", {
                             state: { reason: selectedReason },
                         })
                     }
@@ -57,6 +57,7 @@ const ReportReasonAdvertisement = () => {
 };
 
 export default ReportReasonAdvertisement;
+
 const ReportReasonWrap = styled.div`
     display: flex;
     flex-direction: column;

@@ -24,7 +24,7 @@ const ReportReasonInaccurateInfo = () => {
                 <ButtonContainer>
                     <Button
                         onClick={() =>
-                            navigate("/my-page/cancel-notice", {
+                            navigate("/report-reason", {
                                 state: { reason: reason.trim() },
                             })
                         }
