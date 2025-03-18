@@ -16,7 +16,7 @@ const ReportReasonInaccurateInfo = () => {
             <SelectedCategory>{selectedCategory}</SelectedCategory>
                 <TextAreaContainer>
                         <TextArea
-                            placeholder="탈퇴사유를 작성해 주세요."
+                            placeholder="신고 사유를 자세하게 작성해주세요.&#13;&#10;자세하게 적어주시면 신고 처리에 큰 도움이 됩니다."
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
                         />
@@ -57,10 +57,10 @@ const ReportReasonWrap = styled.div`
 const SelectedCategory = styled.div`
     width: 100%;
     font-size: 18px;
-    padding: 12px 20px;
     font-weight: 600;
     color: var(--color-black-3);
-    margin-top: 10px;
+    margin-top: 40px;
+    margin-bottom: 24px;
     text-align: center;
 `;
 
@@ -81,7 +81,6 @@ const TextArea = styled.textarea`
     line-height: 1.5;
     color: var(--color-black-4);
     box-sizing: border-box;
-    margin-bottom: 16px;
     &::placeholder {
         color: var(--color-black-6);
     }
