@@ -1,31 +1,46 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-import { useNavigate } from "react-router-dom";
-import CheckIcon from "../../assets/icons/check1.svg?react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Button } from "@/components/atoms/Button";
 
 const ReportReasonInaccurateInfo = () => {
     const navigate = useNavigate();
-    const settings = ["상점 및 타 사이트 홍보", "상품 도배", "기타 영리적 목적이 확인되는 콘텐츠"];
-
-    const handleItemClick = (value: string) => {
-        if (value === "기타") {
-            navigate("/my-page/cancel-other");
-        } else {
-            navigate("/my-page/cancel-notice", { state: { reason: value } });
-        }
-    };
+    const location = useLocation();
+    const [reason, setReason] = useState("");
+    const selectedCategory = location.state?.category || "상품 정보가 부정확해요";
 
     return (
         <ReportReasonWrap>
             <PageTitleWithBackButton text="신고 사유" $margin="10px 0" backTo="" />
-            <SettingList>
-                {settings.map((value, index) => (
-                    <SettingItem key={index} onClick={() => handleItemClick(value)}>
-                        {value}
-                        <CheckIcon />
-                    </SettingItem>
-                ))}
-            </SettingList>
+            <SelectedCategory>{selectedCategory}</SelectedCategory>
+                <TextAreaContainer>
+                        <TextArea
+                            placeholder="탈퇴사유를 작성해 주세요."
+                            value={reason}
+                            onChange={(e) => setReason(e.target.value)}
+                        />
+                </TextAreaContainer>
+                <ButtonContainer>
+                    <Button
+                        onClick={() =>
+                            navigate("/my-page/cancel-notice", {
+                                state: { reason: reason.trim() },
+                            })
+                        }
+                        size="large"
+                        disabled={!reason.trim()}
+                        style={{
+                            backgroundColor: reason.trim()
+                                ? "var(--color-main-1)"
+                                : "var(--color-black-6)",
+                            color: "white",
+                            cursor: reason.trim() ? "pointer" : "default",
+                        }}
+                    >
+                        신고하기
+                    </Button>
+            </ButtonContainer>
         </ReportReasonWrap>
     );
 };
@@ -39,21 +54,54 @@ const ReportReasonWrap = styled.div`
     width: 100%;
 `;
 
-const SettingList = styled.div`
+const SelectedCategory = styled.div`
+    width: 100%;
+    font-size: 18px;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: var(--color-black-3);
+    margin-top: 10px;
+    text-align: center;
+`;
+
+const TextAreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 30px;
 `;
 
-const SettingItem = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 20px;
+const TextArea = styled.textarea`
     width: 100%;
-    height: 50px;
+    height: 194px;
+    padding: 16px;
+    border: 1px solid var(--color-black-6);
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--color-black-4);
     box-sizing: border-box;
-    cursor: pointer;
+    margin-bottom: 16px;
+    &::placeholder {
+        color: var(--color-black-6);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--color-main-1);
+    }
+`;
+
+const ButtonContainer = styled.div`
+    width: 375px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    box-sizing: border-box;
+    gap: 8px;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
 `;
