@@ -67,10 +67,9 @@ const ReportReasonWrap = styled.div`
 const SelectedCategory = styled.div`
     width: 100%;
     font-size: 18px;
-    padding: 12px 20px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-black-3);
-    margin-top: 10px;
+    margin-top: 40px;
     text-align: center;
 `;
 
@@ -91,7 +90,7 @@ const SettingItem = styled.div<{ $isSelected?: boolean }>`
     color: var(--color-black-4);
     box-sizing: border-box;
     cursor: pointer;
-    background-color: ${(props) => (props.$isSelected ? "rgba(98, 144, 236, 0.3)" : "transparent")};
+    background-color: ${(props) => (props.$isSelected ? "rgba(199, 198, 255, 0.3)" : "transparent")};
 `;
 
 const ButtonContainer = styled.div`
