@@ -9,8 +9,9 @@ const ReportReasonReportAuthor = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedCategory = location.state?.category || "작성자 신고하기";
-    const settings = ["비매너 사용자", "거래 중 분쟁 발생", "사기 의심", "욕설 비방 혐오표현 사용", "연애 목적의 원하지 않는 대화 시도", "부적절한 성적 행위", "기타 부적절한 행위 (text입력)"];
+    const settings = ["비매너 사용자", "거래 중 분쟁 발생", "사기 의심", "욕설 비방 혐오표현 사용", "연애 목적의 원하지 않는 대화 시도", "부적절한 성적 행위", "기타 부적절한 행위"];
     const [selectedReason, setSelectedReason] = useState<string>("");
+    const [otherReason, setOtherReason] = useState<string>("");
 
     const handleItemClick = (value: string) => {
         setSelectedReason(value);
@@ -32,17 +33,32 @@ const ReportReasonReportAuthor = () => {
                     </SettingItem>
                 ))}
             </SettingList>
+            
+            {selectedReason === "기타 부적절한 행위" && (
+                <OtherReasonContainer>
+                    <OtherReasonInput 
+                        placeholder="신고 사유를 자세하게 작성해주세요.&#13;&#10;자세히 적어주시면 신고 처리에 큰 도움이 됩니다."
+                        value={otherReason}
+                        onChange={(e) => setOtherReason(e.target.value)}
+                    />
+                </OtherReasonContainer>
+            )}
+            
             <ButtonContainer>
                 <Button
                     onClick={() =>
                         navigate("/report-reason", {
-                            state: { reason: selectedReason },
+                            state: { 
+                                reason: selectedReason, 
+                                otherReason: selectedReason === "기타 부적절한 행위" ? otherReason : ""
+                            },
                         })
                     }
                     size="large"
-                    disabled={!selectedReason}
+                    disabled={!selectedReason || (selectedReason === "기타 부적절한 행위" && !otherReason)}
                     style={{
-                        backgroundColor: selectedReason
+                        backgroundColor: selectedReason && 
+                            (selectedReason !== "기타 부적절한 행위" || otherReason)
                             ? "var(--color-main-1)"
                             : "var(--color-black-6)",
                         color: "white",
@@ -106,4 +122,27 @@ const ButtonContainer = styled.div`
     bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
+`;
+
+const OtherReasonContainer = styled.div`
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+`;
+
+const OtherReasonInput = styled.textarea`
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid var(--color-black-6);
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+    &::placeholder {
+        color: var(--color-black-5);
+    }
+    &:focus {
+        outline: none;
+        border-color: var(--color-main-1);
+    }
 `;
