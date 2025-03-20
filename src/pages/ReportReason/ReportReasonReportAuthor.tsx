@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import CheckIcon from "../../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useState } from "react";
+import { ConfirmModal } from "@/components/molecules/ConfirmModal";
 
 const ReportReasonReportAuthor = () => {
     const navigate = useNavigate();
@@ -12,9 +13,28 @@ const ReportReasonReportAuthor = () => {
     const settings = ["비매너 사용자", "거래 중 분쟁 발생", "사기 의심", "욕설 비방 혐오표현 사용", "연애 목적의 원하지 않는 대화 시도", "부적절한 성적 행위", "기타 부적절한 행위"];
     const [selectedReason, setSelectedReason] = useState<string>("");
     const [otherReason, setOtherReason] = useState<string>("");
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const handleItemClick = (value: string) => {
         setSelectedReason(value);
+    };
+
+    const handleReportButtonClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleConfirm = () => {
+        setIsModalOpen(false);
+        navigate("/report-reason", {
+            state: { 
+                reason: selectedReason, 
+                otherReason: selectedReason === "기타 부적절한 행위" ? otherReason : ""
+            },
+        });
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
@@ -46,14 +66,7 @@ const ReportReasonReportAuthor = () => {
             
             <ButtonContainer>
                 <Button
-                    onClick={() =>
-                        navigate("/report-reason", {
-                            state: { 
-                                reason: selectedReason, 
-                                otherReason: selectedReason === "기타 부적절한 행위" ? otherReason : ""
-                            },
-                        })
-                    }
+                    onClick={handleReportButtonClick}
                     size="large"
                     disabled={!selectedReason || (selectedReason === "기타 부적절한 행위" && !otherReason)}
                     style={{
@@ -68,6 +81,16 @@ const ReportReasonReportAuthor = () => {
                     신고하기
                 </Button>
             </ButtonContainer>
+
+            <ConfirmModal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal} 
+                onConfirm={handleConfirm}
+                message="신고 하시겠습니까?"
+                subMessage="신고 내용은 반띵 이용약관 및 정책에 의해서 처리되며, 허위신고 시 반띵 이용이 제한될 수 있습니다."
+                confirmText="확인"
+                cancelText="취소"
+            />
         </ReportReasonWrap>
     );
 };
