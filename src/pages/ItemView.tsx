@@ -86,7 +86,9 @@ const ItemViewPage = () => {
                 }
                 updateTime={itemData?.updateTime ?? ""}
             />
-            <SkipButton onClick={() => navigate("/report-reason")}>이 게시글 신고하기</SkipButton>
+            <ReportButtonWrapper>
+                <SkipButton onClick={() => navigate("/report-reason")}>이 게시글 신고하기</SkipButton>
+            </ReportButtonWrapper>
         </ItemViewLayout>
     );
 };
@@ -147,7 +149,15 @@ const ButtonGroup = styled.div`
         margin-right: 20px;
     }
 `;
-const SkipButton = styled.div`
+
+const ReportButtonWrapper = styled.div`
+    width: 100%;
+    padding: 0 20px 80px; /* 하단에 충분한 패딩을 주어 BottomBar에 가려지지 않도록 함 */
+    box-sizing: border-box;
+`;
+
+const SkipButton = styled.button`
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     background: none;
@@ -156,4 +166,5 @@ const SkipButton = styled.div`
     font-size: 12px;
     padding: 0;
     cursor: pointer;
+    margin-top: -20px; /* ItemViewInfo와의 간격 조정 */
 `;
