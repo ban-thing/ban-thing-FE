@@ -128,16 +128,20 @@ const OtherReasonContainer = styled.div`
     width: 100%;
     padding: 0 20px;
     margin-top: 20px;
+    margin-bottom: 100px;
+    box-sizing: border-box;
 `;
 
 const OtherReasonInput = styled.textarea`
     width: 100%;
-    min-height: 100px;
+    height: 120px;
+    max-height: 30vh;
     padding: 12px;
     border: 1px solid var(--color-black-6);
     border-radius: 8px;
-    resize: none;
+    resize: vertical;
     font-size: 14px;
+    overflow-y: auto;
     &::placeholder {
         color: var(--color-black-5);
     }
