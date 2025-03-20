@@ -152,7 +152,7 @@ const ButtonGroup = styled.div`
 
 const ReportButtonWrapper = styled.div`
     width: 100%;
-    padding: 0 20px 80px; 
+    padding: 0 20px 120px; 
     box-sizing: border-box;
 `;
 
@@ -162,9 +162,10 @@ const SkipButton = styled.button`
     justify-content: flex-start;s
     background: none;
     border: none;
-    color: var(--color-black-5);
+    color: var(--color-black-6);
     font-size: 12px;
     padding: 0;
     cursor: pointer;
-    margin-top: -20px; /* ItemViewInfo와의 간격 조정 */
+    margin-top: -20px;
+    text-decoration: underline;
 `;
