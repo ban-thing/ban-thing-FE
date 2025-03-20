@@ -152,14 +152,14 @@ const ButtonGroup = styled.div`
 
 const ReportButtonWrapper = styled.div`
     width: 100%;
-    padding: 0 20px 80px; /* 하단에 충분한 패딩을 주어 BottomBar에 가려지지 않도록 함 */
+    padding: 0 20px 80px; 
     box-sizing: border-box;
 `;
 
 const SkipButton = styled.button`
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;s
     background: none;
     border: none;
     color: var(--color-black-5);

@@ -139,7 +139,7 @@ export default function ItemViewInfo({
 
 const ItemViewInfoBox = styled.div`
     width: 100%;
-    padding: 24px 20px 108px;
+    padding: 24px 20px 30px;
     box-sizing: border-box;
 `;
 
