@@ -3,12 +3,47 @@ import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button";
+import { ConfirmModal } from "@/components/molecules/ConfirmModal";
+import { useFetchItemReport } from "@/hooks/api/ItemsQuery";
 
 const ReportReasonInaccurateInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [reason, setReason] = useState("");
     const selectedCategory = location.state?.category || "상품 정보가 부정확해요";
+    const itemId = location.state?.itemId;
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const { mutate: reportItem } = useFetchItemReport();
+
+    const handleReportButtonClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleConfirm = () => {
+        setIsModalOpen(false);
+        
+        if (itemId) {
+            reportItem({
+                itemId, 
+                reason: `${selectedCategory} - ${reason}`
+            }, {
+                onSuccess: () => {
+                    navigate('/');
+                    // 여기에 성공 토스트 메시지를 추가할 수 있습니다
+                },
+                onError: (error) => {
+                    console.error('신고 처리 중 오류 발생:', error);
+                    // 여기에 오류 토스트 메시지를 추가할 수 있습니다
+                }
+            });
+        } else {
+            navigate("/");
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <ReportReasonWrap>
@@ -23,11 +58,7 @@ const ReportReasonInaccurateInfo = () => {
                 </TextAreaContainer>
                 <ButtonContainer>
                     <Button
-                        onClick={() =>
-                            navigate("/report-reason", {
-                                state: { reason: reason.trim() },
-                            })
-                        }
+                        onClick={handleReportButtonClick}
                         size="large"
                         disabled={!reason.trim()}
                         style={{
@@ -41,6 +72,16 @@ const ReportReasonInaccurateInfo = () => {
                         신고하기
                     </Button>
             </ButtonContainer>
+
+            <ConfirmModal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal} 
+                onConfirm={handleConfirm}
+                message="신고 하시겠습니까?"
+                subMessage="신고 내용은 반띵 이용약관 및 정책에 의해서 처리되며, 허위신고 시 반띵 이용이 제한될 수 있습니다."
+                confirmText="확인"
+                cancelText="취소"
+            />
         </ReportReasonWrap>
     );
 };

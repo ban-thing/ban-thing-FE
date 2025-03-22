@@ -4,16 +4,51 @@ import { useNavigate, useLocation } from "react-router-dom";
 import CheckIcon from "../../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useState } from "react";
+import { ConfirmModal } from "@/components/molecules/ConfirmModal";
+import { useFetchItemReport } from "@/hooks/api/ItemsQuery";
 
 const ReportReasonProhibitedItem = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedCategory = location.state?.category || "거래 금지 품목으로 판단돼요";
+    const itemId = location.state?.itemId;
     const settings = ["반려동물(식물 제외)", "가품(위조품/이미테이션)", "개인정보 거래(sns계정, 인증번호 등)", "게임계정/아이템/대리육성", "담배", "홪아품 샘플(견본품, 증정품)", "음란물/성인용품", "의약품/의료기기", "주류"];
     const [selectedReason, setSelectedReason] = useState<string>("");
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const { mutate: reportItem } = useFetchItemReport();
 
     const handleItemClick = (value: string) => {
         setSelectedReason(value);
+    };
+
+    const handleReportButtonClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleConfirm = () => {
+        setIsModalOpen(false);
+        
+        if (itemId) {
+            reportItem({
+                itemId, 
+                reason: `${selectedCategory} - ${selectedReason}`
+            }, {
+                onSuccess: () => {
+                    navigate('/');
+                    // 여기에 성공 토스트 메시지를 추가할 수 있습니다
+                },
+                onError: (error) => {
+                    console.error('신고 처리 중 오류 발생:', error);
+                    // 여기에 오류 토스트 메시지를 추가할 수 있습니다
+                }
+            });
+        } else {
+            navigate("/");
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
@@ -34,11 +69,7 @@ const ReportReasonProhibitedItem = () => {
             </SettingList>
             <ButtonContainer>
                 <Button
-                    onClick={() =>
-                        navigate("/report-reason", {
-                            state: { reason: selectedReason },
-                        })
-                    }
+                    onClick={handleReportButtonClick}
                     size="large"
                     disabled={!selectedReason}
                     style={{
@@ -52,6 +83,16 @@ const ReportReasonProhibitedItem = () => {
                     신고하기
                 </Button>
             </ButtonContainer>
+
+            <ConfirmModal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal} 
+                onConfirm={handleConfirm}
+                message="신고 하시겠습니까?"
+                subMessage="신고 내용은 반띵 이용약관 및 정책에 의해서 처리되며, 허위신고 시 반띵 이용이 제한될 수 있습니다."
+                confirmText="확인"
+                cancelText="취소"
+            />
         </ReportReasonWrap>
     );
 };
