@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { PageTitleWithBackButton } from "@/components/atoms/PageTitle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
 
 const ReportReason = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const itemId = location.state?.itemId;
     const settings = [
         "광고성 컨텐츠예요",
         "상품 정보가 부정확해요",
@@ -18,25 +20,25 @@ const ReportReason = () => {
     const handleItemClick = (value: string) => {
         switch (value) {
             case "광고성 컨텐츠예요":
-                navigate("/report-reason/advertisement", { state: { category: value } });
+                navigate("/report-reason/advertisement", { state: { category: value, itemId } });
                 break;
             case "상품 정보가 부정확해요":
-                navigate("/report-reason/inaccurate-info", { state: { category: value } });
+                navigate("/report-reason/inaccurate-info", { state: { category: value, itemId } });
                 break;
             case "거래 금지 품목으로 판단돼요":
-                navigate("/report-reason/prohibited-item", { state: { category: value } });
+                navigate("/report-reason/prohibited-item", { state: { category: value, itemId } });
                 break;
             case "안전한 거래를 거부해요":
-                navigate("/report-reason/refuse-safe-transaction", { state: { category: value } });
+                navigate("/report-reason/refuse-safe-transaction", { state: { category: value, itemId } });
                 break;
             case "사기가 의심돼요":
-                navigate("/report-reason/suspected-fraud", { state: { category: value } });
+                navigate("/report-reason/suspected-fraud", { state: { category: value, itemId } });
                 break;
             case "전문 판매업자 같아요":
-                navigate("/report-reason/professional-seller", { state: { category: value } });
+                navigate("/report-reason/professional-seller", { state: { category: value, itemId } });
                 break;
             case "콘텐츠 내용이 불쾌해요":
-                navigate("/report-reason/offensive-content", { state: { category: value } });
+                navigate("/report-reason/offensive-content", { state: { category: value, itemId } });
                 break;
             default:
                 break;
@@ -54,7 +56,7 @@ const ReportReason = () => {
                     </SettingItem>
                 ))}
             </SettingList>
-            <ReportAuthorButton onClick={() => navigate("/report-reason/report-author")}>
+            <ReportAuthorButton onClick={() => navigate("/report-author", { state: { itemId } })}>
                 작성자 신고하기
             </ReportAuthorButton>
         </ReportReasonWrap>

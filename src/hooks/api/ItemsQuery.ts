@@ -169,3 +169,25 @@ export const useFetchItemDelete = () => {
         },
     });
 };
+
+// 신고
+interface ReportItemParams {
+    itemId: string | number;
+    reason: string;
+    otherReason?: string;
+}
+
+export const useFetchItemReport = () => {
+    return useMutation({
+        mutationFn: async ({ itemId, reason, otherReason }: ReportItemParams) => {
+            const reportData = {
+                reason,
+                ...(otherReason ? { otherReason } : {})
+            };
+            return await apiService.post(`items/report/${itemId}`, reportData);
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        }
+    });
+};

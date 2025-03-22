@@ -87,7 +87,9 @@ const ItemViewPage = () => {
                 updateTime={itemData?.updateTime ?? ""}
             />
             <ReportButtonWrapper>
-                <SkipButton onClick={() => navigate("/report-reason")}>이 게시글 신고하기</SkipButton>
+                <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId) } })}>
+                    이 게시글 신고하기
+                </SkipButton>
             </ReportButtonWrapper>
         </ItemViewLayout>
     );
