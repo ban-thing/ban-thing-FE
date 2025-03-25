@@ -67,8 +67,16 @@ export default function ItemViewProfile({
         <ProfileWrap>
             {!isLoading ? (
                 <ProfileImgWrap>
-                    {sellerImgUrl.data && (
-                        <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
+                    {sellerImgUrl && sellerImgUrl.data ? (
+                        <img 
+                            src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} 
+                            alt="Seller Profile"
+                        />
+                    ) : (
+                        <img 
+                            src="/default-profile.png" 
+                            alt="Default Profile"
+                        />
                     )}
                 </ProfileImgWrap>
             ) : (
