@@ -49,7 +49,7 @@ const ProfilePlace2 = styled.div`
 
 type ItemViewProfileProps = {
     sellerNickname: string;
-    sellerImgUrl: string;
+    sellerImgUrl: { id: number; data: string; type: string };
     address: string;
     directLocation: string;
     direct: boolean;
@@ -69,9 +69,9 @@ export default function ItemViewProfile({
         <ProfileWrap>
             {!isLoading ? (
                 <ProfileImgWrap>
-                    {sellerImgUrl ? (
+                    {sellerImgUrl?.data ? (
                         <img 
-                            src={URL.createObjectURL(base64ToFile(sellerImgUrl))} 
+                            src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} 
                             alt="Seller Profile"
                         />
                     ) : (
