@@ -104,7 +104,7 @@ const ItemList = ({
                     listData?.map((item, index) => (
                         <ItemContainer
                             key={index}
-                            images={item.itemImgs?.[0] || item.images || item.imgUrl}
+                            images={item.images}
                             itemId={item.itemId || item.id}
                             title={item.title}
                             price={item.price}
