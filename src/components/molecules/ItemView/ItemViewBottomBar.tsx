@@ -69,7 +69,7 @@ export default function ItemViewBottomBar({
     sellerId,
     itemId,
     myId,
-    // status,
+    status,
 }: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate } = useCreateChatRoomMutation();
@@ -95,8 +95,6 @@ export default function ItemViewBottomBar({
         setIsLiked(!isLiked);
     };
 
-    const status = "판매완료";
-
     return (
         <StyledItemViewBottomBar>
             <PriceWrap>
@@ -113,7 +111,7 @@ export default function ItemViewBottomBar({
             {myId !== sellerId && (
                 <Button
                     size="small"
-                    onClick={() => handleChatButtonClick(status)}
+                    onClick={() => handleChatButtonClick(status || "판매중")}
                     className={status === "판매완료" ? "disabled" : ""}
                 >
                     채팅하기
