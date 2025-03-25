@@ -25,6 +25,7 @@ export type ItemsList = {
     title: string;
     images?: string;
     imgUrl?: string;
+    itemImgs?: string[];
     price: number;
     address: string;
     updatedAt: Date;

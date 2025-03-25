@@ -91,7 +91,6 @@ const ItemList = ({
         filtered.sort((a, b) => {
             return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
         });
-        console.log("filtered", filtered);
         setListData(filtered);
     }, [data, isLoading, currentLocation, searchHashList, isHome, isMyPage]);
 
@@ -105,7 +104,7 @@ const ItemList = ({
                     listData?.map((item, index) => (
                         <ItemContainer
                             key={index}
-                            images={item.images || item.imgUrl}
+                            images={item.itemImgs?.[0] || item.images || item.imgUrl}
                             itemId={item.itemId || item.id}
                             title={item.title}
                             price={item.price}
