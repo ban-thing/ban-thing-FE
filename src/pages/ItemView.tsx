@@ -23,9 +23,6 @@ const ItemViewPage = () => {
     );
     const navigate = useNavigate();
 
-    console.log('Item Data:', itemData);
-    console.log('Seller Image URL:', itemData?.sellerImgUrl);
-
     return (
         <ItemViewLayout
             type={itemData?.type || ""}

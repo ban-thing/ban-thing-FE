@@ -45,7 +45,7 @@ export const base64ToFile = (base64: string, filename = `imgFile_${Date.now()}.p
         }
         return new File([u8arr], filename, { type: mimeFromFilename });
     } catch (error) {
-        throw new Error("Failed to decode Base64 string: base64 이미지 변환 중 오류 발생");
+        throw new Error("Failed to decode Base64 string: base64 이미지 변환 중 오류 발생", { cause: error as Error });
     }
 };
 
