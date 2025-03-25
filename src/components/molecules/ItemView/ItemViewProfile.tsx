@@ -47,10 +47,12 @@ const ProfilePlace2 = styled.div`
     color: #949494;
 `;
 
-type ItemViewProfileProps = Pick<
-    ItemView,
-    "sellerNickname" | "sellerImgUrl" | "address" | "directLocation" | "direct"
-> & {
+type ItemViewProfileProps = {
+    sellerNickname: string;
+    sellerImgUrl: string;
+    address: string;
+    directLocation: string;
+    direct: boolean;
     isLoading?: boolean;
 };
 
@@ -67,9 +69,9 @@ export default function ItemViewProfile({
         <ProfileWrap>
             {!isLoading ? (
                 <ProfileImgWrap>
-                    {sellerImgUrl && sellerImgUrl.data ? (
+                    {sellerImgUrl ? (
                         <img 
-                            src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} 
+                            src={URL.createObjectURL(base64ToFile(sellerImgUrl))} 
                             alt="Seller Profile"
                         />
                     ) : (
