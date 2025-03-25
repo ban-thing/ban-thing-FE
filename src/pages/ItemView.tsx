@@ -36,7 +36,8 @@ const ItemViewPage = () => {
             {!isLoading ? (
                 <StyledItemImg>
                     <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                        {itemData?.itemImgs.map((value, index) => {
+                        {itemData?.itemImgs?.map((value, index) => {
+                            if (!value) return null;
                             return (
                                 <SwiperSlide key={index}>
                                     <img src={URL.createObjectURL(base64ToFile(value))} />

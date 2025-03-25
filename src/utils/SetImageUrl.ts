@@ -9,6 +9,14 @@ export const setImg64 = (string: string) => {
 };
 
 export const base64ToFile = (base64: string, filename = `imgFile_${Date.now()}.png`): File => {
+    if (!base64) {
+        throw new Error("이미지 데이터가 없습니다.");
+    }
+
+    if (typeof base64 !== 'string') {
+        throw new Error("이미지 데이터가 문자열이 아닙니다.");
+    }
+
     const mimeMap: { [key: string]: string } = {
         jpeg: "image/jpeg",
         jpg: "image/jpeg",
