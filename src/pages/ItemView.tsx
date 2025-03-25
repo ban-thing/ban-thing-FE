@@ -80,7 +80,7 @@ const ItemViewPage = () => {
             <ItemViewProfile
                 isLoading={isLoading}
                 sellerNickname={itemData?.sellerNickname ?? ""}
-                sellerImgUrl={itemData?.sellerImgUrl ?? { id: 0, data: "", type: "" }}
+                sellerImgUrl={{ id: 0, data: itemData?.sellerImgUrl ?? "", type: "image/png" }}
                 address={itemData?.address ?? ""}
                 directLocation={itemData?.directLocation ?? ""}
                 direct={itemData?.direct ?? false}

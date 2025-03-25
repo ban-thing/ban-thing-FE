@@ -1,5 +1,4 @@
 import { ProfileAddressSkt, ProfileImgSkt, ProfileNameSkt } from "@/components/atoms/Skeleton";
-import { ItemView } from "@/types/Item";
 import { base64ToFile } from "@/utils/SetImageUrl";
 import styled from "styled-components";
 
