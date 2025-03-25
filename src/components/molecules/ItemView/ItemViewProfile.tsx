@@ -67,7 +67,9 @@ export default function ItemViewProfile({
         <ProfileWrap>
             {!isLoading ? (
                 <ProfileImgWrap>
-                    <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
+                    {sellerImgUrl.data && (
+                        <img src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} />
+                    )}
                 </ProfileImgWrap>
             ) : (
                 <ProfileImgSkt circle />

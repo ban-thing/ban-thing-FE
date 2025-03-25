@@ -36,14 +36,25 @@ const ItemViewPage = () => {
             {!isLoading ? (
                 <StyledItemImg>
                     <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                        {itemData?.itemImgs?.map((value, index) => {
-                            if (!value) return null;
-                            return (
-                                <SwiperSlide key={index}>
-                                    <img src={URL.createObjectURL(base64ToFile(value))} />
-                                </SwiperSlide>
-                            );
-                        })}
+                        {itemData && itemData.itemImgs && itemData.itemImgs.length > 0 ? (
+                            itemData.itemImgs.map((value, index) => {
+                                if (!value) return null;
+                                try {
+                                    return (
+                                        <SwiperSlide key={index}>
+                                            <img src={URL.createObjectURL(base64ToFile(value))} alt={`상품 이미지 ${index + 1}`} />
+                                        </SwiperSlide>
+                                    );
+                                } catch (error) {
+                                    console.error('이미지 변환 중 오류:', error);
+                                    return null;
+                                }
+                            })
+                        ) : (
+                            <SwiperSlide>
+                                <img src="/default-image.png" alt="기본 이미지" />
+                            </SwiperSlide>
+                        )}
                     </Swiper>
                     <TitleWrapper>
                         <BackButton onClick={() => navigate(-1)}>
