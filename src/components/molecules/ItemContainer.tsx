@@ -24,6 +24,7 @@ import { imageUrl } from "@/utils/SetImageUrl";
 type ItemInListProps = ItemSearchList & {
     viewEditButton?: boolean;
     status?: string;
+    imgUrl?: string;
 };
 
 export default function ItemInList({
@@ -34,6 +35,7 @@ export default function ItemInList({
     type,
     price,
     images,
+    imgUrl,
     viewEditButton = false,
     status,
 }: ItemInListProps) {
@@ -63,8 +65,8 @@ export default function ItemInList({
                 <ItemPhotoWrap>
                     <ItemPhoto
                         src={
-                            images
-                                ? `${imageUrl}/${images}`
+                            imgUrl || images
+                                ? `${imageUrl}/${imgUrl || images}`
                                 : notFound
                         }
                     />
