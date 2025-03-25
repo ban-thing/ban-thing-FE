@@ -48,7 +48,7 @@ const ProfilePlace2 = styled.div`
 
 type ItemViewProfileProps = {
     sellerNickname: string;
-    sellerImgUrl: { id: number; data: string; type: string };
+    sellerImgUrl: string | { id: number; data: string; type: string };
     address: string;
     directLocation: string;
     direct: boolean;
@@ -63,14 +63,21 @@ export default function ItemViewProfile({
     direct,
     isLoading = true,
 }: ItemViewProfileProps) {
+    const getImageUrl = () => {
+        if (typeof sellerImgUrl === 'string') {
+            return URL.createObjectURL(base64ToFile(sellerImgUrl));
+        }
+        return URL.createObjectURL(base64ToFile(sellerImgUrl.data));
+    };
+
     return (
         // 스켈레톤
         <ProfileWrap>
             {!isLoading ? (
                 <ProfileImgWrap>
-                    {sellerImgUrl?.data ? (
+                    {sellerImgUrl ? (
                         <img 
-                            src={URL.createObjectURL(base64ToFile(sellerImgUrl.data))} 
+                            src={getImageUrl()} 
                             alt="Seller Profile"
                         />
                     ) : (
