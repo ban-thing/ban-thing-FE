@@ -5,7 +5,6 @@ import SendIcon from "@/assets/icons/send.svg?react";
 import { useEffect, useState } from "react";
 import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
-import { setImgUrl } from "@/utils/SetImageUrl";
 import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
