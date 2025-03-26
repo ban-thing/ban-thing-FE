@@ -6,6 +6,90 @@ import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
 import { getCookie } from "@/utils/Cookie";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAddWishlist, useRemoveWishlist } from "@/hooks/api/UsersQuery";
+
+type ItemViewLayout = {
+    type: string;
+    price: number;
+    sellerId: number;
+    itemId: number;
+    myId: number;
+    status?: string;
+};
+
+export default function ItemViewBottomBar({
+    type,
+    price,
+    sellerId,
+    itemId,
+    myId,
+    status,
+}: ItemViewLayout) {
+    const navigate = useNavigate();
+    const { mutate: createChatRoom } = useCreateChatRoomMutation();
+    const { mutate: addWishlist } = useAddWishlist();
+    const { mutate: removeWishlist } = useRemoveWishlist();
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleChatButtonClick = async (status: string) => {
+        if (status === "판매완료") return;
+        const authCookie = getCookie("Authorization_banthing");
+        if (!authCookie) return navigate("/login");
+        createChatRoom(
+            { sellerId, itemId },
+            {
+                onSuccess: (res) => {
+                    const chatRoomId = res.data.chatRoomId;
+                    navigate(`/chats/${chatRoomId}`);
+                },
+            },
+        );
+    };
+
+    const handleLikeClick = () => {
+        const authCookie = getCookie("Authorization_banthing");
+        if (!authCookie) return navigate("/login");
+
+        if (isLiked) {
+            removeWishlist(itemId, {
+                onSuccess: () => {
+                    setIsLiked(false);
+                },
+            });
+        } else {
+            addWishlist(itemId, {
+                onSuccess: () => {
+                    setIsLiked(true);
+                },
+            });
+        }
+    };
+
+    return (
+        <StyledItemViewBottomBar>
+            <PriceWrap>
+                <HeartButton onClick={handleLikeClick}>
+                    {isLiked ? <HeartActive /> : <Heart />}
+                </HeartButton>
+                <Price>
+                    <PriceNumber>
+                        {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
+                    </PriceNumber>
+                    <PriceText>{type === "판매" ? "원" : ""}</PriceText>
+                </Price>
+            </PriceWrap>
+            {myId !== sellerId && (
+                <Button
+                    size="small"
+                    onClick={() => handleChatButtonClick(status || "판매중")}
+                    className={status === "판매완료" ? "disabled" : ""}
+                >
+                    채팅하기
+                </Button>
+            )}
+        </StyledItemViewBottomBar>
+    );
+}
 
 const StyledItemViewBottomBar = styled.div`
     width: 100%;
@@ -53,70 +137,3 @@ const HeartButton = styled.button`
     align-items: center;
     justify-content: center;
 `;
-
-type ItemViewLayout = {
-    type: string;
-    price: number;
-    sellerId: number;
-    itemId: number;
-    myId: number;
-    status?: string;
-};
-
-export default function ItemViewBottomBar({
-    type,
-    price,
-    sellerId,
-    itemId,
-    myId,
-    status,
-}: ItemViewLayout) {
-    const navigate = useNavigate();
-    const { mutate } = useCreateChatRoomMutation();
-    const [isLiked, setIsLiked] = useState(false);
-
-    const handleChatButtonClick = async (status: string) => {
-        if (status === "판매완료") return;
-        const authCookie = getCookie("Authorization_banthing");
-        if (!authCookie) return navigate("/login");
-        mutate(
-            { sellerId, itemId },
-            {
-                onSuccess: (res) => {
-                    const chatRoomId = res.data.chatRoomId;
-                    navigate(`/chats/${chatRoomId}`);
-                },
-            },
-        );
-    };
-
-    const handleLikeClick = () => {
-        // TODO: API 연동 시 여기에 좋아요 API 호출 추가
-        setIsLiked(!isLiked);
-    };
-
-    return (
-        <StyledItemViewBottomBar>
-            <PriceWrap>
-                <HeartButton onClick={handleLikeClick}>
-                    {isLiked ? <HeartActive /> : <Heart />}
-                </HeartButton>
-                <Price>
-                    <PriceNumber>
-                        {type === "판매" ? price.toLocaleString("en-US") : "나눔"}
-                    </PriceNumber>
-                    <PriceText>{type === "판매" ? "원" : ""}</PriceText>
-                </Price>
-            </PriceWrap>
-            {myId !== sellerId && (
-                <Button
-                    size="small"
-                    onClick={() => handleChatButtonClick(status || "판매중")}
-                    className={status === "판매완료" ? "disabled" : ""}
-                >
-                    채팅하기
-                </Button>
-            )}
-        </StyledItemViewBottomBar>
-    );
-}
