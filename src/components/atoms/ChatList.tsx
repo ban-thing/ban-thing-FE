@@ -3,7 +3,7 @@ import PointIcon from "@/assets/icons/point.svg?react";
 import type { ChatList as ChatListType } from "@/types/Chat";
 import timeAgo from "@/utils/TimeAgo";
 import notFound from "@/assets/noPhotoImage.svg?url";
-import { setImgUrl } from "@/utils/SetImageUrl";
+import { imageUrl } from "@/utils/SetImageUrl";
 
 interface ChatListItemProps {
     chat: ChatListType;
@@ -16,11 +16,7 @@ export default function ChatList({ chat, onClick }: ChatListItemProps) {
             <ProfileImage
                 src={
                     chat.itemImg
-                        ? setImgUrl(
-                              chat.itemId,
-                              chat.itemImg?.split(".")[0],
-                              chat.itemImg?.split(".")[1],
-                          )
+                        ? `${imageUrl}/${chat.itemImg}`
                         : notFound
                 }
             />
