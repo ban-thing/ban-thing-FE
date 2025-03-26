@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { setImgUrl } from "@/utils/SetImageUrl";
+import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
 export default function Chatting() {
@@ -205,17 +206,9 @@ export default function Chatting() {
             <ProductInfo onClick={() => navigate(`/item-view/${data.pages[0].itemId}`)}>
                 <ProductImage
                     src={
-                        Array.isArray(data.pages[0].itemImage)
-                            ? setImgUrl(
-                                  data.pages[0].itemId,
-                                  data.pages[0].itemImage[0]?.split(".")[0],
-                                  data.pages[0].itemImage[0]?.split(".")[1],
-                              )
-                            : setImgUrl(
-                                  data.pages[0].itemId,
-                                  data.pages[0].itemImage?.split(".")[0],
-                                  data.pages[0].itemImage?.split(".")[1],
-                              ) || ""
+                        data.pages[0].itemImage
+                            ? `${imageUrl}/${data.pages[0].itemImage}`
+                            : ""
                     }
                     alt={data.pages[0].title}
                 />
