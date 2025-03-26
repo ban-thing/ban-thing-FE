@@ -122,3 +122,37 @@ export const useFetchWishlist = () => {
         retry: false,
     });
 };
+
+// 찜 추가
+export const useAddWishlist = () => {
+    return useMutation({
+        mutationFn: async (itemId: number) => {
+            return await apiService.post<{ status: string; message: null }>(
+                `items/${itemId}/wishlist`,
+                {},
+                "",
+                true
+            );
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        },
+    });
+};
+
+// 찜 삭제
+export const useRemoveWishlist = () => {
+    return useMutation({
+        mutationFn: async (itemId: number) => {
+            return await apiService.delete<{ status: string; message: null }>(
+                `items/${itemId}/wishlist`,
+                {},
+                "",
+                true
+            );
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        },
+    });
+};
