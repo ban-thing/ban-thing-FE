@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import ApiService from "@/utils/ApiService";
 import { Address, UserProfile } from "@/types/User";
 import { useNavigate } from "react-router-dom";
+import { ItemsList } from "@/types/User";
 
 const apiService = new ApiService();
 
@@ -108,5 +109,16 @@ export const useFetchDeleteUser = () => {
         onSuccess: () => {
             navigate("/login");
         },
+    });
+};
+
+// 찜 목록 조회
+export const useFetchWishlist = () => {
+    return useQuery({
+        queryKey: ["wishlist"],
+        queryFn: async () => {
+            return await apiService.get<{ status: string; data: ItemsList[]; message: null }>("my/wishlist", {}, "", true);
+        },
+        retry: false,
     });
 };
