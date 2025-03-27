@@ -45,6 +45,11 @@ export default function Chatting() {
             await sendMessage({
                 roomId: Number(chatRoomId),
                 message: inputText.trim(),
+            }, {
+                onError: (error) => {
+                    console.error("API 메시지 전송 실패:", error);
+                    throw error;
+                }
             });
 
             // WebSocket을 통한 메시지 전송
