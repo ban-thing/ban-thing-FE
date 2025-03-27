@@ -3,10 +3,11 @@ import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
 import { useEffect, useState, useRef } from "react";
-import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
+import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Message 타입 정의 추가
 type Message = {
@@ -24,12 +25,15 @@ export default function Chatting() {
     const [messagesList, setMessagesList] = useState<Message[]>([]);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
     const socketRef = useRef<WebSocket | null>(null);
+    const queryClient = useQueryClient();
 
-    const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
+    const { data, fetchNextPage, hasNextPage, isLoading, refetch } = useChatRoomDetailsQuery(
         Number(chatRoomId),
     );
 
-    // API에서 가져온 메시지와 실시간 메시지 병합
+    const sendMessageMutation = useSendMessageMutation();
+
+    // API에서 가져온 메시지 설정
     useEffect(() => {
         if (data && data.pages.length > 0) {
             const apiMessages = data.pages.flatMap((page) => 
@@ -41,22 +45,11 @@ export default function Chatting() {
                 }))
             );
             
-            // 기존 메시지와 중복 없이 병합
-            setMessagesList(prev => {
-                const existingIds = new Set(prev.map(msg => 
-                    `${msg.senderId}-${msg.message}-${msg.time}`
-                ));
-                
-                const newMessages = apiMessages.filter(msg => 
-                    !existingIds.has(`${msg.senderId}-${msg.message}-${msg.time}`)
-                );
-                
-                return [...prev, ...newMessages];
-            });
+            // API 메시지로 목록 갱신
+            setMessagesList(apiMessages);
+            console.log(`API에서 ${apiMessages.length}개 메시지 로드됨`);
         }
     }, [data, chatRoomId]);
-
-    // const sendMessageMutation = useSendMessageMutation();
 
     const handleSendMessage = async () => {
         if (inputText.trim() === "" || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
@@ -72,11 +65,20 @@ export default function Chatting() {
             // 웹소켓으로 메시지 전송
             socketRef.current.send(JSON.stringify(newMessage));
             
-            // 로컬에 메시지 추가 (UI 즉시 반영)
+            // 서버에 메시지 저장 요청
+            await sendMessageMutation.mutateAsync({
+                roomId: Number(chatRoomId),
+                message: inputText.trim()
+            });
+            
+            // UI에 임시로 메시지 추가 (실제 메시지는 웹소켓을 통해 다시 받거나 다음 API 요청 시 받음)
             setMessagesList(prev => [...prev, newMessage]);
             
             // 입력창 초기화
             setInputText("");
+            
+            // 채팅 목록 캐시 무효화 (나중에 다시 불러오기 위해)
+            queryClient.invalidateQueries({ queryKey: ["chats", Number(chatRoomId)] });
             
             // 스크롤 아래로 이동
             setTimeout(() => {
@@ -110,6 +112,9 @@ export default function Chatting() {
 
             ws.onopen = () => {
                 console.log("웹소켓 연결 성공");
+                
+                // 웹소켓 연결 후 최신 메시지 불러오기
+                refetch();
             };
 
             ws.onmessage = (event) => {
@@ -124,13 +129,16 @@ export default function Chatting() {
                     if (typeof event.data === "string" && event.data.includes("{")) {
                         const msg = JSON.parse(event.data) as Message;
                         
-                        // 본인이 보낸 메시지면 무시 (이미 UI에 표시되어 있음)
+                        // 본인이 보낸 메시지면 처리 방식 변경
+                        // 메시지 수신 후 API 데이터를 다시 불러옴으로써 서버에 저장된 메시지를 동기화
                         if (msg.senderId === myProfileData?.data.userId) {
+                            // 캐시 무효화
+                            queryClient.invalidateQueries({ queryKey: ["chats", Number(chatRoomId)] });
                             return;
                         }
                         
                         setMessagesList((prev) => {
-                            // 중복 체크를 위한 고유 키 생성
+                            // 중복 체크
                             const msgKey = `${msg.senderId}-${msg.message}-${msg.time}`;
                             const isDuplicate = prev.some(
                                 (prevMsg) => 
@@ -140,6 +148,11 @@ export default function Chatting() {
                             if (isDuplicate) {
                                 return prev;
                             }
+                            
+                            // 메시지 수신 후 API 데이터도 함께 갱신
+                            setTimeout(() => {
+                                queryClient.invalidateQueries({ queryKey: ["chats", Number(chatRoomId)] });
+                            }, 500);
                             
                             // 스크롤 아래로 이동
                             setTimeout(() => {
@@ -186,7 +199,7 @@ export default function Chatting() {
                 socketRef.current = null;
             }
         };
-    }, [chatRoomId, myProfileData?.data.userId]);
+    }, [chatRoomId, myProfileData?.data.userId, queryClient, refetch]);
 
     useEffect(() => {
         console.log("메시지리스트 업데이트:", messagesList.length);
