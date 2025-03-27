@@ -3,17 +3,24 @@ import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
 import { useEffect, useState } from "react";
-import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
+import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
+
+interface Message {
+    chatRoomId: number;
+    senderId: number;
+    message: string;
+    time: string;
+}
 
 export default function Chatting() {
     const navigate = useNavigate();
     const { data: myProfileData } = useFetchMyProfile();
     const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
-    const [messagesList, setMessagesList] = useState<any[]>([]);
+    const [messagesList, setMessagesList] = useState<Message[]>([]);
     const [socket, setSocket] = useState<WebSocket | null>(null);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
 
@@ -21,19 +28,26 @@ export default function Chatting() {
         Number(chatRoomId),
     );
 
-    // const sendMessageMutation = useSendMessageMutation();
+    const { mutate: sendMessage } = useSendMessageMutation();
 
     const handleSendMessage = async () => {
-        if (inputText.trim() === "" || !socket) return;
+        if (inputText.trim() === "" || !socket || !chatRoomId) return;
 
-        const newMessage = {
+        const newMessage: Message = {
             chatRoomId: Number(chatRoomId),
-            senderId: myProfileData?.data.userId,
+            senderId: myProfileData?.data.userId || 0,
             message: inputText.trim(),
             time: new Date().toISOString(),
         };
 
         try {
+            // API를 통한 메시지 전송
+            await sendMessage({
+                roomId: Number(chatRoomId),
+                message: inputText.trim(),
+            });
+
+            // WebSocket을 통한 메시지 전송
             socket.send(JSON.stringify(newMessage));
             setInputText("");
         } catch (error) {
@@ -57,7 +71,7 @@ export default function Chatting() {
                     }
 
                     if (typeof event.data === "string" && event.data.includes("{")) {
-                        const msg = JSON.parse(event.data);
+                        const msg = JSON.parse(event.data) as Message;
                         setMessagesList((prev) => {
                             const isDuplicate = prev.some(
                                 (prevMsg) =>
