@@ -2,18 +2,19 @@ import styled from "styled-components";
 import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
-import { useEffect, useState } from "react";
-import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
+import { useEffect, useState, useRef } from "react";
+import { useChatRoomDetailsQuery } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 
-interface Message {
+// Message 타입 정의 추가
+type Message = {
     chatRoomId: number;
     senderId: number;
     message: string;
     time: string;
-}
+};
 
 export default function Chatting() {
     const navigate = useNavigate();
@@ -21,17 +22,44 @@ export default function Chatting() {
     const { chatRoomId } = useParams();
     const [inputText, setInputText] = useState("");
     const [messagesList, setMessagesList] = useState<Message[]>([]);
-    const [socket, setSocket] = useState<WebSocket | null>(null);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const socketRef = useRef<WebSocket | null>(null);
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useChatRoomDetailsQuery(
         Number(chatRoomId),
     );
 
-    const { mutate: sendMessage } = useSendMessageMutation();
+    // API에서 가져온 메시지와 실시간 메시지 병합
+    useEffect(() => {
+        if (data && data.pages.length > 0) {
+            const apiMessages = data.pages.flatMap((page) => 
+                page.messages.map(msg => ({
+                    chatRoomId: Number(chatRoomId),
+                    senderId: msg.senderId,
+                    message: msg.message,
+                    time: typeof msg.time === 'string' ? msg.time : new Date(msg.time).toISOString()
+                }))
+            );
+            
+            // 기존 메시지와 중복 없이 병합
+            setMessagesList(prev => {
+                const existingIds = new Set(prev.map(msg => 
+                    `${msg.senderId}-${msg.message}-${msg.time}`
+                ));
+                
+                const newMessages = apiMessages.filter(msg => 
+                    !existingIds.has(`${msg.senderId}-${msg.message}-${msg.time}`)
+                );
+                
+                return [...prev, ...newMessages];
+            });
+        }
+    }, [data, chatRoomId]);
+
+    // const sendMessageMutation = useSendMessageMutation();
 
     const handleSendMessage = async () => {
-        if (inputText.trim() === "" || !socket || !chatRoomId) return;
+        if (inputText.trim() === "" || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
 
         const newMessage: Message = {
             chatRoomId: Number(chatRoomId),
@@ -41,20 +69,22 @@ export default function Chatting() {
         };
 
         try {
-            // API를 통한 메시지 전송
-            await sendMessage({
-                roomId: Number(chatRoomId),
-                message: inputText.trim(),
-            }, {
-                onError: (error) => {
-                    console.error("API 메시지 전송 실패:", error);
-                    throw error;
-                }
-            });
-
-            // WebSocket을 통한 메시지 전송
-            socket.send(JSON.stringify(newMessage));
+            // 웹소켓으로 메시지 전송
+            socketRef.current.send(JSON.stringify(newMessage));
+            
+            // 로컬에 메시지 추가 (UI 즉시 반영)
+            setMessagesList(prev => [...prev, newMessage]);
+            
+            // 입력창 초기화
             setInputText("");
+            
+            // 스크롤 아래로 이동
+            setTimeout(() => {
+                const chatContainer = document.querySelector(".chat-container");
+                if (chatContainer) {
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }, 100);
         } catch (error) {
             console.error("메시지 전송 실패:", error);
             alert("메시지 전송에 실패했습니다. 다시 시도해주세요.");
@@ -62,8 +92,21 @@ export default function Chatting() {
     };
 
     useEffect(() => {
+        // 이전 소켓 연결 정리
+        if (socketRef.current) {
+            socketRef.current.close();
+        }
+        
         const createWebSocket = () => {
+            // 이미 연결 중인 경우 중복 연결 방지
+            if (socketRef.current && socketRef.current.readyState !== WebSocket.CLOSED) {
+                return;
+            }
+            
+            console.log(`웹소켓 연결 시도: wss://api.banthing.net/ws/chat/${chatRoomId}`);
+            
             const ws = new WebSocket(`wss://api.banthing.net/ws/chat/${chatRoomId}`);
+            socketRef.current = ws;
 
             ws.onopen = () => {
                 console.log("웹소켓 연결 성공");
@@ -71,28 +114,41 @@ export default function Chatting() {
 
             ws.onmessage = (event) => {
                 try {
+                    console.log("웹소켓 메시지 수신:", event.data);
+                    
                     if (event.data === "WebSocket 연결 완료") {
+                        console.log("웹소켓 연결 확인 완료");
                         return;
                     }
 
                     if (typeof event.data === "string" && event.data.includes("{")) {
                         const msg = JSON.parse(event.data) as Message;
+                        
+                        // 본인이 보낸 메시지면 무시 (이미 UI에 표시되어 있음)
+                        if (msg.senderId === myProfileData?.data.userId) {
+                            return;
+                        }
+                        
                         setMessagesList((prev) => {
+                            // 중복 체크를 위한 고유 키 생성
+                            const msgKey = `${msg.senderId}-${msg.message}-${msg.time}`;
                             const isDuplicate = prev.some(
-                                (prevMsg) =>
-                                    prevMsg.time === msg.time &&
-                                    prevMsg.message === msg.message &&
-                                    prevMsg.senderId === msg.senderId,
+                                (prevMsg) => 
+                                    `${prevMsg.senderId}-${prevMsg.message}-${prevMsg.time}` === msgKey
                             );
+                            
                             if (isDuplicate) {
                                 return prev;
                             }
+                            
+                            // 스크롤 아래로 이동
                             setTimeout(() => {
                                 const chatContainer = document.querySelector(".chat-container");
                                 if (chatContainer) {
                                     chatContainer.scrollTop = chatContainer.scrollHeight;
                                 }
                             }, 100);
+                            
                             return [...prev, msg];
                         });
                     }
@@ -105,25 +161,35 @@ export default function Chatting() {
                 console.error("웹소켓 에러:", error);
             };
 
-            ws.onclose = () => {
-                console.log("웹소켓 연결 종료");
-                setTimeout(createWebSocket, 3000);
+            ws.onclose = (event) => {
+                console.log(`웹소켓 연결 종료: ${event.code}, ${event.reason || '이유 없음'}`);
+                
+                // 비정상 종료인 경우 재연결 시도
+                if (event.code !== 1000) {
+                    console.log("웹소켓 재연결 시도...");
+                    setTimeout(createWebSocket, 3000);
+                }
+                
+                // 소켓 상태 업데이트
+                if (socketRef.current === ws) {
+                    socketRef.current = null;
+                }
             };
-
-            setSocket(ws);
         };
 
         createWebSocket();
 
         return () => {
-            if (socket) {
-                socket.close();
+            if (socketRef.current) {
+                // 정상 종료 코드(1000)로 연결 종료
+                socketRef.current.close(1000, "컴포넌트 언마운트");
+                socketRef.current = null;
             }
         };
-    }, [chatRoomId]);
+    }, [chatRoomId, myProfileData?.data.userId]);
 
     useEffect(() => {
-        console.log("메시지리스트:", messagesList);
+        console.log("메시지리스트 업데이트:", messagesList.length);
     }, [messagesList]);
 
     useEffect(() => {
@@ -164,8 +230,6 @@ export default function Chatting() {
         );
     }
 
-    const messages = data.pages.flatMap((page) => page.messages);
-
     // 날짜 포맷팅 함수 수정
     const formatDateDivider = (date: string) => {
         const messageDate = new Date(date);
@@ -173,8 +237,8 @@ export default function Chatting() {
     };
 
     // 메시지를 날짜별로 그룹화하는 함수 수정
-    const groupMessagesByDate = (messages: any[]) => {
-        const groups: { [key: string]: any[] } = {};
+    const groupMessagesByDate = (messages: Message[]) => {
+        const groups: { [key: string]: Message[] } = {};
 
         messages.forEach((message) => {
             const date = new Date(message.time);
@@ -244,7 +308,7 @@ export default function Chatting() {
                 )} */}
                 {Object.entries(
                     groupMessagesByDate(
-                        [...messages, ...messagesList].sort(
+                        [...messagesList].sort(
                             (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime(),
                         ),
                     ),
