@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import LocationIcon from "../assets/icons/location.svg?react";
 import PointIcon from "../assets/icons/point.svg?react";
-import CheckIcon from "../assets/icons/check1.svg?react";
+import CheckIcon from "../assets/icons/checkBlue.svg?react";
 import ResetIcon from "../assets/icons/reset.svg?react";
 import { Button } from "@/components/atoms/Button";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -25,14 +25,6 @@ const formatAddress = (
     }
     return `${city.name} ${district?.name} ${town?.name}`;
 };
-
-const StyledCheckIcon = styled(CheckIcon)`
-    svg path {
-        width: 24px;
-        height: 24px;
-        fill: #6290ec;
-    }
-`;
 
 export default function LocationSelect() {
     const navigate = useNavigate();
@@ -164,16 +156,7 @@ export default function LocationSelect() {
                                 variant="town"
                             >
                                 {town.name}
-                                {isSelected && (
-                                    <StyledCheckIcon
-                                        style={{
-                                            width: 22,
-                                            height: 22,
-                                            textAlign: "end",
-                                            fill: "#6290EC"
-                                        }}
-                                    />
-                                )}
+                                {isSelected && <CheckIcon />}
                             </RegionButton>
                         );
                     })}
