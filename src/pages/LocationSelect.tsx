@@ -27,7 +27,11 @@ const formatAddress = (
 };
 
 const StyledCheckIcon = styled(CheckIcon)`
-    color: #6290EC;
+    svg path {
+        width: 24px;
+        height: 24px;
+        fill: #6290ec;
+    }
 `;
 
 export default function LocationSelect() {
@@ -216,7 +220,6 @@ export default function LocationSelect() {
                             alignItems: "center",
                             justifyContent: "center",
                             gap: "4px",
-                            width: "100%"
                         }}
                         onClick={onClickCancel}
                     >
