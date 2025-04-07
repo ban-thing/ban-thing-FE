@@ -2,6 +2,7 @@ import styled from "styled-components";
 import LocationIcon from "../assets/icons/location.svg?react";
 import PointIcon from "../assets/icons/point.svg?react";
 import CheckIcon from "../assets/icons/check1.svg?react";
+import ResetIcon from "../assets/icons/reset.svg?react";
 import { Button } from "@/components/atoms/Button";
 import ClipLoader from "react-spinners/ClipLoader";
 import { PageTitle } from "@/components/atoms/PageTitle";
@@ -24,6 +25,10 @@ const formatAddress = (
     }
     return `${city.name} ${district?.name} ${town?.name}`;
 };
+
+const StyledCheckIcon = styled(CheckIcon)`
+    color: var(--color-main-1);
+`;
 
 export default function LocationSelect() {
     const navigate = useNavigate();
@@ -156,11 +161,11 @@ export default function LocationSelect() {
                             >
                                 {town.name}
                                 {isSelected && (
-                                    <CheckIcon
+                                    <StyledCheckIcon
                                         style={{
                                             width: 22,
                                             height: 22,
-                                            textAlign: "end",
+                                            textAlign: "end"
                                         }}
                                     />
                                 )}
@@ -206,9 +211,13 @@ export default function LocationSelect() {
                         style={{
                             color: "var(--color-black-5)",
                             borderColor: "var(--color-black-6)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "4px"
                         }}
                         onClick={onClickCancel}
                     >
+                        <ResetIcon />
                         초기화
                     </Button>
                     <Button
