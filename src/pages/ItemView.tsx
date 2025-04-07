@@ -99,6 +99,7 @@ const ItemViewPage = () => {
                     }
                 }
                 updateTime={itemData?.updateTime ?? ""}
+                likeCount={itemData?.wishlistCount ?? 0}
             />
             <ReportButtonWrapper>
                 <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId) } })}>

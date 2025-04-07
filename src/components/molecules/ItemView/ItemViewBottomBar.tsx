@@ -5,7 +5,7 @@ import { Button } from "@/components/atoms/Button";
 import { useCreateChatRoomMutation } from "@/hooks/api/ChatsQuery";
 import { getCookie } from "@/utils/Cookie";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAddWishlist, useRemoveWishlist } from "@/hooks/api/UsersQuery";
 
 type ItemViewLayout = {
@@ -33,6 +33,10 @@ export default function ItemViewBottomBar({
     const { mutate: addWishlist } = useAddWishlist();
     const { mutate: removeWishlist } = useRemoveWishlist();
     const [isLiked, setIsLiked] = useState(wishlisted);
+
+    useEffect(() => {
+        setIsLiked(wishlisted);
+    }, [wishlisted]);
 
     const handleChatButtonClick = async (status: string) => {
         if (status === "판매완료") return;
