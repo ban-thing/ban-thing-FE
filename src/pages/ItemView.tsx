@@ -31,6 +31,8 @@ const ItemViewPage = () => {
             itemId={Number(itemId)}
             myId={myProfileData?.data.userId}
             status={itemData?.status || ""}
+            wishlisted={itemData?.wishlisted || false}
+            wishlistCount={itemData?.wishlistCount || 0}
         >
             {/* 스켈레톤 */}
             {!isLoading ? (

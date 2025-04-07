@@ -47,6 +47,8 @@ export interface ItemView {
     sellerId?: number;
     itemImgNames: string[];
     status?: string;
+    wishlisted?: boolean;
+    wishlistCount?: number;
 }
 
 interface CleaningDetail {

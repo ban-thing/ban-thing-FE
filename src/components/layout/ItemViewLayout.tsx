@@ -9,6 +9,8 @@ type ItemViewLayout = {
     itemId: number;
     myId: number;
     status: string;
+    wishlisted?: boolean;
+    wishlistCount?: number;
 };
 
 const ItemViewLayout = ({
@@ -19,6 +21,8 @@ const ItemViewLayout = ({
     itemId,
     myId,
     status,
+    wishlisted = false,
+    wishlistCount = 0,
 }: ItemViewLayout) => {
     return (
         <>
@@ -30,6 +34,8 @@ const ItemViewLayout = ({
                 itemId={itemId}
                 myId={myId}
                 status={status}
+                wishlisted={wishlisted}
+                wishlistCount={wishlistCount}
             />
         </>
     );

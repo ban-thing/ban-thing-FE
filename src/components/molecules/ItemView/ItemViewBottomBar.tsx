@@ -15,6 +15,8 @@ type ItemViewLayout = {
     itemId: number;
     myId: number;
     status?: string;
+    wishlisted?: boolean;
+    wishlistCount?: number;
 };
 
 export default function ItemViewBottomBar({
@@ -24,12 +26,13 @@ export default function ItemViewBottomBar({
     itemId,
     myId,
     status,
+    wishlisted = false,
 }: ItemViewLayout) {
     const navigate = useNavigate();
     const { mutate: createChatRoom } = useCreateChatRoomMutation();
     const { mutate: addWishlist } = useAddWishlist();
     const { mutate: removeWishlist } = useRemoveWishlist();
-    const [isLiked, setIsLiked] = useState(false);
+    const [isLiked, setIsLiked] = useState(wishlisted);
 
     const handleChatButtonClick = async (status: string) => {
         if (status === "판매완료") return;
