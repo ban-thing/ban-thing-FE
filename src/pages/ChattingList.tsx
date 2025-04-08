@@ -8,7 +8,7 @@ import NoItemInList from "@/components/molecules/ItemView/NoItemInList";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useChatsListQuery } from "@/hooks/api/ChatsQuery";
 
-const tabsList = ["전체", "판매", "구매"];
+const tabsList = ["전체", "구매", "판매"];
 
 export default function ChattingList() {
     const navigate = useNavigate();
