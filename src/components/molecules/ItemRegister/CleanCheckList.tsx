@@ -174,6 +174,6 @@ const RegisterSubTitle3 = styled.h3`
 const GuideText = styled.span`
     color: var(--color-black-5);
     font-size: 14px;
-    margin-top: 3px;
     display: block;
+    margin-bottom: 3px;
 `;
