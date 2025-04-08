@@ -13,21 +13,6 @@ import RadioButtonsList from "./RadioButtonsList";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import MaskedInput from "./MaskedInput";
 
-const RegisterSubTitle3 = styled.h3`
-    color: var(--color-black-4);
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-`;
-
-const GuideText = styled.span`
-    color: var(--color-black-3);
-    font-size: 12px;
-    margin-left: 8px;
-`;
-
 interface CleanCheckListProps {
     setValue: UseFormSetValue<FieldValues>;
     register: UseFormRegister<FieldValues>;
@@ -176,3 +161,19 @@ const CleanCheckList = ({
 };
 
 export default CleanCheckList;
+
+const RegisterSubTitle3 = styled.h3`
+    color: var(--color-black-4);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const GuideText = styled.span`
+    color: var(--color-black-5);
+    font-size: 14px;
+    margin-top: 3px;
+    display: block;
+`;
