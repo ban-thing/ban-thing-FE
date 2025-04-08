@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Search from "@/assets/icons/search.svg?react";
+import Search from "@/assets/icons/searchIcon.svg?react";
 import { Dropdown } from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";

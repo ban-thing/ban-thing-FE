@@ -1,6 +1,6 @@
 import { Input } from "@/components/atoms/Input";
 import styled from "styled-components";
-import SearchIcon from "@/assets/icons/search.svg?react";
+import SearchIcon from "@/assets/icons/searchIcon.svg?react";
 import { useLocation } from "react-router-dom";
 import { ItemFilterButton, ItemPlusButton } from "@/components/atoms/Button";
 import ItemList from "@/components/layout/ItemList";

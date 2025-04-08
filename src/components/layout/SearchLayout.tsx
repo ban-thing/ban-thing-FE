@@ -1,7 +1,7 @@
 import { Input } from "@/components/atoms/Input";
 import NavigationBar from "@/components/atoms/NavigationBar";
 import styled from "styled-components";
-import SearchIcon from "@/assets/icons/search.svg?react";
+import SearchIcon from "@/assets/icons/searchIcon.svg?react";
 import FootprintIcon from "@/assets/icons/footPrintBackground.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import { useNavigate } from "react-router-dom";
