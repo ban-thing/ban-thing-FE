@@ -22,6 +22,12 @@ const RegisterSubTitle3 = styled.h3`
     justify-content: space-between;
 `;
 
+const GuideText = styled.span`
+    color: var(--color-black-3);
+    font-size: 12px;
+    margin-left: 8px;
+`;
+
 interface CleanCheckListProps {
     setValue: UseFormSetValue<FieldValues>;
     register: UseFormRegister<FieldValues>;
@@ -29,7 +35,7 @@ interface CleanCheckListProps {
     errors: FieldErrorsImpl<FieldValues>;
     showDirectModal: boolean;
     setShowDirectModal: Dispatch<SetStateAction<boolean>>;
-    control: Control<FieldValues, any>;
+    control: Control<FieldValues, unknown>;
 }
 
 const CleanCheckList = ({
@@ -132,13 +138,16 @@ const CleanCheckList = ({
                 </RegisterSubTitle3>
 
                 {isChecked[1] && (
-                    <MaskedInput
-                        control={control}
-                        errors={errors}
-                        name="clnExpire"
-                        watch={watch}
-                        isChecked={isChecked[1]}
-                    />
+                    <>
+                        <GuideText>알지 못하는 경우 없음으로 클릭해 주세요.</GuideText>
+                        <MaskedInput
+                            control={control}
+                            errors={errors}
+                            name="clnExpire"
+                            watch={watch}
+                            isChecked={isChecked[1]}
+                        />
+                    </>
                 )}
             </div>
             <div>
