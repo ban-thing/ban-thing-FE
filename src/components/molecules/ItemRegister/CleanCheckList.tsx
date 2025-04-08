@@ -124,7 +124,7 @@ const CleanCheckList = ({
 
                 {isChecked[1] && (
                     <>
-                        <GuideText>알지 못하는 경우 없음으로 클릭해 주세요.</GuideText>
+                        <GuideText>알지 못하는 경우 없음으로 클릭해 주세요</GuideText>
                         <MaskedInput
                             control={control}
                             errors={errors}

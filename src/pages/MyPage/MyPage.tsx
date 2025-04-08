@@ -8,6 +8,7 @@ import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect, useState } from "react";
 import { UserProfile } from "@/types/User";
+import { MySellButton } from "@/components/molecules/MySellButton";
 
 const MyPageWrap = styled.div`
     padding: 0 20px;
@@ -54,7 +55,7 @@ const MyPage = () => {
             )}
             <SquareButtonList />
             <MyPageSettingList />
-            <NavigationBar />
+            <NavigationBar children={<MySellButton />} />
         </MyPageWrap>
     );
 };
