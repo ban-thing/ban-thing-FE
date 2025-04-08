@@ -46,7 +46,7 @@ export default function SearchLayout() {
                     <SearchInputWrapper>
                         <SearchIcon onClick={handleSearchClick} />
                         <Input
-                            placeholder="검색어를 입력하세요."
+                            placeholder="검색어를 입력해요."
                             required
                             minLength={1}
                             value={searchValue}

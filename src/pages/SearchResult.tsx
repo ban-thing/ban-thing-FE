@@ -123,7 +123,7 @@ export default function SearchResult() {
                     noItemText={
                         searchKeyword || searchHashList.length > 0
                             ? "검색 결과가 없습니다."
-                            : "검색어를 입력해주세요."
+                            : "검색어를 입력해요."
                     }
                 />
             </ScrollContent>
