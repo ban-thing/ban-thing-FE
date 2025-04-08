@@ -55,7 +55,7 @@ const MyPage = () => {
             )}
             <SquareButtonList />
             <MyPageSettingList />
-            <NavigationBar children={<MySellButton />} />
+            <NavigationBar children={<MySellButton alwaysShowPlus />} />
         </MyPageWrap>
     );
 };
