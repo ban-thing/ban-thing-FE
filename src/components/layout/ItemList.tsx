@@ -29,6 +29,7 @@ type ItemListProps = {
     isLoading: boolean;
     isHome?: boolean;
     isMyPage?: boolean;
+    isMyFavorite?: boolean;
 };
 
 const ItemList = ({
@@ -39,6 +40,7 @@ const ItemList = ({
     isLoading,
     isHome = false,
     isMyPage = false,
+    isMyFavorite = false,
 }: ItemListProps) => {
     const { searchHashList } = useSearchHashListStore();
     const { currentLocation } = useItemListLocationStore();
@@ -114,6 +116,7 @@ const ItemList = ({
                             type={item.type}
                             status={item.status}
                             viewEditButton={viewEditButton}
+                            isMyFavorite={isMyFavorite}
                         />
                     ))
                 ) : (

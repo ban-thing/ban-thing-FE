@@ -16,6 +16,7 @@ const MyPageFavoriteList = () => {
                 viewEditButton={false}
                 noItemText="앗! 아직 찜한 상품이 없어요."
                 isMyPage={true}
+                isMyFavorite={true}
             />
         </MyPageItemListWrap>
     );
