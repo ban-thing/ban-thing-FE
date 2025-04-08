@@ -2,6 +2,7 @@ import styled from "styled-components";
 import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButtonWithCloseList";
 import Character from "@/assets/characterWhite.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
+import ResetIcon from "@/assets/icons/reset.svg?react";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
 import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from "react";
@@ -47,9 +48,8 @@ export default function HashTagFilterModal() {
         hideHashtagFilterModal();
     };
 
-    const onClickCancel = () => {
-        setTempHashList(searchHashList);
-        hideHashtagFilterModal();
+    const onClickReset = () => {
+        setTempHashList([]);
     };
 
     useEffect(() => {
@@ -91,16 +91,21 @@ export default function HashTagFilterModal() {
                 <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
                 <ButtonContainer>
                     <Button
-                        onClick={onClickCancel}
+                        onClick={onClickReset}
                         variant="outlined"
                         size="small"
                         style={{
                             border: "1px solid var(--color-black-6)",
                             backgroundColor: "white",
-                            color: "var(--color-black-6)",
+                            color: "var(--color-black-5)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "4px",
                         }}
                     >
-                        취소
+                        <ResetIcon />
+                        초기화
                     </Button>
                     <Button
                         onClick={onClickComplete}
