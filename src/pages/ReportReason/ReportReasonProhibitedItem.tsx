@@ -12,7 +12,7 @@ const ReportReasonProhibitedItem = () => {
     const location = useLocation();
     const selectedCategory = location.state?.category || "거래 금지 품목으로 판단돼요";
     const itemId = location.state?.itemId;
-    const settings = ["반려동물(식물 제외)", "가품(위조품/이미테이션)", "개인정보 거래(sns계정, 인증번호 등)", "게임계정/아이템/대리육성", "담배", "홪아품 샘플(견본품, 증정품)", "음란물/성인용품", "의약품/의료기기", "주류"];
+    const settings = ["반려동물(식물 제외)", "가품(위조품/이미테이션)", "개인정보 거래(sns계정, 인증번호 등)", "게임계정/아이템/대리육성", "담배", "화장품 샘플(견본품, 증정품)", "음란물/성인용품", "의약품/의료기기", "주류"];
     const [selectedReason, setSelectedReason] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const { mutate: reportItem } = useFetchItemReport();

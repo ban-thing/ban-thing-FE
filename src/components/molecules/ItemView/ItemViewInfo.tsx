@@ -52,7 +52,7 @@ export default function ItemViewInfo({
                             </DotIconWrapper>
                             <LikeCountWrapper>
                                 <HeartCountIcon />
-                                <span>{likeCount}</span>
+                                <span style={{ color: "var(--color-black-5)" }}>{likeCount}</span>
                             </LikeCountWrapper>
                         </TimeAndLikeWrap>
                     </TitleWrap>
@@ -182,6 +182,7 @@ const LikeCountWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
+    color: #949494;
 
     svg {
         width: 16px;
