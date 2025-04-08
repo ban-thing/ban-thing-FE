@@ -142,7 +142,12 @@ export default function ItemInList({
                         {price === 0 || type === "나눔"
                             ? "나눔"
                             : type === "판매" || status === "판매중" || status === "판매완료"
-                              ? `${price.toLocaleString("en-US")}원`
+                              ? (
+                                <>
+                                  <span style={{ fontWeight: 700 }}>{price.toLocaleString("en-US")}</span>
+                                  <span style={{ fontWeight: 500 }}>원</span>
+                                </>
+                              )
                               : "-"}
                     </ItemPrice>
                 </ItemBoxRight>
