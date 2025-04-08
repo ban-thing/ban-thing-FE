@@ -25,6 +25,7 @@ type ItemInListProps = ItemSearchList & {
     viewEditButton?: boolean;
     status?: string;
     imgUrl?: string;
+    imgUrls?: string[];
 };
 
 export default function ItemInList({
@@ -36,6 +37,7 @@ export default function ItemInList({
     price,
     images,
     imgUrl,
+    imgUrls,
     viewEditButton = false,
     status,
 }: ItemInListProps) {
@@ -65,6 +67,7 @@ export default function ItemInList({
                 <ItemPhotoWrap>
                     <ItemPhoto
                         src={
+                            imgUrls && imgUrls.length > 0 ? `${imageUrl}/${imgUrls[0]}` :
                             imgUrl || images
                                 ? `${imageUrl}/${imgUrl || images}`
                                 : notFound
