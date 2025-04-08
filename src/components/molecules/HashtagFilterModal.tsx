@@ -3,6 +3,8 @@ import HashTagButtonList from "@/components/molecules/ItemRegister/HashTagButton
 import Character from "@/assets/characterWhite.svg?react";
 import HashTagIcon from "@/assets/icons/hashtag.svg?react";
 import ResetIcon from "@/assets/icons/reset.svg?react";
+import { Button } from "../atoms/Button";
+import { Input } from "../atoms/Input";
 import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from "react";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useHashtagFilterModalStore } from "@/store/ModalStore";
@@ -14,7 +16,7 @@ const TitleWrap = styled.div<{ $margin?: string }>`
     align-items: center;
     justify-content: center;
     position: relative;
-    margin: ${({ $margin }) => ($margin ? $margin : "16px 0 30px")};
+    margin: ${({ $margin }) => ($margin ? $margin : "16px 0 48px")};
 `;
 
 const BackButton = styled.div`
@@ -97,42 +99,63 @@ export default function HashTagFilterModal() {
                 <CharacterWrap>
                     <Character />
                 </CharacterWrap>
-                <TagInputWrapper>
+                <InputWrapper>
                     <HashTagIcon />
-                    <TagInput
+                    <Input
                         placeholder={
                             tempHashList.length === 5
                                 ? "태그는 최대 5개까지 입력 가능합니다."
-                                : "태그입력"
+                                : "태그 입력"
                         }
                         onChange={onInputChange}
                         onKeyPress={onEnterDown}
                         value={inputValue}
                     />
-                </TagInputWrapper>
+                </InputWrapper>
 
                 <HashTagButtonList
                     hashList={tempHashList}
                     setValue={handleSetValue}
-                    margin="16px 0 0 0"
+                    margin="10px 0 0 0"
                 />
 
                 <DescriptionWrap>
                     <div>원하는 상품을 다양한 태그로 표현해요 (최대 5개)</div>
                     <div>태그로 검색하면 원하는 조건의 상품을 쉽게 볼 수 있어요!</div>
                 </DescriptionWrap>
-                <TagExample>#강아지 #소형견 #베이지 #장난감 #파란색</TagExample>
+                <TagExample>#강아지 #소형견 #베이지 #장난감 #산책</TagExample>
                 <ButtonContainer>
-                    <ResetButton onClick={onClickReset}>
+                    <Button
+                        onClick={onClickReset}
+                        variant="outlined"
+                        size="small"
+                        style={{
+                            border: "1px solid var(--color-black-6)",
+                            backgroundColor: "white",
+                            color: "var(--color-black-5)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "4px",
+                        }}
+                    >
                         <ResetIcon />
                         초기화
-                    </ResetButton>
-                    <CompleteButton
+                    </Button>
+                    <Button
                         onClick={onClickComplete}
+                        size="small"
                         disabled={tempHashList.length === 0}
+                        style={{
+                            backgroundColor:
+                                tempHashList.length === 0
+                                    ? "var(--color-black-6)"
+                                    : "var(--color-main-1)",
+                            cursor: tempHashList.length === 0 ? "default" : "pointer",
+                        }}
                     >
                         완료
-                    </CompleteButton>
+                    </Button>
                 </ButtonContainer>
             </HashTagPageLayout>
         </HashTagPageWrap>
@@ -149,20 +172,17 @@ const CharacterWrap = styled.div`
 const HashTagPageWrap = styled.div`
     display: flex;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    background-color: var(--color-main-2);
+    min-height: 100%;
+    background-color: #c6d8ff;
 `;
 
 const HashTagPageLayout = styled.div`
-    width: 100%;
-    max-width: 375px;
-    height: 100%;
+    width: 375px;
     padding: 0 20px;
     box-sizing: border-box;
     display: flex;
@@ -176,7 +196,7 @@ const DescriptionWrap = styled.div`
     flex-direction: column;
     gap: 8px;
     width: 100%;
-    padding: 30px 0 16px 12px;
+    padding: 30px 0 32px 12px;
     box-sizing: border-box;
 
     & > * {
@@ -201,75 +221,45 @@ const DescriptionWrap = styled.div`
 
 const TagExample = styled.div`
     width: 100%;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-black-5);
-    margin-bottom: 30px;
+    flex: 1;
 `;
 
-const TagInputWrapper = styled.div`
+const InputWrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 120px;
+    margin-top: 197px;
     z-index: 12;
-    background: white;
-    border-radius: 30px;
-    padding: 15px;
-    box-sizing: border-box;
 
     svg {
-        margin-right: 8px;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
         width: 20px;
         height: 20px;
         color: #999;
     }
-`;
 
-const TagInput = styled.input`
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    &::placeholder {
-        color: #b0b0b0;
+    input {
+        padding-left: 30px;
     }
 `;
 
 const ButtonContainer = styled.div`
-    width: 100%;
+    width: 375px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    position: absolute;
-    bottom: 20px;
-    padding: 0 20px;
+    height: auto;
     box-sizing: border-box;
-`;
-
-const ResetButton = styled.button`
-    flex: 1;
-    height: 48px;
-    background: white;
-    border: 1px solid #d7d7d7;
-    border-radius: 8px;
-    color: var(--color-black-5);
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
-`;
-
-const CompleteButton = styled.button<{ disabled: boolean }>`
-    flex: 1;
-    height: 48px;
-    background: ${props => props.disabled ? 'var(--color-black-6)' : '#6290ec'};
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: ${props => props.disabled ? 'default' : 'pointer'};
+    background: #c6d8ff;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
 `;
