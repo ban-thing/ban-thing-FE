@@ -136,7 +136,7 @@ export default function HashTagFilterModal() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            gap: "4px",
+                            gap: "9px",
                         }}
                     >
                         <ResetIcon />
@@ -231,7 +231,7 @@ const InputWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 197px;
+    margin-top: 132px;
     z-index: 12;
 
     svg {
