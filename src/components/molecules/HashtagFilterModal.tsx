@@ -8,6 +8,35 @@ import { Input } from "../atoms/Input";
 import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from "react";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useHashtagFilterModalStore } from "@/store/ModalStore";
+import BackIcon from "@/assets/icons/back.svg?react";
+
+const TitleWrap = styled.div<{ $margin?: string }>`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: ${({ $margin }) => ($margin ? $margin : "16px 0 48px")};
+`;
+
+const BackButton = styled.div`
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 0 5px;
+
+    & > * {
+        display: flex;
+    }
+`;
+
+const Title = styled.h1`
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+`;
 
 export default function HashTagFilterModal() {
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
@@ -61,6 +90,12 @@ export default function HashTagFilterModal() {
     return (
         <HashTagPageWrap>
             <HashTagPageLayout>
+                <TitleWrap $margin="16px 0 20px">
+                    <BackButton onClick={hideHashtagFilterModal}>
+                        <BackIcon />
+                    </BackButton>
+                    <Title>태그 등록</Title>
+                </TitleWrap>
                 <CharacterWrap>
                     <Character />
                 </CharacterWrap>
@@ -143,7 +178,6 @@ const HashTagPageWrap = styled.div`
     flex-direction: column;
     align-items: center;
     min-height: 100%;
-    width: 100%;
     background-color: #c6d8ff;
 `;
 
