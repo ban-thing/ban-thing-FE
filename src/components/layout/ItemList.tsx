@@ -8,18 +8,6 @@ import { useEffect } from "react";
 import { useItemListLocationStore } from "@/store/LocationStore";
 import { useSearchHashListStore } from "@/store/SearchHashList";
 
-const StyledItemList = styled.div<{ height: string; padding?: string }>`
-    height: ${({ height }) => (height ? height : null)};
-    width: 100%;
-    max-width: 375px;
-    padding: ${({ padding }) => (padding ? padding : "50px 20px 60px")};
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
 type ItemListProps = {
     padding?: string;
     itemListData?: Record<string, any>[];
@@ -130,3 +118,15 @@ const ItemList = ({
 };
 
 export default ItemList;
+
+const StyledItemList = styled.div<{ height: string; padding?: string }>`
+    height: ${({ height }) => (height ? height : null)};
+    width: 100%;
+    max-width: 375px;
+    padding: ${({ padding }) => (padding ? padding : "50px 20px 60px")};
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;

@@ -49,7 +49,7 @@ const StyledItemContainer = styled.div`
 
 const CancelButton = styled.button`
     position: absolute;
-    top: 0;
+    top: 13px;
     right: 0;
     background: none;
     border: none;
