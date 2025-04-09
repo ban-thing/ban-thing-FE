@@ -10,34 +10,6 @@ import { useSearchHashListStore } from "@/store/SearchHashList";
 import { useHashtagFilterModalStore } from "@/store/ModalStore";
 import BackIcon from "@/assets/icons/back.svg?react";
 
-const TitleWrap = styled.div<{ $margin?: string }>`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: ${({ $margin }) => ($margin ? $margin : "16px 0 48px")};
-`;
-
-const BackButton = styled.div`
-    position: absolute;
-    left: 0;
-    cursor: pointer;
-    margin-left: 15px;
-    padding: 0 5px;
-
-    & > * {
-        display: flex;
-    }
-`;
-
-const Title = styled.h1`
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0;
-    text-align: center;
-`;
-
 export default function HashTagFilterModal() {
     const { searchHashList, setSearchHashList } = useSearchHashListStore();
     const { hideHashtagFilterModal } = useHashtagFilterModalStore();
@@ -90,7 +62,7 @@ export default function HashTagFilterModal() {
     return (
         <HashTagPageWrap>
             <HashTagPageLayout>
-                <TitleWrap $margin="16px 0 20px">
+                <TitleWrap>
                     <BackButton onClick={hideHashtagFilterModal}>
                         <BackIcon />
                     </BackButton>
@@ -250,16 +222,45 @@ const InputWrapper = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-    width: 375px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
+    width: 375px;
+    height: 76px;
     box-sizing: border-box;
-    gap: 8px;
-    background: #c6d8ff;
+    gap: 15px;
+    background: white;
     position: fixed;
-    bottom: 16px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+`;
+
+const TitleWrap = styled.div`
+    width: 375px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+`;
+
+const BackButton = styled.div`
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 0 5px;
+
+    & > * {
+        display: flex;
+    }
+`;
+
+const Title = styled.h1`
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
 `;
