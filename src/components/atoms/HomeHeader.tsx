@@ -19,7 +19,15 @@ const HeaderBox = styled.header`
     position: fixed;
     top: 0;
     z-index: 15;
-    box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), transparent);
+    }
 `;
 
 const SearchButton = styled.button`
