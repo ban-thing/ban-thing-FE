@@ -20,6 +20,7 @@ const HeaderBox = styled.header`
     top: 0;
     z-index: 15;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 `;
 
 const SearchButton = styled.button`
