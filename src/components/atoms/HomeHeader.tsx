@@ -22,11 +22,11 @@ const HeaderBox = styled.header`
     &::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -8px;
         left: 0;
         right: 0;
-        height: 4px;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), transparent);
+        height: 8px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08), transparent);
     }
 `;
 
