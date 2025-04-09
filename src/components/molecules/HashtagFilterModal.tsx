@@ -196,6 +196,7 @@ const TagExample = styled.div`
     font-size: 12px;
     color: var(--color-black-5);
     flex: 1;
+    margin-left: 23px;
 `;
 
 const InputWrapper = styled.div`
@@ -203,7 +204,7 @@ const InputWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 132px;
+    margin-top: 142px;
     z-index: 12;
 
     svg {
