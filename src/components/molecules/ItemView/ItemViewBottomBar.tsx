@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAddWishlist, useRemoveWishlist } from "@/hooks/api/UsersQuery";
 
-type ItemViewLayout = {
+type ItemViewBottomBarProps = {
     type: string;
     price: number;
     sellerId: number;
@@ -17,6 +17,7 @@ type ItemViewLayout = {
     status?: string;
     wishlisted?: boolean;
     wishlistCount?: number;
+    onWishlistClick?: () => void;
 };
 
 export default function ItemViewBottomBar({
@@ -27,7 +28,8 @@ export default function ItemViewBottomBar({
     myId,
     status,
     wishlisted = false,
-}: ItemViewLayout) {
+    onWishlistClick,
+}: ItemViewBottomBarProps) {
     const navigate = useNavigate();
     const { mutate: createChatRoom } = useCreateChatRoomMutation();
     const { mutate: addWishlist } = useAddWishlist();
@@ -67,6 +69,7 @@ export default function ItemViewBottomBar({
             addWishlist(itemId, {
                 onSuccess: () => {
                     setIsLiked(true);
+                    onWishlistClick?.();
                 },
             });
         }
