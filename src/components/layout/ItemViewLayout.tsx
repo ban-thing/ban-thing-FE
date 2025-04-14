@@ -4,60 +4,6 @@ import styled from "styled-components";
 import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
-import HeartIcon from "@/components/atoms/HeartIcon";
-
-const ItemViewHeader = styled.header`
-    height: 50px;
-    width: 100%;
-    max-width: 375px;
-    padding: 14px 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    z-index: 15;
-`;
-
-const HeaderButtonGroup = styled.div`
-    display: flex;
-    gap: 16px;
-`;
-
-const BackButton = styled.button`
-    padding: 0;
-`;
-
-const HomeButton = styled.button`
-    padding: 0;
-`;
-
-const SearchButton = styled.button`
-    padding: 0;
-`;
-
-const LikeButton = styled.button`
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-width: 375px;
-    height: 60px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-top: 1px solid #eee;
-`;
-
-const LikePrice = styled.span`
-    font-size: 16px;
-    font-weight: 600;
-    color: #111;
-`;
 
 type ItemViewLayoutProps = {
     children: ReactNode;
@@ -90,8 +36,6 @@ const ItemViewLayout = ({
     onClickBack,
     onClickHome,
     onClickSearch,
-    onClickLike,
-    isLiked,
     onWishlistClick,
 }: ItemViewLayoutProps) => {
     return (
@@ -121,12 +65,40 @@ const ItemViewLayout = ({
                 wishlistCount={wishlistCount}
                 onWishlistClick={onWishlistClick}
             />
-            <LikeButton onClick={onClickLike}>
-                <HeartIcon isLiked={isLiked} />
-                <LikePrice>5,000원</LikePrice>
-            </LikeButton>
         </>
     );
 };
 
 export default ItemViewLayout;
+
+const ItemViewHeader = styled.header`
+    height: 50px;
+    width: 100%;
+    max-width: 375px;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 15;
+`;
+
+const HeaderButtonGroup = styled.div`
+    display: flex;
+    gap: 16px;
+`;
+
+const BackButton = styled.button`
+    padding: 0;
+`;
+
+const HomeButton = styled.button`
+    padding: 0;
+`;
+
+const SearchButton = styled.button`
+    padding: 0;
+`;
