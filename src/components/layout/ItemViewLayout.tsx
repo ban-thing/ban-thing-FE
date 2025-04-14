@@ -1,7 +1,6 @@
 import ItemViewBottomBar from "@/components/molecules/ItemView/ItemViewBottomBar";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
-import { Toast } from "../atoms/Toast";
 import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
@@ -75,6 +74,7 @@ type ItemViewLayoutProps = {
     onClickSearch?: () => void;
     onClickLike?: () => void;
     isLiked?: boolean;
+    onWishlistClick?: () => void;
 };
 
 const ItemViewLayout = ({
@@ -92,18 +92,8 @@ const ItemViewLayout = ({
     onClickSearch,
     onClickLike,
     isLiked,
+    onWishlistClick,
 }: ItemViewLayoutProps) => {
-    const [showToast, setShowToast] = useState(false);
-
-    const handleLikeClick = () => {
-        if (onClickLike) {
-            onClickLike();
-            if (!isLiked) {
-                setShowToast(true);
-            }
-        }
-    };
-
     return (
         <>
             <ItemViewHeader>
@@ -129,17 +119,12 @@ const ItemViewLayout = ({
                 status={status}
                 wishlisted={wishlisted}
                 wishlistCount={wishlistCount}
-                onWishlistClick={() => setShowToast(true)}
+                onWishlistClick={onWishlistClick}
             />
-            <LikeButton onClick={handleLikeClick}>
+            <LikeButton onClick={onClickLike}>
                 <HeartIcon isLiked={isLiked} />
                 <LikePrice>5,000원</LikePrice>
             </LikeButton>
-            <Toast 
-                message="나의 찜에 추가했어요"
-                isVisible={showToast}
-                onClose={() => setShowToast(false)}
-            />
         </>
     );
 };

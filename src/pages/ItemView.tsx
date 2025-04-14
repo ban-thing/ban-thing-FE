@@ -13,6 +13,8 @@ import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
+import { useState } from "react";
+import { Toast } from "@/components/atoms/Toast";
 
 const ItemViewPage = () => {
     const { data: myProfileData } = useFetchMyProfile();
@@ -22,91 +24,100 @@ const ItemViewPage = () => {
         Number(location.pathname.split("/")[2]),
     );
     const navigate = useNavigate();
+    const [showToast, setShowToast] = useState(false);
 
     return (
-        <ItemViewLayout
-            type={itemData?.type || ""}
-            price={itemData?.price || 0}
-            sellerId={Number(itemData?.sellerId)}
-            itemId={Number(itemId)}
-            myId={myProfileData?.data.userId}
-            status={itemData?.status || ""}
-            wishlisted={itemData?.wishlisted || false}
-            wishlistCount={itemData?.wishlistCount || 0}
-        >
-            {/* 스켈레톤 */}
-            {!isLoading ? (
-                <StyledItemImg>
-                    <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                        {itemData && itemData.itemImgs && itemData.itemImgs.length > 0 ? (
-                            itemData.itemImgs.map((value, index) => {
-                                if (!value) return null;
-                                try {
-                                    return (
-                                        <SwiperSlide key={index}>
-                                            <img src={URL.createObjectURL(base64ToFile(value))} alt={`상품 이미지 ${index + 1}`} />
-                                        </SwiperSlide>
-                                    );
-                                } catch (error) {
-                                    console.error('이미지 변환 중 오류:', error);
-                                    return null;
-                                }
-                            })
-                        ) : (
-                            <SwiperSlide>
-                                <img src="/default-image.png" alt="기본 이미지" />
-                            </SwiperSlide>
-                        )}
-                    </Swiper>
-                    <TitleWrapper>
-                        <BackButton onClick={() => navigate(-1)}>
-                            <BackIcon />
-                        </BackButton>
-                        <ButtonGroup>
-                            <BackButton onClick={() => navigate("/")}>
-                                <HomeIcon />
+        <>
+            <ItemViewLayout
+                type={itemData?.type || ""}
+                price={itemData?.price || 0}
+                sellerId={Number(itemData?.sellerId)}
+                itemId={Number(itemId)}
+                myId={myProfileData?.data.userId}
+                status={itemData?.status || ""}
+                wishlisted={itemData?.wishlisted || false}
+                wishlistCount={itemData?.wishlistCount || 0}
+                onWishlistClick={() => setShowToast(true)}
+            >
+                {/* 스켈레톤 */}
+                {!isLoading ? (
+                    <StyledItemImg>
+                        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                            {itemData && itemData.itemImgs && itemData.itemImgs.length > 0 ? (
+                                itemData.itemImgs.map((value, index) => {
+                                    if (!value) return null;
+                                    try {
+                                        return (
+                                            <SwiperSlide key={index}>
+                                                <img src={URL.createObjectURL(base64ToFile(value))} alt={`상품 이미지 ${index + 1}`} />
+                                            </SwiperSlide>
+                                        );
+                                    } catch (error) {
+                                        console.error('이미지 변환 중 오류:', error);
+                                        return null;
+                                    }
+                                })
+                            ) : (
+                                <SwiperSlide>
+                                    <img src="/default-image.png" alt="기본 이미지" />
+                                </SwiperSlide>
+                            )}
+                        </Swiper>
+                        <TitleWrapper>
+                            <BackButton onClick={() => navigate(-1)}>
+                                <BackIcon />
                             </BackButton>
-                            <BackButton onClick={() => navigate("/search")}>
-                                <SearchIcon />
-                            </BackButton>
-                        </ButtonGroup>
-                    </TitleWrapper>
-                </StyledItemImg>
-            ) : (
-                <ItemImgSkt />
-            )}
+                            <ButtonGroup>
+                                <BackButton onClick={() => navigate("/")}>
+                                    <HomeIcon />
+                                </BackButton>
+                                <BackButton onClick={() => navigate("/search")}>
+                                    <SearchIcon />
+                                </BackButton>
+                            </ButtonGroup>
+                        </TitleWrapper>
+                    </StyledItemImg>
+                ) : (
+                    <ItemImgSkt />
+                )}
 
-            <ItemViewProfile
-                sellerNickname={itemData?.sellerNickname ?? ""}
-                sellerImgUrl={itemData?.sellerImgUrl ?? ""}
-                address={itemData?.address ?? ""}
-                directLocation={itemData?.directLocation ?? ""}
-                direct={itemData?.direct ?? false}
-                isLoading={isLoading}
-            />
-            <ItemViewInfo
-                isLoading={isLoading}
-                title={itemData?.title ?? ""}
-                content={itemData?.content ?? ""}
-                hashtags={itemData?.hashtags ?? [{ id: 0, hashtag: "" }]}
-                cleaningDetail={
-                    itemData?.cleaningDetail ?? {
-                        pollution: "",
-                        timeUsed: "",
-                        purchasedDate: "",
-                        cleaned: "",
-                        expire: "",
+                <ItemViewProfile
+                    sellerNickname={itemData?.sellerNickname ?? ""}
+                    sellerImgUrl={itemData?.sellerImgUrl ?? ""}
+                    address={itemData?.address ?? ""}
+                    directLocation={itemData?.directLocation ?? ""}
+                    direct={itemData?.direct ?? false}
+                    isLoading={isLoading}
+                />
+                <ItemViewInfo
+                    isLoading={isLoading}
+                    title={itemData?.title ?? ""}
+                    content={itemData?.content ?? ""}
+                    hashtags={itemData?.hashtags ?? [{ id: 0, hashtag: "" }]}
+                    cleaningDetail={
+                        itemData?.cleaningDetail ?? {
+                            pollution: "",
+                            timeUsed: "",
+                            purchasedDate: "",
+                            cleaned: "",
+                            expire: "",
+                        }
                     }
-                }
-                updateTime={itemData?.updateTime ?? ""}
-                likeCount={itemData?.wishlistCount ?? 0}
+                    updateTime={itemData?.updateTime ?? ""}
+                    likeCount={itemData?.wishlistCount ?? 0}
+                />
+                <ReportButtonWrapper>
+                    <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId) } })}>
+                        이 게시글 신고하기
+                    </SkipButton>
+                </ReportButtonWrapper>
+            </ItemViewLayout>
+            <Toast 
+                message="나의 찜에 추가했어요"
+                isVisible={showToast}
+                onClose={() => setShowToast(false)}
             />
-            <ReportButtonWrapper>
-                <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId) } })}>
-                    이 게시글 신고하기
-                </SkipButton>
-            </ReportButtonWrapper>
-        </ItemViewLayout>
+        </>
     );
 };
 
