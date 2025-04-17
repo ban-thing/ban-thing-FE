@@ -17,7 +17,7 @@ type ItemViewBottomBarProps = {
     status?: string;
     wishlisted?: boolean;
     wishlistCount?: number;
-    onWishlistClick?: () => void;
+    onWishlistClick?: (isAdding: boolean) => void;
 };
 
 export default function ItemViewBottomBar({
@@ -63,13 +63,14 @@ export default function ItemViewBottomBar({
             removeWishlist(itemId, {
                 onSuccess: () => {
                     setIsLiked(false);
+                    onWishlistClick?.(false);
                 },
             });
         } else {
             addWishlist(itemId, {
                 onSuccess: () => {
                     setIsLiked(true);
-                    onWishlistClick?.();
+                    onWishlistClick?.(true);
                 },
             });
         }
