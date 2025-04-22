@@ -1,5 +1,6 @@
 import ItemViewBottomBar from "@/components/molecules/ItemView/ItemViewBottomBar";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 type ItemViewLayoutProps = {
     children: ReactNode;
@@ -8,16 +9,24 @@ type ItemViewLayoutProps = {
     sellerId: number;
     itemId: number;
     myId: number;
-    status: string;
+    status?: string;
     wishlisted?: boolean;
     wishlistCount?: number;
+    onWishlistClick?: (isAdding: boolean) => void;
     onClickBack?: () => void;
     onClickHome?: () => void;
     onClickSearch?: () => void;
     onClickLike?: () => void;
     isLiked?: boolean;
-    onWishlistClick?: () => void;
 };
+
+const StyledItemViewLayout = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+`;
 
 const ItemViewLayout = ({
     children,
@@ -32,7 +41,7 @@ const ItemViewLayout = ({
     onWishlistClick,
 }: ItemViewLayoutProps) => {
     return (
-        <>
+        <StyledItemViewLayout>
             {children}
             <ItemViewBottomBar
                 type={type}
@@ -45,7 +54,7 @@ const ItemViewLayout = ({
                 wishlistCount={wishlistCount}
                 onWishlistClick={onWishlistClick}
             />
-        </>
+        </StyledItemViewLayout>
     );
 };
 

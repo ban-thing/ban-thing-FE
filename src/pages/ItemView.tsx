@@ -13,7 +13,7 @@ import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
 import BackIcon from "@/assets/icons/back.svg?react";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toast } from "@/components/atoms/Toast";
 
 const ItemViewPage = () => {
@@ -25,6 +25,20 @@ const ItemViewPage = () => {
     );
     const navigate = useNavigate();
     const [showToast, setShowToast] = useState(false);
+    const [wishlistCount, setWishlistCount] = useState(0);
+
+    useEffect(() => {
+        if (itemData) {
+            setWishlistCount(itemData.wishlistCount || 0);
+        }
+    }, [itemData]);
+
+    const handleWishlistUpdate = (isAdding: boolean) => {
+        setWishlistCount(prev => isAdding ? prev + 1 : Math.max(0, prev - 1));
+        if (isAdding) {
+            setShowToast(true);
+        }
+    };
 
     return (
         <>
@@ -36,8 +50,8 @@ const ItemViewPage = () => {
                 myId={myProfileData?.data.userId}
                 status={itemData?.status || ""}
                 wishlisted={itemData?.wishlisted || false}
-                wishlistCount={itemData?.wishlistCount || 0}
-                onWishlistClick={() => setShowToast(true)}
+                wishlistCount={wishlistCount}
+                onWishlistClick={handleWishlistUpdate}
             >
                 {/* 스켈레톤 */}
                 {!isLoading ? (
@@ -104,7 +118,7 @@ const ItemViewPage = () => {
                         }
                     }
                     updateTime={itemData?.updateTime ?? ""}
-                    likeCount={itemData?.wishlistCount ?? 0}
+                    likeCount={wishlistCount}
                 />
                 <ReportButtonWrapper>
                     <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId) } })}>
