@@ -13,6 +13,16 @@ const StyledBottomBar = styled.div`
     bottom: 0;
     background-color: white;
     box-sizing: border-box;
+    z-index: 15;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -11px;
+        left: 0;
+        right: 0;
+        height: 11px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.02), transparent);
+    }
 `;
 
 type BottomBarProps = ButtonProps & {
