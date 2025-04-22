@@ -2,6 +2,7 @@ import styled from "styled-components";
 import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
+import AlbumIcon from "@/assets/icons/album.svg?react";
 import { useEffect, useState, useRef } from "react";
 import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -359,22 +360,24 @@ export default function Chatting() {
                 )} */}
             </ChatContainer>
 
-            <Footer>
-                {/* <ImageButton>
-                    <AlbumIcon />
-                </ImageButton> */}
-                <InputContainer>
-                    <ChatInput
-                        value={inputText}
-                        onChange={(e) => setInputText(e.target.value)}
-                        onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                        placeholder="내용을 입력해주세요"
-                    />
-                    <SendButton onClick={handleSendMessage}>
-                        <SendIcon />
-                    </SendButton>
-                </InputContainer>
-            </Footer>
+            <FooterWrapper>
+                <Footer>
+                    <ImageButton>
+                        <AlbumIcon />
+                    </ImageButton>
+                    <InputContainer>
+                        <ChatInput
+                            value={inputText}
+                            onChange={(e) => setInputText(e.target.value)}
+                            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                            placeholder="내용을 입력해주세요"
+                        />
+                        <SendButton onClick={handleSendMessage}>
+                            <SendIcon />
+                        </SendButton>
+                    </InputContainer>
+                </Footer>
+            </FooterWrapper>
         </Container>
     );
 }
@@ -396,6 +399,15 @@ const Header = styled.div`
     top: 0;
     background: white;
     z-index: 10;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -11px;
+        left: 0;
+        right: 0;
+        height: 11px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.02), transparent);
+    }
 `;
 
 const Title = styled.h1`
@@ -468,36 +480,51 @@ const MessageTime = styled.span<{ $isMe: boolean }>`
     ${(props) => (props.$isMe ? "left: -48px;" : "right: -48px;")}
 `;
 
-const Footer = styled.div`
-    width: 343px;
-    height: 60px;
-    padding: 16px 16px 36px 16px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+const FooterWrapper = styled.div`
     position: sticky;
     bottom: 0;
-    background: white;
-    border-top: 1px solid #eee;
+    width: 100%;
+    z-index: 15;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -11px;
+        left: 0;
+        right: 0;
+        height: 11px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.02), transparent);
+    }
 `;
 
-// const ImageButton = styled.button`
-//     width: 36px;
-//     height: 36px;
-//     border-radius: 50%;
-//     color: var(--color-black-8);
-//     background-color: var(--color-black-8);
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
+const Footer = styled.div`
+    width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+    padding: 16px 20px 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    border-top: 1px solid #eee;
+    box-sizing: border-box;
+`;
 
-//     svg path {
-//         width: 24px;
-//         height: 24px;
-//         stroke: var(--color-black-5);
-//     }
-// `;
+const ImageButton = styled.button`
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: var(--color-black-8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+`;
 
 const InputContainer = styled.div`
     flex: 1;
@@ -509,7 +536,7 @@ const InputContainer = styled.div`
 const ChatInput = styled.input`
     flex: 1;
     height: 24px;
-    padding: 6px 38px 6px 16px;
+    padding: 8px 40px 8px 16px;
     border-radius: 20px;
     border: none;
     background-color: var(--color-black-8);
@@ -523,7 +550,7 @@ const ChatInput = styled.input`
 
 const SendButton = styled.button`
     position: absolute;
-    right: 16px;
+    right: 10px;
     width: 24px;
     height: 24px;
     border: none;
