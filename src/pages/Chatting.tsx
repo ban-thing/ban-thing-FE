@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
-import AlbumIcon from "@/assets/icons/album.svg?react";
+// import AlbumIcon from "@/assets/icons/album.svg?react";
 import { useEffect, useState, useRef } from "react";
 import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -362,9 +362,9 @@ export default function Chatting() {
 
             <FooterWrapper>
                 <Footer>
-                    <ImageButton>
+                    {/* <ImageButton>
                         <AlbumIcon />
-                    </ImageButton>
+                    </ImageButton> */}
                     <InputContainer>
                         <ChatInput
                             value={inputText}
@@ -503,13 +503,13 @@ const Footer = styled.div`
     padding: 16px 20px 36px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    /* gap: 12px; */
     background: white;
     border-top: 1px solid #eee;
     box-sizing: border-box;
 `;
 
-const ImageButton = styled.button`
+/* const ImageButton = styled.button`
     width: 40px;
     height: 40px;
     border-radius: 20px;
@@ -524,7 +524,7 @@ const ImageButton = styled.button`
         width: 24px;
         height: 24px;
     }
-`;
+`; */
 
 const InputContainer = styled.div`
     flex: 1;
