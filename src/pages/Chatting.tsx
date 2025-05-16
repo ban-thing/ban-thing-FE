@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BackButtonIcon from "@/assets/icons/back.svg?react";
 import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
-// import AlbumIcon from "@/assets/icons/album.svg?react";
+import AlbumIcon from "@/assets/icons/album.svg?react";
 import { useEffect, useState, useRef } from "react";
 import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -16,6 +16,7 @@ type Message = {
     senderId: number;
     message: string;
     time: string;
+    imgUrl?: string; // 이미지 URL 필드 추가
 };
 
 export default function Chatting() {
@@ -25,7 +26,9 @@ export default function Chatting() {
     const [inputText, setInputText] = useState("");
     const [messagesList, setMessagesList] = useState<Message[]>([]);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const socketRef = useRef<WebSocket | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const queryClient = useQueryClient();
 
     const { data, fetchNextPage, hasNextPage, isLoading, refetch } = useChatRoomDetailsQuery(
@@ -42,7 +45,8 @@ export default function Chatting() {
                     chatRoomId: Number(chatRoomId),
                     senderId: msg.senderId,
                     message: msg.message,
-                    time: typeof msg.time === 'string' ? msg.time : new Date(msg.time).toISOString()
+                    time: typeof msg.time === 'string' ? msg.time : new Date(msg.time).toISOString(),
+                    imgUrl: msg.imgUrl || "" // imgUrl 필드 추가, 없으면 빈 문자열
                 }))
             );
             
@@ -60,6 +64,7 @@ export default function Chatting() {
             senderId: myProfileData?.data.userId || 0,
             message: inputText.trim(),
             time: new Date().toISOString(),
+            imgUrl: "", // 기본적으로 빈 문자열로 설정
         };
 
         try {
@@ -69,7 +74,8 @@ export default function Chatting() {
             // 서버에 메시지 저장 요청
             await sendMessageMutation.mutateAsync({
                 roomId: Number(chatRoomId),
-                message: inputText.trim()
+                message: inputText.trim(),
+                imgUrl: "" // 기본 텍스트 메시지는 빈 이미지 URL
             });
             
             // UI에 임시로 메시지 추가 (실제 메시지는 웹소켓을 통해 다시 받거나 다음 API 요청 시 받음)
@@ -91,6 +97,65 @@ export default function Chatting() {
         } catch (error) {
             console.error("메시지 전송 실패:", error);
             alert("메시지 전송에 실패했습니다. 다시 시도해주세요.");
+        }
+    };
+
+    const handleImageSelect = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setSelectedImage(e.target.files[0]);
+        }
+    };
+
+    const handleSendImage = async () => {
+        if (!selectedImage || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
+
+        try {
+            // 이미지 업로드 로직 (실제 구현 필요)
+            // 여기서는 임시로 이미지 파일명을 사용
+            const imgUrl = `chat_images/${Date.now()}_${selectedImage.name}`;
+            
+            const newMessage: Message = {
+                chatRoomId: Number(chatRoomId),
+                senderId: myProfileData?.data.userId || 0,
+                message: "", // 이미지만 보낼 경우 메시지는 빈 문자열
+                time: new Date().toISOString(),
+                imgUrl: imgUrl,
+            };
+
+            // 웹소켓으로 메시지 전송
+            socketRef.current.send(JSON.stringify(newMessage));
+            
+            // 서버에 메시지 저장 요청
+            await sendMessageMutation.mutateAsync({
+                roomId: Number(chatRoomId),
+                message: "",
+                imgUrl: imgUrl
+            });
+            
+            // UI에 임시로 메시지 추가
+            setMessagesList(prev => [...prev, newMessage]);
+            
+            // 이미지 선택 초기화
+            setSelectedImage(null);
+            if (fileInputRef.current) fileInputRef.current.value = "";
+            
+            // 채팅 목록 캐시 무효화
+            queryClient.invalidateQueries({ queryKey: ["chats", Number(chatRoomId)] });
+            
+            // 스크롤 아래로 이동
+            setTimeout(() => {
+                const chatContainer = document.querySelector(".chat-container");
+                if (chatContainer) {
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }, 100);
+        } catch (error) {
+            console.error("이미지 전송 실패:", error);
+            alert("이미지 전송에 실패했습니다. 다시 시도해주세요.");
         }
     };
 
@@ -139,11 +204,11 @@ export default function Chatting() {
                         }
                         
                         setMessagesList((prev) => {
-                            // 중복 체크
-                            const msgKey = `${msg.senderId}-${msg.message}-${msg.time}`;
+                            // 중복 체크 - imgUrl도 포함하여 체크
+                            const msgKey = `${msg.senderId}-${msg.message}-${msg.time}-${msg.imgUrl || ""}`;
                             const isDuplicate = prev.some(
                                 (prevMsg) => 
-                                    `${prevMsg.senderId}-${prevMsg.message}-${prevMsg.time}` === msgKey
+                                    `${prevMsg.senderId}-${prevMsg.message}-${prevMsg.time}-${prevMsg.imgUrl || ""}` === msgKey
                             );
                             
                             if (isDuplicate) {
@@ -344,6 +409,9 @@ export default function Chatting() {
                                 $isMe={message.senderId === myProfileData?.data.userId}
                             >
                                 {message.message}
+                                {message.imgUrl && message.imgUrl.trim() !== "" && (
+                                    <MessageImage src={`${imageUrl}/${message.imgUrl}`} alt="채팅 이미지" />
+                                )}
                                 <MessageTime
                                     $isMe={message.senderId === myProfileData?.data.userId}
                                 >
@@ -362,9 +430,16 @@ export default function Chatting() {
 
             <FooterWrapper>
                 <Footer>
-                    {/* <ImageButton>
+                    <ImageButton onClick={handleImageSelect}>
                         <AlbumIcon />
-                    </ImageButton> */}
+                    </ImageButton>
+                    <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        style={{ display: 'none' }} 
+                        accept="image/*" 
+                        onChange={handleImageChange} 
+                    />
                     <InputContainer>
                         <ChatInput
                             value={inputText}
@@ -372,10 +447,19 @@ export default function Chatting() {
                             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                             placeholder="내용을 입력해주세요"
                         />
-                        <SendButton onClick={handleSendMessage}>
+                        <SendButton onClick={selectedImage ? handleSendImage : handleSendMessage}>
                             <SendIcon />
                         </SendButton>
                     </InputContainer>
+                    {selectedImage && (
+                        <SelectedImagePreview>
+                            <img 
+                                src={URL.createObjectURL(selectedImage)} 
+                                alt="선택된 이미지" 
+                            />
+                            <CancelButton onClick={() => setSelectedImage(null)}>×</CancelButton>
+                        </SelectedImagePreview>
+                    )}
                 </Footer>
             </FooterWrapper>
         </Container>
@@ -457,7 +541,8 @@ const DateDivider = styled.div`
 
 const MessageBubble = styled.div<{ $isMe: boolean }>`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: ${(props) => (props.$isMe ? "flex-end" : "flex-start")};
     width: fit-content;
     height: fit-content;
     max-width: 70%;
@@ -509,7 +594,7 @@ const Footer = styled.div`
     box-sizing: border-box;
 `;
 
-/* const ImageButton = styled.button`
+const ImageButton = styled.button`
     width: 40px;
     height: 40px;
     border-radius: 20px;
@@ -519,12 +604,13 @@ const Footer = styled.div`
     align-items: center;
     justify-content: center;
     border: none;
+    margin-right: 12px;
     
     svg {
         width: 24px;
         height: 24px;
     }
-`; */
+`;
 
 const InputContainer = styled.div`
     flex: 1;
@@ -611,3 +697,45 @@ const LoaderWrap = styled.div`
 //     color: var(--color-black-5);
 //     font-size: 14px;
 // `;
+
+const MessageImage = styled.img`
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    object-fit: contain;
+`;
+
+const SelectedImagePreview = styled.div`
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--color-main-1);
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;
+
+const CancelButton = styled.button`
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-main-1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+`;

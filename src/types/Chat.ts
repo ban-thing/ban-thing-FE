@@ -27,6 +27,7 @@ export type ChatRoomView = {
         senderId: number;
         message: string;
         time: Date;
+        imgUrl?: string; // 이미지 URL 필드 추가
     }[];
     hasNext: boolean;
 };

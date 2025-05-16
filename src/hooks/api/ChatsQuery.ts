@@ -54,8 +54,8 @@ export const useChatRoomMessagesQuery = (roomId: number) => {
 // 실시간 채팅 메시지 전송 Mutation
 export const useSendMessageMutation = () => {
     return useMutation({
-        mutationFn: async ({ roomId, message }: { roomId: number; message: string }) => {
-            return await apiService.post<void>(`/api/chats/room/${roomId}/message`, { message });
+        mutationFn: async ({ roomId, message, imgUrl }: { roomId: number; message: string; imgUrl?: string }) => {
+            return await apiService.post<void>(`/api/chats/room/${roomId}/message`, { message, imgUrl });
         },
     });
 };
