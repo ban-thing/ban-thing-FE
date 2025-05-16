@@ -55,7 +55,7 @@ export const useChatRoomMessagesQuery = (roomId: number) => {
 export const useSendMessageMutation = () => {
     return useMutation({
         mutationFn: async ({ roomId, message, imgUrl }: { roomId: number; message: string; imgUrl?: string }) => {
-            return await apiService.post<void>(`/api/chats/${roomId}`, { message, imgUrl });
+            return await apiService.post<void>(`/chats/${roomId}`, { message, imgUrl });
         },
     });
 };
