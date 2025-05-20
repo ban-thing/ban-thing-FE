@@ -57,7 +57,13 @@ export default function Chatting() {
     }, [data, chatRoomId]);
 
     const handleSendMessage = async () => {
-        if (inputText.trim() === "" || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
+        // 메시지가 비어있는 경우 전송하지 않음
+        if (inputText.trim() === "" || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
+            if (inputText.trim() === "") {
+                alert("메시지를 입력해주세요.");
+            }
+            return;
+        }
 
         const newMessage: Message = {
             chatRoomId: Number(chatRoomId),
@@ -111,7 +117,13 @@ export default function Chatting() {
     };
 
     const handleSendImage = async () => {
-        if (!selectedImage || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
+        // 이미지가 선택되지 않은 경우 전송하지 않음
+        if (!selectedImage || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
+            if (!selectedImage) {
+                alert("이미지를 선택해주세요.");
+            }
+            return;
+        }
 
         try {
             // 이미지 업로드 로직 (실제 구현 필요)
@@ -194,6 +206,12 @@ export default function Chatting() {
 
                     if (typeof event.data === "string" && event.data.includes("{")) {
                         const msg = JSON.parse(event.data) as Message;
+                        
+                        // 메시지와 이미지 둘 다 없는 경우 처리하지 않음
+                        if ((!msg.message || msg.message.trim() === "") && (!msg.imgUrl || msg.imgUrl.trim() === "")) {
+                            console.error("유효하지 않은 메시지:", msg);
+                            return;
+                        }
                         
                         // 본인이 보낸 메시지면 처리 방식 변경
                         // 메시지 수신 후 API 데이터를 다시 불러옴으로써 서버에 저장된 메시지를 동기화
@@ -408,11 +426,19 @@ export default function Chatting() {
                                 key={`${date}-${index}`}
                                 $isMe={message.senderId === myProfileData?.data.userId}
                             >
-                                {message.message}
-                                {message.imgUrl && message.imgUrl.trim() !== "" && (
-                                    //<MessageImage src={`${imageUrl}/${message.imgUrl}`} alt="채팅 이미지" />
-                                    <MessageImage src={`https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}`} alt="채팅 이미지" />
+                                {/* 메시지 텍스트가 있는 경우 표시 */}
+                                {message.message && message.message.trim() !== "" && (
+                                    <MessageText>{message.message}</MessageText>
                                 )}
+                                
+                                {/* 이미지 URL이 있는 경우 이미지 표시 */}
+                                {message.imgUrl && message.imgUrl.trim() !== "" && (
+                                    <MessageImage 
+                                        src={`https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}`} 
+                                        alt="채팅 이미지" 
+                                    />
+                                )}
+                                
                                 <MessageTime
                                     $isMe={message.senderId === myProfileData?.data.userId}
                                 >
@@ -739,4 +765,9 @@ const CancelButton = styled.button`
     border: none;
     cursor: pointer;
     font-size: 16px;
+`;
+
+const MessageText = styled.div`
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `;
