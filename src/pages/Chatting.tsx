@@ -129,7 +129,7 @@ export default function Chatting() {
             // 이미지 업로드 로직 (실제 구현 필요)
             // 여기서는 임시로 이미지 파일명을 사용
             //const imgUrl = `chat_images/${Date.now()}_${selectedImage.name}`;
-            const imgUrl = `10/1747402281864_IMG_1769.HEIC`;
+            const imgUrl = `${Date.now()}_${selectedImage.name}`;
             const newMessage: Message = {
                 chatRoomId: Number(chatRoomId),
                 senderId: myProfileData?.data.userId || 0,
