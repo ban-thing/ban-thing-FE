@@ -60,6 +60,23 @@ export const useSendMessageMutation = () => {
     });
 };
 
+// 이미지 메시지 전송 Mutation (multipart/form-data)
+export const useSendImageMessageMutation = () => {
+    return useMutation({
+        mutationFn: async ({ roomId, image, message = "" }: { roomId: number; image: File; message?: string }) => {
+            const formData = new FormData();
+            formData.append("image", image);
+            formData.append("message", message);
+            
+            return await apiService.post<void>(
+                `/chats/${roomId}/message`,
+                formData,
+                "multipart/form-data"
+            );
+        },
+    });
+};
+
 // 채팅 대화내용, 아이템 정보 조회
 export const useChatRoomDetailsQuery = (roomId: number) => {
     return useInfiniteQuery<ChatRoomView>({

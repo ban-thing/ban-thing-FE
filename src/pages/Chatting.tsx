@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from "@/assets/icons/send.svg?react";
 import AlbumIcon from "@/assets/icons/album.svg?react";
 import { useEffect, useState, useRef } from "react";
-import { useChatRoomDetailsQuery, useSendMessageMutation } from "@/hooks/api/ChatsQuery";
+import { useChatRoomDetailsQuery, useSendMessageMutation, useSendImageMessageMutation } from "@/hooks/api/ChatsQuery";
 import ClipLoader from "react-spinners/ClipLoader";
 import { imageUrl } from "@/utils/SetImageUrl";
 import { useFetchMyProfile } from "@/hooks/api/UsersQuery";
@@ -36,6 +36,7 @@ export default function Chatting() {
     );
 
     const sendMessageMutation = useSendMessageMutation();
+    const sendImageMessageMutation = useSendImageMessageMutation();
 
     // API에서 가져온 메시지 설정
     useEffect(() => {
@@ -126,26 +127,24 @@ export default function Chatting() {
         }
 
         try {
-            // 이미지 업로드 로직 (실제 구현 필요)
-            // 여기서는 임시로 이미지 파일명을 사용
-            //const imgUrl = `chat_images/${Date.now()}_${selectedImage.name}`;
-            const imgUrl = `${Date.now()}_${selectedImage.name}`;
+            // 임시 이미지 URL 생성 (UI 표시용)
+            const tempImgUrl = `${Date.now()}_${selectedImage.name}`;
+            
+            // 웹소켓으로 메시지 전송 (UI 업데이트용 메시지)
             const newMessage: Message = {
                 chatRoomId: Number(chatRoomId),
                 senderId: myProfileData?.data.userId || 0,
                 message: "", // 이미지만 보낼 경우 메시지는 빈 문자열
                 time: new Date().toISOString(),
-                imgUrl: imgUrl,
+                imgUrl: tempImgUrl,
             };
-
-            // 웹소켓으로 메시지 전송
             socketRef.current.send(JSON.stringify(newMessage));
             
-            // 서버에 메시지 저장 요청
-            await sendMessageMutation.mutateAsync({
+            // 이미지 메시지 전송 mutation 호출
+            await sendImageMessageMutation.mutateAsync({
                 roomId: Number(chatRoomId),
-                message: "",
-                imgUrl: imgUrl
+                image: selectedImage,
+                message: "" // 이미지만 전송할 경우 빈 메시지
             });
             
             // UI에 임시로 메시지 추가
