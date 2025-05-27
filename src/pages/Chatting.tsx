@@ -19,6 +19,23 @@ type Message = {
     imgUrl?: string; // 이미지 URL 필드 추가
 };
 
+const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+                // Base64 데이터 URL에서 base64 문자열만 추출 (예: "data:image/jpeg;base64,/9j/4AAQ..." -> "/9j/4AAQ...")
+                const base64String = reader.result.split(',')[1];
+                resolve(base64String);
+            } else {
+                reject(new Error('Failed to convert file to base64'));
+            }
+        };
+        reader.onerror = error => reject(error);
+    });
+};
+
 export default function Chatting() {
     const navigate = useNavigate();
     const { data: myProfileData } = useFetchMyProfile();
@@ -127,8 +144,8 @@ export default function Chatting() {
         }
 
         try {
-            // 임시 이미지 URL 생성 (UI 표시용)
-            const tempImgUrl = `${Date.now()}_${selectedImage.name}`;
+            // 이미지를 Base64로 변환
+            const base64Image = await fileToBase64(selectedImage);
             
             // 웹소켓으로 메시지 전송 (UI 업데이트용 메시지)
             const newMessage: Message = {
@@ -136,7 +153,7 @@ export default function Chatting() {
                 senderId: myProfileData?.data.userId || 0,
                 message: "", // 이미지만 보낼 경우 메시지는 빈 문자열
                 time: new Date().toISOString(),
-                imgUrl: tempImgUrl,
+                imgUrl: base64Image,
             };
             socketRef.current.send(JSON.stringify(newMessage));
             
@@ -433,7 +450,9 @@ export default function Chatting() {
                                 {/* 이미지 URL이 있는 경우 이미지 표시 */}
                                 {message.imgUrl && message.imgUrl.trim() !== "" && (
                                     <MessageImage 
-                                        src={`https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}`} 
+                                        src={message.imgUrl.startsWith('http') 
+                                            ? message.imgUrl 
+                                            : `data:image/jpeg;base64,${message.imgUrl}`} 
                                         alt="채팅 이미지" 
                                     />
                                 )}

@@ -60,18 +60,42 @@ export const useSendMessageMutation = () => {
     });
 };
 
-// 이미지 메시지 전송 Mutation (multipart/form-data)
+// 파일을 Base64로 변환하는 함수
+const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+                // Base64 데이터 URL에서 base64 문자열만 추출 (예: "data:image/jpeg;base64,/9j/4AAQ..." -> "/9j/4AAQ...")
+                const base64String = reader.result.split(',')[1];
+                resolve(base64String);
+            } else {
+                reject(new Error('Failed to convert file to base64'));
+            }
+        };
+        reader.onerror = error => reject(error);
+    });
+};
+
+// 이미지 메시지 전송 Mutation (imgUrl 형식)
 export const useSendImageMessageMutation = () => {
     return useMutation({
         mutationFn: async ({ roomId, image, message = "" }: { roomId: number; image: File; message?: string }) => {
-            const formData = new FormData();
-            formData.append("image", image);
-            formData.append("message", message);
+            // 이미지 파일을 Base64로 변환
+            const base64Image = await fileToBase64(image);
             
+            // 파일 이름 정보 생성 (서버에서 필요할 경우)
+            const filename = `${Date.now()}_${image.name}`;
+            
+            // JSON 형태로 데이터 전송
             return await apiService.post<void>(
                 `/chats/${roomId}/message`,
-                formData,
-                "multipart/form-data"
+                {
+                    message,
+                    imgUrl: base64Image,  // Base64 이미지 데이터
+                    filename // 파일명 정보도 함께 전송
+                }
             );
         },
     });
