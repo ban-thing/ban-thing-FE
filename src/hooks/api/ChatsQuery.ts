@@ -85,16 +85,13 @@ export const useSendImageMessageMutation = () => {
             // 이미지 파일을 Base64로 변환
             const base64Image = await fileToBase64(image);
             
-            // 파일 이름 정보 생성 (서버에서 필요할 경우)
-            const filename = `${Date.now()}_${image.name}`;
-            
             // JSON 형태로 데이터 전송
             return await apiService.post<void>(
                 `/chats/${roomId}/message`,
                 {
                     message,
-                    imgUrl: base64Image,  // Base64 이미지 데이터
-                    filename // 파일명 정보도 함께 전송
+                    imgUrl: "",  // imgUrl은 빈 문자열로 전송
+                    data: base64Image  // 실제 Base64 이미지 데이터는 data 필드에 전송
                 }
             );
         },

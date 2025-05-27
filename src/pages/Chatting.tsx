@@ -16,7 +16,8 @@ type Message = {
     senderId: number;
     message: string;
     time: string;
-    imgUrl?: string; // 이미지 URL 필드 추가
+    imgUrl?: string | null; // 이미지 URL 필드 수정
+    data?: string; // 추가된 data 필드
 };
 
 const fileToBase64 = (file: File): Promise<string> => {
@@ -153,7 +154,8 @@ export default function Chatting() {
                 senderId: myProfileData?.data.userId || 0,
                 message: "", // 이미지만 보낼 경우 메시지는 빈 문자열
                 time: new Date().toISOString(),
-                imgUrl: base64Image,
+                imgUrl: "",  // 빈 문자열로 설정
+                data: base64Image
             };
             socketRef.current.send(JSON.stringify(newMessage));
             
@@ -448,11 +450,13 @@ export default function Chatting() {
                                 )}
                                 
                                 {/* 이미지 URL이 있는 경우 이미지 표시 */}
-                                {message.imgUrl && message.imgUrl.trim() !== "" && (
+                                {(message.imgUrl || message.data) && (
                                     <MessageImage 
-                                        src={message.imgUrl.startsWith('http') 
-                                            ? message.imgUrl 
-                                            : `data:image/jpeg;base64,${message.imgUrl}`} 
+                                        src={message.imgUrl 
+                                            ? `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` 
+                                            : message.data 
+                                                ? `data:image/jpeg;base64,${message.data}`
+                                                : ""} 
                                         alt="채팅 이미지" 
                                     />
                                 )}
