@@ -452,12 +452,20 @@ export default function Chatting() {
                                 {/* 이미지 URL이 있는 경우 이미지 표시 */}
                                 {(message.imgUrl || message.data) && (
                                     <MessageImage 
-                                        src={message.imgUrl 
-                                            ? `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` 
-                                            : message.data 
-                                                ? `data:image/jpeg;base64,${message.data}`
-                                                : ""} 
+                                        src={
+                                            message.imgUrl 
+                                                ? message.imgUrl.startsWith('http') 
+                                                    ? message.imgUrl  // 이미 전체 URL인 경우
+                                                    : `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` // 파일명만 있는 경우
+                                                : message.data 
+                                                    ? `data:image/jpeg;base64,${message.data}`
+                                                    : ""
+                                        } 
                                         alt="채팅 이미지" 
+                                        onError={(e) => {
+                                            console.error('이미지 로드 실패:', message.imgUrl);
+                                            e.currentTarget.style.display = 'none';
+                                        }}
                                     />
                                 )}
                                 
