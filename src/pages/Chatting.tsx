@@ -439,43 +439,83 @@ export default function Chatting() {
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <DateDivider>{formatDateDivider(date)}</DateDivider>
                         </div>
-                        {messagesForDate.map((message, index) => (
-                            <MessageBubble
-                                key={`${date}-${index}`}
-                                $isMe={message.senderId === myProfileData?.data.userId}
-                            >
-                                {/* 메시지 텍스트가 있는 경우 표시 */}
-                                {message.message && message.message.trim() !== "" && (
-                                    <MessageText>{message.message}</MessageText>
-                                )}
-                                
-                                {/* 이미지 URL이 있는 경우 이미지 표시 */}
-                                {(message.imgUrl || message.data) && (
-                                    <MessageImage 
-                                        src={
-                                            message.imgUrl 
-                                                ? message.imgUrl.startsWith('http') 
-                                                    ? message.imgUrl  // 이미 전체 URL인 경우
-                                                    : `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` // 파일명만 있는 경우
-                                                : message.data 
-                                                    ? `data:image/jpeg;base64,${message.data}`
-                                                    : ""
-                                        } 
-                                        alt="채팅 이미지" 
-                                        onError={(e) => {
-                                            console.error('이미지 로드 실패:', message.imgUrl);
-                                            e.currentTarget.style.display = 'none';
-                                        }}
-                                    />
-                                )}
-                                
-                                <MessageTime
+                        {messagesForDate.map((message, index) => {
+                            // 이미지만 있는 메시지인지 확인 (텍스트는 없고 이미지만 있는 경우)
+                            const isImageOnly = (!message.message || message.message.trim() === "") && 
+                                               (message.imgUrl || message.data);
+                            
+                            if (isImageOnly) {
+                                // 이미지만 있는 경우 - 배경 없이 이미지와 시간만 표시
+                                return (
+                                    <ImageOnlyContainer
+                                        key={`${date}-${index}`}
+                                        $isMe={message.senderId === myProfileData?.data.userId}
+                                    >
+                                        <MessageImage 
+                                            src={
+                                                message.imgUrl 
+                                                    ? message.imgUrl.startsWith('http') 
+                                                        ? message.imgUrl  // 이미 전체 URL인 경우
+                                                        : `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` // 파일명만 있는 경우
+                                                    : message.data 
+                                                        ? `data:image/jpeg;base64,${message.data}`
+                                                        : ""
+                                            } 
+                                            alt="채팅 이미지" 
+                                            onError={(e) => {
+                                                console.error('이미지 로드 실패:', message.imgUrl);
+                                                e.currentTarget.style.display = 'none';
+                                            }}
+                                        />
+                                        <MessageTime
+                                            $isMe={message.senderId === myProfileData?.data.userId}
+                                        >
+                                            {formatDate(message.time)}
+                                        </MessageTime>
+                                    </ImageOnlyContainer>
+                                );
+                            }
+                            
+                            // 텍스트가 있는 메시지 또는 텍스트+이미지 메시지
+                            return (
+                                <MessageBubble
+                                    key={`${date}-${index}`}
                                     $isMe={message.senderId === myProfileData?.data.userId}
                                 >
-                                    {formatDate(message.time)}
-                                </MessageTime>
-                            </MessageBubble>
-                        ))}
+                                    {/* 메시지 텍스트가 있는 경우 표시 */}
+                                    {message.message && message.message.trim() !== "" && (
+                                        <MessageText>{message.message}</MessageText>
+                                    )}
+                                    
+                                    {/* 이미지 URL이 있는 경우 이미지 표시 */}
+                                    {(message.imgUrl || message.data) && (
+                                        <MessageImage 
+                                            style={{ marginTop: '8px' }}
+                                            src={
+                                                message.imgUrl 
+                                                    ? message.imgUrl.startsWith('http') 
+                                                        ? message.imgUrl  // 이미 전체 URL인 경우
+                                                        : `https://kr.object.ncloudstorage.com/banthing-images/chatImage/${message.imgUrl}` // 파일명만 있는 경우
+                                                    : message.data 
+                                                        ? `data:image/jpeg;base64,${message.data}`
+                                                        : ""
+                                            } 
+                                            alt="채팅 이미지" 
+                                            onError={(e) => {
+                                                console.error('이미지 로드 실패:', message.imgUrl);
+                                                e.currentTarget.style.display = 'none';
+                                            }}
+                                        />
+                                    )}
+                                    
+                                    <MessageTime
+                                        $isMe={message.senderId === myProfileData?.data.userId}
+                                    >
+                                        {formatDate(message.time)}
+                                    </MessageTime>
+                                </MessageBubble>
+                            );
+                        })}
                     </div>
                 ))}
                 {/* {hasNextPage && (
@@ -759,7 +799,6 @@ const MessageImage = styled.img`
     max-width: 200px;
     max-height: 200px;
     border-radius: 8px;
-    margin-top: 8px;
     object-fit: contain;
 `;
 
@@ -800,4 +839,16 @@ const CancelButton = styled.button`
 const MessageText = styled.div`
     word-wrap: break-word;
     white-space: pre-wrap;
+`;
+
+const ImageOnlyContainer = styled.div<{ $isMe: boolean }>`
+    display: flex;
+    flex-direction: column;
+    align-items: ${(props) => (props.$isMe ? "flex-end" : "flex-start")};
+    width: fit-content;
+    height: fit-content;
+    max-width: 70%;
+    position: relative;
+    align-self: ${(props) => (props.$isMe ? "flex-end" : "flex-start")};
+    margin-bottom: 16px;
 `;
