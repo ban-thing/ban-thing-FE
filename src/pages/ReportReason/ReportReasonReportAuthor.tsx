@@ -32,8 +32,8 @@ const ReportReasonReportAuthor = () => {
         if (itemId) {
             reportItem({
                 itemId, 
-                reason: selectedReason,
-                otherReason: selectedReason === "기타 부적절한 행위" ? otherReason : undefined
+                hiReason: selectedCategory,
+                loReason: selectedReason === "기타 부적절한 행위" ? otherReason : selectedReason
             }, {
                 onSuccess: () => {
                     navigate('/');

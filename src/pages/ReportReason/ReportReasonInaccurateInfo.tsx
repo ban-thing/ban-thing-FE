@@ -25,7 +25,8 @@ const ReportReasonInaccurateInfo = () => {
         if (itemId) {
             reportItem({
                 itemId, 
-                reason: `${selectedCategory} - ${reason}`
+                hiReason: selectedCategory,
+                loReason: reason
             }, {
                 onSuccess: () => {
                     navigate('/');

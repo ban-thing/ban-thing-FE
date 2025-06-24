@@ -31,7 +31,8 @@ const ReportReasonProfessionalSeller = () => {
         if (itemId) {
             reportItem({
                 itemId, 
-                reason: `${selectedCategory} - ${selectedReason}`
+                hiReason: selectedCategory,
+                loReason: selectedReason
             }, {
                 onSuccess: () => {
                     navigate('/');
