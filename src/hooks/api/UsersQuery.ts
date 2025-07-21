@@ -156,3 +156,26 @@ export const useRemoveWishlist = () => {
         },
     });
 };
+
+// 작성자 신고
+interface ReportUserParams {
+    userId: string | number;
+    hiReason: string;
+    loReason?: string;
+}
+
+export const useFetchUserReport = () => {
+    return useMutation({
+        mutationFn: async ({ userId, hiReason, loReason }: ReportUserParams) => {
+            const params = new URLSearchParams();
+            params.append('hiReason', hiReason);
+            if (loReason) {
+                params.append('loReason', loReason);
+            }
+            return await apiService.post(`user-report/${userId}?${params.toString()}`, {});
+        },
+        onError: (error, variables, context) => {
+            console.log(error, variables, context);
+        }
+    });
+};

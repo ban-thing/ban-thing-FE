@@ -94,7 +94,6 @@ const SettingItem = styled.div`
 const RotatedBackIcon = styled(BackIcon)`
     transform: rotate(180deg);
 `;
-
 const ReportAuthorButton = styled.button`
     background: none;
     border: none;

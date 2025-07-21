@@ -5,18 +5,19 @@ import CheckIcon from "../../assets/icons/check1.svg?react";
 import { Button } from "@/components/atoms/Button";
 import { useState } from "react";
 import { ConfirmModal } from "@/components/molecules/ConfirmModal";
-import { useFetchItemReport } from "@/hooks/api/ItemsQuery";
+import { useFetchUserReport } from "@/hooks/api/UsersQuery";
 
 const ReportReasonReportAuthor = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedCategory = location.state?.category || "작성자 신고하기";
     const itemId = location.state?.itemId;
+    const sellerId = location.state?.sellerId;
     const settings = ["비매너 사용자", "거래 중 분쟁 발생", "사기 의심", "욕설 비방 혐오표현 사용", "연애 목적의 원하지 않는 대화 시도", "부적절한 성적 행위", "기타 부적절한 행위"];
     const [selectedReason, setSelectedReason] = useState<string>("");
     const [otherReason, setOtherReason] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const { mutate: reportItem } = useFetchItemReport();
+    const { mutate: reportUser } = useFetchUserReport();
 
     const handleItemClick = (value: string) => {
         setSelectedReason(value);
@@ -29,9 +30,9 @@ const ReportReasonReportAuthor = () => {
     const handleConfirm = () => {
         setIsModalOpen(false);
         
-        if (itemId) {
-            reportItem({
-                itemId, 
+        if (sellerId) {
+            reportUser({
+                userId: sellerId, 
                 hiReason: selectedCategory,
                 loReason: selectedReason === "기타 부적절한 행위" ? otherReason : selectedReason
             }, {
@@ -39,7 +40,7 @@ const ReportReasonReportAuthor = () => {
                     navigate('/');
                     // 여기에 성공 토스트 메시지를 추가할 수 있습니다
                 },
-                onError: (error) => {
+                onError: (error: any) => {
                     console.error('신고 처리 중 오류 발생:', error);
                     // 여기에 오류 토스트 메시지를 추가할 수 있습니다
                 }
