@@ -34,6 +34,25 @@ const ReportReasonReportAuthor = () => {
         
         console.log('🔍 작성자 신고 시작:', { sellerId, selectedCategory, selectedReason, otherReason });
         
+        // Validation 추가
+        if (!sellerId || isNaN(Number(sellerId))) {
+            console.error('❌ sellerId가 유효하지 않습니다:', sellerId);
+            alert('작성자 정보가 올바르지 않습니다.');
+            return;
+        }
+        
+        if (!selectedReason || selectedReason.trim() === "") {
+            console.error('❌ 신고 사유가 선택되지 않았습니다:', selectedReason);
+            alert('신고 사유를 선택해주세요.');
+            return;
+        }
+        
+        if (selectedReason === "기타 부적절한 행위" && (!otherReason || otherReason.trim() === "")) {
+            console.error('❌ 기타 사유에 대한 상세 내용이 입력되지 않았습니다');
+            alert('상세 신고 사유를 입력해주세요.');
+            return;
+        }
+        
         if (sellerId) {
             const reportData = {
                 userId: sellerId, 
@@ -42,6 +61,12 @@ const ReportReasonReportAuthor = () => {
             };
             
             console.log('📤 useFetchUserReport API 호출:', reportData);
+            console.log('📤 sellerId 타입 및 값 확인:', { 
+                sellerId, 
+                sellerIdType: typeof sellerId, 
+                sellerIdNumber: Number(sellerId),
+                isNaN: isNaN(Number(sellerId))
+            });
             
             reportUser(reportData, {
                 onSuccess: (response) => {
@@ -51,6 +76,13 @@ const ReportReasonReportAuthor = () => {
                 },
                 onError: (error: any) => {
                     console.error('❌ 작성자 신고 실패:', error);
+                    console.error('❌ 에러 상세 정보:', {
+                        status: error.response?.status,
+                        statusText: error.response?.statusText,
+                        data: error.response?.data,
+                        config: error.config,
+                        message: error.message
+                    });
                     // 여기에 오류 토스트 메시지를 추가할 수 있습니다
                 }
             });

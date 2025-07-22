@@ -167,15 +167,21 @@ interface ReportUserParams {
 export const useFetchUserReport = () => {
     return useMutation({
         mutationFn: async ({ userId, reason, detailed_reason }: ReportUserParams) => {
+            console.log('🔍 API 호출 파라미터:', { userId, reason, detailed_reason });
+            
             const params = new URLSearchParams();
             params.append('reason', reason);
-            if (detailed_reason) {
+            if (detailed_reason && detailed_reason.trim() !== "") {
                 params.append('detailed_reason', detailed_reason);
             }
-            return await apiService.post(`user-report/${userId}?${params.toString()}`, {});
+            
+            const url = `user-report/${userId}?${params.toString()}`;
+            console.log('🔍 최종 API URL:', url);
+            
+            return await apiService.post(url, {});
         },
         onError: (error, variables, context) => {
-            console.log(error, variables, context);
+            console.log('🔴 useFetchUserReport 에러:', error, variables, context);
         }
     });
 };
