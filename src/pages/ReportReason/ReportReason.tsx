@@ -7,6 +7,9 @@ const ReportReason = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const itemId = location.state?.itemId;
+    const sellerId = location.state?.sellerId;
+    
+    console.log('🔍 ReportReason 페이지 로드:', { itemId, sellerId, locationState: location.state });
     const settings = [
         "광고성 컨텐츠예요",
         "상품 정보가 부정확해요",
@@ -56,7 +59,10 @@ const ReportReason = () => {
                     </SettingItem>
                 ))}
             </SettingList>
-            <ReportAuthorButton onClick={() => navigate("/report-reason/report-author", { state: { itemId } })}>
+            <ReportAuthorButton onClick={() => {
+                console.log('🔍 작성자 신고하기 버튼 클릭:', { itemId, sellerId });
+                navigate("/report-reason/report-author", { state: { itemId, sellerId } });
+            }}>
                 작성자 신고하기
             </ReportAuthorButton>
         </ReportReasonWrap>

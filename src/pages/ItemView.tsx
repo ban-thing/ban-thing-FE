@@ -121,7 +121,10 @@ const ItemViewPage = () => {
                     likeCount={wishlistCount}
                 />
                 <ReportButtonWrapper>
-                    <SkipButton onClick={() => navigate("/report-reason", { state: { itemId: Number(itemId), sellerId: Number(itemData?.sellerId) } })}>
+                    <SkipButton onClick={() => {
+                        console.log('🔍 신고 버튼 클릭:', { itemId: Number(itemId), sellerId: Number(itemData?.sellerId), itemData });
+                        navigate("/report-reason", { state: { itemId: Number(itemId), sellerId: Number(itemData?.sellerId) } });
+                    }}>
                         이 게시글 신고하기
                     </SkipButton>
                 </ReportButtonWrapper>
