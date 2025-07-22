@@ -30,22 +30,31 @@ const ReportReasonReportAuthor = () => {
     const handleConfirm = () => {
         setIsModalOpen(false);
         
+        console.log('🔍 작성자 신고 시작:', { sellerId, selectedCategory, selectedReason, otherReason });
+        
         if (sellerId) {
-            reportUser({
+            const reportData = {
                 userId: sellerId, 
                 hiReason: selectedCategory,
                 loReason: selectedReason === "기타 부적절한 행위" ? otherReason : selectedReason
-            }, {
-                onSuccess: () => {
+            };
+            
+            console.log('📤 useFetchUserReport API 호출:', reportData);
+            
+            reportUser(reportData, {
+                onSuccess: (response) => {
+                    console.log('✅ 작성자 신고 성공:', response);
                     navigate('/');
                     // 여기에 성공 토스트 메시지를 추가할 수 있습니다
                 },
                 onError: (error: any) => {
-                    console.error('신고 처리 중 오류 발생:', error);
+                    console.error('❌ 작성자 신고 실패:', error);
                     // 여기에 오류 토스트 메시지를 추가할 수 있습니다
                 }
             });
         } else {
+            console.error('❌ sellerId가 없어서 신고할 수 없습니다:', { sellerId, itemId });
+            alert('작성자 정보를 찾을 수 없습니다.');
             navigate("/");
         }
     };
