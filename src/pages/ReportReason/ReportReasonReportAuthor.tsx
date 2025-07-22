@@ -35,8 +35,8 @@ const ReportReasonReportAuthor = () => {
         if (sellerId) {
             const reportData = {
                 userId: sellerId, 
-                hiReason: selectedCategory,
-                loReason: selectedReason === "기타 부적절한 행위" ? otherReason : selectedReason
+                reason: selectedCategory,
+                detailed_reason: selectedReason === "기타 부적절한 행위" ? otherReason : selectedReason
             };
             
             console.log('📤 useFetchUserReport API 호출:', reportData);
