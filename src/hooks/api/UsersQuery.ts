@@ -97,14 +97,20 @@ export const useFetchAddress = ({ address1, address2, address3 }: Address) => {
 };
 
 // 회원 탈퇴
+interface DeleteUserParams {
+    reason: string;
+    memo: string;
+}
+
 export const useFetchDeleteUser = () => {
     const navigate = useNavigate();
     return useMutation({
-        mutationFn: async (reason: string) => {
-            return await apiService.post<string>(`my/delete`, { reason }, "", true);
+        mutationFn: async ({ reason, memo }: DeleteUserParams) => {
+            console.log("🔍 회원 탈퇴 API 호출:", { reason, memo });
+            return await apiService.post<string>(`my/delete`, { memo, reason }, "", true);
         },
         onError: (error, variables, context) => {
-            console.log(error, variables, context);
+            console.log("🔴 회원 탈퇴 에러:", error, variables, context);
         },
         onSuccess: () => {
             navigate("/login");
@@ -117,7 +123,12 @@ export const useFetchWishlist = () => {
     return useQuery({
         queryKey: ["wishlist"],
         queryFn: async () => {
-            return await apiService.get<{ status: string; data: ItemsList[]; message: null }>("my/wishlist", {}, "", true);
+            return await apiService.get<{ status: string; data: ItemsList[]; message: null }>(
+                "my/wishlist",
+                {},
+                "",
+                true,
+            );
         },
         retry: false,
     });
@@ -131,7 +142,7 @@ export const useAddWishlist = () => {
                 `items/${itemId}/wishlist`,
                 {},
                 "",
-                true
+                true,
             );
         },
         onError: (error, variables, context) => {
@@ -148,7 +159,7 @@ export const useRemoveWishlist = () => {
                 `items/${itemId}/wishlist`,
                 {},
                 "",
-                true
+                true,
             );
         },
         onError: (error, variables, context) => {
@@ -167,21 +178,21 @@ interface ReportUserParams {
 export const useFetchUserReport = () => {
     return useMutation({
         mutationFn: async ({ userId, reason, detailed_reason }: ReportUserParams) => {
-            console.log('🔍 API 호출 파라미터:', { userId, reason, detailed_reason });
-            
+            console.log("🔍 API 호출 파라미터:", { userId, reason, detailed_reason });
+
             const params = new URLSearchParams();
-            params.append('reason', reason);
+            params.append("reason", reason);
             if (detailed_reason && detailed_reason.trim() !== "") {
-                params.append('detailed_reason', detailed_reason);
+                params.append("detailed_reason", detailed_reason);
             }
-            
+
             const url = `user-report/${userId}?${params.toString()}`;
-            console.log('🔍 최종 API URL:', url);
-            
+            console.log("🔍 최종 API URL:", url);
+
             return await apiService.post(url, {});
         },
         onError: (error, variables, context) => {
-            console.log('🔴 useFetchUserReport 에러:', error, variables, context);
-        }
+            console.log("🔴 useFetchUserReport 에러:", error, variables, context);
+        },
     });
 };

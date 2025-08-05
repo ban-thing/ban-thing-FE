@@ -36,7 +36,7 @@ const MyPageCancelOther = () => {
                 <Button
                     onClick={() =>
                         navigate("/my-page/cancel-notice", {
-                            state: { reason: reason.trim() },
+                            state: { reason: "기타", memo: reason.trim() },
                         })
                     }
                     size="large"

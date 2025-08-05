@@ -12,6 +12,7 @@ const MyPageCancelNotice = () => {
     const [showModal, setShowModal] = useState(false);
     const deleteUserMutation = useFetchDeleteUser();
     const reason = location.state?.reason || "회원 탈퇴";
+    const memo = location.state?.memo || "";
 
     const settings = [
         "• 탈퇴 후 7일간 재가입이 불가능합니다.",
@@ -20,7 +21,8 @@ const MyPageCancelNotice = () => {
     ];
 
     const handleWithdrawal = () => {
-        deleteUserMutation.mutate(reason);
+        console.log("🔍 회원 탈퇴 요청:", { reason, memo });
+        deleteUserMutation.mutate({ reason, memo });
         setShowModal(false);
     };
 
